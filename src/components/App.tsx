@@ -1,14 +1,26 @@
 import React, { useCallback, useEffect } from 'react';
+import useProfile from '../hooks/useProfile';
+import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
 
 function App() {
   // eslint-disable-next-line space-before-function-paren
+  const a = useProfile('1e7b2a5f-7423-4cc4-aa70-003db70da303');
+  console.log({ a });
   const fetchCallback = useCallback(async () => {
     const { user, error } = await supabase.auth.signUp({
-      email: 'someone@email.com',
+      email: 'somesone@email.com',
       password: 'nhLLRVQzFHZGKbGhgAAU',
     });
     console.log({ user, error });
+    if (user) {
+      await supabase.from<IProfile>('profiles')
+        .insert({
+          id: user.id,
+          firstName: 'fr',
+          lastName: 'rfsd',
+        });
+    }
   }, []);
 
   useEffect(() => {
