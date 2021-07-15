@@ -22,14 +22,9 @@ jobs:
         with:
           node-version: 13.x
 
-      - name: Cache NPM packages
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install NPM packages
-        run: npm ci
+        run: npm i
 
       - name: Build project
         run: npm run build
