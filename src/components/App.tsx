@@ -2,11 +2,7 @@ import React from 'react';
 import useUser from '../hooks/useUser';
 
 function App() {
-  const {
-    error,
-    response,
-    status
-  } = useUser('dsfdskfkds');
+  useUser('dsfdskfkds');
 
   return (
     <div className="App">
