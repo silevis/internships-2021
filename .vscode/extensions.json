@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "firsttris.vscode-jest-runner",
+    "editorconfig.editorconfig",
+    "aaron-bond.better-comments"
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "extra-rules",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "strict": [
+      "error",
+      "safe"
+    ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "linebreak-style": ["error", "unix"],
+    "no-debugger": "error",
+    "brace-style": [
+      2,
+      "1tbs",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "no-trailing-spaces": "error",
+    "keyword-spacing": "error",
+    "import/prefer-default-export": "warn",
+    "space-before-function-paren": [
+      2,
+      "never"
+    ],
+    "spaced-comment": [
+      "error",
+      "always"
+    ],
+    "vars-on-top": "error",
+    "no-undef": "error",
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "no-underscore-dangle": "off",
+    "object-curly-newline": "off",
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "warn",
+      "always"
+    ],
+    "curly": "error",
+    "guard-for-in": "error",
+    "no-eval": "error",
+    "no-with": "error",
+    "valid-typeof": "error",
+    "no-bitwise": "error",
+    "no-continue": "warn",
+    "no-extra-semi": "warn",
+    "no-unreachable": "warn",
+    "no-unused-expressions": "warn",
+    "no-console": "warn", // TODO - change to warn when validateFields will display error for user
+    "max-len": [
+      "warn",
+      {
+        "code": 140,
+        "ignorePattern": "^import "
+      }
+    ],
+    "class-methods-use-this": "off",
+    "react/prefer-es6-class": "warn",
+    "react/forbid-prop-types": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/destructuring-assignment": "off",
+    "no-plusplus": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": "error",
+    "extra-rules/no-commented-out-code": "warn",
+    "no-inline-comments": "warn",
+    "func-names": [
+      "error",
+      "as-needed"
+    ],
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "react/require-default-props": "off",
+    "import/no-unresolved": "warn",
+    "import/no-extraneous-dependencies": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "arrow-body-style": "off",
+    "import/extensions": [
+      "warn",
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "react/prop-types": "off",
+    "template-curly-spacing": "off",
+    "indent": "off",
+    "import/no-cycle": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "implicit-arrow-linebreak": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx",
+          ".json"
+        ]
+      }
+    }
+  }
+}
