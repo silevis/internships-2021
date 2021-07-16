@@ -15,19 +15,16 @@ function App() {
     });
     console.log({ user, error });
     if (user) {
-      await supabase.from<IProfile>('profiles')
-        .insert({
-          id: user.id,
-          firstName: 'fr',
-          lastName: 'rfsd',
-        });
+      await supabase.from<IProfile>('profiles').insert({
+        id: user.id,
+        firstName: 'fr',
+        lastName: 'rfsd',
+      });
     }
   }, []);
 
   useEffect(() => {
-    fetchCallback()
-      .then()
-      .catch();
+    fetchCallback().then().catch();
   }, [fetchCallback]);
 
   return (

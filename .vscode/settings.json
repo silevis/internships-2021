@@ -1,6 +1,4 @@
 {
-    "cSpell.words": [
-        "Supa",
-        "supabase"
-    ]
+  "cSpell.words": ["Supa", "supabase"],
+  "editor.defaultFormatter": "vscode.typescript-language-features"
 }
