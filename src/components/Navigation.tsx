@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Navigation() {
   return (
     <div>
@@ -9,40 +11,35 @@ function Navigation() {
                 Ksiazki
               </span>
             </div>
-
-            <div className="flex md:hidden">
-              <span
-                className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400
-                focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
-                aria-label="toggle menu"
-              >
-                aasddsddsasadsadsdasadsads
-              </span>
-            </div>
           </div>
 
           <div className="items-center md:flex">
             <div className="flex flex-col md:flex-row md:mx-6">
-              <span
+
+              <Link
+                to="/"
                 className="my-1 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
                 md:mr-4 md:my-0 md:border-l md:border-gray-400"
               >
                 Home
-              </span>
-              <span
+              </Link>
+              <Link
+                to="/user"
                 className="my-1 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
                 md:mr-4 md:my-0 md:border-l md:border-gray-400"
               >
                 User
-              </span>
-              <span
+              </Link>
+              <Link
+                to="/admin"
                 className="my-1 px-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
                 md:mr-4 md:my-0 md:border-l md:border-r md:border-gray-400"
               >
                 Admin
-              </span>
+              </Link>
             </div>
           </div>
+
         </div>
       </nav>
     </div>
