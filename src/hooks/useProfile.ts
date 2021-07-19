@@ -1,16 +1,15 @@
 import { useCallback } from 'react';
 import supabase from '../utils/supabase';
-import { IUser } from '../interfaces/IUser.interface';
+import { IProfile } from '../interfaces/IProfile.interface';
 import useSupaBase from './useSupaBase';
 
-type EmployeeQuery = IUser;
+type ProfileQuery = IProfile;
 
-const useUser = (id: string) => {
+const useProfile = (id: string) => {
   // eslint-disable-next-line space-before-function-paren
   const supabaseQuery = useCallback(async () => {
     return supabase
-      .supabase
-      .from<EmployeeQuery>('employee')
+      .from<ProfileQuery>('profiles')
       .select(`
         *
       `)
@@ -22,4 +21,4 @@ const useUser = (id: string) => {
   return useSupaBase(supabaseQuery);
 };
 
-export default useUser;
+export default useProfile;
