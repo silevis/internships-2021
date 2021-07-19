@@ -8,7 +8,7 @@ function Navigation() {
           <div className="flex items-center justify-between">
             <div>
               <span className="text-xl font-bold text-gray-800 dark:text-white md:text-2xl hover:text-gray-700 dark:hover:text-gray-300">
-                Ksiazki
+                Books
               </span>
             </div>
           </div>

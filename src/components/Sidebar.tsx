@@ -6,7 +6,7 @@ function Sidebar() {
     >
       <div className="items-center justify-between overflow-y-auto scrolling-touch">
         <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
-          Filtry
+          Filters
         </div>
         <nav className="mx-4 my-3">
           <div className="border-b border-gray-200 mx-1 pb-5 mt-5">
@@ -20,13 +20,13 @@ function Sidebar() {
           </div>
           <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
             <ul className="list-disc">
-              <li>Beletrystyka</li>
-              <li>Literatura faktu, publicystyka</li>
-              <li>Literatura popularnonaukowa</li>
-              <li>Literatura dziecięca</li>
-              <li>Komiksy</li>
-              <li>Poezja, dramat, satyra</li>
-              <li>Pozostałe</li>
+              <li>Fiction</li>
+              <li>Literature of fact, journalism</li>
+              <li>Popular science literature</li>
+              <li>Children&apos;s literature</li>
+              <li>Comics</li>
+              <li>Poetry, drama, satire</li>
+              <li>Other</li>
             </ul>
           </div>
         </nav>
