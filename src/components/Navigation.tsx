@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Navigation() {
   return (
-    <div>
+    <div className="">
       <nav className="bg-white shadow dark:bg-gray-800">
         <div className="container px-6 py-3 mx-auto md:flex md:justify-between md:items-center">
           <div className="flex items-center justify-between">

@@ -37,8 +37,10 @@ function App() {
   return (
     <div className="App h-full">
       <Router>
-        <Navigation />
-        <div className="container w-full h-screen max-w-8xl mx-auto flex">
+        <header className="App-header fixed w-full top-0 h-10 z-50">
+          <Navigation />
+        </header>
+        <div className="container w-full h-screen max-w-8xl mx-auto flex mt-12 z-10">
           <Sidebar />
           <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
             <Switch>
@@ -47,7 +49,7 @@ function App() {
               </Route>
               <Route path="/" exact>
                 main
-                <header className="App-header">
+                <main>
                   <p>
                     Edit <code>src/App.tsx</code> and save to reload.
                   </p>
@@ -59,7 +61,7 @@ function App() {
                   >
                     Learn Reacta
                   </a>
-                </header>
+                </main>
               </Route>
               <Route path="/user" exact />
               <Route path="/admin" exact />
