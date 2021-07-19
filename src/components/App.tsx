@@ -9,6 +9,7 @@ import useProfile from '../hooks/useProfile';
 import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
 import Navigation from './Navigation';
+import Sidebar from './Sidebar';
 
 function App() {
   // eslint-disable-next-line space-before-function-paren
@@ -34,32 +35,37 @@ function App() {
   }, [fetchCallback]);
 
   return (
-    <div className="App">
+    <div className="App h-full">
       <Router>
         <Navigation />
-        <Switch>
-          <Route path="/internships-2021" exact>
-            <Redirect to="/" />
-          </Route>
-          <Route path="/" exact>
-            main
-            <header className="App-header">
-              <p>
-                Edit <code>src/App.tsx</code> and save to reload.
-              </p>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn Reacta
-              </a>
-            </header>
-          </Route>
-          <Route path="/user" exact />
-          <Route path="/admin" exact />
-        </Switch>
+        <div className="container w-full h-screen max-w-8xl mx-auto flex">
+          <Sidebar />
+          <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
+            <Switch>
+              <Route path="/internships-2021" exact>
+                <Redirect to="/" />
+              </Route>
+              <Route path="/" exact>
+                main
+                <header className="App-header">
+                  <p>
+                    Edit <code>src/App.tsx</code> and save to reload.
+                  </p>
+                  <a
+                    className="App-link"
+                    href="https://reactjs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Learn Reacta
+                  </a>
+                </header>
+              </Route>
+              <Route path="/user" exact />
+              <Route path="/admin" exact />
+            </Switch>
+          </div>
+        </div>
       </Router>
     </div>
   );
