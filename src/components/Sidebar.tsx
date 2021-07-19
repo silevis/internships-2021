@@ -1,4 +1,11 @@
+import React, { useState } from 'react';
+
 function Sidebar() {
+  const [value, setValue] = useState(0);
+  const handleSlideChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(Number(event?.target?.value));
+  };
+
   return (
     <div
       className="fixed z-40 inset-0 flex-none h-full bg-opacity-25 w-full lg:static lg:h-auto
@@ -28,6 +35,10 @@ function Sidebar() {
               <li>Poetry, drama, satire</li>
               <li>Other</li>
             </ul>
+          </div>
+          <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
+            <input type="range" min="0" max="10" onChange={handleSlideChange} />
+            <span className="ml-2" id="range">{ value }</span>
           </div>
         </nav>
       </div>
