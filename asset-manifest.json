@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/internships-2021/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/internships-2021/static/js/main.5e8b306d.chunk.js",
-    "main.js.map": "/internships-2021/static/js/main.5e8b306d.chunk.js.map",
+    "main.css": "/internships-2021/static/css/main.cf0685aa.chunk.css",
+    "main.js": "/internships-2021/static/js/main.c2e91e78.chunk.js",
+    "main.js.map": "/internships-2021/static/js/main.c2e91e78.chunk.js.map",
     "runtime-main.js": "/internships-2021/static/js/runtime-main.4a5d9751.js",
     "runtime-main.js.map": "/internships-2021/static/js/runtime-main.4a5d9751.js.map",
-    "static/js/2.03f0d3c1.chunk.js": "/internships-2021/static/js/2.03f0d3c1.chunk.js",
-    "static/js/2.03f0d3c1.chunk.js.map": "/internships-2021/static/js/2.03f0d3c1.chunk.js.map",
+    "static/js/2.bbf0b095.chunk.js": "/internships-2021/static/js/2.bbf0b095.chunk.js",
+    "static/js/2.bbf0b095.chunk.js.map": "/internships-2021/static/js/2.bbf0b095.chunk.js.map",
     "static/js/3.f040c3b5.chunk.js": "/internships-2021/static/js/3.f040c3b5.chunk.js",
     "static/js/3.f040c3b5.chunk.js.map": "/internships-2021/static/js/3.f040c3b5.chunk.js.map",
     "index.html": "/internships-2021/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/internships-2021/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.03f0d3c1.chunk.js.LICENSE.txt": "/internships-2021/static/js/2.03f0d3c1.chunk.js.LICENSE.txt"
+    "static/css/main.cf0685aa.chunk.css.map": "/internships-2021/static/css/main.cf0685aa.chunk.css.map",
+    "static/js/2.bbf0b095.chunk.js.LICENSE.txt": "/internships-2021/static/js/2.bbf0b095.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4a5d9751.js",
-    "static/js/2.03f0d3c1.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.5e8b306d.chunk.js"
+    "static/js/2.bbf0b095.chunk.js",
+    "static/css/main.cf0685aa.chunk.css",
+    "static/js/main.c2e91e78.chunk.js"
   ]
 }
