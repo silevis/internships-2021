@@ -8,6 +8,7 @@ function App() {
   const a = useProfile('1e7b2a5f-7423-4cc4-aa70-003db70da303');
   // eslint-disable-next-line space-before-function-paren
   const fetchCallback = useCallback(async () => {
+    // eslint-disable-next-line
     const { user, error } = await supabase.auth.signUp({
       email: 'somesone@email.com',
       password: 'nhLLRVQzFHZGKbGhgAAU',
