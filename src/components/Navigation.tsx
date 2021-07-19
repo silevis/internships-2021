@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 
 function Navigation() {
   return (
-    <div>
+    <div className="">
       <nav className="bg-white shadow dark:bg-gray-800">
         <div className="container px-6 py-3 mx-auto md:flex md:justify-between md:items-center">
           <div className="flex items-center justify-between">
             <div>
               <span className="text-xl font-bold text-gray-800 dark:text-white md:text-2xl hover:text-gray-700 dark:hover:text-gray-300">
-                Ksiazki
+                Books
               </span>
             </div>
           </div>
