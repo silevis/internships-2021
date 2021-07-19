@@ -1,4 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
 import useProfile from '../hooks/useProfile';
 import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
@@ -41,6 +46,13 @@ function App() {
           Learn Reacta
         </a>
       </header>
+      <Router>
+        <Switch>
+          <Route path="/internships-2021/" exact />
+          <Route path="/internships-2021/user/:userName" exact />
+          <Route path="/internships-2021/admin" exact />
+        </Switch>
+      </Router>
     </div>
   );
 }
