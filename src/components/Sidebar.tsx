@@ -37,7 +37,7 @@ function Sidebar() {
               <li>Popular science literature</li>
               <li>Children&apos;s literature</li>
               <li>Comics</li>
-              <li>Poetry, drama, satire</li>
+              <li>Poetry, drama satire</li>
               <li>Other</li>
             </ul>
           </div>
