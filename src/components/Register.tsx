@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
 import { IProfile } from '../interfaces/IProfile.interface';
@@ -19,6 +19,7 @@ const Register = () => {
         email: values.emailAdress,
         password: values.password,
       });
+
       if (user) {
         await supabase.from<IProfile>('profiles').insert({
           id: user.id,
@@ -26,6 +27,7 @@ const Register = () => {
           lastName: values.lastName,
         });
       }
+      setRegister(!register);
     },
   });
 
@@ -34,7 +36,7 @@ const Register = () => {
       <button type="button" onClick={() => setRegister(!register)} className="border-solid bg-red-300 rounded-md">Register</button>
       {register
         && (
-          <div className="fixed top-0 left-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen">
+          <div className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen">
             <div className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-md shadow-xl">
               <button type="button" onClick={() => setRegister(!register)} className="border-solid bg-red-300 rounded-md">Exit</button>
               <div>
@@ -85,7 +87,6 @@ const Register = () => {
                   <br />
                   <button
                     type="submit"
-                    onClick={() => setRegister(!register)}
                     className="border-solid bg-blue-300 rounded-md"
                   >
                     Register

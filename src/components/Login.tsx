@@ -16,6 +16,7 @@ const Login = () => {
         email: values.emailAdress,
         password: values.password,
       });
+      setLogin(!login);
     },
   });
 
@@ -23,7 +24,7 @@ const Login = () => {
     <div>
       <button type="button" onClick={() => setLogin(!login)} className="border-solid bg-red-300 rounded-md">Login</button>
       {login && (
-        <div className="fixed top-0 left-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen">
+        <div className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen">
           <div className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-md shadow-xl">
             <button type="button" onClick={() => setLogin(!login)} className="border-solid bg-red-300 rounded-md">Exit</button>
             <div>
@@ -52,7 +53,6 @@ const Login = () => {
                 <br />
                 <button
                   type="submit"
-                  onClick={() => setLogin(!login)}
                   className="border-solid bg-blue-300 rounded-md"
                 >
                   Login
@@ -66,6 +66,6 @@ const Login = () => {
 
     </div>
   );
-}
+};
 
 export default Login;
