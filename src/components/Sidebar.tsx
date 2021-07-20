@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import uIDContext from './UIdContext';
 
 function Sidebar() {
   const [value, setValue] = useState(0);
   const handleSlideChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(Number(event?.target?.value));
   };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-unused-vars
+  const context = useContext(uIDContext);
 
   return (
     <div
@@ -27,12 +31,13 @@ function Sidebar() {
           </div>
           <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
             <ul className="list-disc">
+              <li>{context}</li>
               <li>Fiction</li>
               <li>Literature of fact, journalism</li>
               <li>Popular science literature</li>
               <li>Children&apos;s literature</li>
               <li>Comics</li>
-              <li>Poetry, drama, satire</li>
+              <li>Poetry, drama satire</li>
               <li>Other</li>
             </ul>
           </div>

@@ -1,6 +1,10 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import uIDContext from './UIdContext';
 
 function Navigation() {
+  const context = useContext(uIDContext);
+
   return (
     <div className="">
       <nav className="bg-white shadow dark:bg-gray-800">
@@ -28,7 +32,7 @@ function Navigation() {
                 className="my-1 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
                 md:mr-4 md:my-0 md:border-l md:border-gray-400"
               >
-                User
+                {context}
               </Link>
               <Link
                 to="/admin"
