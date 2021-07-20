@@ -4,6 +4,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import BookListView from '../views/BookListView';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import uIDContext from './UIdContext';
@@ -41,6 +42,9 @@ function App() {
                 </Route>
                 <Route path="/user" exact />
                 <Route path="/admin" exact />
+                <Route path="/books-list" exact>
+                  <BookListView />
+                </Route>
               </Switch>
             </div>
           </div>
