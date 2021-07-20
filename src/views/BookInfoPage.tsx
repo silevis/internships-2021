@@ -1,4 +1,6 @@
-import { IBook } from '../interfaces/IBook.interface'
+import Rating from '../components/Rating';
+import { IBook } from '../interfaces/IBook.interface';
+import { IRatingData } from '../interfaces/IRatingData.interface';
 
 const BookInfoPage = (props: { id: string; }) => {
   // Todo: get real book's info from an external source
@@ -19,23 +21,32 @@ const BookInfoPage = (props: { id: string; }) => {
     year: new Date(),
   };
 
+  const bookRatingData: IRatingData = {
+    votesAmount: 1,
+    avgRating: 3.22,
+  };
+
+  // todo: make the design responsive
   return (
     <div className="w-11/12 m-auto mt-8">
       <div className="w-11/12 m-auto flex flex-wrap items-start">
         {/* todo: image z powiekszeniem po najechaniu (osobny component)*/}
         <img src={book.imageLinks[0]} alt="ok" className="w-1/3 max-h-56 object-scale-down" />
         <div className="w-2/3 flex flex-wrap">
-          <div className="w-6/12 flex-auto">
+          <div className="w-6/12 flex flex-auto flex-col">
             <span className="text-xl">{book.title}</span> <br />
-            <span className="text-sm">subtitle</span>
+            <div className="flex">
+              <div className="w-1/2">Podtytuł here</div>
+              <div className="w-1/2 text-right">{book.authors}</div>
+            </div>
+            <div className="mt-12 text-sm text-gray-700 text-justify">
+              {book.description}
+            </div>
           </div>
           <div className="w-2/12">
-            ocena
+            <Rating bare={false} ratingData={bookRatingData} />
           </div>
         </div>
-      </div>
-      <div className="w-4/5 m-auto">
-        {book.description}
       </div>
     </div>
   );

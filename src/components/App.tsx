@@ -8,6 +8,7 @@ import {
 import useProfile from '../hooks/useProfile';
 import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
+import BookInfoPage from '../views/BookInfoPage';
 import Navigation from './Navigation';
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
   }, [fetchCallback]);
 
   return (
-    <div className="App">
+    <div className="App bg-gradient-to-b from-white to-gray-50 h-screen">
       <Router>
         <Navigation />
         <Switch>
@@ -59,6 +60,9 @@ function App() {
           </Route>
           <Route path="/user" exact />
           <Route path="/admin" exact />
+          <Route path="/book/info/:id" exact>
+            <BookInfoPage id="1" />
+          </Route>
         </Switch>
       </Router>
     </div>
