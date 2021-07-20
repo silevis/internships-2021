@@ -1,31 +1,67 @@
+import React, { useState } from 'react';
 import Rating from '../components/Rating';
+import SpecificationTable from '../components/SpecificationTable';
+import Tablist from '../components/Tablist';
 import { IBook } from '../interfaces/IBook.interface';
 import { IRatingData } from '../interfaces/IRatingData.interface';
 
+const book: IBook = {
+  ISBN: '157356107X',
+  authors: [
+    'Sara D. Knapp',
+  ],
+  addedById: '1',
+  addedYear: '2020',
+  // eslint-disable-next-line max-len
+  description: 'updated and expanded this invaluable resource. Unlike any other thesaurus available, this popular guide offers a wealth of natural language options in a convenient, A-to-Z format. It\'s ideal for helping users find the appropriate word or words for computer searches in the humanities, social sciences, and business. The second edition has added more than 9,000 entries to the first edition\'s extensive list. Now, the Thesaurus contains almost 21,000 search entries! New or expanded areas include broader coverage of business terms and humanities-including arts literature, philosophy, religion, and music',
+  id: '1',
+  imageLinks: [
+    'https://cdn-lubimyczytac.pl/upload/books/4810000/4810807/604880-352x500.jpg',
+  ],
+  title: 'The Contemporary Thesaurus of Search Terms and Synonyms',
+  year: new Date(),
+};
+
+const bookRatingData: IRatingData = {
+  votesAmount: 1,
+  avgRating: 3.4,
+};
+
 const BookInfoPage = (props: { id: string; }) => {
+  const [specsTabList] = useState([{
+    key: 'Rok wydania',
+    value: book.year.getFullYear().toString(),
+  }, {
+    key: 'ID',
+    value: book.id,
+  }, {
+    key: 'Tytul',
+    value: book.title,
+  }, {
+    key: 'ISBN',
+    value: book.ISBN,
+  }, {
+    key: 'Autorzy',
+    value: book.authors.join(' '),
+  }]);
+
+  const [tabList] = useState([{
+    title: 'Szczegóły',
+    content:
+  <div className="flex justify-center">
+    <SpecificationTable items={specsTabList} />
+  </div>,
+  }, {
+    title: 'Pobieranie',
+    content: <div>pobieranie</div>,
+  }, {
+    title: 'Obrazy',
+    content: <div>obrazy</div>,
+  }]);
+
+  console.log(props.id);
+
   // Todo: get real book's info from an external source
-  const book: IBook = {
-    ISBN: '157356107X',
-    authors: [
-      'Sara D. Knapp',
-    ],
-    addedById: '1',
-    addedYear: '2020',
-    // eslint-disable-next-line max-len
-    description: 'updated and expanded this invaluable resource. Unlike any other thesaurus available, this popular guide offers a wealth of natural language options in a convenient, A-to-Z format. It\'s ideal for helping users find the appropriate word or words for computer searches in the humanities, social sciences, and business. The second edition has added more than 9,000 entries to the first edition\'s extensive list. Now, the Thesaurus contains almost 21,000 search entries! New or expanded areas include broader coverage of business terms and humanities-including arts literature, philosophy, religion, and music',
-    id: props.id,
-    imageLinks: [
-      'https://cdn-lubimyczytac.pl/upload/books/4810000/4810807/604880-352x500.jpg',
-    ],
-    title: 'The Contemporary Thesaurus of Search Terms and Synonyms',
-    year: new Date(),
-  };
-
-  const bookRatingData: IRatingData = {
-    votesAmount: 1,
-    avgRating: 3.4,
-  };
-
   // todo: make the design responsive
   return (
     <div className="w-11/12 m-auto mt-8">
@@ -47,6 +83,9 @@ const BookInfoPage = (props: { id: string; }) => {
             <Rating bare={false} ratingData={bookRatingData} />
           </div>
         </div>
+      </div>
+      <div className="w-2/3 mt-8 m-auto">
+        <Tablist tabs={tabList} defaultTab={0} />
       </div>
     </div>
   );

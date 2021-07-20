@@ -35,7 +35,7 @@ function App() {
   }, [fetchCallback]);
 
   return (
-    <div className="App bg-gradient-to-b from-white to-gray-50 h-screen">
+    <div className="App bg-gradient-to-b from-white to-gray-50 min-h-screen">
       <Router>
         <Navigation />
         <Switch>
