@@ -10,6 +10,7 @@ import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
+import uIDContext from './UIdContext';
 
 function App() {
   // eslint-disable-next-line space-before-function-paren
@@ -41,7 +42,9 @@ function App() {
           <Navigation />
         </header>
         <div className="container w-full h-screen max-w-8xl mx-auto flex mt-12 z-10">
-          <Sidebar />
+          <uIDContext.Provider value={15}>
+            <Sidebar />
+          </uIDContext.Provider>
           <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
             <Switch>
               <Route path="/internships-2021" exact>
