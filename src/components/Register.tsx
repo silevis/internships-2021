@@ -36,7 +36,7 @@ const Register = () => {
       <button type="button" onClick={() => setRegister(!register)} className="border-solid bg-red-300 rounded-md">Register</button>
       {register
         && (
-          <div className="fixed top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen">
+          <div className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen">
             <div className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-md shadow-xl">
               <button type="button" onClick={() => setRegister(!register)} className="border-solid bg-red-300 rounded-md">Exit</button>
               <div>
