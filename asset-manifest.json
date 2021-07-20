@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/internships-2021/static/css/main.94fbe2da.chunk.css",
+    "main.css": "/internships-2021/static/css/main.61e67c87.chunk.css",
     "main.js": "/internships-2021/static/js/main.2ce82265.chunk.js",
     "main.js.map": "/internships-2021/static/js/main.2ce82265.chunk.js.map",
     "runtime-main.js": "/internships-2021/static/js/runtime-main.88b232c6.js",
@@ -10,13 +10,13 @@
     "static/js/3.6ba06da8.chunk.js": "/internships-2021/static/js/3.6ba06da8.chunk.js",
     "static/js/3.6ba06da8.chunk.js.map": "/internships-2021/static/js/3.6ba06da8.chunk.js.map",
     "index.html": "/internships-2021/index.html",
-    "static/css/main.94fbe2da.chunk.css.map": "/internships-2021/static/css/main.94fbe2da.chunk.css.map",
+    "static/css/main.61e67c87.chunk.css.map": "/internships-2021/static/css/main.61e67c87.chunk.css.map",
     "static/js/2.d86724d0.chunk.js.LICENSE.txt": "/internships-2021/static/js/2.d86724d0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.88b232c6.js",
     "static/js/2.d86724d0.chunk.js",
-    "static/css/main.94fbe2da.chunk.css",
+    "static/css/main.61e67c87.chunk.css",
     "static/js/main.2ce82265.chunk.js"
   ]
 }
