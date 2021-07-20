@@ -16,6 +16,7 @@ const Login = () => {
         email: values.emailAdress,
         password: values.password,
       });
+      setLogin(!login);
     },
   });
 
@@ -52,7 +53,6 @@ const Login = () => {
                 <br />
                 <button
                   type="submit"
-                  onClick={() => setLogin(!login)}
                   className="border-solid bg-blue-300 rounded-md"
                 >
                   Login
@@ -66,6 +66,6 @@ const Login = () => {
 
     </div>
   );
-}
+};
 
 export default Login;
