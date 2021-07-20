@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
-import useProfile from '../hooks/useProfile';
+// import useProfile from '../hooks/useProfile';
+import BookListView from '../views/BookListView';
 import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
 
 function App() {
   // eslint-disable-next-line space-before-function-paren
-  const a = useProfile('1e7b2a5f-7423-4cc4-aa70-003db70da303');
+  // const a = useProfile('1e7b2a5f-7423-4cc4-aa70-003db70da303');
   // eslint-disable-next-line space-before-function-paren
   const fetchCallback = useCallback(async () => {
     // eslint-disable-next-line
@@ -27,20 +28,8 @@ function App() {
   }, [fetchCallback]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Reacta
-        </a>
-      </header>
+    <div className="App w-screen">
+      <BookListView />
     </div>
   );
 }
