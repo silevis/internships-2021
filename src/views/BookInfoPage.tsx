@@ -23,7 +23,7 @@ const BookInfoPage = (props: { id: string; }) => {
 
   const bookRatingData: IRatingData = {
     votesAmount: 1,
-    avgRating: 3.22,
+    avgRating: 3.4,
   };
 
   // todo: make the design responsive

@@ -4,7 +4,8 @@ import SVGRatingIcon from './SVGRatingIcon';
 
 const IconsAmount = 5;
 export const MaxScoreFromAPI = 5;
-const RatingIconURL = `${process.env.PUBLIC_URL}/star_border_black_24dp.svg`;
+const RatingIconURL = `${process.env.PUBLIC_URL}/star_border_black.svg`;
+const RatingIconFilledURL = `${process.env.PUBLIC_URL}/star_black.svg`;
 
 interface RatingProps {
   bare: boolean
@@ -14,12 +15,12 @@ interface RatingProps {
 const Rating: FC<RatingProps> = ({ bare, ratingData }) => {
   const icons = [];
   const scorePerIcon = 100 / IconsAmount;
-  console.log('Rating: ', ratingData);
 
   let scoreRemaining = (ratingData.avgRating / MaxScoreFromAPI) * 100;
   for (let i = 0; i < IconsAmount; i++) {
     icons.push(<SVGRatingIcon
-      url={RatingIconURL}
+      urlBlank={RatingIconURL}
+      urlFull={RatingIconFilledURL}
       fillingPercent={Math.floor(Math.max(0, Math.min(100, scoreRemaining * IconsAmount)))}
     />);
     scoreRemaining -= scorePerIcon;

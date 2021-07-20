@@ -2,18 +2,26 @@ import React, { FC } from 'react';
 import './SVGRatingIcon.css';
 
 interface SVGRatingIconProps {
-  url: string
+  urlFull: string
+  urlBlank: string
   fillingPercent: number
 }
 
-const SVGRatingIcon: FC<SVGRatingIconProps> = ({ url, fillingPercent }) => {
-  console.log(fillingPercent);
-  console.log(url);
+const SVGRatingIcon: FC<SVGRatingIconProps> = ({ urlBlank, urlFull, fillingPercent }) => {
+  const fullIconStyle = {
+    clipPath: `polygon(0 0, ${fillingPercent}% 0, ${fillingPercent}% 100%, 0 100%)`,
+  };
+
   return (
     // eslint-disable-next-line jsx-a11y/alt-text
-    <span
-      className="bg-green-300 h-5 w-5 select-none pointer-events-none rating-icon"
-    />
+    <div>
+      {fillingPercent === 100 ? <img src={urlFull} alt="Filled ranking icon" /> : (
+        <div className="grid grid-cols-1 grid-rows-1">
+          <img src={urlFull} style={fullIconStyle} alt="Blank ranking icon" className="col-start-1 col-end-2 row-start-1 row-end-2" />
+          <img src={urlBlank} alt="Blank ranking icon" className="col-start-1 col-end-2 row-start-1 row-end-2" />
+        </div>
+)}
+    </div>
   );
 };
 
