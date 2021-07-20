@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import uIDContext from './UIdContext';
+import Login from './Login';
+import Register from './Register';
 
 function Navigation() {
   const context = useContext(uIDContext);
@@ -41,6 +43,8 @@ function Navigation() {
               >
                 Admin
               </Link>
+              <Login />
+              <Register />
             </div>
           </div>
 
