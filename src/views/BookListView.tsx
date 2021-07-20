@@ -34,7 +34,6 @@ const BookListView = () => {
         />
       ))}
       {error && <p className="text-red-600">There was an error while trying to fetch data!</p>}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 };
