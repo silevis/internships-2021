@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import Rating from '../components/Rating';
 import SpecificationTable from '../components/SpecificationTable';
 import Tablist from '../components/Tablist';
@@ -27,13 +27,17 @@ const bookRatingData: IRatingData = {
   avgRating: 3.4,
 };
 
-const BookInfoPage = (props: { id: string; }) => {
+interface IBookInfoProps {
+  id: string
+}
+
+const BookInfoPage: FC<IBookInfoProps> = ({ id }) => {
   const [specsTabList] = useState([{
     key: 'Rok wydania',
     value: book.year.getFullYear().toString(),
   }, {
     key: 'ID',
-    value: book.id,
+    value: id,
   }, {
     key: 'Tytul',
     value: book.title,
@@ -48,18 +52,10 @@ const BookInfoPage = (props: { id: string; }) => {
   const [tabList] = useState([{
     title: 'Szczegóły',
     content:
-  <div className="flex justify-center">
+  <div className="flex justify-center p-4">
     <SpecificationTable items={specsTabList} />
   </div>,
-  }, {
-    title: 'Pobieranie',
-    content: <div>pobieranie</div>,
-  }, {
-    title: 'Obrazy',
-    content: <div>obrazy</div>,
   }]);
-
-  console.log(props.id);
 
   // Todo: get real book's info from an external source
   // todo: make the design responsive

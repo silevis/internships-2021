@@ -61,6 +61,7 @@ function App() {
           <Route path="/user" exact />
           <Route path="/admin" exact />
           <Route path="/book/info/:id" exact>
+            { /* todo: dynamic id */ }
             <BookInfoPage id="1" />
           </Route>
         </Switch>

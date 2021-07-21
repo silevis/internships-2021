@@ -12,13 +12,17 @@ interface ISpecsItem {
 const SpecificationTable: FC<ISpecsTableProps> = ({ items }) => {
   const tableRows = [];
   for (let i = 0; i < items.length; i++) {
-      tableRows.push(<tr><td className="text-right p-2">{items[i].key}</td><td className="p-2">{items[i].value}</td></tr>);
+      tableRows.push(
+        <div className="flex flex-wrap justify-between border-b">
+          <div className="max-w-1/2 text-right p-2 mr-10 text-gray-500">{items[i].key}</div>
+          <div className="max-w-1/2 p-2">{items[i].value}</div>
+        </div>
+);
   }
   return (
-    <table className="border-collapse">
-      <tr><th>Parametr</th><th>Wartosc</th></tr>
+    <div>
       {tableRows}
-    </table>
+    </div>
   );
 };
 
