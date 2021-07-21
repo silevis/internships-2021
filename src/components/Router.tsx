@@ -14,7 +14,7 @@ function AddRouter() {
   const globalUser = useUser();
   return (
     <div className="App h-full">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <header className="App-header fixed w-full top-0 h-10 z-50">
           <Navigation />
         </header>
