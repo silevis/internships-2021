@@ -87,7 +87,8 @@ const Register = () => {
                   <br />
                   <button
                     type="submit"
-                    className="border-solid bg-blue-300 rounded-md"
+                    className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
+                    transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
                   >
                     Register
                   </button>

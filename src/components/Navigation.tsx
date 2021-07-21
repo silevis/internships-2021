@@ -49,7 +49,6 @@ function Navigation() {
               <Register />
             </div>
           </div>
-
         </div>
       </nav>
     </div>
