@@ -45,8 +45,12 @@
     "keyword-spacing": "error",
     "import/prefer-default-export": "warn",
     "space-before-function-paren": [
-      2,
-      "never"
+      "warn",
+      {
+        "named": "never",
+        "anonymous": "never",
+        "asyncArrow": "always"
+      }
     ],
     "spaced-comment": [
       "error",
