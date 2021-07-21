@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,26 +5,12 @@ import {
   Redirect,
 } from 'react-router-dom';
 import BookListView from '../views/BookListView';
+import SliderDemo from '../views/SliderDemo';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
-import Slider from './Slider';
 import uIDContext from './UIdContext';
 
 function App() {
-  const [books, setBooks] = useState<any>(undefined);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get('https://www.googleapis.com/books/v1/volumes?q=search+terms');
-        setBooks(data?.items);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <uIDContext.Provider value={15}>
       <div className="App h-full">
@@ -62,19 +46,8 @@ function App() {
                 <Route path="/books-list" exact>
                   <BookListView />
                 </Route>
-                <Route path="slider-demo" exact>
-                  {books && (
-                    <Slider
-                      entries={books?.map((book: any) => {
-                        return {
-                          title: book.volumeInfo.title,
-                          authors: book.volumeInfo.authors,
-                          image: book.volumeInfo.imageLinks.thumbnail,
-                        };
-                      })}
-                      entryCount={books.length}
-                    />
-                  )}
+                <Route path="/slider-demo" exact>
+                  <SliderDemo />
                 </Route>
               </Switch>
             </div>
