@@ -1,10 +1,21 @@
 import { Link } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
-import { useUser } from './UserContext';
+import { useUser, useUserUpdate } from './UserContext';
 
 function Navigation() {
   const globalUser = useUser();
+  const setUser = useUserUpdate();
+
+  const logout = () => {
+    // eslint-disable-next-line no-unused-expressions
+    setUser && setUser({
+      id: '',
+      firstName: '',
+      lastName: '',
+    });
+  };
+
   return (
     <div className="">
       <nav className="bg-white shadow dark:bg-gray-800">
@@ -22,16 +33,16 @@ function Navigation() {
 
               <Link
                 to="/"
-                className="my-1 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
-                md:mr-4 md:my-0 md:border-l md:border-gray-400"
+                className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
+                transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
               >
                 Home
               </Link>
               { globalUser !== null && globalUser.id === process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
                 <Link
                   to="/admin"
-                  className="my-1 px-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
-                md:mr-4 md:my-0 md:border-l md:border-r md:border-gray-400"
+                  className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
+                  transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
                 >
                   Admin
                 </Link>
@@ -39,14 +50,27 @@ function Navigation() {
               { globalUser !== null && globalUser.id !== process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
                 <Link
                   to="/user"
-                  className="my-1 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
-                md:mr-4 md:my-0 md:pr-4 md:border-l md:border-r md:border-gray-400"
+                  className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
+                  transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
                 >
                   { globalUser.firstName }
                 </Link>
               ) : ''}
-              <Login />
-              <Register />
+              { globalUser !== null && globalUser.id !== '' && globalUser.firstName !== '' ? (
+                <button
+                  type="button"
+                  onClick={logout}
+                  className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
+                transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
+                >
+                  Logout
+                </button>
+              ) : (
+                <div className="flex">
+                  <Login />
+                  <Register />
+                </div>
+              ) }
             </div>
           </div>
         </div>
