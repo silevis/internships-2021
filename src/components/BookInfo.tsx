@@ -39,7 +39,7 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
       <div className="md:w-11/12 m-auto flex flex-wrap flex-col md:flex-row items-start">
         {/* todo: image z powiekszeniem po najechaniu (osobny component)*/}
         <img src={book.imageLinks[0]} alt="ok" className="m-auto md:w-1/3 max-h-56 object-scale-down" />
-        <div className="md:w-2/3 flex-col lg:flex-row flex flex-wrap">
+        <div className="lg:w-2/3 flex-col lg:flex-row flex flex-wrap">
           <div className="lg:w-6/12 flex flex-auto flex-col">
             <span className="text-xl">{book.title}</span> <br />
             <div className="flex">
@@ -50,7 +50,7 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
               {book.description}
             </div>
           </div>
-          <div className="lg:w-2/12 mt-4 lg:m-0">
+          <div className="lg:w-2/12 mt-4 lg:ml-4">
             <Rating bare={false} votesAmount={book.votesAmount} avgRating={book.avgRating} />
           </div>
         </div>

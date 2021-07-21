@@ -31,7 +31,7 @@ const Rating: FC<RatingProps> = ({ bare, votesAmount, avgRating }) => {
       <div className="flex">
         {icons}
       </div>
-      {!bare && <span>Ilosc głosów: {votesAmount}</span>}
+      {!bare && <span className="text-gray-600 text-xs mt-1">Ilosc głosów: {votesAmount}</span>}
     </div>
   );
 };
