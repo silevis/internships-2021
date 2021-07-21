@@ -11,7 +11,7 @@ interface IBookInfoProps {
 const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
   const [specsTabList] = useState([{
     key: 'Rok wydania',
-    value: book.year.getFullYear().toString(),
+    value: book.publishedDate,
   }, {
     key: 'ID',
     value: book.id,
@@ -20,7 +20,7 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
     value: book.title,
   }, {
     key: 'ISBN',
-    value: book.ISBN,
+    value: book.isbn,
   }, {
     key: 'Autorzy',
     value: book.authors.join(' '),

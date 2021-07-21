@@ -26,13 +26,14 @@ const BookListView = () => {
       {data?.items && data?.items.map((book) => (
         <Book
           key={book.id}
+          id={book.id}
           title={book.volumeInfo.title}
           description={book.volumeInfo.description}
           publishedDate={book.volumeInfo.publishedDate}
-          industryIdentifiers={book.volumeInfo.industryIdentifiers}
           image={book.volumeInfo.imageLinks.thumbnail}
           authors={book.volumeInfo.authors}
           categories={book.volumeInfo.categories}
+          isbn={book.volumeInfo.industryIdentifiers[0].identifier}
         />
       ))}
       {error && <p className="text-red-600">There was an error while trying to fetch data!</p>}
