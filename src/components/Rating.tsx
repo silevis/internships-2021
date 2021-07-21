@@ -27,7 +27,7 @@ const Rating: FC<RatingProps> = ({ bare, votesAmount, avgRating }) => {
   }
 
   return (
-    <div className="flex flex-wrap justify-center items-center flex-col md:flex-row">
+    <div className="flex flex-wrap justify-center items-center flex-col">
       <div className="flex">
         {icons}
       </div>

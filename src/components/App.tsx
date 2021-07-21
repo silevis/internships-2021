@@ -4,6 +4,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import BookInfoView from '../views/BookInfoView';
 import BookListView from '../views/BookListView';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
@@ -44,6 +45,9 @@ function App() {
                   <Route path="/admin" exact />
                   <Route path="/books-list" exact>
                     <BookListView />
+                  </Route>
+                  <Route path="/book/:id" exact>
+                    <BookInfoView />
                   </Route>
                 </Switch>
               </div>
