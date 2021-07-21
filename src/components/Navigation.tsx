@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import uIDContext from './UIdContext';
 import Login from './Login';
 import Register from './Register';
+import { useUser } from './UserContext';
 
 function Navigation() {
-  const context = useContext(uIDContext);
+  const globalUser = useUser();
   const [toggle, setToggled] = useState(false);
 
   return (
@@ -42,7 +42,7 @@ function Navigation() {
               className="my-1 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
               py-3 border-b md:border-b-0 md:mr-4 md:py-0 md:my-0 md:border-l border-gray-400"
             >
-              {context}
+              {globalUser !== null && globalUser.id !== '' ? globalUser.firstName : 'User'}
             </Link>
             <Link
               to="/admin"
