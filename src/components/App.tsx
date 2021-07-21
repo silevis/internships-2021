@@ -6,7 +6,7 @@ function App() {
       <UserProvider>
         <AddRouter />
       </UserProvider>
-  );
+    );
 }
 
 export default App;
