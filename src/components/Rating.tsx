@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { IRatingData } from '../interfaces/IRatingData.interface';
 import SVGRatingIcon from './SVGRatingIcon';
 
 const IconsAmount = 5;
@@ -9,14 +8,15 @@ const RatingIconFilledURL = `${process.env.PUBLIC_URL}/star_black.svg`;
 
 interface RatingProps {
   bare: boolean
-  ratingData: IRatingData
+  votesAmount: number | null
+  avgRating: number
 }
 
-const Rating: FC<RatingProps> = ({ bare, ratingData }) => {
+const Rating: FC<RatingProps> = ({ bare, votesAmount, avgRating }) => {
   const icons = [];
   const scorePerIcon = 100 / IconsAmount;
 
-  let scoreRemaining = (ratingData.avgRating / MaxScoreFromAPI) * 100;
+  let scoreRemaining = (avgRating / MaxScoreFromAPI) * 100;
   for (let i = 0; i < IconsAmount; i++) {
     icons.push(<SVGRatingIcon
       urlBlank={RatingIconURL}
@@ -27,11 +27,11 @@ const Rating: FC<RatingProps> = ({ bare, ratingData }) => {
   }
 
   return (
-    <div className="flex flex-wrap justify-center items-center">
+    <div className="flex flex-wrap justify-center items-center flex-col md:flex-row">
       <div className="flex">
         {icons}
       </div>
-      {!bare && <span>Ilosc głosów: {ratingData.votesAmount}</span>}
+      {!bare && <span>Ilosc głosów: {votesAmount}</span>}
     </div>
   );
 };

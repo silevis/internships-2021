@@ -13,7 +13,6 @@ const Tablist: FC<ITablistProps> = ({ tabs, defaultTab }) => {
     console.log('Zmiana taba na ', newTabId);
     setCurrTabID(newTabId);
   }
-  // const [specsItems] = useState([]);
 
   const tabTitleElements = [];
   for (let i = 0; i < tabs.length; i++) {
@@ -37,7 +36,7 @@ const Tablist: FC<ITablistProps> = ({ tabs, defaultTab }) => {
       <div className="flex border-b border-gray-300">
         {tabTitleElements}
       </div>
-      <div className="p-4">
+      <div className="p-1 md:p-4">
         {tabs[currTabID].content}
       </div>
     </div>

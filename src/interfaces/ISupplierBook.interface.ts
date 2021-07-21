@@ -6,4 +6,6 @@ export interface ISupplierBook {
   ISBN: string;
   imageLinks: string[];
   authors: string[];
+  votesAmount: number;
+  avgRating: number;
 }
