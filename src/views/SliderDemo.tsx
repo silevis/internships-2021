@@ -7,6 +7,7 @@ const SliderDemo = () => {
   const [books, setBooks] = useState<any>(undefined);
 
   useEffect(() => {
+    // eslint-disable-next-line
     const fetchData = async () => {
       try {
         const { data } = await axios.get('https://www.googleapis.com/books/v1/volumes?q=search+terms');
@@ -22,7 +23,7 @@ const SliderDemo = () => {
   if (books) {
     return (
       <Slider
-      // eslint-disable-next-line
+        // eslint-disable-next-line
         entries={books?.map((book: any) => {
           return {
             title: book.volumeInfo.title,

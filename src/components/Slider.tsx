@@ -42,7 +42,7 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
   }
 
   return (
-    <div className="flex place-content-center">
+    <div className="flex place-content-center mt-2">
       <div className="flex flex-col items-center bg-gray-50 p-2 shadow">
         <Slide title={entries[index]?.title} author={entries[index]?.authors?.join(' ')} image={entries[index]?.image} />
         <div className="flex flex-row">
