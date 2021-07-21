@@ -19,12 +19,14 @@ const Login = () => {
         password: values.password,
       });
       setLogin(!login);
-      // eslint-disable-next-line no-unused-expressions
-      setUser && setUser({
-        id: user?.id,
-        firstName: user?.email,
-        lastName: 'unknown',
-      });
+      if (user) {
+        // eslint-disable-next-line no-unused-expressions
+        setUser && setUser({
+          id: user?.id,
+          firstName: user?.email,
+          lastName: 'unknown',
+        });
+      }
     },
   });
 
