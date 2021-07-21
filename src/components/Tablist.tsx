@@ -10,7 +10,6 @@ const Tablist: FC<ITablistProps> = ({ tabs, defaultTab }) => {
   const [currTabID, setCurrTabID] = useState(defaultTab);
 
   function tabChangeHandler(newTabId: number) {
-    console.log('Zmiana taba na ', newTabId);
     setCurrTabID(newTabId);
   }
 

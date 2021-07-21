@@ -23,7 +23,7 @@ const bookStatic: IBook = {
 };
 
 const BookInfoPage = () => {
-  // Promise.resolve()
+  // 23 Promise.resolve()
   // .then(() => {
   //   const resp = supabase
   //     .from<IBook>('books')
