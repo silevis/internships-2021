@@ -13,10 +13,12 @@ interface ISliderProps {
 
 const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
   const [index, setIndex] = useState(0);
-  const [timer, setTimer] = useState<any >();
+  // eslint-disable-next-line
+  const [timer, setTimer] = useState<any>();
   const delay = 2200;
 
   useEffect(() => {
+    // eslint-disable-next-line
     timer && clearTimeout(timer);
 
     const newTimer = setTimeout(() => {
@@ -27,6 +29,7 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
       changeIndex();
     }, delay);
     setTimer(newTimer);
+    // eslint-disable-next-line
   }, [index]);
 
   function changeSlide(dir = 0) {
@@ -43,9 +46,21 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
       <div className="flex flex-col items-center bg-gray-50 p-2 shadow">
         <Slide title={entries[index]?.title} author={entries[index]?.authors?.join(' ')} image={entries[index]?.image} />
         <div className="flex flex-row">
-          <button className="flex border shadow-xl text-black-50 p-2 transition-colors duration-200 hover:text-yellow-600" type="button" onClick={() => changeSlide(-1)}> {'<<'} </button>
+          <button
+            className="flex border shadow-xl text-black-50 p-2 transition-colors duration-200 hover:text-yellow-600"
+            type="button"
+            onClick={() => changeSlide(-1)}
+          >
+            {'<<'}
+          </button>
           <div className="w-80" />
-          <button className="flex border shadow-xl text-black-50 p-2 transition-colors duration-200 hover:text-yellow-600" type="button" onClick={() => changeSlide(1)}> {'>>'} </button>
+          <button
+            className="flex border shadow-xl text-black-50 p-2 transition-colors duration-200 hover:text-yellow-600"
+            type="button"
+            onClick={() => changeSlide(1)}
+          >
+            {'>>'}
+          </button>
         </div>
       </div>
     </div>
