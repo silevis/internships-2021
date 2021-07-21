@@ -24,7 +24,7 @@ function Sidebar() {
             <label htmlFor="searchbar" className="mr-2">Search</label>
             <input
               type="text"
-              placeholder="Insert book name"
+              placeholder="Enter book name"
               id="searchbar"
               className="p-1 placeholder-gray-400 text-gray-600 border outline-none"
             />
@@ -43,7 +43,7 @@ function Sidebar() {
           </div>
           <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
             <input type="range" min="0" max="10" onChange={handleSlideChange} />
-            <span className="ml-2" id="range">{ value }</span>
+            <span className="ml-2" id="range">{value}</span>
           </div>
         </nav>
       </div>

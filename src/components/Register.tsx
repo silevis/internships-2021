@@ -36,60 +36,79 @@ const Register = () => {
       <button type="button" onClick={() => setRegister(!register)} className="border-solid bg-red-300 rounded-md">Register</button>
       {register
         && (
-          <div className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen">
+          <div className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-600 bg-opacity-50 flex h-screen w-screen">
             <div className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-md shadow-xl">
-              <button type="button" onClick={() => setRegister(!register)} className="border-solid bg-red-300 rounded-md">Exit</button>
+              <div className="flex justify-between">
+                <h1 className="font-bold">Register</h1>
+                <button
+                  type="button"
+                  onClick={() => setRegister(!register)}
+                  className="border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2
+                    transition duration-500 hover:bg-red-400 hover:text-white"
+                >
+                  X
+                </button>
+              </div>
               <div>
                 <form onSubmit={formikRegister.handleSubmit}>
-                  <label htmlFor="email-adress">Email adress:</label>
-                  <input
-                    id="emailAdress"
-                    name="emailAdress"
-                    type="email"
-                    placeholder="Email-adress"
-                    onChange={formikRegister.handleChange}
-                    value={formikRegister.values.emailAdress}
-                    className="border-solid border-4 border-blue-300 rounded-md mb-2"
-                  />
-                  <br />
-                  <label htmlFor="password">Password:</label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    onChange={formikRegister.handleChange}
-                    value={formikRegister.values.password}
-                    className="border-solid border-4 border-blue-300 rounded-md mb-2"
-                  />
-                  <br />
-                  <label htmlFor="firstName">First Name:</label>
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    placeholder="First Name"
-                    onChange={formikRegister.handleChange}
-                    value={formikRegister.values.firstName}
-                    className="border-solid border-4 border-blue-300 rounded-md mb-2"
-                  />
-                  <br />
-                  <label htmlFor="lastName">Last Name:</label>
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    placeholder="Last Name"
-                    onChange={formikRegister.handleChange}
-                    value={formikRegister.values.lastName}
-                    className="border-solid border-4 border-blue-300 rounded-md mb-2"
-                  />
-                  <br />
+                  <div className="flex justify-between">
+                    <div>
+                      <label htmlFor="firstName" className="text-xs block">First Name:</label>
+                      <input
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        placeholder="First Name"
+                        onChange={formikRegister.handleChange}
+                        value={formikRegister.values.firstName}
+                        className="p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="lastName" className="text-xs block">Last Name:</label>
+                      <input
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        placeholder="Last Name"
+                        onChange={formikRegister.handleChange}
+                        value={formikRegister.values.lastName}
+                        className="p-1 placeholder-gray-400 text-gray-600 border outline-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-between">
+                    <div>
+                      <label htmlFor="email-adress" className="text-xs block">Email adress:</label>
+                      <input
+                        id="emailAdress"
+                        name="emailAdress"
+                        type="email"
+                        placeholder="Email-adress"
+                        onChange={formikRegister.handleChange}
+                        value={formikRegister.values.emailAdress}
+                        className="p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="password" className="text-xs block">Password:</label>
+                      <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        onChange={formikRegister.handleChange}
+                        value={formikRegister.values.password}
+                        className="p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2"
+                      />
+                    </div>
+                  </div>
                   <button
                     type="submit"
-                    className="border-solid bg-blue-300 rounded-md"
+                    className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1
+                    transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white"
                   >
-                    Register
+                    Sign Up
                   </button>
                 </form>
               </div>
