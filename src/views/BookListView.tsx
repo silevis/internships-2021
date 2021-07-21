@@ -3,8 +3,6 @@ import axios from 'axios';
 import Book from '../components/Book';
 import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
 
-// import { IBook } from '../interfaces/IBook.interface';
-
 const BookListView = () => {
   const [data, setData] = useState<IGoogleBooksAPIVolumes>();
   const [error, setError] = useState<boolean>();
@@ -35,7 +33,6 @@ const BookListView = () => {
           image={book.volumeInfo.imageLinks.thumbnail}
           authors={book.volumeInfo.authors}
           categories={book.volumeInfo.categories}
-        // smallThumbnail={book.volumeInfo.imageLinks.smallThumbnail}
         />
       ))}
       {error && <p className="text-red-600">There was an error while trying to fetch data!</p>}

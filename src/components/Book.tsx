@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-// import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
 
 interface IBookProps {
   id?: string;
@@ -10,7 +9,6 @@ interface IBookProps {
   image: string;
   authors?: string[];
   categories?: string[];
-  // smallThumbnail?: string;
 }
 
 const Book: FC<IBookProps> = ({ id, title, authors, image }) => {
