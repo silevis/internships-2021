@@ -25,12 +25,17 @@ const BookListView = () => {
 
   return (
     <div>
-      {data?.items && data?.items.map((v) => (
+      {data?.items && data?.items.map((book) => (
         <Book
-          key={v.id}
-          title={v.volumeInfo.title}
-          authors={v.volumeInfo.authors}
-          smallThumbnail={v.volumeInfo.imageLinks.smallThumbnail}
+          key={book.id}
+          title={book.volumeInfo.title}
+          description={book.volumeInfo.description}
+          publishedDate={book.volumeInfo.publishedDate}
+          industryIdentifiers={book.volumeInfo.industryIdentifiers}
+          image={book.volumeInfo.imageLinks.thumbnail}
+          authors={book.volumeInfo.authors}
+          categories={book.volumeInfo.categories}
+        // smallThumbnail={book.volumeInfo.imageLinks.smallThumbnail}
         />
       ))}
       {error && <p className="text-red-600">There was an error while trying to fetch data!</p>}

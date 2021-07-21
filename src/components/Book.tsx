@@ -1,17 +1,23 @@
 import React, { FC } from 'react';
+// import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
 
 interface IBookProps {
   id?: string;
   title?: string;
+  description?: string;
+  publishedDate?: string;
+  industryIdentifiers?: unknown[];
+  image: string;
   authors?: string[];
-  smallThumbnail?: string;
+  categories?: string[];
+  // smallThumbnail?: string;
 }
 
-const Book: FC<IBookProps> = ({ id, title, authors, smallThumbnail }) => {
+const Book: FC<IBookProps> = ({ id, title, authors, image }) => {
   return (
     <div key={id} className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
       <img
-        src={smallThumbnail}
+        src={image}
         alt="A book."
         className="transform hover:scale-110 cursor-pointer m-3 w-32
         transition duration-400 ease-in-out hover:-translate-y-1"
