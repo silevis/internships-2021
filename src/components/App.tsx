@@ -4,6 +4,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import BookInfoView from '../views/BookInfoView';
 import BookListView from '../views/BookListView';
 import SliderDemo from '../views/SliderDemo';
 import Navigation from './Navigation';
@@ -48,6 +49,9 @@ function App() {
                 </Route>
                 <Route path="/slider-demo" exact>
                   <SliderDemo />
+                </Route>
+                <Route path="/book/:id" exact>
+                  <BookInfoView />
                 </Route>
               </Switch>
             </div>
