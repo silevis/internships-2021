@@ -27,20 +27,24 @@ function Navigation() {
               >
                 Home
               </Link>
-              <Link
-                to="/user"
-                className="my-1 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
-                md:mr-4 md:my-0 md:border-l md:border-gray-400"
-              >
-                {globalUser !== null && globalUser.id !== '' ? globalUser.firstName : 'User'}
-              </Link>
-              <Link
-                to="/admin"
-                className="my-1 px-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+              { globalUser !== null && globalUser.id === process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
+                <Link
+                  to="/admin"
+                  className="my-1 px-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
                 md:mr-4 md:my-0 md:border-l md:border-r md:border-gray-400"
-              >
-                Admin
-              </Link>
+                >
+                  Admin
+                </Link>
+              ) : ''}
+              { globalUser !== null && globalUser.id !== process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
+                <Link
+                  to="/user"
+                  className="my-1 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+                md:mr-4 md:my-0 md:pr-4 md:border-l md:border-r md:border-gray-400"
+                >
+                  { globalUser.firstName }
+                </Link>
+              ) : ''}
               <Login />
               <Register />
             </div>
