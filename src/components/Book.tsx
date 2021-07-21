@@ -1,19 +1,29 @@
 import React, { FC } from 'react';
+import AddBook from './AddBook';
 
 interface IBookProps {
   id?: string;
   title?: string;
   description?: string;
   publishedDate?: string;
-  industryIdentifiers?: unknown[];
   image: string;
+  isbn: string;
   authors?: string[];
   categories?: string[];
 }
 
-const Book: FC<IBookProps> = ({ id, title, authors, image }) => {
+const Book: FC<IBookProps> = ({
+  id,
+  title,
+  authors,
+  image,
+  publishedDate,
+  categories,
+  description,
+  isbn,
+}) => {
   return (
-    <div key={id} className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
+    <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
       <img
         src={image}
         alt="A book."
@@ -26,13 +36,16 @@ const Book: FC<IBookProps> = ({ id, title, authors, image }) => {
         <span className="text-gray-400">{authors?.join(' ')}</span>
       </div>
       <div>
-        <button
-          type="button"
-          className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
-        >
-          + Dodaj książkę do magazynu
-        </button>
+        <AddBook
+          id={id}
+          title={title}
+          authors={authors}
+          image={image}
+          description={description}
+          isbn={isbn}
+          publishedDate={publishedDate}
+          categories={categories}
+        />
       </div>
     </div>
   );
