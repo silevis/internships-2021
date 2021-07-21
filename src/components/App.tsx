@@ -8,11 +8,11 @@ import BookListView from '../views/BookListView';
 import SliderDemo from '../views/SliderDemo';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
-import uIDContext from './UIdContext';
+import { UserProvider } from './UserContext';
 
 function App() {
   return (
-    <uIDContext.Provider value={15}>
+    <UserProvider>
       <div className="App h-full">
         <Router>
           <header className="App-header fixed w-full top-0 h-10 z-50">
@@ -54,7 +54,8 @@ function App() {
           </div>
         </Router>
       </div>
-    </uIDContext.Provider>
+    </UserProvider>
+
   );
 }
 
