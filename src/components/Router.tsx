@@ -42,7 +42,7 @@ function AddRouter() {
               </Route>
               <Route path="/user" exact />
               <Route path="/admin" exact>
-                { globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <div>Witaj adminie</div> : <Redirect to="/" />}
+                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <div>Witaj adminie</div> : <Redirect to="/" />}
               </Route>
               <Route path="/books-list" exact>
                 <BookListView />
