@@ -1,41 +1,39 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Slider from '../components/Slider';
+import { IBook } from '../interfaces/IBook.interface';
+import supabase from '../utils/supabase';
 
 const SliderDemo = () => {
-  // eslint-disable-next-line
-  const [books, setBooks] = useState<any>(undefined);
-
+  const [data, setData] = useState<IBook[] | null>([]);
   useEffect(() => {
     // eslint-disable-next-line
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get('https://www.googleapis.com/books/v1/volumes?q=search+terms');
-        setBooks(data?.items);
-      } catch (e) {
-        // eslint-disable-next-line
-        console.error(e);
-      }
+    const getAllBooks = async () => {
+      // eslint-disable-next-line
+      const { data: books, error } = await supabase
+        .from<IBook>('books')
+        .select(`
+      *
+    `);
+      setData(books);
     };
-    fetchData();
+    getAllBooks();
   }, []);
 
-  if (books) {
+  if (data) {
     return (
       <Slider
         // eslint-disable-next-line
-        entries={books?.map((book: any) => {
+        entries={data?.map((book: any) => {
           return {
-            title: book.volumeInfo.title,
-            authors: book.volumeInfo.authors,
-            image: book.volumeInfo.imageLinks.thumbnail,
+            title: book.title,
+            authors: book.authors,
+            image: book.imageLinks[0],
           };
         })}
-        entryCount={books.length}
+        entryCount={data.length}
       />
     );
   }
-
   return <p>Loading...</p>;
 };
 

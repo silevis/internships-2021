@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import AddBook from './AddBook';
+// import AddBook from './AddBook';
 
 interface IBookProps {
   id?: string;
@@ -17,10 +17,10 @@ const Book: FC<IBookProps> = ({
   title,
   authors,
   image,
-  publishedDate,
+  // publishedDate,
   categories,
-  description,
-  isbn,
+  // description,
+  // isbn,
 }) => {
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
@@ -34,9 +34,13 @@ const Book: FC<IBookProps> = ({
         <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">{title}</span>
         <br />
         <span className="text-gray-400">{authors?.join(' ')}</span>
+        <br />
+        <span className="text-gray-400">{categories}</span>
+        <br />
+        <span className="text-gray-400">{id}</span>
       </div>
       <div>
-        <AddBook
+        {/* <AddBook
           id={id}
           title={title}
           authors={authors}
@@ -45,7 +49,14 @@ const Book: FC<IBookProps> = ({
           isbn={isbn}
           publishedDate={publishedDate}
           categories={categories}
-        />
+        />*/}
+        <button
+          type="button"
+          className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
+          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
+        >
+          Kup naszom ksionszke
+        </button>
       </div>
     </div>
   );
