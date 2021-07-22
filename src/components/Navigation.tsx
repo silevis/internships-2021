@@ -50,13 +50,12 @@ function Navigation() {
               Home
             </Link>
             {globalUser !== null && globalUser.id === process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
-              <Link
-                to="/admin"
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+              <div
+                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200
                 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
                 Admin
-              </Link>
+              </div>
             ) : ''}
             {globalUser !== null && globalUser.id !== process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
               <Link

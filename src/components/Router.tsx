@@ -12,6 +12,7 @@ import SliderDemo from '../views/SliderDemo';
 import BookInfoPage from '../views/BookInfoView';
 import SidebarAdmin from './SidebarAdmin';
 import BookListViewAdmin from '../views/BookListViewAdmin';
+import PrivateRoute from './PrivateRoute';
 
 function AddRouter() {
   const globalUser = useUser();
@@ -32,16 +33,8 @@ function AddRouter() {
                 <SliderDemo />
                 <BookListView />
               </Route>
-              <Route path="/user" exact />
-              <Route path="/admin" exact>
-                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <span>Witaj adminie</span> : <Redirect to="/" />}
-              </Route>
-              <Route path="/admin/store" exact>
-                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <BookListViewAdmin /> : <Redirect to="/" />}
-              </Route>
-              <Route path="/admin/owned" exact>
-                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <BookListView /> : <Redirect to="/" />}
-              </Route>
+              <PrivateRoute component={<BookListViewAdmin />} path="/admin/owned" exact />
+              <PrivateRoute component={<BookListView />} path="/admin/store" exact />
               <Route path="/books-list" exact>
                 <BookListView />
               </Route>
