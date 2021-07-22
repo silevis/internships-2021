@@ -23,7 +23,7 @@ const Book: FC<IBookProps> = ({
   isbn,
 }) => {
   return (
-    <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
+    <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
       <img
         src={image}
         alt="A book."
@@ -54,7 +54,7 @@ const Book: FC<IBookProps> = ({
           <button
             type="button"
             className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
+          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-50"
           >
             Kup naszom ksionszke
           </button>

@@ -23,14 +23,16 @@ function AddRouter() {
           <Navigation />
         </header>
         <div className="container w-full h-screen max-w-8xl mx-auto flex mt-12 z-10">
-          { globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <SidebarAdmin /> : <Sidebar />}
+          {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <SidebarAdmin /> : <Sidebar />}
           <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
             <Switch>
               <Route path="/internships-2021" exact>
                 <Redirect to="/" />
               </Route>
               <Route path="/" exact>
-                <SliderDemo />
+                <div className="justify-start">
+                  <SliderDemo />
+                </div>
                 <BookListView />
               </Route>
               <Route path="/user" exact />

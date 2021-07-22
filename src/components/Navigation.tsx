@@ -21,18 +21,18 @@ function Navigation() {
   };
 
   return (
-    <nav className="bg-white shadow dark:bg-gray-800">
+    <nav className="bg-black shadow dark:bg-gray-800">
       <div className="container px-6 py-3 mx-auto md:flex md:justify-between md:items-center">
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-xl font-bold text-gray-800 dark:text-white md:text-2xl hover:text-gray-700 dark:hover:text-gray-300">
+            <span className="text-xl font-bold text-white dark:text-white md:text-2xl">
               Books
             </span>
           </div>
           <button
             type="button"
-            className="border-gray-400 text-gray-400 rounded-md border max-h-full px-1
-            transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white md:hidden"
+            className="border-gray-400 text-gray-200 rounded-md border max-h-full px-1
+            transition duration-500 ease-in-out hover:bg-gray-200 hover:text-black md:hidden"
             onClick={() => setToggled(!toggle)}
           >
             ☰
@@ -44,16 +44,16 @@ function Navigation() {
 
             <Link
               to="/"
-              className="my-1 py-1 md:py-0 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
-              md:mr-4 md:my-0 border-b border-t md:border-t-0 md:border-b-0 md:border-l border-gray-400"
+              className="my-1 py-1 md:py-0 pl-4 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 md:mr-4 md:my-0
+              border-b border-t md:border-t-0 md:border-b-0 md:border-l border-gray-400"
             >
               Home
             </Link>
             {globalUser !== null && globalUser.id === process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
               <Link
                 to="/admin"
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
-                md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
+                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out
+                hover:text-indigo-500 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
                 Admin
               </Link>
@@ -61,7 +61,7 @@ function Navigation() {
             {globalUser !== null && globalUser.id !== process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
               <Link
                 to="/user"
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
                 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
                 {globalUser.firstName}
@@ -70,8 +70,8 @@ function Navigation() {
             {globalUser !== null && globalUser.id !== '' && globalUser.firstName !== '' ? (
               <div
                 onClick={logout}
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
-                md:pr-4 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400"
+                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
+                md:pr-4 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400 cursor-pointer"
               >
                 Logout
               </div>
