@@ -42,24 +42,26 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
   }
 
   return (
-    <div className="flex place-content-center mt-2">
-      <div className="flex flex-col items-center bg-gray-50 p-2 shadow">
+    <div className="flex place-content-start mt-2 ml-6">
+      <div className="flex flex-col items-center bg-gray-50 shadow p-2">
         <Slide title={entries[index]?.title} author={entries[index]?.authors?.join(' ')} image={entries[index]?.image} />
         <div className="flex flex-row">
           <button
-            className="flex border shadow-xl text-black-50 p-2 transition-colors duration-200 hover:text-yellow-600"
+            className="flex px-2 py-1 border-gray-400 text-gray-400 rounded-sm border-2 max-h-full
+            transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-50"
             type="button"
             onClick={() => changeSlide(-1)}
           >
-            {'<<'}
+            ⮜
           </button>
           <div className="w-80" />
           <button
-            className="flex border shadow-xl text-black-50 p-2 transition-colors duration-200 hover:text-yellow-600"
+            className="flex px-2 py-1 border-gray-400 text-gray-400 rounded-sm border-2 max-h-full
+            transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-50"
             type="button"
             onClick={() => changeSlide(1)}
           >
-            {'>>'}
+            ⮞
           </button>
         </div>
       </div>

@@ -36,7 +36,8 @@ function Sidebar() {
                 type="text"
                 placeholder="Enter book name"
                 id="searchbar"
-                className="p-1 placeholder-gray-400 text-gray-600 border outline-none"
+                className="p-1 placeholder-gray-400 text-gray-600 border outline-none
+                transition duration-300 ease-in-out focus:ring-2 ring-gray-200"
               />
             </div>
             <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
