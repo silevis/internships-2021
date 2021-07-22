@@ -25,6 +25,7 @@ const BookListView = () => {
     <div>
       {data && data?.map((book) => (
         <Book
+          key={book.id}
           id={book.id}
           title={book.title}
           image={book.imageLinks[0]}

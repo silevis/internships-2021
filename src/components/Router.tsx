@@ -11,6 +11,7 @@ import Sidebar from './Sidebar';
 import { useUser } from './UserContext';
 import SliderDemo from '../views/SliderDemo';
 import BookInfoPage from '../views/BookInfoView';
+import BookListViewAdmin from '../views/BookListViewAdmin';
 
 function AddRouter() {
   const globalUser = useUser();
@@ -21,7 +22,7 @@ function AddRouter() {
           <Navigation />
         </header>
         <div className="container w-full h-screen max-w-8xl mx-auto flex mt-12 z-10">
-          { globalUser?.id === process.env.REACT_APP_ADMIN_ID ? '' : <Sidebar />}
+          {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? '' : <Sidebar />}
           <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
             <Switch>
               <Route path="/internships-2021" exact>
@@ -33,13 +34,15 @@ function AddRouter() {
               </Route>
               <Route path="/user" exact />
               <Route path="/admin" exact>
-                { globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <Link to="admin/store">store</Link> : <Redirect to="/" />}
+                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <Link to="admin/owned">owned</Link> : <Redirect to="/" />}
+                <br />
+                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <Link to="admin/store">store</Link> : <Redirect to="/" />}
               </Route>
               <Route path="/admin/store" exact>
-                { globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <BookListView /> : <Redirect to="/" />}
+                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <BookListViewAdmin /> : <Redirect to="/" />}
               </Route>
               <Route path="/admin/owned" exact>
-                { globalUser?.id === process.env.REACT_APP_ADMIN_ID ? 'placeholder' : <Redirect to="/" />}
+                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <BookListView /> : <Redirect to="/" />}
               </Route>
               <Route path="/books-list" exact>
                 <BookListView />
