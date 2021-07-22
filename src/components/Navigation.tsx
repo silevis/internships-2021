@@ -42,44 +42,43 @@ function Navigation() {
 
             <Link
               to="/"
-              className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-                transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
+              className="my-1 py-1 md:py-0 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+              md:mr-4 md:my-0 border-b border-t md:border-t-0 md:border-b-0 md:border-l border-gray-400"
             >
               Home
             </Link>
-            { globalUser !== null && globalUser.id === process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
+            {globalUser !== null && globalUser.id === process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
               <Link
                 to="/admin"
-                className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-                  transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
+                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+                md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
                 Admin
               </Link>
-              ) : ''}
-            { globalUser !== null && globalUser.id !== process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
+            ) : ''}
+            {globalUser !== null && globalUser.id !== process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
               <Link
                 to="/user"
-                className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-                  transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
+                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+                md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
-                { globalUser.firstName }
+                {globalUser.firstName}
               </Link>
-              ) : ''}
-            { globalUser !== null && globalUser.id !== '' && globalUser.firstName !== '' ? (
-              <button
-                type="button"
+            ) : ''}
+            {globalUser !== null && globalUser.id !== '' && globalUser.firstName !== '' ? (
+              <div
                 onClick={logout}
-                className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-                transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
+                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+                md:pr-4 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400"
               >
                 Logout
-              </button>
-              ) : (
-                <div className="flex">
-                  <Login />
-                  <Register />
-                </div>
-              ) }
+              </div>
+            ) : (
+              <div className="flex flex-col md:flex-row w-full">
+                <Login />
+                <Register />
+              </div>
+            )}
           </div>
         </div>
       </div>
