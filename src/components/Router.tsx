@@ -11,6 +11,7 @@ import Sidebar from './Sidebar';
 import { useUser } from './UserContext';
 import SliderDemo from '../views/SliderDemo';
 import BookInfoPage from '../views/BookInfoView';
+import UserpageView from '../views/UserpageView';
 
 function AddRouter() {
   const globalUser = useUser();
@@ -31,7 +32,9 @@ function AddRouter() {
                 <SliderDemo />
                 <BookListView />
               </Route>
-              <Route path="/user" exact />
+              <Route path="/user" exact>
+                <UserpageView />
+              </Route>
               <Route path="/admin" exact>
                 { globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <Link to="admin/store">store</Link> : <Redirect to="/" />}
               </Route>
