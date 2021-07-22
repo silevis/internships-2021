@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import AddBook from './AddBook';
+import DeleteBook from './DeleteBook';
 
 interface IBookProps {
   id?: string;
@@ -10,17 +10,16 @@ interface IBookProps {
   isbn: string;
   authors?: string[];
   categories?: string[];
+  onBookDelete: () => void;
 }
 
-const Book: FC<IBookProps> = ({
+const StoreBook: FC<IBookProps> = ({
   id,
   title,
   authors,
   image,
-  publishedDate,
   categories,
-  description,
-  isbn,
+  onBookDelete,
 }) => {
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
@@ -38,30 +37,13 @@ const Book: FC<IBookProps> = ({
         <span className="text-gray-400">{categories}</span>
       </div>
       <div>
-        {window.location.pathname === '/internships-2021/admin/store' && (
-          <AddBook
-            id={id}
-            title={title}
-            authors={authors}
-            image={image}
-            description={description}
-            isbn={isbn}
-            publishedDate={publishedDate}
-            categories={categories}
-          />
-        )}
-        {window.location.pathname !== '/internships-2021/admin/store' && (
-          <button
-            type="button"
-            className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
-          >
-            Kup naszom ksionszke
-          </button>
-        )}
+        <DeleteBook
+          id={id}
+          onBookDelete={onBookDelete}
+        />
       </div>
     </div>
   );
 };
 
-export default Book;
+export default StoreBook;

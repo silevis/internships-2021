@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import SVGRatingIcon from './SVGRatingIcon';
 
 const IconsAmount = 5;
-export const MaxScoreFromAPI = 5;
+export const MaxScoreFromAPI = 10;
 const RatingIconURL = `${process.env.PUBLIC_URL}/star_border_black.svg`;
 const RatingIconFilledURL = `${process.env.PUBLIC_URL}/star_black.svg`;
 
