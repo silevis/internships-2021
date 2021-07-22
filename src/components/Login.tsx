@@ -32,13 +32,12 @@ const Login = () => {
 
   return (
     <div>
-      <button
-        type="button"
+      <div
         onClick={() => setLogin(!login)}
-        className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-                  transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
-      >Login
-      </button>
+        className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
+        md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400 w-full cursor-pointer"
+      >Sign In
+      </div>
       {login && (
         <div className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen">
           <div className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-md shadow-xl">
