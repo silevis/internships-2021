@@ -3,7 +3,6 @@ import {
   Switch,
   Route,
   Redirect,
-  Link,
 } from 'react-router-dom';
 import BookListView from '../views/BookListView';
 import Navigation from './Navigation';
