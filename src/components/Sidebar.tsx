@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Sidebar() {
   const [value, setValue] = useState(0);
+  const [query, setQuery] = useState('');
   const handleSlideChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(Number(event?.target?.value));
   };
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // eslint-disable-next-line no-unused-vars
   const [toggle, setToggled] = useState(true);
+
+  const history = useHistory();
+
+  // useEffect(() => {
+  // }, [query]);
 
   return (
     <div className="flex justify-between">
@@ -37,7 +44,9 @@ function Sidebar() {
                 placeholder="Enter book name"
                 id="searchbar"
                 className="p-1 placeholder-gray-400 text-gray-600 border outline-none"
+                onChange={(event) => setQuery(event.target.value)}
               />
+              <button type="button" onClick={() => history.push(`/books-list/${query}`)}>D</button>
             </div>
             <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
               <ul className="list-disc">
@@ -62,7 +71,7 @@ function Sidebar() {
           type="button"
           className="border-gray-400 bg-white text-gray-400 rounded-md border max-h-full px-1 mt-2
             transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
-          onClick={() => setToggled(!toggle)}
+          onClick={() => { setToggled(!toggle); }}
         >
           ⮞
         </button>

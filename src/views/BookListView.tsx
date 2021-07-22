@@ -1,30 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import Book from '../components/Book';
 
 const BookListView = () => {
   const [data, setData] = useState<IBook[] | null>([]);
-
+  // eslint-disable-next-line
+  const params: any = useParams();
+  // eslint-disable-next-line
   useEffect(() => {
-    // eslint-disable-next-line
-    const getAllBooks = async () => {
-      // eslint-disable-next-line
-      const { data: books, error } = await supabase
+      const getAllBooks = async () => {
+      const q = `%${params.q ? params.q : '*'}%`;
+      const { data: books } = await supabase
         .from<IBook>('books')
-        .select(`
-      *
-    `);
-      if (books !== null) {
-        setData(books);
-      }
+        .select('*')
+        .ilike('title', q);
+        if (books !== null) {
+          setData(books);
+        }
     };
     getAllBooks();
-  }, []);
+  }, [params]);
   return (
     <div>
       {data && data?.map((book) => (
         <Book
+          key={book.id}
           id={book.id}
           title={book.title}
           image={book.imageLinks[0]}
@@ -35,6 +37,9 @@ const BookListView = () => {
           description={book.description}
         />
       ))}
+      {data && data?.length < 1 && (
+        <div> NIE MA </div>
+      )}
     </div>
   );
 };
