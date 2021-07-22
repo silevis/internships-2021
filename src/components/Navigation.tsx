@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 import { useUser, useUserUpdate } from './UserContext';
+import supabase from '../utils/supabase';
 
 function Navigation() {
   const globalUser = useUser();
@@ -16,6 +17,7 @@ function Navigation() {
       firstName: '',
       lastName: '',
     });
+    supabase.auth.signOut();
   };
 
   return (
