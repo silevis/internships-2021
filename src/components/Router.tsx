@@ -33,8 +33,8 @@ function AddRouter() {
                 <SliderDemo />
                 <BookListView />
               </Route>
-              <PrivateRoute component={<BookListViewAdmin />} path="/admin/owned" exact />
-              <PrivateRoute component={<BookListView />} path="/admin/store" exact />
+              <PrivateRoute component={BookListViewAdmin} path="/admin/owned" exact />
+              <PrivateRoute component={BookListView} path="/admin/store" exact />
               <Route path="/books-list" exact>
                 <BookListView />
               </Route>

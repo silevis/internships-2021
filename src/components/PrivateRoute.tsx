@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Route,
   Redirect,
@@ -5,21 +6,19 @@ import {
 import supabase from '../utils/supabase';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function PrivateRoute({ component: Component }: any, redirectTo: string, path: string) {
-  const user = supabase.auth.user();
+const validate = (user: any) => {
+  return user;
+};
 
-  if (user && user.id === process.env.REACT_APP_ADMIN_ID) {
-    return (
-      <Route
-        path={path}
-        exact
-        render={() => (
-          user && user.id === process.env.REACT_APP_ADMIN_ID ? Component : <Redirect to="/" />
-      )}
-      />
-    );
-  }
-  return <Redirect to={redirectTo} />;
-}
+const PrivateRoute: React.FC<{
+  component: React.FC;
+  path: string;
+  exact: boolean;
+  }> = (props) => {
+    const condition = validate(supabase.auth.user());
+
+    return condition ? (<Route path={props.path} exact={props.exact} component={props.component} />)
+    : (<Redirect to="/" />);
+  };
 
 export default PrivateRoute;
