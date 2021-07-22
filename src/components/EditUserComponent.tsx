@@ -12,6 +12,7 @@ const EditUserComponent = () => {
     const [avatarLink] = useState('https://image.shutterstock.com/image-vector/default-avatar-profile-icon-vector-260nw-1725655669.jpg');
 
     async function upload(f: File | undefined) {
+        console.log(f);
         if (f === undefined) {
             setStatus('File not found.');
             return;
@@ -26,7 +27,7 @@ const EditUserComponent = () => {
 
         supabase
             .storage.from('images')
-            .upload('asdf.png', f)
+            .upload(`${usr?.id}--${f.name}`, f)
             .then((data) => {
                 if (data.error !== null) {
                     throw data.error;
@@ -59,7 +60,9 @@ const EditUserComponent = () => {
               required
               onChange={(e) => {
                 setStatus('');
-                console.log(e);
+                if (e?.target?.files !== null) {
+                    upload(e?.target?.files[0]);
+                }
             }}
             />
             <div className="mt-4">
