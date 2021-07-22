@@ -1,8 +1,10 @@
 import React, { FC, useContext, useState } from 'react';
 import { IProfile } from '../interfaces/IProfile.interface';
+import supabase from '../utils/supabase';
 
 const UserContext = React.createContext<IProfile | null>(null);
 const UserUpdateContext = React.createContext<((newUser: IProfile) => void) | null>(null);
+const loggedUser = supabase.auth.user() ?? null;
 
 export const useUser = () => {
   return useContext(UserContext);
@@ -14,8 +16,8 @@ export const useUserUpdate = () => {
 
 export const UserProvider: FC = ({ children }) => {
   const [user, setUser] = useState<IProfile>({
-    id: '',
-    firstName: '',
+    id: loggedUser?.id ?? '',
+    firstName: loggedUser?.email ?? '',
     lastName: '',
   });
 

@@ -17,9 +17,8 @@ function Navigation() {
       firstName: '',
       lastName: '',
     });
+    supabase.auth.signOut();
   };
-  console.log(supabase.auth.user());
-
 
   return (
     <nav className="bg-white shadow dark:bg-gray-800">

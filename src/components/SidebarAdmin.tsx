@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function SidebarAdmin() {
   /*
@@ -28,18 +29,19 @@ function SidebarAdmin() {
       >
         <div className="items-center justify-between overflow-y-auto scrolling-touch">
           <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
-            Filters
+            Magazine
           </div>
           <nav className="mx-4 my-3">
-            <div className="border-b border-gray-200 mx-1 pb-5 mt-5">
-              a
-            </div>
-            <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
-              a
-            </div>
-            <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
-              a
-            </div>
+            <Link to="/admin/owned">
+              <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
+                Owned
+              </div>
+            </Link>
+            <Link to="/admin/store">
+              <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
+                Store
+              </div>
+            </Link>
           </nav>
         </div>
       </div>
