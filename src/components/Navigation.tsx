@@ -24,11 +24,13 @@ function Navigation() {
     <nav className="bg-black shadow dark:bg-gray-800">
       <div className="container px-6 py-3 mx-auto md:flex md:justify-between md:items-center">
         <div className="flex items-center justify-between">
-          <div>
-            <span className="text-xl font-bold text-white dark:text-white md:text-2xl">
-              Books
-            </span>
-          </div>
+          <Link to="/">
+            <div>
+              <span className="text-xl font-bold text-white dark:text-white md:text-2xl">
+                Books
+              </span>
+            </div>
+          </Link>
           <button
             type="button"
             className="border-gray-400 text-gray-200 rounded-md border max-h-full px-1
