@@ -16,6 +16,7 @@ interface IBookProps {
 
 const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn, publishedDate, categories }) => {
   const globalUser = useUser();
+  // eslint-disable-next-line
   const Add = async () => {
     await supabase.from<IBook>('books').insert({
       id,
