@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function SidebarAdmin() {
-  /*
-  const [value, setValue] = useState(0);
-  const handleSlideChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(Number(event?.target?.value));
-  };*/
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // eslint-disable-next-line no-unused-vars
   const [toggle, setToggled] = useState(true);
