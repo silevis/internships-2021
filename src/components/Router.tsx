@@ -14,10 +14,11 @@ import BookListViewAdmin from '../views/BookListViewAdmin';
 import PrivateRoute from './PrivateRoute';
 import { useUser, isAdmin } from './UserContext';
 import useUserInfo from '../hooks/useUserInfo';
+import NoMatch404 from './NoMatch404';
 
 function AddRouter() {
   const loggedUser = useUser();
-  const userInfo = useUserInfo(loggedUser?.id ?? null);
+  const userInfo = useUserInfo(loggedUser?.id ?? null)?.[0];
 
   return (
     <div className="App h-full">
@@ -45,6 +46,9 @@ function AddRouter() {
               </Route>
               <Route path="/book/:id" exact>
                 <BookInfoPage />
+              </Route>
+              <Route path="*">
+                <NoMatch404 />
               </Route>
             </Switch>
           </div>
