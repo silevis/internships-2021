@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
-import { useUser, useUserUpdate } from './UserContext';
+import { isAdmin, isLogged, useUser, useUserUpdate } from './UserContext';
 import supabase from '../utils/supabase';
+import useUserInfo from '../hooks/useUserInfo';
 
 function Navigation() {
-  const globalUser = useUser();
+  const loggedUser = useUser();
+  const fullUser = useUserInfo(useUser()?.id ?? null);
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
 
@@ -49,28 +51,28 @@ function Navigation() {
             >
               Home
             </Link>
-            {globalUser !== null && globalUser.id === process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
+            {isAdmin(fullUser) && (
               <div
                 className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200
                 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
                 Admin
               </div>
-            ) : ''}
-            {globalUser !== null && globalUser.id !== process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
+            )}
+            {(isLogged() && !isAdmin(fullUser)) && (
               <Link
                 to="/user"
                 className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
                 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
-                {globalUser.firstName}
+                {loggedUser?.firstName}
               </Link>
-            ) : ''}
-            {globalUser !== null && globalUser.id !== '' && globalUser.firstName !== '' ? (
+            )}
+            { isLogged() ? (
               <div
                 onClick={logout}
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
-                md:pr-4 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400"
+                className="my-1 py-1 md:py-0 pl-4 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+                md:mr-4 md:my-0 border-b border-t md:border-t-0 md:border-b-0 md:border-l border-gray-400 cursor-pointer"
               >
                 Logout
               </div>

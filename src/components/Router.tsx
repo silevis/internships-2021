@@ -7,15 +7,18 @@ import {
 import BookListView from '../views/BookListView';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
-import { useUser } from './UserContext';
 import SliderDemo from '../views/SliderDemo';
 import BookInfoPage from '../views/BookInfoView';
 import SidebarAdmin from './SidebarAdmin';
 import BookListViewAdmin from '../views/BookListViewAdmin';
 import PrivateRoute from './PrivateRoute';
+import { useUser, isAdmin } from './UserContext';
+import useUserInfo from '../hooks/useUserInfo';
 
 function AddRouter() {
-  const globalUser = useUser();
+  const loggedUser = useUser();
+  const fullUser = useUserInfo(loggedUser?.id ?? null);
+
   return (
     <div className="App h-full">
       <Router basename={process.env.PUBLIC_URL}>
@@ -23,7 +26,7 @@ function AddRouter() {
           <Navigation />
         </header>
         <div className="container w-full h-screen max-w-8xl mx-auto flex mt-12 z-10">
-          { globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <SidebarAdmin /> : <Sidebar />}
+          { isAdmin(fullUser) ? <SidebarAdmin /> : <Sidebar />}
           <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
             <Switch>
               <Route path="/internships-2021" exact>

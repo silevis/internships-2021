@@ -36,7 +36,7 @@ const Register = () => {
       <div
         onClick={() => setRegister(!register)}
         className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
-         md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400 w-full"
+         md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400 w-full cursor-pointer"
       >Sign Up
       </div>
       {register

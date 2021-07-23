@@ -6,6 +6,19 @@ const UserContext = React.createContext<IProfile | null>(null);
 const UserUpdateContext = React.createContext<((newUser: IProfile) => void) | null>(null);
 const loggedUser = supabase.auth.user() ?? null;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isAdmin = (user: any) => {
+  if (user) {
+    return user[0]?.isAdmin ?? false;
+  }
+  return false;
+};
+
+export const isLogged = () => {
+  // eslint-disable-next-line no-unneeded-ternary
+  return supabase.auth.user() ? true : false;
+};
+
 export const useUser = () => {
   return useContext(UserContext);
 };
