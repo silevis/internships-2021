@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
-import { useUserUpdate } from './UserContext';
+import { getUserAvatarURL, useUserUpdate } from './UserContext';
 
 const Login = () => {
   const setUser = useUserUpdate();
@@ -20,11 +20,15 @@ const Login = () => {
       });
       setLogin(!login);
       if (user) {
+        // TODO: get the default avatar directly from the supabase avatar store
         // eslint-disable-next-line no-unused-expressions
         setUser && setUser({
           id: user?.id,
-          firstName: user?.email,
+          firstName: 'unknown',
           lastName: 'unknown',
+          email: user?.email ?? 'no email',
+          avatarUrl: (await getUserAvatarURL())?.signedURL
+          ?? 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-vector-260nw-1725655669.jpg',
         });
       }
     },

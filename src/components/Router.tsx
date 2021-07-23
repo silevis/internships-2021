@@ -10,6 +10,7 @@ import Sidebar from './Sidebar';
 import { useUser } from './UserContext';
 import SliderDemo from '../views/SliderDemo';
 import BookInfoPage from '../views/BookInfoView';
+import UserpageView from '../views/UserpageView';
 import SidebarAdmin from './SidebarAdmin';
 import BookListViewAdmin from '../views/BookListViewAdmin';
 
@@ -34,7 +35,9 @@ function AddRouter() {
                 </div>
                 <BookListView />
               </Route>
-              <Route path="/user" exact />
+              <Route path="/user" exact>
+                <UserpageView />
+              </Route>
               <Route path="/admin" exact>
                 {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <span>Witaj adminie</span> : <Redirect to="/" />}
               </Route>
