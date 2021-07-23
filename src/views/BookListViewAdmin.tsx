@@ -27,7 +27,7 @@ const BookListViewAdmin = () => {
     const fetchData = async () => {
       try {
         setError(false);
-        const res = await axios.get('https://www.googleapis.com/books/v1/volumes?q=search+terms');
+        const res = await axios.get('https://www.googleapis.com/books/v1/volumes?q=sapkowski');
         setDataAPI(res.data);
       } catch (e) {
         setError(true);
@@ -42,15 +42,15 @@ const BookListViewAdmin = () => {
       {window.location.pathname === '/internships-2021/admin/store' && (
         dataAPI && dataAPI?.items.map((book) => (
           <Book
-            key={book.id}
-            id={book.id}
-            title={book.volumeInfo.title}
-            description={book.volumeInfo.description}
-            publishedDate={book.volumeInfo.publishedDate}
-            image={book.volumeInfo.imageLinks.thumbnail}
+            key={book.id ?? 'N/D'}
+            id={book.id ?? 'N/D'}
+            title={book.volumeInfo.title ?? 'N/D'}
+            description={book.volumeInfo.description ?? 'N/D'}
+            publishedDate={book.volumeInfo.publishedDate ?? 'N/D'}
+            image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : `${process.env.PUBLIC_URL}/image-not-found.png`}
             authors={book.volumeInfo.authors}
-            categories={book.volumeInfo.categories}
-            isbn={book.volumeInfo.industryIdentifiers[0].identifier}
+            categories={book.volumeInfo.categories ?? 'N/D'}
+            isbn={(book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/D')}
           />
         ))
       )}

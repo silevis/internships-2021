@@ -27,6 +27,7 @@ const BookListView = () => {
         }
     };
     getAllBooks();
+    // eslint-disable-next-line
   }, [params]);
   return (
     <div>

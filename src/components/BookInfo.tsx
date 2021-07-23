@@ -1,4 +1,4 @@
-import { useState, FC } from 'react';
+import { useState, FC, useEffect } from 'react';
 import { IBook } from '../interfaces/IBook.interface';
 import Rating from './Rating';
 import SpecificationTable from './SpecificationTable';
@@ -23,7 +23,10 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
     value: book.isbn,
   }, {
     key: 'Autorzy',
-    value: book.authors.join(' '),
+    value: book.authors?.join(', '),
+  }, {
+    key: 'Kategorie',
+    value: book.categories?.join(', '),
   }]);
 
   const [tabList] = useState([{
@@ -34,6 +37,10 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
   </div>,
   }]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="w-11/12 m-auto mt-8">
       <div className="md:w-11/12 m-auto flex flex-wrap flex-col md:flex-row items-start">
@@ -43,8 +50,8 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
           <div className="lg:w-6/12 flex flex-auto flex-col">
             <span className="text-xl">{book.title}</span> <br />
             <div className="flex">
-              <div className="w-1/2 text-gray-600">Podtytuł here</div>
-              <div className="w-1/2 text-right text-gray-600">{book.authors}</div>
+              <div className="w-1/2 text-gray-600">{book.categories?.join(', ')}</div>
+              <div className="w-1/2 text-right text-gray-600">{book.authors?.join(', ')}</div>
             </div>
             <div className="mt-12 text-sm text-gray-700 text-justify">
               {book.description}
