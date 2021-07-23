@@ -42,11 +42,11 @@ function AddRouter() {
               <Route path="/admin/owned" exact>
                 {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <BookListViewAdmin /> : <Redirect to="/" />}
               </Route>
-              <Route path="/books-list/:q">
-                <BookListView />
-              </Route>
               <Route path="/books-list" exact>
-                <Redirect to="/" />
+                <Redirect to="/books-list/*" />
+              </Route>
+              <Route path="/books-list/:q?/:rating?">
+                <BookListView />
               </Route>
               <Route path="/book/:id" exact>
                 <BookInfoPage />

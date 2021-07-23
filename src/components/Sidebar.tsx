@@ -3,9 +3,13 @@ import { useHistory } from 'react-router-dom';
 
 function Sidebar() {
   const [value, setValue] = useState(0);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('*');
   const handleSlideChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(Number(event?.target?.value));
+  };
+  const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (String(event?.target?.value).length > 0) setQuery(String(event?.target?.value));
+    else setQuery('*');
   };
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // eslint-disable-next-line no-unused-vars
@@ -44,9 +48,8 @@ function Sidebar() {
                 placeholder="Enter book name"
                 id="searchbar"
                 className="p-1 placeholder-gray-400 text-gray-600 border outline-none"
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={handleQueryChange}
               />
-              <button type="button" onClick={() => history.push(`/books-list/${query}`)}>D</button>
             </div>
             <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
               <ul className="list-disc">
@@ -61,7 +64,17 @@ function Sidebar() {
             </div>
             <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
               <input type="range" min="0" max="10" onChange={handleSlideChange} />
-              <span className="ml-2" id="range">{value}</span>
+              <span className="ml-2" id="range">{value > 0 ? value : 'All'}</span>
+            </div>
+            <div className="flex border-b border-gray-200 mx-1 pl-4 pb-5 mt-5 place-content-center">
+              <button
+                className="transition duration-500 ease-in-out border text-gray-400 border-gray-200 p-2 w-2/3
+                hover:bg-gray-400 hover:text-gray-100"
+                type="button"
+                onClick={() => history.push(`/books-list/${query}/${value}`)}
+              >
+                Filtruj
+              </button>
             </div>
           </nav>
         </div>
@@ -69,7 +82,7 @@ function Sidebar() {
       <div className={`inline z-40 ${toggle === true ? 'fixed' : 'hidden'}`}>
         <button
           type="button"
-          className="border-gray-400 bg-white text-gray-400 rounded-md border max-h-full px-1 mt-2
+          className="border-gray-400 bg-white text-gray-400 rounded-md border max-h-full px-1 mt-3
             transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
           onClick={() => { setToggled(!toggle); }}
         >
