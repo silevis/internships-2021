@@ -8,7 +8,7 @@ import useUserInfo from '../hooks/useUserInfo';
 
 function Navigation() {
   const loggedUser = useUser();
-  const fullUser = useUserInfo(useUser()?.id ?? null);
+  const userInfo = useUserInfo(useUser()?.id ?? null);
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
   const history = useHistory();
@@ -57,21 +57,21 @@ function Navigation() {
             >
               Home
             </Link>
-            {isAdmin(fullUser) && (
+            {isAdmin(userInfo) && (
               <div
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200
+                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
                 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
                 Admin
               </div>
             )}
-            {(isLogged() && !isAdmin(fullUser)) && (
+            {(isLogged() && !isAdmin(userInfo)) && (
               <Link
                 to="/user"
                 className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
                 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
-                {loggedUser?.firstName}
+                {loggedUser?.email}
               </Link>
             )}
             { isLogged() ? (

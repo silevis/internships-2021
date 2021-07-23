@@ -3,21 +3,21 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import supabase from '../utils/supabase';
+import { isAdmin } from './UserContext';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const validate = (user: any) => {
-  return user;
+  return isAdmin(user);
 };
 
 const PrivateRoute: React.FC<{
   component: React.FC;
   path: string;
   exact: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  user: any;
   }> = (props) => {
-    const condition = validate(supabase.auth.user());
-
-    return condition ? (<Route path={props.path} exact={props.exact} component={props.component} />)
+    return validate(props.user) ? (<Route path={props.path} exact={props.exact} component={props.component} />)
     : (<Redirect to="/" />);
   };
 

@@ -9,7 +9,6 @@ import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import SliderDemo from '../views/SliderDemo';
 import BookInfoPage from '../views/BookInfoView';
-import UserpageView from '../views/UserpageView';
 import SidebarAdmin from './SidebarAdmin';
 import BookListViewAdmin from '../views/BookListViewAdmin';
 import PrivateRoute from './PrivateRoute';
@@ -18,7 +17,7 @@ import useUserInfo from '../hooks/useUserInfo';
 
 function AddRouter() {
   const loggedUser = useUser();
-  const fullUser = useUserInfo(loggedUser?.id ?? null);
+  const userInfo = useUserInfo(loggedUser?.id ?? null);
 
   return (
     <div className="App h-full">
@@ -27,7 +26,7 @@ function AddRouter() {
           <Navigation />
         </header>
         <div className="container w-full h-screen max-w-8xl mx-auto flex mt-12 z-10">
-          { isAdmin(fullUser) ? <SidebarAdmin /> : <Sidebar />}
+          { isAdmin(userInfo) ? <SidebarAdmin /> : <Sidebar />}
           <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
             <Switch>
               <Route path="/internships-2021" exact>
@@ -39,8 +38,8 @@ function AddRouter() {
                 </div>
                 <BookListView />
               </Route>
-              <PrivateRoute component={BookListViewAdmin} path="/admin/owned" exact />
-              <PrivateRoute component={BookListView} path="/admin/store" exact />
+              <PrivateRoute component={BookListViewAdmin} path="/admin/owned" exact user={userInfo} />
+              <PrivateRoute component={BookListView} path="/admin/store" exact user={userInfo} />
               <Route path="/books-list" exact>
                 <BookListView />
               </Route>
