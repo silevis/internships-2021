@@ -7,22 +7,22 @@ function SidebarAdmin() {
   const [toggle, setToggled] = useState(true);
 
   return (
-    <div className="flex justify-between">
-      <div className={`inline z-40 ${toggle === true ? 'hidden' : 'fixed'}`}>
+    <div className="flex justify-between bg-white">
+      <div className={`bg-white inline z-40 ${toggle === true ? 'hidden' : 'fixed lg:static'}`}>
         <button
           type="button"
-          className="border-gray-400 bg-white text-gray-400 rounded-md border max-h-full px-1 mt-2
-            transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
+          className="border-gray-600 bg-white text-gray-600 border max-h-full px-1 mt-2 fixed inset-y-0 left-0
+          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
           onClick={() => setToggled(!toggle)}
         >
           ⮜
         </button>
       </div>
       <div
-        className={`lg:block z-30 inset-0 flex-none h-full bg-opacity-25 w-full lg:h-auto
-      lg:overflow-y-visible lg:pt-0 lg:w-60 xl:w-72 shadow-sm dark:bg-gray-800 ${toggle === true ? 'hidden' : ''}`}
+        className={`lg:block z-30 inset-0 flex-none h-full w-8/12 sm:w-4/12 lg:h-auto bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
+        lg:w-60 xl:w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle === true ? 'hidden' : 'fixed lg:static'}`}
       >
-        <div className="items-center justify-between overflow-y-auto scrolling-touch">
+        <div className="items-center justify-between scrolling-touch sticky top-16">
           <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
             Magazine
           </div>
@@ -43,8 +43,8 @@ function SidebarAdmin() {
       <div className={`inline z-40 ${toggle === true ? 'fixed' : 'hidden'}`}>
         <button
           type="button"
-          className="border-gray-400 bg-white text-gray-400 rounded-md border max-h-full px-1 mt-2
-            transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
+          className="border-gray-600 bg-white text-gray-600 border max-h-full px-1 mt-2 fixed inset-y-0 left-0
+          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
           onClick={() => setToggled(!toggle)}
         >
           ⮞
