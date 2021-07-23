@@ -14,6 +14,16 @@ export const useUserUpdate = () => {
   return useContext(UserUpdateContext);
 };
 
+export async function getUserAvatarURL() {
+  if (loggedUser === null) {
+    return undefined;
+  }
+  return supabase
+    .storage
+    .from('images/avatars')
+    .createSignedUrl(`${loggedUser?.id}`, 43200);
+}
+
 export const UserProvider: FC = ({ children }) => {
   const [user, setUser] = useState<IProfile>({
     id: loggedUser?.id ?? '',

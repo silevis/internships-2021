@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Avatar from '../components/Avatar';
 import EditUserComponent from '../components/EditUserComponent';
-import { useUser } from '../components/UserContext';
+import { getUserAvatarURL, useUser } from '../components/UserContext';
 import { IProfile } from '../interfaces/IProfile.interface';
 import './UserpageView.css';
 // guard urla
@@ -9,10 +10,20 @@ import './UserpageView.css';
 const UserpageView = () => {
     const usr: IProfile | null = useUser();
     // eslint-disable-next-line max-len
-    const [avatarUrl] = useState('https://image.freepik.com/free-photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg');
+    const [avatarUrl, setAvatarLink] = useState('');
     const styleBg = {
-        backgroundImage: `url(${avatarUrl})`,
+        backgroundImage: 'url(https://image.freepik.com/free-photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg)',
     };
+
+    useEffect(() => {
+      (async () => {
+          await getUserAvatarURL().then((data) => {
+              if (data?.signedURL) {
+                setAvatarLink(data?.signedURL);
+              }
+          });
+      })();
+  }, []);
 
     return (
       <div>
@@ -21,7 +32,7 @@ const UserpageView = () => {
           <div className="shadow-md">
             <div className="flex flex-col md:flex-row">
               <div className="w-1/4 relative h-24">
-                <img className="w-32 h-32 rounded-full object-cover relative -top-16 left-2" src="https://poradyfit.pl/wp-content/uploads/2019/02/maxresdefault-1140x620.jpg" alt="Zdjęcie użytkownika" />
+                <Avatar url={avatarUrl} className="relative -top-16 left-2" />
               </div>
               <div className="mt-2 w-1/2">
                 <div className="flex uppercase">
