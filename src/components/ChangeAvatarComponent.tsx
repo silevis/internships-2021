@@ -27,6 +27,10 @@ const EditUserComponent = () => {
             setStatus('File not found.');
             return;
         }
+        if (!usr || !usr.id) {
+            setStatus('Unknown user');
+            return;
+        }
         // type checking
         const type = await FileType.fromBuffer(await f.arrayBuffer());
         if (type?.mime !== 'image/jpeg' && type?.mime !== 'image/png') {
