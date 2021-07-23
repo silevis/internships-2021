@@ -16,7 +16,7 @@ export const isAdmin = (user: any) => {
 
 export const isLogged = () => {
   // eslint-disable-next-line no-unneeded-ternary
-  return supabase.auth.user() ? true : false;
+  return supabase.auth.user();
 };
 
 export const useUser = () => {
@@ -28,7 +28,7 @@ export const useUserUpdate = () => {
 };
 
 export async function getUserAvatarURL() {
-  if (loggedUser === null) {
+  if (!loggedUser) {
     return undefined;
   }
   return supabase
