@@ -10,6 +10,7 @@ interface IBookProps {
   isbn: string;
   authors?: string[];
   categories?: string[];
+  quantity?: number;
   onBookDelete: () => void;
 }
 
@@ -19,6 +20,7 @@ const StoreBook: FC<IBookProps> = ({
   authors,
   image,
   categories,
+  quantity,
   onBookDelete,
 }) => {
   return (
@@ -35,6 +37,8 @@ const StoreBook: FC<IBookProps> = ({
         <span className="text-gray-400">{authors?.join(' ')}</span>
         <br />
         <span className="text-gray-400">{categories}</span>
+        <br />
+        <span className="text-gray-400">{quantity}</span>
       </div>
       <div>
         <DeleteBook
