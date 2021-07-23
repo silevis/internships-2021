@@ -15,6 +15,7 @@ import PrivateRoute from './PrivateRoute';
 import { useUser, isAdmin } from './UserContext';
 import useUserInfo from '../hooks/useUserInfo';
 import NoMatch404 from './NoMatch404';
+import UserpageView from '../views/UserpageView';
 
 function AddRouter() {
   const loggedUser = useUser();
@@ -38,6 +39,9 @@ function AddRouter() {
                   <SliderDemo />
                 </div>
                 <BookListView />
+              </Route>
+              <Route path="/user" exact>
+                <UserpageView />
               </Route>
               <PrivateRoute component={BookListViewAdmin} path="/admin/owned" exact user={userInfo} />
               <PrivateRoute component={BookListView} path="/admin/store" exact user={userInfo} />
