@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
-import { useUserUpdate } from './UserContext';
+import { getUserAvatarURL, useUserUpdate } from './UserContext';
 
 const Login = () => {
   const setUser = useUserUpdate();
@@ -20,11 +20,15 @@ const Login = () => {
       });
       setLogin(!login);
       if (user) {
+        // TODO: get the default avatar directly from the supabase avatar store
         // eslint-disable-next-line no-unused-expressions
         setUser && setUser({
           id: user?.id,
-          firstName: user?.email,
+          firstName: 'unknown',
           lastName: 'unknown',
+          email: user?.email ?? 'no email',
+          avatarUrl: (await getUserAvatarURL())?.signedURL
+          ?? 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-vector-260nw-1725655669.jpg',
         });
       }
     },
@@ -34,7 +38,7 @@ const Login = () => {
     <div>
       <div
         onClick={() => setLogin(!login)}
-        className="my-1 pl-4 pb-1 md:pb-0 text-gray-700 dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400
+        className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
         md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400 w-full cursor-pointer"
       >Sign In
       </div>

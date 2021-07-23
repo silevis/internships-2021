@@ -9,6 +9,7 @@ import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import SliderDemo from '../views/SliderDemo';
 import BookInfoPage from '../views/BookInfoView';
+import UserpageView from '../views/UserpageView';
 import SidebarAdmin from './SidebarAdmin';
 import BookListViewAdmin from '../views/BookListViewAdmin';
 import PrivateRoute from './PrivateRoute';
@@ -33,7 +34,9 @@ function AddRouter() {
                 <Redirect to="/" />
               </Route>
               <Route path="/" exact>
-                <SliderDemo />
+                <div className="justify-start">
+                  <SliderDemo />
+                </div>
                 <BookListView />
               </Route>
               <PrivateRoute component={BookListViewAdmin} path="/admin/owned" exact />
