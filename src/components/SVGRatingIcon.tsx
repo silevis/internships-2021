@@ -16,7 +16,8 @@ const SVGRatingIcon: FC<SVGRatingIconProps> = ({ urlBlank, urlFull, fillingPerce
     <div>
       {fillingPercent === 100 ? <img src={urlFull} alt="Filled ranking icon" /> : (
         <div className="grid grid-cols-1 grid-rows-1">
-          <img src={urlFull} style={fullIconStyle} alt="Blank ranking icon" className="col-start-1 col-end-2 row-start-1 row-end-2" />
+          {fillingPercent !== 0
+          && <img src={urlFull} style={fullIconStyle} alt="Blank ranking icon" className="col-start-1 col-end-2 row-start-1 row-end-2" />}
           <img src={urlBlank} alt="Blank ranking icon" className="col-start-1 col-end-2 row-start-1 row-end-2" />
         </div>
 )}
