@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
 import { useUser, useUserUpdate } from './UserContext';
@@ -9,6 +9,7 @@ function Navigation() {
   const globalUser = useUser();
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
+  const history = useHistory();
 
   const logout = () => {
     // eslint-disable-next-line no-unused-expressions
@@ -16,8 +17,11 @@ function Navigation() {
       id: '',
       firstName: '',
       lastName: '',
+      email: '',
+      avatarUrl: '',
     });
     supabase.auth.signOut();
+    history.push('/');
   };
 
   return (
@@ -66,7 +70,7 @@ function Navigation() {
                 className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
                 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
               >
-                {globalUser.firstName}
+                {globalUser.email}
               </Link>
             ) : ''}
             {globalUser !== null && globalUser.id !== '' && globalUser.firstName !== '' ? (

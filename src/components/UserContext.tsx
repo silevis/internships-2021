@@ -27,8 +27,10 @@ export async function getUserAvatarURL() {
 export const UserProvider: FC = ({ children }) => {
   const [user, setUser] = useState<IProfile>({
     id: loggedUser?.id ?? '',
-    firstName: loggedUser?.email ?? '',
+    firstName: '',
     lastName: '',
+    email: loggedUser?.email ?? '',
+    avatarUrl: '',
   });
 
   const toggleUser = (newUser: IProfile) => {
