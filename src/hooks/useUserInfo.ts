@@ -21,7 +21,7 @@ const useUserInfo = (id: string | null) => {
     };
     getUser();
   }, [id]);
-  return id ? data : null;
+  return id ? data?.[0] : null;
 };
 
 export default useUserInfo;

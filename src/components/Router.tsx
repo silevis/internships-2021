@@ -19,7 +19,7 @@ import UserpageView from '../views/UserpageView';
 
 function AddRouter() {
   const loggedUser = useUser();
-  const userInfo = useUserInfo(loggedUser?.id ?? null)?.[0];
+  const userInfo = useUserInfo(loggedUser?.id ?? null);
 
   return (
     <div className="App h-full">
