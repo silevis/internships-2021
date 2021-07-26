@@ -10,7 +10,8 @@ import Sidebar from './Sidebar';
 import SliderDemo from '../views/SliderDemo';
 import BookInfoPage from '../views/BookInfoView';
 import SidebarAdmin from './SidebarAdmin';
-import BookListViewAdmin from '../views/BookListViewAdmin';
+import BookListViewAdminOwned from './BookListViewAdminOwned';
+import BookListViewAdminStore from './BookListViewAdminStore';
 import PrivateRoute from './PrivateRoute';
 import { useUser, isAdmin } from './UserContext';
 import useUserInfo from '../hooks/useUserInfo';
@@ -43,8 +44,8 @@ function AddRouter() {
               <Route path="/user" exact>
                 <UserpageView />
               </Route>
-              <PrivateRoute component={BookListViewAdmin} path="/admin/owned" exact user={userInfo} />
-              <PrivateRoute component={BookListView} path="/admin/store" exact user={userInfo} />
+              <PrivateRoute component={BookListViewAdminOwned} path="/admin/owned" exact user={userInfo} />
+              <PrivateRoute component={BookListViewAdminStore} path="/admin/store" exact user={userInfo} />
               <Route path="/books-list" exact>
                 <Redirect to="/books-list/*/0" />
               </Route>

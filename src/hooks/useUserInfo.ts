@@ -21,6 +21,11 @@ const useUserInfo = (id: string | null) => {
     };
     getUser();
   }, [id]);
+
+  if (data?.[0]?.id !== id) {
+    return null;
+  }
+
   return id ? data?.[0] : null;
 };
 
