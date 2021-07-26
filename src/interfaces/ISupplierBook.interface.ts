@@ -9,4 +9,5 @@ export interface ISupplierBook {
   categories: string[];
   votesAmount: number;
   avgRating: number;
+  quantity: number;
 }

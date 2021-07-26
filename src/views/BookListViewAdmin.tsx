@@ -25,7 +25,7 @@ const BookListViewAdmin = () => {
     const fetchData = async () => {
       try {
         setError(false);
-        const res = await axios.get('https://www.googleapis.com/books/v1/volumes?q=sapkowski');
+        const res = await axios.get('https://www.googleapis.com/books/v1/volumes?q=a');
         setDataAPI(res.data);
       } catch (e) {
         setError(true);
@@ -55,6 +55,7 @@ const BookListViewAdmin = () => {
               avgRating: book.volumeInfo.averageRating,
               addedById: book.id,
               addedDate: null,
+              quantity: 1,
             }}
           />
         ))
@@ -72,6 +73,7 @@ const BookListViewAdmin = () => {
             publishedDate={book.publishedDate}
             categories={book.categories}
             description={book.description}
+            quantity={book.quantity}
             onBookDelete={getAllBooks}
           />
         ))

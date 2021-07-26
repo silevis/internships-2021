@@ -12,9 +12,10 @@ interface IBookProps {
   isbn: string;
   authors?: string[];
   categories?: string[];
+  quantity: number;
 }
 
-const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn, publishedDate, categories }) => {
+const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn, publishedDate, categories, quantity }) => {
   const globalUser = useUser();
   // eslint-disable-next-line
   const Add = async () => {
@@ -28,21 +29,25 @@ const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn,
       imageLinks: [image],
       authors,
       votesAmount: Math.floor(Math.random() * 1000) + 1,
-      avgRating: (Math.random() * 10) + Math.random(),
+      avgRating: Math.floor(Math.random() * 10) + 1,
       addedById: globalUser?.id,
       addedDate: new Date(),
+      quantity,
     });
   };
 
   return (
-    <button
-      type="button"
-      className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-      transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
-      onClick={Add}
-    >
-      + Dodaj książkę do magazynu
-    </button>
+    <div>
+
+      <button
+        type="button"
+        className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
+        transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
+        onClick={Add}
+      >
+        + Dodaj książkę do magazynu
+      </button>
+    </div>
   );
 };
 

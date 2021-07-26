@@ -1,10 +1,10 @@
 import { useState, useEffect, FC } from 'react';
 import Slide from './Slide';
-// import { ISupplierBook } from '../interfaces/ISupplierBook.interface';
 
 interface ISliderProps {
   entryCount: number;
   entries: {
+    id: string;
     title: string;
     authors: string[];
     image: string;
@@ -44,7 +44,12 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
   return (
     <div className="flex place-content-start mt-2 ml-6">
       <div className="flex flex-col items-center bg-gray-50 shadow p-2">
-        <Slide title={entries[index]?.title} author={entries[index]?.authors?.join(' ')} image={entries[index]?.image} />
+        <Slide
+          id={entries[index]?.id}
+          title={entries[index]?.title}
+          author={entries[index]?.authors?.join(' ')}
+          image={entries[index]?.image}
+        />
         <div className="flex flex-row">
           <button
             className="flex px-2 py-1 border-gray-400 text-gray-400 rounded-sm border-2 max-h-full
