@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function SidebarAdmin() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // eslint-disable-next-line no-unused-vars
   const [toggle, setToggled] = useState(true);
 
   return (
