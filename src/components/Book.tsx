@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { IBook } from '../interfaces/IBook.interface';
 import getBookImage from '../utils/utils';
 import AddBook from './AddBook';
+import Rating from './Rating';
+import './Book.css';
 
 interface IBookProps {
   book: IBook;
@@ -13,7 +15,7 @@ const Book: FC<IBookProps> = ({
 }) => {
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
-      <div className="m-3">
+      <div className="m-3 flex justify-center">
         <Link to={`/book/${book.id}`}>
           <img
             src={getBookImage(book)}
@@ -23,13 +25,17 @@ const Book: FC<IBookProps> = ({
           />
         </Link>
       </div>
-      <div className="ml-2 w-full">
+      <div className="ml-2 mb-4 md:mb-0 w-full">
         <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">
           <Link to={`/book/${book.id}`}>{book.title ?? 'N/D'}</Link>
         </span>
         <div className="text-gray-400 flex flex-col">
           <span>{book.authors?.join(' ') ?? 'N/D'}</span>
           <span>{book.categories ?? 'N/D'}</span>
+          <div className="overflow-hidden max-h-20 book-desc">{book.description ?? 'N/D'}</div>
+          <div className="flex h-4 mt-2">
+            <Rating votesAmount={book.votesAmount} avgRating={book.avgRating} bare />
+          </div>
         </div>
       </div>
       <div>
