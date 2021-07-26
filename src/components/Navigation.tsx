@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import TestDropdown from './UserDropdown';
+import UserDropdown from './UserDropdown';
 import Login from './Login';
 import Register from './Register';
-import { useUser, useUserUpdate } from './UserContext';
+import { isLoggedIn, useUser, useUserUpdate } from './UserContext';
 import supabase from '../utils/supabase';
 
 function Navigation() {
-  const globalUser = useUser();
+  const loggedUser = useUser();
+
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
   const history = useHistory();
@@ -63,27 +64,16 @@ function Navigation() {
             >
               Book List
             </Link>
+            {console.log(isLoggedIn())}
+            {console.log(loggedUser?.email)}
 
-            {globalUser !== null && globalUser.id === process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
-              <Link
-                to="/admin"
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out
-                hover:text-indigo-500 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
-              >
-                Admin
-              </Link>
-            ) : ''}
-            {globalUser !== null && globalUser.id !== process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
+            {isLoggedIn() ? (
               <div className="navbar-nav">
-                <TestDropdown
-                  title={globalUser.email}
+                <UserDropdown
+                  title={loggedUser?.email}
                   logOut={logout}
                 />
               </div>
-            ) : ''}
-            {globalUser !== null && globalUser.id !== '' && globalUser.firstName !== '' ? (
-              <>
-              </>
             ) : (
               <>
                 <Login />
