@@ -7,7 +7,7 @@ interface IBookProps {
   quantity?: number;
 }
 
-const AddBook: FC<IBookProps> = ({ id, quantity }) => {
+const UpdateBook: FC<IBookProps> = ({ id, quantity }) => {
   // eslint-disable-next-line
   const Update = async () => {
     await supabase.from<IBook>('books')
@@ -29,4 +29,4 @@ const AddBook: FC<IBookProps> = ({ id, quantity }) => {
   );
 };
 
-export default AddBook;
+export default UpdateBook;

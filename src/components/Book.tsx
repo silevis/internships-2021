@@ -30,7 +30,7 @@ const Book: FC<IBookProps> = ({
   const [quantityInput, setQuantityInput] = useState('1');
 
   useEffect(() => {
-    const getAllBooksId = async () => {
+    const getBookData = async () => {
       // eslint-disable-next-line
       const { data, error } = await supabase
         .from<IBook>('books')
@@ -41,7 +41,7 @@ const Book: FC<IBookProps> = ({
         setData(data);
       }
     };
-    getAllBooksId();
+   getBookData();
   }, [id]);
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
