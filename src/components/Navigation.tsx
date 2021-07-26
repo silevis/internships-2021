@@ -64,8 +64,6 @@ function Navigation() {
             >
               Book List
             </Link>
-            {console.log(isLoggedIn())}
-            {console.log(loggedUser?.email)}
 
             {isLoggedIn() ? (
               <div className="navbar-nav">

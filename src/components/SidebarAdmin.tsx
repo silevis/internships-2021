@@ -17,10 +17,10 @@ function SidebarAdmin() {
         </button>
       </div>
       <div
-        className={`lg:block z-30 inset-0 flex-none h-full w-8/12 sm:w-4/12 lg:h-auto bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
-        lg:w-60 xl:w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle === true ? 'hidden' : 'fixed lg:static'}`}
+        className={`lg:block z-30 inset-0 flex-none h-full lg:h-auto bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
+        w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle === true ? 'hidden' : 'fixed lg:static'}`}
       >
-        <div className="items-center justify-between scrolling-touch sticky top-16">
+        <div className="items-center justify-between scrolling-touch fixed top-14 max-h-screen overflow-y-auto pb-8">
           <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
             Magazine
           </div>
@@ -42,7 +42,7 @@ function SidebarAdmin() {
         <button
           type="button"
           className="border-gray-600 bg-white text-gray-600 border max-h-full px-1 mt-2 fixed inset-y-0 left-0
-          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
+          transition duration-500 ease-in-out hover:bg-gray-700 hover:text-white lg:hidden"
           onClick={() => setToggled(!toggle)}
         >
           ⮞
