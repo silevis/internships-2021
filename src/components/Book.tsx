@@ -101,8 +101,7 @@ const Book: FC<IBookProps> = ({
         {window.location.pathname !== '/internships-2021/admin/store' && (
           <button
             type="button"
-            className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-50"
+            className="btn-page"
           >
             Kup książkę
           </button>

@@ -38,8 +38,7 @@ const Login = () => {
     <div>
       <div
         onClick={() => setLogin(!login)}
-        className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
-        md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400 w-full cursor-pointer"
+        className="btn-nav"
       >Sign In
       </div>
       {login && (
@@ -50,8 +49,7 @@ const Login = () => {
               <button
                 type="button"
                 onClick={() => setLogin(!login)}
-                className="border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2
-              transition duration-500 hover:bg-red-400 hover:text-white"
+                className="btn-exit"
               >
                 X
               </button>
@@ -86,8 +84,7 @@ const Login = () => {
                 </div>
                 <button
                   type="submit"
-                  className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1
-                  transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white"
+                  className="btn-page"
                 >
                   Sign In
                 </button>
