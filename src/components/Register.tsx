@@ -5,6 +5,7 @@ import { IProfile } from '../interfaces/IProfile.interface';
 
 const Register = () => {
   const [register, setRegister] = useState(false);
+  const [emailValidator, setEmailValidator] = useState(false);
   const formikRegister = useFormik({
     initialValues: {
       emailAdress: '',
@@ -19,17 +20,26 @@ const Register = () => {
         email: values.emailAdress,
         password: values.password,
       });
-
       if (user) {
         await supabase.from<IProfile>('profiles').insert({
           id: user.id,
           firstName: values.firstName,
           lastName: values.lastName,
+          email: values.emailAdress,
         });
       }
       setRegister(!register);
     },
   });
+  const checkEmail = async () => {
+      const { data } = await supabase
+      .from<IProfile>('profiles')
+      .select('email')
+      .eq('email', formikRegister.values.emailAdress);
+      if (data?.length !== 0) {
+        setEmailValidator(true);
+      } else setEmailValidator(false);
+    };
 
   return (
     <div>
@@ -89,9 +99,13 @@ const Register = () => {
                         type="email"
                         placeholder="Email-adress"
                         onChange={formikRegister.handleChange}
+                        onBlur={checkEmail}
                         value={formikRegister.values.emailAdress}
                         className="p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2"
                       />
+                      {emailValidator && (
+                      <p className="text-red-500">This email is already used</p>
+                      )}
                     </div>
                     <div>
                       <label htmlFor="password" className="text-xs block">Password:</label>
