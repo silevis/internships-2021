@@ -13,15 +13,15 @@ const BookListView = () => {
   useEffect(() => {
       if (params?.q.lenght < 1) params.q = '*';
       const getAllBooks = async () => {
-      const q = `%${params.q ? params.q : '*'}%`;
-      let range = '.99';
-      if (rating === '0') range = '10';
-      const { data: books } = await supabase
-        .from<IBook>('books')
-        .select('*')
-        .ilike('title', q)
-        .gte('avgRating', rating)
-        .lte('avgRating', rating + range);
+        const q = `%${params.q ? params.q : '*'}%`;
+        let range = '.99';
+        if (rating === '0') range = '10';
+        const { data: books } = await supabase
+          .from<IBook>('books')
+          .select('*')
+          .ilike('title', q)
+          .gte('avgRating', rating)
+          .lte('avgRating', rating + range);
         if (books !== null) {
           setData(books);
         }
