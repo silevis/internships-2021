@@ -45,7 +45,7 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
     <div className="w-11/12 m-auto mt-8">
       <div className="md:w-11/12 m-auto flex flex-wrap flex-col md:flex-row items-start">
         {/* todo: image z powiekszeniem po najechaniu (osobny component)*/}
-        <img src={book.imageLinks[0]} alt="ok" className="m-auto md:w-1/3 max-h-56 object-scale-down" />
+        <img src={book.imageLinks[0]} alt="ok" className="m-auto md:w-1/3 max-h-56 object-scale-down pr-2" />
         <div className="lg:w-2/3 flex-col lg:flex-row flex flex-wrap">
           <div className="lg:w-6/12 flex flex-auto flex-col">
             <span className="text-xl">{book.title}</span> <br />

@@ -12,9 +12,7 @@ const BookListView = () => {
       // eslint-disable-next-line
       const { data: books, error } = await supabase
         .from<IBook>('books')
-        .select(`
-      *
-    `);
+        .select('*');
       if (books !== null) {
         setData(books);
       }
@@ -24,17 +22,7 @@ const BookListView = () => {
   return (
     <div>
       {data && data?.map((book) => (
-        <Book
-          key={book.id}
-          id={book.id}
-          title={book.title}
-          image={book.imageLinks[0]}
-          isbn={book.isbn}
-          authors={book.authors}
-          publishedDate={book.publishedDate}
-          categories={book.categories}
-          description={book.description}
-        />
+        <Book key={book.id} book={book} />
       ))}
     </div>
   );
