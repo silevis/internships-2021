@@ -21,7 +21,7 @@ function Sidebar() {
   // }, [query]);
 
   return (
-    <div className="flex justify-between bg-white">
+    <div className="flex justify-between bg-white ml-1">
       <div className={`bg-white inline z-40 ${toggle === true ? 'hidden' : 'fixed lg:static'}`}>
         <button
           type="button"
