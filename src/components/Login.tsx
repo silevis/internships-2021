@@ -49,8 +49,7 @@ const Login = () => {
               <button
                 type="button"
                 onClick={() => setLogin(!login)}
-                className="border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2
-              transition duration-500 hover:bg-red-400 hover:text-white"
+                className="btn-exit"
               >
                 X
               </button>

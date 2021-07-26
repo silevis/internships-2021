@@ -67,8 +67,7 @@ function Navigation() {
             {(isLoggedIn() && !isAdmin(userInfo)) && (
               <Link
                 to="/user"
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
-                md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
+                className="btn-nav"
               >
                 {loggedUser?.email}
               </Link>
@@ -76,8 +75,7 @@ function Navigation() {
             { isLoggedIn() ? (
               <div
                 onClick={logout}
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
-                md:pr-4 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400 cursor-pointer"
+                className="btn-nav"
               >
                 Logout
               </div>

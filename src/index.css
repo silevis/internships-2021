@@ -8,6 +8,10 @@
   }
 
   .btn-page {
-    @apply border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1 transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white
+    @apply border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1 transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white;
+  }
+
+  .btn-exit {
+    @apply border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2 transition duration-500 hover:bg-red-400 hover:text-white;
   }
 }
