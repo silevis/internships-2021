@@ -25,6 +25,7 @@ const SliderDemo = () => {
         // eslint-disable-next-line
         entries={data?.map((book: any) => {
           return {
+            id: book.id,
             title: book.title,
             authors: book.authors,
             image: book.imageLinks[0],
