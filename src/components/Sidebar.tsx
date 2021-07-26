@@ -25,8 +25,7 @@ function Sidebar() {
       <div className={`bg-white inline z-40 ${toggle === true ? 'hidden' : 'fixed lg:static'}`}>
         <button
           type="button"
-          className="border-gray-600 bg-white text-gray-600 border max-h-full px-1 mt-2 fixed inset-y-0 left-0
-            transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
+          className="btn-page lg:hidden"
           onClick={() => setToggled(!toggle)}
         >
           ⮜
@@ -69,8 +68,7 @@ function Sidebar() {
             </div>
             <div className="flex border-b border-gray-200 mx-1 pl-4 pb-5 mt-5 place-content-center">
               <button
-                className="transition duration-500 ease-in-out border text-gray-400 border-gray-200 p-2 w-2/3
-                  hover:bg-gray-400 hover:text-gray-100"
+                className="btn-page w-2/3"
                 type="button"
                 onClick={() => history.replace(`/books-list/${query}/${value}`)}
               >
@@ -83,8 +81,7 @@ function Sidebar() {
       <div className={`inline z-40 ${toggle === true ? 'fixed' : 'hidden'}`}>
         <button
           type="button"
-          className="border-gray-600 bg-white text-gray-600 border max-h-full px-1 mt-2 fixed inset-y-0 left-0
-          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
+          className="btn-page lg:hidden"
           onClick={() => { setToggled(!toggle); }}
         >
           ⮞

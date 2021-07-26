@@ -24,3 +24,16 @@
   padding: 0.5rem;
 }
 
+@layer components {
+  .btn-nav {
+    @apply my-1 py-1 md:py-0 pl-4 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 md:mr-4 md:my-0 border-b border-t md:border-t-0 md:border-b-0 md:border-l border-gray-400 cursor-pointer;
+  }
+
+  .btn-page {
+    @apply border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1 transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white;
+  }
+
+  .btn-exit {
+    @apply border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2 transition duration-500 hover:bg-red-400 hover:text-white;
+  }
+}

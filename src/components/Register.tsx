@@ -5,6 +5,7 @@ import { IProfile } from '../interfaces/IProfile.interface';
 
 const Register = () => {
   const [register, setRegister] = useState(false);
+  const [emailValidator, setEmailValidator] = useState(false);
   const formikRegister = useFormik({
     initialValues: {
       emailAdress: '',
@@ -19,24 +20,32 @@ const Register = () => {
         email: values.emailAdress,
         password: values.password,
       });
-
       if (user) {
         await supabase.from<IProfile>('profiles').insert({
           id: user.id,
           firstName: values.firstName,
           lastName: values.lastName,
+          email: values.emailAdress,
         });
       }
       setRegister(!register);
     },
   });
+  const checkEmail = async () => {
+      const { data } = await supabase
+      .from<IProfile>('profiles')
+      .select('email')
+      .eq('email', formikRegister.values.emailAdress);
+      if (data?.length !== 0) {
+        setEmailValidator(true);
+      } else setEmailValidator(false);
+    };
 
   return (
     <div>
       <div
         onClick={() => setRegister(!register)}
-        className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
-         md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400 w-full cursor-pointer"
+        className="btn-nav"
       >Sign Up
       </div>
       {register
@@ -48,8 +57,7 @@ const Register = () => {
                 <button
                   type="button"
                   onClick={() => setRegister(!register)}
-                  className="border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2
-                    transition duration-500 hover:bg-red-400 hover:text-white"
+                  className="btn-exit"
                 >
                   X
                 </button>
@@ -91,9 +99,13 @@ const Register = () => {
                         type="email"
                         placeholder="Email-adress"
                         onChange={formikRegister.handleChange}
+                        onBlur={checkEmail}
                         value={formikRegister.values.emailAdress}
                         className="p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2"
                       />
+                      {emailValidator && (
+                      <p className="text-red-500">This email is already used</p>
+                      )}
                     </div>
                     <div>
                       <label htmlFor="password" className="text-xs block">Password:</label>
@@ -110,8 +122,7 @@ const Register = () => {
                   </div>
                   <button
                     type="submit"
-                    className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1
-                    transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white"
+                    className="btn-page"
                   >
                     Sign Up
                   </button>

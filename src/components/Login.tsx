@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
 import { getUserAvatarURL, useUserUpdate } from './UserContext';
+import { IProfile } from '../interfaces/IProfile.interface';
 
 const Login = () => {
   const setUser = useUserUpdate();
   const [login, setLogin] = useState(false);
+  const [emailValidator, setEmailValidator] = useState(false);
   const formikLogin = useFormik({
     initialValues: {
       emailAdress: '',
@@ -34,12 +36,21 @@ const Login = () => {
     },
   });
 
+  const checkEmail = async () => {
+    const { data } = await supabase
+    .from<IProfile>('profiles')
+    .select('email')
+    .eq('email', formikLogin.values.emailAdress);
+    if (data?.length === 0) {
+      setEmailValidator(true);
+    } else setEmailValidator(false);
+  };
+
   return (
     <div>
       <div
         onClick={() => setLogin(!login)}
-        className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
-        md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400 w-full cursor-pointer"
+        className="btn-nav"
       >Sign In
       </div>
       {login && (
@@ -50,8 +61,7 @@ const Login = () => {
               <button
                 type="button"
                 onClick={() => setLogin(!login)}
-                className="border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2
-              transition duration-500 hover:bg-red-400 hover:text-white"
+                className="btn-exit"
               >
                 X
               </button>
@@ -67,9 +77,13 @@ const Login = () => {
                       type="email"
                       placeholder="Email-adress"
                       onChange={formikLogin.handleChange}
+                      onBlur={checkEmail}
                       value={formikLogin.values.emailAdress}
                       className="p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2"
                     />
+                    {emailValidator && (
+                      <p className="text-red-500">This email doesn&#39;t exist in our database</p>
+                      )}
                   </div>
                   <div>
                     <label htmlFor="password" className="text-xs block">Password:</label>
@@ -86,8 +100,7 @@ const Login = () => {
                 </div>
                 <button
                   type="submit"
-                  className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1
-                  transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white"
+                  className="btn-page"
                 >
                   Sign In
                 </button>

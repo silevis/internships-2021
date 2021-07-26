@@ -15,9 +15,7 @@ const BookListViewAdmin = () => {
     // eslint-disable-next-line
     const { data: books, error } = await supabase
       .from<IBook>('books')
-      .select(`
-    *
-  `);
+      .select('*');
     if (books !== null) {
       setDataSupabase(books);
     }
@@ -43,14 +41,22 @@ const BookListViewAdmin = () => {
         dataAPI && dataAPI?.items.map((book) => (
           <Book
             key={book.id ?? 'N/D'}
-            id={book.id ?? 'N/D'}
-            title={book.volumeInfo.title ?? 'N/D'}
-            description={book.volumeInfo.description ?? 'N/D'}
-            publishedDate={book.volumeInfo.publishedDate ?? 'N/D'}
-            image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : `${process.env.PUBLIC_URL}/image-not-found.png`}
-            authors={book.volumeInfo.authors}
-            categories={book.volumeInfo.categories ?? ['N/D']}
-            isbn={(book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/D')}
+            book={{
+              id: book.id,
+              title: book.volumeInfo.title,
+              description: book.volumeInfo.description,
+              publishedDate: book.volumeInfo.publishedDate,
+              imageLinks: book.volumeInfo.imageLinks ? [book.volumeInfo.imageLinks.thumbnail] : [],
+              authors: book.volumeInfo.authors,
+              categories: book.volumeInfo.categories,
+              isbn: book.volumeInfo.industryIdentifiers[0].identifier,
+              featuredImageId: 0,
+              votesAmount: book.volumeInfo.ratingsCount,
+              avgRating: book.volumeInfo.averageRating,
+              addedById: book.id,
+              addedDate: null,
+              quantity: 1,
+            }}
           />
         ))
       )}

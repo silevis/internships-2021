@@ -52,7 +52,7 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
             src={book.imageLinks[0]}
             alt="A book."
             className="m-auto md:w-1/3 max-h-56 object-scale-down
-            transform hover:scale-110 cursor-pointer w-32
+            transform hover:scale-110 cursor-pointer w-32 pr-2
             transition duration-400 ease-in-out hover:-translate-y-1"
           />
         </div>

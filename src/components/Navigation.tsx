@@ -51,12 +51,32 @@ function Navigation() {
           <div className="flex flex-col md:flex-row my-2 md:my-0 md:mx-6">
             <Link
               to="/"
+               {/*
               className="mt-1 py-1 md:py-0 pl-4 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 md:mr-4 md:my-0
               border-b border-t md:border-t-0 md:border-b-0 md:border-l border-gray-400"
             >
               Home
             </Link>
 
+            <Link
+              to="/books-list"
+              className="my-1 py-1 md:py-0 pl-4 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 md:mr-4 md:my-0
+              border-b md:border-t-0 md:border-b-0 md:border-l border-gray-400"
+            >
+              Book List
+            </Link>
+
+            {isLoggedIn() ? (
+              <div className="navbar-nav">
+                <UserDropdown
+                  title={loggedUser?.email}
+                  logOut={logout}
+                />
+                */}
+              className="btn-nav"
+            >
+              Home
+            </Link>
             <Link
               to="/books-list"
               className="my-1 py-1 md:py-0 pl-4 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 md:mr-4 md:my-0
