@@ -22,8 +22,6 @@ const BookListView = () => {
         .ilike('title', q)
         .gte('avgRating', rating)
         .lte('avgRating', rating + range);
-        console.log(rating + range);
-        console.log(rating);
         if (books !== null) {
           setData(books);
         }
