@@ -19,6 +19,7 @@ const Rating: FC<RatingProps> = ({ bare, votesAmount, avgRating }) => {
   let scoreRemaining = (avgRating / MaxScoreFromAPI) * 100;
   for (let i = 0; i < IconsAmount; i++) {
     icons.push(<SVGRatingIcon
+      key={i}
       urlBlank={RatingIconURL}
       urlFull={RatingIconFilledURL}
       fillingPercent={Math.floor(Math.max(0, Math.min(100, scoreRemaining * IconsAmount)))}
@@ -28,7 +29,7 @@ const Rating: FC<RatingProps> = ({ bare, votesAmount, avgRating }) => {
 
   return (
     <div className="flex flex-wrap justify-center items-center flex-col">
-      <div className="flex">
+      <div className="flex justify-between">
         {icons}
       </div>
       {!bare && <span className="text-gray-600 text-xs mt-1">Ilosc głosów: {votesAmount}</span>}

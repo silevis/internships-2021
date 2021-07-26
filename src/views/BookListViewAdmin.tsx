@@ -27,7 +27,7 @@ const BookListViewAdmin = () => {
     const fetchData = async () => {
       try {
         setError(false);
-        const res = await axios.get('https://www.googleapis.com/books/v1/volumes?q=sapkowski');
+        const res = await axios.get('https://www.googleapis.com/books/v1/volumes?q=a');
         setDataAPI(res.data);
       } catch (e) {
         setError(true);
@@ -49,7 +49,7 @@ const BookListViewAdmin = () => {
             publishedDate={book.volumeInfo.publishedDate ?? 'N/D'}
             image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : `${process.env.PUBLIC_URL}/image-not-found.png`}
             authors={book.volumeInfo.authors}
-            categories={book.volumeInfo.categories ?? 'N/D'}
+            categories={book.volumeInfo.categories ?? ['N/D']}
             isbn={(book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/D')}
           />
         ))
@@ -67,6 +67,7 @@ const BookListViewAdmin = () => {
             publishedDate={book.publishedDate}
             categories={book.categories}
             description={book.description}
+            quantity={book.quantity}
             onBookDelete={getAllBooks}
           />
         ))

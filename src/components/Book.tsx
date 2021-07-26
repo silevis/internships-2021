@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddBook from './AddBook';
 
@@ -23,6 +23,7 @@ const Book: FC<IBookProps> = ({
   description,
   isbn,
 }) => {
+  const [quantity, setQuantity] = useState('1');
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
       <div className="m-3 ">
@@ -46,16 +47,28 @@ const Book: FC<IBookProps> = ({
       </div>
       <div>
         {window.location.pathname === '/internships-2021/admin/store' && (
-          <AddBook
-            id={id}
-            title={title}
-            authors={authors}
-            image={image}
-            description={description}
-            isbn={isbn}
-            publishedDate={publishedDate}
-            categories={categories}
-          />
+          <div>
+            <div>
+              <p>Quantity:</p>
+              <input
+                id="quantity"
+                name="quantity"
+                type="number"
+                onChange={(event) => setQuantity(event.target.value)}
+              />
+            </div>
+            <AddBook
+              id={id}
+              title={title}
+              authors={authors}
+              image={image}
+              description={description}
+              isbn={isbn}
+              publishedDate={publishedDate}
+              categories={categories}
+              quantity={Number(quantity)}
+            />
+          </div>
         )}
         {window.location.pathname !== '/internships-2021/admin/store' && (
           <button
