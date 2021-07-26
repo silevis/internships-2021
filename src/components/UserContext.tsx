@@ -6,6 +6,16 @@ const UserContext = React.createContext<IProfile | null>(null);
 const UserUpdateContext = React.createContext<((newUser: IProfile) => void) | null>(null);
 const loggedUser = supabase.auth.user() ?? null;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isAdmin = (user: any) => {
+  return user?.isAdmin;
+};
+
+export const isLoggedIn = () => {
+  // eslint-disable-next-line no-unneeded-ternary
+  return supabase.auth.user();
+};
+
 export const useUser = () => {
   return useContext(UserContext);
 };
@@ -15,7 +25,7 @@ export const useUserUpdate = () => {
 };
 
 export async function getUserAvatarURL() {
-  if (loggedUser === null) {
+  if (!loggedUser) {
     return undefined;
   }
   return supabase
