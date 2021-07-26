@@ -72,7 +72,7 @@ function Sidebar() {
                 className="transition duration-500 ease-in-out border text-gray-400 border-gray-200 p-2 w-2/3
                 hover:bg-gray-400 hover:text-gray-100"
                 type="button"
-                onClick={() => history.push(`/books-list/${query}/${value}`)}
+                onClick={() => history.replace(`/books-list/${query}/${value}`)}
               >
                 Filtruj
               </button>
