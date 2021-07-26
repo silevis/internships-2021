@@ -7,6 +7,7 @@ type ProfileQuery = IProfile;
 const useUserInfo = (id: string | null) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any | null>();
+
   useEffect(() => {
     if (!id) return;
     const getUser = async () => {
@@ -16,13 +17,11 @@ const useUserInfo = (id: string | null) => {
         .select(`
       *
     `).eq('id', id);
-      if (user !== null) {
-        setData(user);
-      }
+      setData(user);
     };
     getUser();
   }, [id]);
-  return id ? data : [null];
+  return id ? data : null;
 };
 
 export default useUserInfo;

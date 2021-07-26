@@ -8,13 +8,10 @@ const loggedUser = supabase.auth.user() ?? null;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isAdmin = (user: any) => {
-  if (user) {
-    return user?.isAdmin ?? false;
-  }
-  return false;
+  return user?.isAdmin;
 };
 
-export const isLogged = () => {
+export const isLoggedIn = () => {
   // eslint-disable-next-line no-unneeded-ternary
   return supabase.auth.user();
 };

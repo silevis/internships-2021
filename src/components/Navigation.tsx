@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
-import { isAdmin, isLogged, useUser, useUserUpdate } from './UserContext';
+import { isAdmin, isLoggedIn, useUser, useUserUpdate } from './UserContext';
 import supabase from '../utils/supabase';
 import useUserInfo from '../hooks/useUserInfo';
 
 function Navigation() {
   const loggedUser = useUser();
   const userInfo = useUserInfo(useUser()?.id ?? null)?.[0];
+
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
   const history = useHistory();
@@ -65,7 +66,7 @@ function Navigation() {
                 Admin
               </div>
             )}
-            {(isLogged() && !isAdmin(userInfo)) && (
+            {(isLoggedIn() && !isAdmin(userInfo)) && (
               <Link
                 to="/user"
                 className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
@@ -74,7 +75,7 @@ function Navigation() {
                 {loggedUser?.email}
               </Link>
             )}
-            { isLogged() ? (
+            { isLoggedIn() ? (
               <div
                 onClick={logout}
                 className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
