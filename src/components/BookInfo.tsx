@@ -41,11 +41,21 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
     window.scrollTo(0, 0);
   }, []);
 
+  const [enlarged, setEnlarged] = useState(false);
+
   return (
     <div className="w-11/12 m-auto mt-8">
       <div className="md:w-11/12 m-auto flex flex-wrap flex-col md:flex-row items-start">
-        {/* todo: image z powiekszeniem po najechaniu (osobny component)*/}
-        <img src={book.imageLinks[0]} alt="ok" className="m-auto md:w-1/3 max-h-56 object-scale-down" />
+        <div className="m-auto flex flex-wrap flex-col items-start md:flex-row md:w-2/6">
+          <img
+            onClick={() => setEnlarged(true)}
+            src={book.imageLinks[0]}
+            alt="A book."
+            className="m-auto md:w-1/3 max-h-56 object-scale-down
+            transform hover:scale-110 cursor-pointer w-32
+            transition duration-400 ease-in-out hover:-translate-y-1"
+          />
+        </div>
         <div className="lg:w-2/3 flex-col lg:flex-row flex flex-wrap">
           <div className="lg:w-6/12 flex flex-auto flex-col">
             <span className="text-xl">{book.title}</span> <br />
@@ -65,6 +75,23 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
       <div className="w-full md:w-2/3 mt-8 m-auto">
         <Tablist tabs={tabList} defaultTab={0} />
       </div>
+      {enlarged && (
+        <div
+          className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen"
+          onClick={() => setEnlarged(false)}
+        >
+          siema
+          <div
+            className="relative m-auto flex-col flex rounded-md shadow-xl
+            transform scale-150"
+          >
+            <img
+              src={book.imageLinks[0]}
+              alt="A book."
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

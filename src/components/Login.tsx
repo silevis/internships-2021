@@ -28,7 +28,7 @@ const Login = () => {
           lastName: 'unknown',
           email: user?.email ?? 'no email',
           avatarUrl: (await getUserAvatarURL())?.signedURL
-          ?? 'https://image.shutterstock.com/image-vector/default-avatar-profile-icon-vector-260nw-1725655669.jpg',
+            ?? `${process.env.PUBLIC_URL}/image-not-found.png`,
         });
       }
     },

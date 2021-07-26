@@ -51,7 +51,7 @@ const Book: FC<IBookProps> = ({
             src={image}
             alt="A book"
             className="transform hover:scale-110 cursor-pointer w-32
-        transition duration-400 ease-in-out hover:-translate-y-1"
+            transition duration-400 ease-in-out hover:-translate-y-1"
           />
         </Link>
       </div>
