@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
 import { getUserAvatarURL, useUserUpdate } from './UserContext';
+import { IProfile } from '../interfaces/IProfile.interface';
 
 const Login = () => {
   const setUser = useUserUpdate();
   const [login, setLogin] = useState(false);
+  const [emailValidator, setEmailValidator] = useState(false);
   const formikLogin = useFormik({
     initialValues: {
       emailAdress: '',
@@ -33,6 +35,16 @@ const Login = () => {
       }
     },
   });
+
+  const checkEmail = async () => {
+    const { data } = await supabase
+    .from<IProfile>('profiles')
+    .select('email')
+    .eq('email', formikLogin.values.emailAdress);
+    if (data?.length === 0) {
+      setEmailValidator(true);
+    } else setEmailValidator(false);
+  };
 
   return (
     <div>
@@ -67,9 +79,13 @@ const Login = () => {
                       type="email"
                       placeholder="Email-adress"
                       onChange={formikLogin.handleChange}
+                      onBlur={checkEmail}
                       value={formikLogin.values.emailAdress}
                       className="p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2"
                     />
+                    {emailValidator && (
+                      <p className="text-red-500">This email doesn&#39;t exist in our base</p>
+                      )}
                   </div>
                   <div>
                     <label htmlFor="password" className="text-xs block">Password:</label>
