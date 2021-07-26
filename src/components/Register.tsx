@@ -35,8 +35,7 @@ const Register = () => {
     <div>
       <div
         onClick={() => setRegister(!register)}
-        className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
-         md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400 w-full cursor-pointer"
+        className="btn-nav"
       >Sign Up
       </div>
       {register
@@ -110,8 +109,7 @@ const Register = () => {
                   </div>
                   <button
                     type="submit"
-                    className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1
-                    transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white"
+                    className="btn-page"
                   >
                     Sign Up
                   </button>
