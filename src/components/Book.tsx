@@ -1,9 +1,12 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddBook from './AddBook';
+import supabase from '../utils/supabase';
+import { IBook } from '../interfaces/IBook.interface';
+import UpdateBook from './UpdateBook';
 
 interface IBookProps {
-  id?: string;
+  id: string;
   title?: string;
   description?: string;
   publishedDate?: string;
@@ -23,7 +26,23 @@ const Book: FC<IBookProps> = ({
   description,
   isbn,
 }) => {
-  const [quantity, setQuantity] = useState('1');
+  const [data, setData] = useState<IBook[] | null>([]);
+  const [quantityInput, setQuantityInput] = useState('1');
+
+  useEffect(() => {
+    const getBookData = async () => {
+      // eslint-disable-next-line
+      const { data, error } = await supabase
+        .from<IBook>('books')
+        .select(`
+      id, quantity
+    `).eq('id', id);
+      if (data !== null) {
+        setData(data);
+      }
+    };
+   getBookData();
+  }, [id]);
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
       <div className="m-3 ">
@@ -32,7 +51,7 @@ const Book: FC<IBookProps> = ({
             src={image}
             alt="A book"
             className="transform hover:scale-110 cursor-pointer w-32
-        transition duration-400 ease-in-out hover:-translate-y-1"
+            transition duration-400 ease-in-out hover:-translate-y-1"
           />
         </Link>
       </div>
@@ -47,28 +66,37 @@ const Book: FC<IBookProps> = ({
       </div>
       <div>
         {window.location.pathname === '/internships-2021/admin/store' && (
-          <div>
+        <div>
+          <p>Quantity:</p>
+          <input
+            id="quantity"
+            name="quantity"
+            type="number"
+            onChange={(event) => setQuantityInput(event.target.value)}
+          />
+          {data?.length !== 0 && (
             <div>
-              <p>Quantity:</p>
-              <input
-                id="quantity"
-                name="quantity"
-                type="number"
-                onChange={(event) => setQuantity(event.target.value)}
+              <div className="bg-red-500 text-white">W magazynie {data?.map((book) => book.quantity)[0]} </div>
+              <UpdateBook
+                id={id}
+                quantity={Number(quantityInput) + (data?.map((book) => book.quantity)[0] ?? 0)}
               />
             </div>
-            <AddBook
-              id={id}
-              title={title}
-              authors={authors}
-              image={image}
-              description={description}
-              isbn={isbn}
-              publishedDate={publishedDate}
-              categories={categories}
-              quantity={Number(quantity)}
-            />
-          </div>
+          )}
+          {data?.length === 0 && (
+          <AddBook
+            id={id}
+            title={title}
+            authors={authors}
+            image={image}
+            description={description}
+            isbn={isbn}
+            publishedDate={publishedDate}
+            categories={categories}
+            quantity={Number(quantityInput)}
+          />
+          )}
+        </div>
         )}
         {window.location.pathname !== '/internships-2021/admin/store' && (
           <button
