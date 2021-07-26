@@ -84,7 +84,7 @@ const Login = () => {
                       className="p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2"
                     />
                     {emailValidator && (
-                      <p className="text-red-500">This email doesn&#39;t exist in our base</p>
+                      <p className="text-red-500">This email doesn&#39;t exist in our database</p>
                       )}
                   </div>
                   <div>
