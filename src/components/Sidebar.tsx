@@ -33,10 +33,10 @@ function Sidebar() {
         </button>
       </div>
       <div
-        className={`mt-14 lg:block z-30 inset-0 flex-none h-full w-8/12 sm:w-4/12 lg:h-auto bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
-        lg:w-60 xl:w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle === true ? 'hidden' : 'fixed lg:static'}`}
+        className={`lg:block z-30 inset-0 flex-none h-full lg:h-auto bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
+        w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle === true ? 'hidden' : 'fixed lg:static'}`}
       >
-        <div className="items-center justify-between scrolling-touch sticky top-16">
+        <div className="items-center justify-between scrolling-touch fixed top-14 max-h-screen overflow-y-auto pb-8">
           <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
             Filters
           </div>
@@ -48,7 +48,7 @@ function Sidebar() {
                 placeholder="Enter book name"
                 id="searchbar"
                 className="p-1 placeholder-gray-400 text-gray-600 border outline-none
-                transition duration-300 ease-in-out focus:ring-2 ring-gray-200"
+                  transition duration-300 ease-in-out focus:ring-2 ring-gray-200"
                 onChange={handleQueryChange}
               />
             </div>
@@ -70,7 +70,7 @@ function Sidebar() {
             <div className="flex border-b border-gray-200 mx-1 pl-4 pb-5 mt-5 place-content-center">
               <button
                 className="transition duration-500 ease-in-out border text-gray-400 border-gray-200 p-2 w-2/3
-                hover:bg-gray-400 hover:text-gray-100"
+                  hover:bg-gray-400 hover:text-gray-100"
                 type="button"
                 onClick={() => history.replace(`/books-list/${query}/${value}`)}
               >

@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-interface TestDropdownProps {
-  title: string;
+interface UserDropdownProps {
+  title: string | undefined;
   logOut: () => void;
 }
 
-const TestDropdown: FC<TestDropdownProps> = ({ title, logOut }) => {
+const UserDropdown: FC<UserDropdownProps> = ({ title, logOut }) => {
   const [Open, setOpen] = useState(false);
 
   return (
@@ -53,4 +53,4 @@ const TestDropdown: FC<TestDropdownProps> = ({ title, logOut }) => {
   );
 };
 
-export default TestDropdown;
+export default UserDropdown;
