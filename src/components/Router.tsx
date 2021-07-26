@@ -7,24 +7,29 @@ import {
 import BookListView from '../views/BookListView';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
-import { useUser } from './UserContext';
 import SliderDemo from '../views/SliderDemo';
 import BookInfoPage from '../views/BookInfoView';
-import UserpageView from '../views/UserpageView';
 import SidebarAdmin from './SidebarAdmin';
 import BookListViewAdmin from '../views/BookListViewAdmin';
+import PrivateRoute from './PrivateRoute';
+import { useUser, isAdmin } from './UserContext';
+import useUserInfo from '../hooks/useUserInfo';
+import NoMatch404 from './NoMatch404';
+import UserpageView from '../views/UserpageView';
 
 function AddRouter() {
-  const globalUser = useUser();
+  const loggedUser = useUser();
+  const userInfo = useUserInfo(loggedUser?.id ?? null);
+
   return (
     <div className="App h-full">
       <Router basename={process.env.PUBLIC_URL}>
         <header className="App-header fixed w-full top-0 h-10 z-50">
           <Navigation />
         </header>
-        <div className="container w-full h-full max-w-8xl mx-auto flex mt-12 z-10">
-          {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <SidebarAdmin /> : <Sidebar />}
-          <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-y-auto shadow-inner">
+        <div className="container w-full h-screen max-w-8xl mx-auto flex mt-12 z-10">
+          { isAdmin(userInfo) ? <SidebarAdmin /> : <Sidebar />}
+          <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
             <Switch>
               <Route path="/internships-2021" exact>
                 <Redirect to="/" />
@@ -38,15 +43,8 @@ function AddRouter() {
               <Route path="/user" exact>
                 <UserpageView />
               </Route>
-              <Route path="/admin" exact>
-                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <span>Witaj adminie</span> : <Redirect to="/" />}
-              </Route>
-              <Route path="/admin/store" exact>
-                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <BookListViewAdmin /> : <Redirect to="/" />}
-              </Route>
-              <Route path="/admin/owned" exact>
-                {globalUser?.id === process.env.REACT_APP_ADMIN_ID ? <BookListViewAdmin /> : <Redirect to="/" />}
-              </Route>
+              <PrivateRoute component={BookListViewAdmin} path="/admin/owned" exact user={userInfo} />
+              <PrivateRoute component={BookListView} path="/admin/store" exact user={userInfo} />
               <Route path="/books-list" exact>
                 <Redirect to="/books-list/*/0" />
               </Route>
@@ -55,6 +53,9 @@ function AddRouter() {
               </Route>
               <Route path="/book/:id" exact>
                 <BookInfoPage />
+              </Route>
+              <Route path="*">
+                <NoMatch404 />
               </Route>
             </Switch>
           </div>
