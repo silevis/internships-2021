@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media only screen and (min-width: 768px) {
+  .dropdown {
+    top: 50px;
+    transform: translateX(15%);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .dropdown {
+    top: 50px;
+    /* transform: translateY(70%); */
+  }
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  transition: background var(--speed);
+  padding: 0.5rem;
+}
+
