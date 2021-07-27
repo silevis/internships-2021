@@ -4,6 +4,7 @@ import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import Book from '../components/Book';
 import Sidebar from '../components/Sidebar';
+import SidebarAdmin from '../components/SidebarAdmin';
 
 const BookListView = () => {
   const [data, setData] = useState<IBook[] | null>([]);
@@ -33,6 +34,7 @@ const BookListView = () => {
   return (
     <div className="container mx-auto flex flex-row">
       <Sidebar />
+      <SidebarAdmin />
       <div className="mt-16">
         {data && data?.map((book) => (
           <Book key={book.id} book={book} />

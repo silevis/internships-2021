@@ -7,7 +7,6 @@ import {
 import BookListView from '../views/BookListView';
 import Navigation from './Navigation';
 import BookInfoPage from '../views/BookInfoView';
-import SidebarAdmin from './SidebarAdmin';
 import BookListViewAdminOwned from '../views/BookListViewAdminOwned';
 import BookListViewAdminStore from '../views/BookListViewAdminStore';
 import PrivateRoute from './PrivateRoute';
@@ -45,7 +44,6 @@ function AddRouter() {
             <BookListViewAdminOwned />
           </PrivateRoute>
           <PrivateRoute path="/admin/store" exact user={userInfo}>
-            <SidebarAdmin />
             <BookListViewAdminStore />
           </PrivateRoute>
           <Route path="/books-list" exact>
