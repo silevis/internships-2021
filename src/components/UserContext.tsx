@@ -23,7 +23,7 @@ export const useUserUpdate = () => {
   return useContext(UserUpdateContext);
 };
 
-export async function getUserAvatarURL() {
+export const getUserAvatarURL = async () => {
   if (!loggedUser) {
     return undefined;
   }

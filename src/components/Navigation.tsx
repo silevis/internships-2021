@@ -6,7 +6,7 @@ import RegisterButton from './RegisterButton';
 import { isLoggedIn, useUser, useUserUpdate } from './UserContext';
 import supabase from '../utils/supabase';
 
-function Navigation() {
+const Navigation = () => {
   const loggedUser = useUser();
 
   const setUser = useUserUpdate();

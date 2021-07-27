@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router';
 
-function NoMatch404() {
+const NoMatch404 = () => {
   const location = useLocation();
 
   return (

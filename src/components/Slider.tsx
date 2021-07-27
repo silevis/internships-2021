@@ -32,7 +32,7 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
     // eslint-disable-next-line
   }, [index]);
 
-  function changeSlide(dir = 0) {
+  const changeSlide = (dir = 0) => {
     const newIndex = index + dir;
 
     if (newIndex >= entryCount) return setIndex(0);

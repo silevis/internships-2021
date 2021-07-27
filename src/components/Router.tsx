@@ -16,7 +16,7 @@ import NoMatch404 from './NoMatch404';
 import UserpageView from '../views/UserpageView';
 import HomepageView from '../views/HomepageView';
 
-function AddRouter() {
+const AddRouter = () => {
   const loggedUser = useUser();
   const userInfo = useUserInfo(loggedUser?.id ?? null);
 
