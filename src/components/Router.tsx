@@ -28,8 +28,8 @@ function AddRouter() {
         <header className="App-header fixed w-full top-0 h-10 z-50">
           <Navigation />
         </header>
-        <div className="container w-full h-screen max-w-8xl mx-auto flex mt-12 z-10">
-          { isAdmin(userInfo) ? <SidebarAdmin /> : <Sidebar />}
+        <div className="container w-full h-full max-w-8xl mx-auto flex mt-12 z-10">
+          {isAdmin(userInfo) ? <SidebarAdmin /> : <Sidebar />}
           <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
             <Switch>
               <Route path="/internships-2021" exact>
