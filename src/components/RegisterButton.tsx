@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
-import { IProfile } from '../interfaces/IProfile.interface';
 import ModalDialog from './ModalDialog';
+import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 
 const RegisterButton = () => {
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -26,7 +26,7 @@ const RegisterButton = () => {
         return;
       }
       if (user) {
-        await supabase.from<IProfile>('profiles').insert({
+        await supabase.from<IBasicUserInfo>('profiles').insert({
           id: user.id,
           firstName: values.firstName,
           lastName: values.lastName,
@@ -40,7 +40,7 @@ const RegisterButton = () => {
   });
   const checkEmail = async () => {
     const { data } = await supabase
-      .from<IProfile>('profiles')
+      .from<IBasicUserInfo>('profiles')
       .select('email')
       .eq('email', formikRegister.values.emailAdress);
       if (!data?.length) {
