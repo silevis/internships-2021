@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
-import { IProfile } from '../interfaces/IProfile.interface';
+import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 
 const Register = () => {
   const [register, setRegister] = useState(false);
@@ -21,7 +21,7 @@ const Register = () => {
         password: values.password,
       });
       if (user) {
-        await supabase.from<IProfile>('profiles').insert({
+        await supabase.from<IBasicUserInfo>('profiles').insert({
           id: user.id,
           firstName: values.firstName,
           lastName: values.lastName,
@@ -33,7 +33,7 @@ const Register = () => {
   });
   const checkEmail = async () => {
       const { data } = await supabase
-      .from<IProfile>('profiles')
+      .from<IBasicUserInfo>('profiles')
       .select('email')
       .eq('email', formikRegister.values.emailAdress);
       if (data?.length !== 0) {

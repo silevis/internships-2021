@@ -9,7 +9,6 @@ import useUserInfo from '../hooks/useUserInfo';
 function Navigation() {
   const loggedUser = useUser();
   const userInfo = useUserInfo(useUser()?.id ?? null);
-  console.log(userInfo);
 
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);

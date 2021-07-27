@@ -7,12 +7,11 @@ const UserContext = React.createContext<IBasicUserInfo | null>(null);
 const UserUpdateContext = React.createContext<((newUser: IBasicUserInfo) => void) | null>(null);
 const loggedUser = supabase.auth.user() ?? null;
 
-export const isAdmin = (user: IProfile) => {
+export const isAdmin = (user: IProfile | null) => {
   return user?.isAdmin;
 };
 
 export const isLoggedIn = () => {
-  // eslint-disable-next-line no-unneeded-ternary
   return supabase.auth.user();
 };
 

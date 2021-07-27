@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
 import { getUserAvatarURL, useUserUpdate } from './UserContext';
-import { IProfile } from '../interfaces/IProfile.interface';
+import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 
 const Login = () => {
   const setUser = useUserUpdate();
@@ -38,7 +38,7 @@ const Login = () => {
 
   const checkEmail = async () => {
     const { data } = await supabase
-    .from<IProfile>('profiles')
+    .from<IBasicUserInfo>('profiles')
     .select('email')
     .eq('email', formikLogin.values.emailAdress);
     if (data?.length === 0) {
