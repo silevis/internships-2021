@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
-import DeleteBook from './DeleteBook';
+import React, { FC, useState, useEffect } from 'react';
+import UpdateBook from './UpdateBook';
+import supabase from '../utils/supabase';
+import AddBook from './AddBook';
 
 interface IBookProps {
   id?: string;
@@ -11,7 +13,6 @@ interface IBookProps {
   authors?: string[];
   categories?: string[];
   quantity?: number;
-  onBookDelete: () => void;
 }
 
 const StoreBook: FC<IBookProps> = ({
@@ -19,10 +20,28 @@ const StoreBook: FC<IBookProps> = ({
   title,
   authors,
   image,
+  publishedDate,
   categories,
-  quantity,
-  onBookDelete,
+  description,
+  isbn,
 }) => {
+  const [quantityInput, setQuantityInput] = useState('1');
+  const [data, setData] = useState<IBookProps[] | null>([]);
+
+  useEffect(() => {
+    const getBookData = async () => {
+      // eslint-disable-next-line
+      const { data, error } = await supabase
+        .from<IBookProps>('books')
+        .select(`
+      id, quantity
+    `).eq('id', id);
+      if (data !== null) {
+        setData(data);
+      }
+    };
+    getBookData();
+  }, [id]);
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
       <img
@@ -38,13 +57,37 @@ const StoreBook: FC<IBookProps> = ({
         <br />
         <span className="text-gray-400">{categories}</span>
         <br />
-        <span className="text-gray-400">{quantity}</span>
       </div>
       <div>
-        <DeleteBook
-          id={id}
-          onBookDelete={onBookDelete}
+        <p>Quantity:</p>
+        <input
+          id="quantity"
+          name="quantity"
+          type="number"
+          onChange={(event) => setQuantityInput(event.target.value)}
         />
+        {data?.length !== 0 && (
+          <div>
+            <div className="bg-red-500 text-white">W magazynie {data?.map((book) => book.quantity)[0]} </div>
+            <UpdateBook
+              id={id}
+              quantity={Number(quantityInput) + (data?.map((book) => book.quantity)[0] ?? 0)}
+            />
+          </div>
+        )}
+        {data?.length === 0 && (
+          <AddBook
+            id={id}
+            title={title}
+            authors={authors}
+            image={image}
+            description={description}
+            isbn={isbn}
+            publishedDate={publishedDate}
+            categories={categories}
+            quantity={Number(quantityInput)}
+          />
+        )}
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import LoginButton from './LoginButton';
 import UserDropdown from './UserDropdown';
-import Login from './Login';
-import Register from './Register';
+import RegisterButton from './RegisterButton';
 import { isLoggedIn, useUser, useUserUpdate, isAdmin } from './UserContext';
 import supabase from '../utils/supabase';
 import useUserInfo from '../hooks/useUserInfo';
@@ -61,31 +61,38 @@ function Navigation() {
 
         <div className={toggle ? 'block items-center md:flex' : 'hidden md:block items-center'}>
           <div className="flex flex-col md:flex-row my-2 md:my-0 md:mx-6">
-            <Link
-              to="/"
-              className="btn-nav"
+            <button
+              type="button"
+              className="btn-nav text-left relative"
             >
-              Home
-            </Link>
-            <Link
-              to="/books-list"
-              className="btn-nav"
+              <Link
+                to="/"
+              >
+                Home
+              </Link>
+            </button>
+
+            <button
+              type="button"
+              className="btn-nav text-left relative"
             >
-              Book List
-            </Link>
+              <Link
+                to="/books-list"
+              >
+                Book List
+              </Link>
+            </button>
 
             {isLoggedIn() ? (
-              <div className="navbar-nav">
-                <UserDropdown
-                  title={loggedUser?.email}
-                  items={items}
-                  logOut={logout}
-                />
-              </div>
+              <UserDropdown
+                title={loggedUser?.email}
+                items={items}
+                logOut={logout}
+              />
             ) : (
               <>
-                <Login />
-                <Register />
+                <LoginButton />
+                <RegisterButton />
               </>
             )}
           </div>

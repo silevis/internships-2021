@@ -1,11 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Slide, ToastContainer } from 'react-toastify';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <ToastContainer
+      position="top-right"
+      transition={Slide}
+      autoClose={6000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
