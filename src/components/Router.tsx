@@ -36,9 +36,7 @@ function AddRouter() {
                 <Redirect to="/" />
               </Route>
               <Route path="/" exact>
-                <div className="justify-start">
-                  <SliderDemo />
-                </div>
+                <SliderDemo />
                 <BookListView />
               </Route>
               <Route path="/user" exact>
