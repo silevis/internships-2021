@@ -17,6 +17,7 @@ const Tablist: FC<ITablistProps> = ({ tabs, defaultTab }) => {
   for (let i = 0; i < tabs.length; i++) {
     tabTitleElements.push(
       <button
+        key={i}
         type="button"
         className="flex-initial p-4 cursor-pointer auto-rows-min border-r border-gray-300"
         onClick={() => tabChangeHandler(i)}

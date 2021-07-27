@@ -42,7 +42,7 @@ const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn,
       className="btn-page"
       onClick={Add}
     >
-      + Dodaj książkę do magazynu
+      + Add book to the stock
     </button>
   );
 };

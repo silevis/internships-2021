@@ -7,7 +7,6 @@ import supabase from '../utils/supabase';
 const SliderDemo = () => {
   const [data, setData] = useState<IBook[] | null>([]);
   useEffect(() => {
-    // eslint-disable-next-line
     const getAllBooks = async () => {
       // eslint-disable-next-line
       const { data: books, error } = await supabase
