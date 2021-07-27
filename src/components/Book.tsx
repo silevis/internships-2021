@@ -1,12 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { IBook } from '../interfaces/IBook.interface';
 import getBookImage from '../utils/utils';
-import AddBook from './AddBook';
 import Rating from './Rating';
 import './Book.css';
-import supabase from '../utils/supabase';
-import UpdateBook from './UpdateBook';
 
 interface IBookProps {
   book: IBook;
@@ -15,23 +12,6 @@ interface IBookProps {
 const Book: FC<IBookProps> = ({
   book,
 }) => {
-  const [data, setData] = useState<IBook[] | null>([]);
-  const [quantityInput, setQuantityInput] = useState('1');
-
-  useEffect(() => {
-    const getBookData = async () => {
-      // eslint-disable-next-line
-      const { data, error } = await supabase
-        .from<IBook>('books')
-        .select(`
-      id, quantity
-    `).eq('id', book.id);
-      if (data !== null) {
-        setData(data);
-      }
-    };
-   getBookData();
-  }, [book.id]);
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
       <div className="m-3 flex justify-center">
@@ -58,47 +38,12 @@ const Book: FC<IBookProps> = ({
         </div>
       </div>
       <div>
-        {window.location.pathname === '/internships-2021/admin/store' && (
-        <div>
-          <p>Quantity:</p>
-          <input
-            id="quantity"
-            name="quantity"
-            type="number"
-            onChange={(event) => setQuantityInput(event.target.value)}
-          />
-          {data?.length !== 0 && (
-            <div>
-              <div className="bg-red-500 text-white">W magazynie {data?.map((b) => b.quantity)[0]} </div>
-              <UpdateBook
-                id={book.id}
-                quantity={Number(quantityInput) + (data?.map((b) => b.quantity)[0] ?? 0)}
-              />
-            </div>
-          )}
-          {data?.length === 0 && (
-          <AddBook
-            id={book.id}
-            title={book.title}
-            authors={book.authors}
-            image={getBookImage(book)}
-            description={book.description}
-            isbn={book.isbn}
-            publishedDate={book.publishedDate}
-            categories={book.categories}
-            quantity={Number(quantityInput)}
-          />
-          )}
-        </div>
-        )}
-        {window.location.pathname !== '/internships-2021/admin/store' && (
-          <button
-            type="button"
-            className="btn-page"
-          >
-            Kup książkę
-          </button>
-        )}
+        <button
+          type="button"
+          className="btn-page"
+        >
+          Kup książkę
+        </button>
       </div>
     </div>
   );

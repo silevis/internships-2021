@@ -2,9 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+.dropdown {
+  top: 50px;
+}
+
+@media only screen and (min-width: 768px) {
+  .dropdown {
+    top: 50px;
+    transform: translateX(15%);
+  }
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  transition: background var(--speed);
+  padding: 0.5rem;
+}
+
 @layer components {
   .btn-nav {
-    @apply my-1 py-1 md:py-0 pl-4 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 md:mr-4 md:my-0 border-b border-t md:border-t-0 md:border-b-0 md:border-l border-gray-400 cursor-pointer;
+    @apply px-4 py-2 md:py-0 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 border-t md:border-t-0 md:border-l border-gray-400 cursor-pointer;
+  }
+
+  .btn-nav-end {
+    @apply px-4 py-2 md:py-0 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 border-t border-b md:border-t-0 md:border-b-0 md:border-l md:border-r border-gray-400 cursor-pointer;
   }
 
   .btn-page {
@@ -13,6 +36,10 @@
 
   .btn-exit {
     @apply border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2 transition duration-500 hover:bg-red-400 hover:text-white;
+  }
+
+  .btn-sidebar {
+    @apply fixed inset-y-0 left-0 px-1 mt-2 max-h-full bg-white text-gray-500 border border-gray-500 transition duration-500 ease-in-out hover:bg-gray-700 hover:text-white hover:border-gray-700 lg:hidden;
   }
 
   .input-pri {

@@ -39,7 +39,7 @@ const Register = () => {
     },
   });
   const checkEmail = async () => {
-      const { data } = await supabase
+    const { data } = await supabase
       .from<IProfile>('profiles')
       .select('email')
       .eq('email', formikRegister.values.emailAdress);
