@@ -43,6 +43,7 @@ const OwnedBook: FC<IBookProps> = ({
       <div>
         <DeleteBook
           id={id}
+          title={title}
           onBookDelete={onBookDelete}
         />
       </div>
