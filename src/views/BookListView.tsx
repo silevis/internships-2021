@@ -31,7 +31,7 @@ const BookListView = () => {
     // eslint-disable-next-line
   }, [params]);
   return (
-    <div className="container mx-auto flex flex-row">
+    <div className="container mx-auto flex flex-row min-h-screen h-full">
       <Sidebar />
       <div className="mt-16">
         {data && data?.map((book) => (
