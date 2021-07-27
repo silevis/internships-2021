@@ -13,7 +13,7 @@ const BorrowBook: FC<IBookBorrow> = ({ bookId, profileId, date, returnDate }) =>
         returnDate,
       });
     } else {
-      toast.warn('You should be logged in to borrow a book!', {
+      toast.warn('You must be logged in to borrow a book!', {
         toastId: 'borrow-book-warning',
         position: 'top-right',
         autoClose: 5000,
@@ -27,16 +27,14 @@ const BorrowBook: FC<IBookBorrow> = ({ bookId, profileId, date, returnDate }) =>
   };
   return (
     <div>
-      <div>
-        <button
-          type="button"
-          className="btn-page"
-          onClick={AddOrNotify}
-        >
-          Wypożycz książkę
-        </button>
+      <button
+        type="button"
+        className="btn-page"
+        onClick={AddOrNotify}
+      >
+        Wypożycz książkę
+      </button>
 
-      </div>
     </div>
   );
 };

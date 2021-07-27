@@ -50,13 +50,10 @@ const StoreBook: FC<IBookProps> = ({
         className="transform hover:scale-110 cursor-pointer m-3 w-32
         transition duration-400 ease-in-out hover:-translate-y-1"
       />
-      <div className="ml-2 w-full">
+      <div className="ml-2 w-full flex flex-col">
         <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">{title}</span>
-        <br />
         <span className="text-gray-400">{authors?.join(' ')}</span>
-        <br />
         <span className="text-gray-400">{categories}</span>
-        <br />
       </div>
       <div>
         <p>Quantity:</p>
