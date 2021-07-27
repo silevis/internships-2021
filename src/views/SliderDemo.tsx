@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Slider from '../components/Slider';
 import { IBook } from '../interfaces/IBook.interface';
+import { ISupplierBook } from '../interfaces/ISupplierBook.interface';
 import supabase from '../utils/supabase';
 
 const SliderDemo = () => {
@@ -23,7 +24,7 @@ const SliderDemo = () => {
     return (
       <Slider
         // eslint-disable-next-line
-        entries={data?.map((book: any) => {
+        entries={data?.map((book: ISupplierBook) => {
           return {
             id: book.id,
             title: book.title,
