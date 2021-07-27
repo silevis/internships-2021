@@ -6,8 +6,8 @@ import {
 import { IPrivateRoute } from '../interfaces/IPrivateRoute.interface';
 import { isAdmin } from './UserContext';
 
-const PrivateRoute: React.FC<IPrivateRoute> = (props) => {
-    return isAdmin(props.user) ? (<Route path={props.path} exact={props.exact} component={props.component} />)
+const PrivateRoute: React.FC<IPrivateRoute> = ({ path, exact, user, children }) => {
+    return isAdmin(user) ? (<Route path={path} exact={exact}> {children} </Route>)
     : (<Redirect to="/" />);
   };
 
