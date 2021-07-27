@@ -22,7 +22,7 @@ function Sidebar() {
 
   return (
     <div className="flex justify-between bg-white">
-      <div className={`bg-white inline z-40 ${toggle === true ? 'hidden' : 'fixed lg:static'}`}>
+      <div className={`bg-white inline z-40 ${toggle ? 'hidden' : 'fixed lg:static'}`}>
         <button
           type="button"
           className="btn-sidebar lg:hidden"
@@ -78,7 +78,7 @@ function Sidebar() {
           </nav>
         </div>
       </div>
-      <div className={`inline z-40 ${toggle === true ? 'fixed' : 'hidden'}`}>
+      <div className={`inline z-40 ${toggle ? 'fixed' : 'hidden'}`}>
         <button
           type="button"
           className="btn-sidebar lg:hidden"

@@ -6,7 +6,7 @@ function SidebarAdmin() {
 
   return (
     <div className="flex justify-between bg-white">
-      <div className={`bg-white inline z-40 ${toggle === true ? 'hidden' : 'fixed lg:static'}`}>
+      <div className={`bg-white inline z-40 ${toggle ? 'hidden' : 'fixed lg:static'}`}>
         <button
           type="button"
           className="btn-sidebar"
@@ -17,7 +17,7 @@ function SidebarAdmin() {
       </div>
       <div
         className={`lg:block z-30 inset-0 flex-none h-full lg:h-auto bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
-        w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle === true ? 'hidden' : 'fixed lg:static'}`}
+        w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle ? 'hidden' : 'fixed lg:static'}`}
       >
         <div className="items-center justify-between scrolling-touch fixed top-14 max-h-screen overflow-y-auto pb-8">
           <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
@@ -37,7 +37,7 @@ function SidebarAdmin() {
           </nav>
         </div>
       </div>
-      <div className={`inline z-40 ${toggle === true ? 'fixed' : 'hidden'}`}>
+      <div className={`inline z-40 ${toggle ? 'fixed' : 'hidden'}`}>
         <button
           type="button"
           className="btn-sidebar"

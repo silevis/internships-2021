@@ -47,7 +47,7 @@ function Navigation() {
           </button>
         </div>
 
-        <div className={toggle === true ? 'block items-center md:flex' : 'hidden md:block items-center'}>
+        <div className={toggle ? 'block items-center md:flex' : 'hidden md:block items-center'}>
           <div className="flex flex-col md:flex-row my-2 md:my-0 md:mx-6">
             <Link
               to="/"
