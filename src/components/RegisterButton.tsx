@@ -4,7 +4,7 @@ import { supabase } from '../utils/supabase';
 import { IProfile } from '../interfaces/IProfile.interface';
 import ModalDialog from './ModalDialog';
 
-const Register = () => {
+const RegisterButton = () => {
   const [modalVisibility, setModalVisibility] = useState(false);
   const [status, setStatus] = useState<string>();
   const formikRegister = useFormik({
@@ -125,4 +125,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterButton;
