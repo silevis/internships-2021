@@ -43,7 +43,7 @@ const BookListView = () => {
           <Book key={book.id} book={book} />
         ))}
         {data && data?.length < 1 && (
-          <div> NIE MA </div>
+          <div>No results</div>
         )}
       </div>
     </div>
