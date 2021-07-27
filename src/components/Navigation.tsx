@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import Login from './Login';
+import LoginButton from './LoginButton';
 import Register from './Register';
 import { isAdmin, isLoggedIn, useUser, useUserUpdate } from './UserContext';
 import supabase from '../utils/supabase';
@@ -81,7 +81,7 @@ function Navigation() {
               </div>
             ) : (
               <div className="flex flex-col md:flex-row w-full">
-                <Login />
+                <LoginButton />
                 <Register />
               </div>
             )}

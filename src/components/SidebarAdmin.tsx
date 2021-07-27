@@ -22,17 +22,17 @@ function SidebarAdmin() {
       >
         <div className="items-center justify-between scrolling-touch sticky top-16">
           <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
-            Magazine
+            Admin sidebar
           </div>
           <nav className="mx-4 my-3">
             <Link to="/admin/owned">
               <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
-                Owned
+                In stock
               </div>
             </Link>
             <Link to="/admin/store">
               <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
-                Store
+                All goods
               </div>
             </Link>
           </nav>

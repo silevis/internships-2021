@@ -14,4 +14,8 @@
   .btn-exit {
     @apply border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2 transition duration-500 hover:bg-red-400 hover:text-white;
   }
+
+  .input-pri {
+    @apply p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2 w-auto;
+  }
 }
