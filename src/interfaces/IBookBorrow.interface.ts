@@ -1,7 +1,6 @@
 export interface IBookBorrow {
-  id: string;
   bookId: string;
-  userId: string;
+  profileId?: string;
   date: Date;
   returnDate: Date;
 }
