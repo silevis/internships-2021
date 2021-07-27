@@ -1,7 +1,9 @@
 export interface IProfile {
-  id: string;
-  firstName: string | undefined;
-  lastName: string;
+  avtar: string;
+  createdAt: string;
   email: string;
-  avatarUrl: string;
+  firstName: string;
+  id: string;
+  isAdmin: boolean;
+  lastName: string;
 }

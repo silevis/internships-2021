@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import FileType from 'file-type';
-import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
 import { getUserAvatarURL, useUser } from './UserContext';
 import Avatar from './Avatar';
+import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 
 const EditUserComponent = () => {
-    const usr: IProfile | null = useUser();
+    const usr: IBasicUserInfo | null = useUser();
     const [fileInput] = useState(useRef<HTMLInputElement>(null));
     const [status, setStatus] = useState<string>();
     // eslint-disable-next-line max-len

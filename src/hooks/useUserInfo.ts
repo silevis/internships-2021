@@ -2,18 +2,16 @@ import { useState, useEffect } from 'react';
 import supabase from '../utils/supabase';
 import { IProfile } from '../interfaces/IProfile.interface';
 
-type ProfileQuery = IProfile;
-
 const useUserInfo = (id: string | null) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [data, setData] = useState<any | null>();
+  const [data, setData] = useState<IProfile[] | null>();
 
   useEffect(() => {
     if (!id) return;
     const getUser = async () => {
       // eslint-disable-next-line
       const { data: user, error } = await supabase
-        .from<ProfileQuery>('profiles')
+        .from<IProfile>('profiles')
         .select(`
       *
     `).eq('id', id);
