@@ -8,19 +8,22 @@ import ModalDialog from './ModalDialog';
 const LoginButton = () => {
   const setUser = useUserUpdate();
   const [loginModalShown, setLoginModalShown] = useState(false);
-  const [emailValidator, setEmailValidator] = useState(false);
+  const [status, setStatus] = useState<string>();
+
   const formikLogin = useFormik({
     initialValues: {
       emailAdress: '',
       password: '',
     },
     onSubmit: async (values) => {
-      // eslint-disable-next-line
       const { user, error } = await supabase.auth.signIn({
         email: values.emailAdress,
         password: values.password,
       });
-      setLoginModalShown(!loginModalShown);
+      if (error) {
+        setStatus(error.message);
+      }
+
       if (user && setUser) {
         // TODO: get the default avatar directly from the supabase avatar store
         setUser({
@@ -31,6 +34,8 @@ const LoginButton = () => {
           avatarUrl: (await getUserAvatarURL())?.signedURL
             ?? `${process.env.PUBLIC_URL}/image-not-found.png`,
         });
+        setLoginModalShown(!loginModalShown);
+        setStatus('');
       }
     },
   });
@@ -40,7 +45,9 @@ const LoginButton = () => {
     .from<IProfile>('profiles')
     .select('email')
     .eq('email', formikLogin.values.emailAdress);
-    setEmailValidator(data?.length === 0);
+    if (!data?.length) {
+      setStatus('There\'s no user associated with this email');
+    }
   };
 
   return (
@@ -48,13 +55,14 @@ const LoginButton = () => {
       <div
         onClick={() => setLoginModalShown(!loginModalShown)}
         className="btn-nav"
-      >Sign In
+      >
+        Sign In
       </div>
       {loginModalShown && (
       <ModalDialog title="Login" onVisibilityChange={() => setLoginModalShown(!loginModalShown)}>
         <form onSubmit={formikLogin.handleSubmit}>
-          <div className="flex">
-            <div className="mr-1">
+          <div className="flex content-between">
+            <div className="mr-1 flex-auto">
               <label htmlFor="email-adress" className="text-xs block">Email adress:</label>
               <input
                 id="emailAdress"
@@ -66,23 +74,23 @@ const LoginButton = () => {
                 value={formikLogin.values.emailAdress}
                 className="input-pri"
               />
-              {emailValidator && (
-                <p className="text-red-500">This email doesn&#39;t exist in our database</p>
-              )}
             </div>
-            <div>
-              <label htmlFor="password" className="text-xs block">Password:</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Password"
-                onChange={formikLogin.handleChange}
-                value={formikLogin.values.password}
-                className="input-pri"
-              />
+            <div className="flex flex-auto flex-col items-end">
+              <div>
+                <label htmlFor="password" className="text-xs block">Password:</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  onChange={formikLogin.handleChange}
+                  value={formikLogin.values.password}
+                  className="input-pri"
+                />
+              </div>
             </div>
           </div>
+          <p className="text-red-500 mb-4">{status}</p>
           <button type="submit" className="btn-page">
             Sign In
           </button>

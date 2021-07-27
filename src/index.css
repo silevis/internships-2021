@@ -17,5 +17,6 @@
 
   .input-pri {
     @apply p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2 w-auto;
+    max-width: 11rem;
   }
 }
