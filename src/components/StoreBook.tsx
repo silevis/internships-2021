@@ -26,6 +26,7 @@ const StoreBook: FC<IBookProps> = ({
   isbn,
 }) => {
   const [quantityInput, setQuantityInput] = useState('1');
+  const [quantity, setQuantity] = useState<number | null>(null);
   const [data, setData] = useState<IBookProps[] | null>([]);
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const StoreBook: FC<IBookProps> = ({
     `).eq('id', id);
       if (data !== null) {
         setData(data);
+        setQuantity(data[0]?.quantity ?? 0);
       }
     };
     getBookData();
@@ -47,11 +49,10 @@ const StoreBook: FC<IBookProps> = ({
       <img
         src={image}
         alt="A book."
-        className="transform hover:scale-110 cursor-pointer m-3 w-32
-        transition duration-400 ease-in-out hover:-translate-y-1"
+        className="transform m-3 w-32"
       />
       <div className="ml-2 w-full">
-        <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">{title}</span>
+        {title}
         <br />
         <span className="text-gray-400">{authors?.join(' ')}</span>
         <br />
@@ -68,10 +69,11 @@ const StoreBook: FC<IBookProps> = ({
         />
         {data?.length !== 0 && (
           <div>
-            <div className="bg-red-500 text-white">W magazynie {data?.map((book) => book.quantity)[0]} </div>
+            <div className="bg-red-500 text-white">In a stock: {quantity} </div>
             <UpdateBook
               id={id}
-              quantity={Number(quantityInput) + (data?.map((book) => book.quantity)[0] ?? 0)}
+              quantity={Number(quantityInput) + (quantity ?? 0)}
+              onQuantityUpdate={(q) => setQuantity(q)}
             />
           </div>
         )}
