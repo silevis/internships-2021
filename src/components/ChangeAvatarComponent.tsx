@@ -11,7 +11,6 @@ const EditUserComponent = () => {
     const usr: IBasicUserInfo | null = useUser();
     const [fileInput] = useState(useRef<HTMLInputElement>(null));
     const [status, setStatus] = useState<string>();
-    // eslint-disable-next-line max-len
     const [avatarLink, setAvatarLink] = useState('');
 
   useEffect(() => {
