@@ -42,8 +42,12 @@ function AddRouter() {
               <Route path="/user" exact>
                 <UserpageView />
               </Route>
-              <PrivateRoute component={BookListViewAdminOwned} path="/admin/owned" exact user={userInfo} />
-              <PrivateRoute component={BookListViewAdminStore} path="/admin/store" exact user={userInfo} />
+              <PrivateRoute path="/admin/owned" exact user={userInfo}>
+                <BookListViewAdminOwned />
+              </PrivateRoute>
+              <PrivateRoute path="/admin/store" exact user={userInfo}>
+                <BookListViewAdminStore />
+              </PrivateRoute>
               <Route path="/books-list" exact>
                 <Redirect to="/books-list/*/0" />
               </Route>

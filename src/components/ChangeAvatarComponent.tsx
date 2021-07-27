@@ -2,17 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 // To jest nasze rozwiazanie - Cezary Bula 2021
 // eslint-disable-next-line
 import FileType from 'file-type';
-import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
 import { getUserAvatarURL, useUser } from './UserContext';
 import Avatar from './Avatar';
+import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 
 const EditUserComponent = () => {
-  const usr: IProfile | null = useUser();
-  const [fileInput] = useState(useRef<HTMLInputElement>(null));
-  const [status, setStatus] = useState<string>();
-  // eslint-disable-next-line max-len
-  const [avatarLink, setAvatarLink] = useState('');
+    const usr: IBasicUserInfo | null = useUser();
+    const [fileInput] = useState(useRef<HTMLInputElement>(null));
+    const [status, setStatus] = useState<string>();
+    const [avatarLink, setAvatarLink] = useState('');
 
   useEffect(() => {
     (async () => {

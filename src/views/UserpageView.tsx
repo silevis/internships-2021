@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import EditUserComponent from '../components/EditUserComponent';
 import { getUserAvatarURL, useUser } from '../components/UserContext';
-import { IProfile } from '../interfaces/IProfile.interface';
+import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 import './UserpageView.css';
 // guard urla
 
 const UserpageView = () => {
-    const usr: IProfile | null = useUser();
+    const usr: IBasicUserInfo | null = useUser();
     // eslint-disable-next-line max-len
     const [avatarUrl, setAvatarLink] = useState('');
     const styleBg = {
