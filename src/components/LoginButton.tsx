@@ -59,7 +59,12 @@ const LoginButton = () => {
         Sign In
       </div>
       {loginModalShown && (
-      <ModalDialog title="Login" onVisibilityChange={() => setLoginModalShown(!loginModalShown)}>
+      <ModalDialog
+        title="Login"
+        okButton={<>Sign In</>}
+        onOkButtonClick={() => formikLogin.submitForm()}
+        onVisibilityChange={() => setLoginModalShown(!loginModalShown)}
+      >
         <form onSubmit={formikLogin.handleSubmit}>
           <div className="flex content-between">
             <div className="mr-1 flex-auto">
@@ -91,9 +96,6 @@ const LoginButton = () => {
             </div>
           </div>
           <p className="text-red-500 mb-4">{status}</p>
-          <button type="submit" className="btn-page">
-            Sign In
-          </button>
         </form>
       </ModalDialog>
 )}
