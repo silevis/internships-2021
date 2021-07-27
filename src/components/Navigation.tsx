@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import UserDropdown from './UserDropdown';
 import Login from './Login';
 import Register from './Register';
-import { isAdmin, isLoggedIn, useUser, useUserUpdate } from './UserContext';
+import { isLoggedIn, useUser, useUserUpdate } from './UserContext';
 import supabase from '../utils/supabase';
-import useUserInfo from '../hooks/useUserInfo';
 
 function Navigation() {
   const loggedUser = useUser();
-  const userInfo = useUserInfo(useUser()?.id ?? null);
 
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
@@ -48,42 +47,33 @@ function Navigation() {
           </button>
         </div>
 
-        <div className={toggle === true ? 'block items-center md:flex' : 'hidden md:block items-center'}>
+        <div className={toggle ? 'block items-center md:flex' : 'hidden md:block items-center'}>
           <div className="flex flex-col md:flex-row my-2 md:my-0 md:mx-6">
-
             <Link
               to="/"
               className="btn-nav"
             >
               Home
             </Link>
-            {isAdmin(userInfo) && (
-              <div
-                className="btn-nav"
-              >
-                Admin
-              </div>
-            )}
-            {(isLoggedIn() && !isAdmin(userInfo)) && (
-              <Link
-                to="/user"
-                className="btn-nav"
-              >
-                {loggedUser?.email}
-              </Link>
-            )}
-            { isLoggedIn() ? (
-              <div
-                onClick={logout}
-                className="btn-nav"
-              >
-                Logout
+            <Link
+              to="/books-list"
+              className="btn-nav"
+            >
+              Book List
+            </Link>
+
+            {isLoggedIn() ? (
+              <div className="navbar-nav">
+                <UserDropdown
+                  title={loggedUser?.email}
+                  logOut={logout}
+                />
               </div>
             ) : (
-              <div className="flex flex-col md:flex-row w-full">
+              <>
                 <Login />
                 <Register />
-              </div>
+              </>
             )}
           </div>
         </div>
