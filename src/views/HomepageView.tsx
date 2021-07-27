@@ -3,7 +3,7 @@ import SliderDemo from './SliderDemo';
 
 const HomepageView = () => {
   return (
-    <div className="flex flex-col bg-gray-100 shadow p-12 items-center gap-2">
+    <div className="container mx-auto flex flex-col bg-gray-100 shadow p-12 items-center gap-2 mt-16">
       <SliderDemo />
       <div className="bg-white shadow-xl p-5 max-w-full">
         <h2 className="text-size-48">What is this site for?</h2>

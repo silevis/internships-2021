@@ -36,7 +36,7 @@ function Sidebar() {
         lg:w-60 xl:w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle === true ? 'hidden' : 'fixed lg:static'}`}
       >
         <div className="items-center justify-between scrolling-touch sticky top-16">
-          <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
+          <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold mt-12">
             Filters
           </div>
           <nav className="mx-4 my-3">
