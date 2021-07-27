@@ -5,14 +5,19 @@ import supabase from '../utils/supabase';
 import Book from '../components/Book';
 import Sidebar from '../components/Sidebar';
 
+interface IParams {
+  q: string;
+  rating: string;
+}
+
 const BookListView = () => {
   const [data, setData] = useState<IBook[] | null>([]);
   // eslint-disable-next-line
-  const params: any = useParams();
+  const params: IParams = useParams();
   const { rating } = params;
   // eslint-disable-next-line
   useEffect(() => {
-    if (params?.q?.lenght < 1) params.q = '*';
+    if (params?.q?.length < 1) params.q = '*';
     const getAllBooks = async () => {
       const q = `%${params.q ? params.q : '*'}%`;
       let range = '.99';

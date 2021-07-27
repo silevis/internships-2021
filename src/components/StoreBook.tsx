@@ -40,7 +40,7 @@ const StoreBook: FC<IBookProps> = ({
         setData(data);
       }
     };
-   getBookData();
+    getBookData();
   }, [id]);
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
@@ -67,14 +67,14 @@ const StoreBook: FC<IBookProps> = ({
           onChange={(event) => setQuantityInput(event.target.value)}
         />
         {data?.length !== 0 && (
-        <div>
-          <div className="bg-red-500 text-white">W magazynie {data?.map((book) => book.quantity)[0]} </div>
-          <UpdateBook
-            id={id}
-            quantity={Number(quantityInput) + (data?.map((book) => book.quantity)[0] ?? 0)}
-          />
-        </div>
-          )}
+          <div>
+            <div className="bg-red-500 text-white">W magazynie {data?.map((book) => book.quantity)[0]} </div>
+            <UpdateBook
+              id={id}
+              quantity={Number(quantityInput) + (data?.map((book) => book.quantity)[0] ?? 0)}
+            />
+          </div>
+        )}
         {data?.length === 0 && (
           <AddBook
             id={id}
@@ -87,7 +87,7 @@ const StoreBook: FC<IBookProps> = ({
             categories={categories}
             quantity={Number(quantityInput)}
           />
-          )}
+        )}
       </div>
     </div>
   );

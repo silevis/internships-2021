@@ -1,18 +1,17 @@
 import React, { FC, useContext, useState } from 'react';
+import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
 
-const UserContext = React.createContext<IProfile | null>(null);
-const UserUpdateContext = React.createContext<((newUser: IProfile) => void) | null>(null);
+const UserContext = React.createContext<IBasicUserInfo | null>(null);
+const UserUpdateContext = React.createContext<((newUser: IBasicUserInfo) => void) | null>(null);
 const loggedUser = supabase.auth.user() ?? null;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const isAdmin = (user: any) => {
+export const isAdmin = (user: IProfile | null) => {
   return user?.isAdmin;
 };
 
 export const isLoggedIn = () => {
-  // eslint-disable-next-line no-unneeded-ternary
   return supabase.auth.user();
 };
 
@@ -35,7 +34,7 @@ export async function getUserAvatarURL() {
 }
 
 export const UserProvider: FC = ({ children }) => {
-  const [user, setUser] = useState<IProfile>({
+  const [user, setUser] = useState<IBasicUserInfo>({
     id: loggedUser?.id ?? '',
     firstName: '',
     lastName: '',
@@ -43,7 +42,7 @@ export const UserProvider: FC = ({ children }) => {
     avatarUrl: '',
   });
 
-  const toggleUser = (newUser: IProfile) => {
+  const toggleUser = (newUser: IBasicUserInfo) => {
     setUser(newUser);
   };
 

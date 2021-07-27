@@ -36,10 +36,6 @@ function AddRouter() {
           <Route path="/user" exact>
             <UserpageView />
           </Route>
-          {/* <PrivateRoute path="/admin/" exact user={userInfo}>
-                <SidebarAdmin />
-                kozacko
-              </PrivateRoute> */}
           <PrivateRoute path="/admin/owned" exact user={userInfo}>
             <BookListViewAdminOwned />
           </PrivateRoute>
