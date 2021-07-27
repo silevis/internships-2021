@@ -32,9 +32,8 @@ const BorrowBook: FC<IBookBorrow> = ({ bookId, profileId, date, returnDate }) =>
         className="btn-page"
         onClick={AddOrNotify}
       >
-        Wypożycz książkę
+        Borrow a book
       </button>
-
     </div>
   );
 };

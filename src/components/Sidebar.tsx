@@ -11,14 +11,8 @@ const Sidebar = () => {
     if (String(event?.target?.value).length > 0) setQuery(String(event?.target?.value));
     else setQuery('*');
   };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // eslint-disable-next-line no-unused-vars
   const [toggle, setToggled] = useState(true);
-
   const history = useHistory();
-
-  // useEffect(() => {
-  // }, [query]);
 
   return (
     <div className="flex justify-between bg-white">
@@ -32,7 +26,7 @@ const Sidebar = () => {
         </button>
       </div>
       <div
-        className={`lg:block z-30 inset-0 flex-none h-full bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
+        className={`lg:block z-30 inset-0 flex-none min-h-screen h-full lg:h-auto bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
         w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle ? 'hidden' : 'fixed lg:static'}`}
       >
         <div className="items-center justify-between scrolling-touch fixed top-14 max-h-screen overflow-y-auto pb-8">
@@ -89,6 +83,6 @@ const Sidebar = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;
