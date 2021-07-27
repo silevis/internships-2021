@@ -22,6 +22,7 @@ const LoginButton = () => {
       });
       if (error) {
         setStatus(error.message);
+        return;
       }
 
       if (user && setUser) {
@@ -61,7 +62,7 @@ const LoginButton = () => {
       {loginModalShown && (
       <ModalDialog
         title="Login"
-        okButton={<>Sign In</>}
+        okButtonLabel="Sign In"
         onOkButtonClick={() => formikLogin.submitForm()}
         onVisibilityChange={() => setLoginModalShown(!loginModalShown)}
       >

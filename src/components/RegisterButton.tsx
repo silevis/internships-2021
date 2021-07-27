@@ -59,7 +59,7 @@ const RegisterButton = () => {
         && (
         <ModalDialog
           title="Register"
-          okButton={<>Sign Up</>}
+          okButtonLabel="Sign Up"
           onOkButtonClick={() => formikRegister.submitForm()}
           onVisibilityChange={() => setModalVisibility(!modalVisibility)}
         >
