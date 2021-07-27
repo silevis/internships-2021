@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import LoginButton from './LoginButton';
 import UserDropdown from './UserDropdown';
-import Register from './Register';
+import Register from './RegisterButton';
 import { isLoggedIn, useUser, useUserUpdate } from './UserContext';
 import supabase from '../utils/supabase';
 
