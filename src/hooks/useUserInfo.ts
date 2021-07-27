@@ -3,7 +3,6 @@ import supabase from '../utils/supabase';
 import { IProfile } from '../interfaces/IProfile.interface';
 
 const useUserInfo = (id: string | null) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<IProfile[] | null>();
 
   useEffect(() => {
