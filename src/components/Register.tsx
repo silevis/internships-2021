@@ -32,20 +32,20 @@ const Register = () => {
     },
   });
   const checkEmail = async () => {
-      const { data } = await supabase
+    const { data } = await supabase
       .from<IProfile>('profiles')
       .select('email')
       .eq('email', formikRegister.values.emailAdress);
-      if (data?.length !== 0) {
-        setEmailValidator(true);
-      } else setEmailValidator(false);
-    };
+    if (data?.length !== 0) {
+      setEmailValidator(true);
+    } else setEmailValidator(false);
+  };
 
   return (
     <div>
       <div
         onClick={() => setRegister(!register)}
-        className="btn-nav"
+        className="btn-nav-end"
       >Sign Up
       </div>
       {register
@@ -104,7 +104,7 @@ const Register = () => {
                         className="p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2"
                       />
                       {emailValidator && (
-                      <p className="text-red-500">This email is already used</p>
+                        <p className="text-red-500">This email is already used</p>
                       )}
                     </div>
                     <div>
