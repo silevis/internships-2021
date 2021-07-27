@@ -41,4 +41,9 @@
   .btn-sidebar {
     @apply fixed inset-y-0 left-0 px-1 mt-2 max-h-full bg-white text-gray-500 border border-gray-500 transition duration-500 ease-in-out hover:bg-gray-700 hover:text-white hover:border-gray-700 lg:hidden;
   }
+
+  .input-pri {
+    @apply p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2 w-auto;
+    max-width: 11rem;
+  }
 }
