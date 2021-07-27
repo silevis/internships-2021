@@ -14,7 +14,7 @@ interface ISliderProps {
 const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
   const [index, setIndex] = useState(0);
   // eslint-disable-next-line
-  const [timer, setTimer] = useState<any>();
+  const [timer, setTimer] = useState<NodeJS.Timeout>();
   const delay = 2200;
 
   useEffect(() => {
