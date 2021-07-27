@@ -1,8 +1,10 @@
 import { useState, FC, useEffect } from 'react';
 import { IBook } from '../interfaces/IBook.interface';
+import BorrowBook from './BorrowBook';
 import Rating from './Rating';
 import SpecificationTable from './SpecificationTable';
 import Tablist from './Tablist';
+import { useUser } from './UserContext';
 
 interface IBookInfoProps {
   book: IBook
@@ -42,6 +44,7 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
   }, []);
 
   const [enlarged, setEnlarged] = useState(false);
+  const loggedUser = useUser();
 
   return (
     <div className="w-11/12 m-auto mt-8">
@@ -69,6 +72,12 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
           </div>
           <div className="lg:w-2/12 mt-4 lg:ml-4">
             <Rating bare={false} votesAmount={book.votesAmount} avgRating={book.avgRating} />
+            <BorrowBook
+              bookId={book.id}
+              profileId={loggedUser?.id}
+              date={new Date()}
+              returnDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
+            />
           </div>
         </div>
       </div>
@@ -80,7 +89,6 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
           className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen"
           onClick={() => setEnlarged(false)}
         >
-          siema
           <div
             className="relative m-auto flex-col flex rounded-md shadow-xl
             transform scale-150"

@@ -43,83 +43,85 @@ const RegisterButton = () => {
       .from<IBasicUserInfo>('profiles')
       .select('email')
       .eq('email', formikRegister.values.emailAdress);
-      if (!data?.length) {
-        setStatus('A user with this email address has already been registered');
-      }
-    };
+    if (!data?.length) {
+      setStatus('A user with this email address has already been registered');
+    }
+  };
 
   return (
     <div>
-      <div
-        onClick={() => setModalVisibility(!modalVisibility)}
-        className="btn-nav"
-      >Sign Up
+      <div className="btn-nav-end text-left relative">
+        <button
+          type="button"
+          onClick={() => setModalVisibility(!modalVisibility)}
+        >Sign Up
+        </button>
       </div>
       {modalVisibility
         && (
-        <ModalDialog
-          title="Register"
-          okButtonLabel="Sign Up"
-          onOkButtonClick={() => formikRegister.submitForm()}
-          onVisibilityChange={() => setModalVisibility(!modalVisibility)}
-        >
-          <form onSubmit={formikRegister.handleSubmit}>
-            <div className="flex justify-between">
-              <div>
-                <label htmlFor="firstName" className="text-xs block">First Name:</label>
-                <input
-                  id="firstName"
-                  name="firstName"
-                  type="text"
-                  placeholder="First Name"
-                  onChange={formikRegister.handleChange}
-                  value={formikRegister.values.firstName}
-                  className="input-pri"
-                />
+          <ModalDialog
+            title="Register"
+            okButtonLabel="Sign Up"
+            onOkButtonClick={() => formikRegister.submitForm()}
+            onVisibilityChange={() => setModalVisibility(!modalVisibility)}
+          >
+            <form onSubmit={formikRegister.handleSubmit}>
+              <div className="flex justify-between">
+                <div>
+                  <label htmlFor="firstName" className="text-xs block">First Name:</label>
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    placeholder="First Name"
+                    onChange={formikRegister.handleChange}
+                    value={formikRegister.values.firstName}
+                    className="input-pri"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastName" className="text-xs block">Last Name:</label>
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    placeholder="Last Name"
+                    onChange={formikRegister.handleChange}
+                    value={formikRegister.values.lastName}
+                    className="input-pri"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="lastName" className="text-xs block">Last Name:</label>
-                <input
-                  id="lastName"
-                  name="lastName"
-                  type="text"
-                  placeholder="Last Name"
-                  onChange={formikRegister.handleChange}
-                  value={formikRegister.values.lastName}
-                  className="input-pri"
-                />
+              <div className="flex justify-between">
+                <div>
+                  <label htmlFor="email-adress" className="text-xs block">Email adress:</label>
+                  <input
+                    id="emailAdress"
+                    name="emailAdress"
+                    type="email"
+                    placeholder="Email-adress"
+                    onChange={formikRegister.handleChange}
+                    onBlur={checkEmail}
+                    value={formikRegister.values.emailAdress}
+                    className="input-pri"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className="text-xs block">Password:</label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    onChange={formikRegister.handleChange}
+                    value={formikRegister.values.password}
+                    className="input-pri"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="flex justify-between">
-              <div>
-                <label htmlFor="email-adress" className="text-xs block">Email adress:</label>
-                <input
-                  id="emailAdress"
-                  name="emailAdress"
-                  type="email"
-                  placeholder="Email-adress"
-                  onChange={formikRegister.handleChange}
-                  onBlur={checkEmail}
-                  value={formikRegister.values.emailAdress}
-                  className="input-pri"
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="text-xs block">Password:</label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  onChange={formikRegister.handleChange}
-                  value={formikRegister.values.password}
-                  className="input-pri"
-                />
-              </div>
-            </div>
-            <p className="text-red-500 mb-4">{status}</p>
-          </form>
-        </ModalDialog>
+              <p className="text-red-500 mb-4">{status}</p>
+            </form>
+          </ModalDialog>
         )}
     </div>
   );
