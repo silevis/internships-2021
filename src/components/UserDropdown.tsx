@@ -12,8 +12,7 @@ const UserDropdown: FC<UserDropdownProps> = ({ title, logOut }) => {
   return (
     <div>
       <div
-        className="nav-item my-1 px-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
-        md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400 cursor-pointer"
+        className="btn-nav-end"
         onClick={() => setOpen(!Open)}
       >
         {title}
@@ -21,17 +20,17 @@ const UserDropdown: FC<UserDropdownProps> = ({ title, logOut }) => {
       {Open && (
         <div
           className="dropdown block md:absolute w-auto overflow-hidden md:-translate-y-0
-        bg-gray-600 text-white border border-gray-800 rounded-sm"
+        bg-gray-700 md:bg-gray-600 text-white border border-t-0 border-gray-400 md:border-gray-800 rounded-sm shadow-inner md:shadow-none"
         >
-          <div className="menu-item border-b border-gray-700">
+          <div className="menu-item border-b border-gray-400 md:border-gray-700">
             <Link
               to="/user"
-              className="cursor-pointer bg-gray-600 transition duration-400 ease-in-out hover:text-indigo-500"
+              className="cursor-pointer transition duration-400 ease-in-out hover:text-indigo-500"
             >
               User Profile
             </Link>
           </div>
-          <div className="menu-item border-b border-gray-700">
+          <div className="menu-item border-b border-gray-400 md:border-gray-700">
             <Link
               to="/books-list"
               className="cursor-pointer transition duration-400 ease-in-out hover:text-indigo-500"

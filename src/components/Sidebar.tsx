@@ -25,7 +25,7 @@ function Sidebar() {
       <div className={`bg-white inline z-40 ${toggle === true ? 'hidden' : 'fixed lg:static'}`}>
         <button
           type="button"
-          className="btn-page lg:hidden"
+          className="btn-sidebar lg:hidden"
           onClick={() => setToggled(!toggle)}
         >
           ⮜
@@ -33,7 +33,7 @@ function Sidebar() {
       </div>
       <div
         className={`lg:block z-30 inset-0 flex-none h-full lg:h-auto bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
-        w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle === true ? 'hidden' : 'fixed lg:static'}`}
+        w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle ? 'hidden' : 'fixed lg:static'}`}
       >
         <div className="items-center justify-between scrolling-touch fixed top-14 max-h-screen overflow-y-auto pb-8">
           <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
@@ -63,7 +63,7 @@ function Sidebar() {
               </ul>
             </div>
             <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
-              <input type="range" min="0" max="10" onChange={handleSlideChange} />
+              <input type="range" min="0" max="10" defaultValue="0" onChange={handleSlideChange} />
               <span className="ml-2" id="range">{value > 0 ? value : 'All'}</span>
             </div>
             <div className="flex border-b border-gray-200 mx-1 pl-4 pb-5 mt-5 place-content-center">
@@ -81,7 +81,7 @@ function Sidebar() {
       <div className={`inline z-40 ${toggle === true ? 'fixed' : 'hidden'}`}>
         <button
           type="button"
-          className="btn-page lg:hidden"
+          className="btn-sidebar lg:hidden"
           onClick={() => { setToggled(!toggle); }}
         >
           ⮞

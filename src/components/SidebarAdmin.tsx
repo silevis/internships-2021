@@ -9,8 +9,7 @@ function SidebarAdmin() {
       <div className={`bg-white inline z-40 ${toggle === true ? 'hidden' : 'fixed lg:static'}`}>
         <button
           type="button"
-          className="border-gray-600 bg-white text-gray-600 border max-h-full px-1 mt-2 fixed inset-y-0 left-0
-          transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white lg:hidden"
+          className="btn-sidebar"
           onClick={() => setToggled(!toggle)}
         >
           ⮜
@@ -41,8 +40,7 @@ function SidebarAdmin() {
       <div className={`inline z-40 ${toggle === true ? 'fixed' : 'hidden'}`}>
         <button
           type="button"
-          className="border-gray-600 bg-white text-gray-600 border max-h-full px-1 mt-2 fixed inset-y-0 left-0
-          transition duration-500 ease-in-out hover:bg-gray-700 hover:text-white lg:hidden"
+          className="btn-sidebar"
           onClick={() => setToggled(!toggle)}
         >
           ⮞

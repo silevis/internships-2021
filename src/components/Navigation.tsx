@@ -57,8 +57,7 @@ function Navigation() {
             </Link>
             <Link
               to="/books-list"
-              className="my-1 py-1 md:py-0 pl-4 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 md:mr-4 md:my-0
-              border-b md:border-t-0 md:border-b-0 md:border-l border-gray-400"
+              className="btn-nav"
             >
               Book List
             </Link>
