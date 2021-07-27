@@ -52,8 +52,7 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
         />
         <div className="flex flex-row">
           <button
-            className="flex px-2 py-1 border-gray-400 text-gray-400 rounded-sm border-2 max-h-full
-            transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-50"
+            className="btn-page px-2"
             type="button"
             onClick={() => changeSlide(-1)}
           >
@@ -61,8 +60,7 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
           </button>
           <div className="w-80" />
           <button
-            className="flex px-2 py-1 border-gray-400 text-gray-400 rounded-sm border-2 max-h-full
-            transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-50"
+            className="btn-page px-2"
             type="button"
             onClick={() => changeSlide(1)}
           >

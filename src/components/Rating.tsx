@@ -29,10 +29,11 @@ const Rating: FC<RatingProps> = ({ bare, votesAmount, avgRating }) => {
 
   return (
     <div className="flex flex-wrap justify-center items-center flex-col">
-      <div className="flex justify-between">
+      <div className="flex justify-between w-full h-full">
         {icons}
       </div>
       {!bare && <span className="text-gray-600 text-xs mt-1">Ilosc głosów: {votesAmount}</span>}
+      {!bare && <span className="text-gray-600 text-xs mt-1">Srednia ocena: {Math.round(avgRating * 100) / 100}</span>}
     </div>
   );
 };

@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
-import { useUser, useUserUpdate } from './UserContext';
+import { isAdmin, isLoggedIn, useUser, useUserUpdate } from './UserContext';
 import supabase from '../utils/supabase';
+import useUserInfo from '../hooks/useUserInfo';
 
 function Navigation() {
-  const globalUser = useUser();
+  const loggedUser = useUser();
+  const userInfo = useUserInfo(useUser()?.id ?? null);
+
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
   const history = useHistory();
@@ -50,34 +53,29 @@ function Navigation() {
 
             <Link
               to="/"
-              className="my-1 py-1 md:py-0 pl-4 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 md:mr-4 md:my-0
-              border-b border-t md:border-t-0 md:border-b-0 md:border-l border-gray-400"
+              className="btn-nav"
             >
               Home
             </Link>
-            {globalUser !== null && globalUser.id === process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
-              <Link
-                to="/admin"
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out
-                hover:text-indigo-500 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
+            {isAdmin(userInfo) && (
+              <div
+                className="btn-nav"
               >
                 Admin
-              </Link>
-            ) : ''}
-            {globalUser !== null && globalUser.id !== process.env.REACT_APP_ADMIN_ID && globalUser.firstName !== '' ? (
+              </div>
+            )}
+            {(isLoggedIn() && !isAdmin(userInfo)) && (
               <Link
                 to="/user"
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
-                md:mr-4 md:my-0 border-b md:border-b-0 md:border-l border-gray-400"
+                className="btn-nav"
               >
-                {globalUser.email}
+                {loggedUser?.email}
               </Link>
-            ) : ''}
-            {globalUser !== null && globalUser.id !== '' && globalUser.firstName !== '' ? (
+            )}
+            { isLoggedIn() ? (
               <div
                 onClick={logout}
-                className="my-1 pl-4 pb-1 md:pb-0 text-gray-200 transition duration-400 ease-in-out hover:text-indigo-500
-                md:pr-4 md:mr-4 md:my-0 border-b md:border-b-0 md:border-l md:border-r border-gray-400 cursor-pointer"
+                className="btn-nav"
               >
                 Logout
               </div>

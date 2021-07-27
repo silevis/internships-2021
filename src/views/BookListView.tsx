@@ -11,7 +11,7 @@ const BookListView = () => {
   const { rating } = params;
   // eslint-disable-next-line
   useEffect(() => {
-      if (params?.q.lenght < 1) params.q = '*';
+      if (params?.q?.lenght < 1) params.q = '*';
       const getAllBooks = async () => {
         const q = `%${params.q ? params.q : '*'}%`;
         let range = '.99';
@@ -32,17 +32,7 @@ const BookListView = () => {
   return (
     <div>
       {data && data?.map((book) => (
-        <Book
-          key={book.id}
-          id={book.id}
-          title={book.title}
-          image={book.imageLinks[0]}
-          isbn={book.isbn}
-          authors={book.authors}
-          publishedDate={book.publishedDate}
-          categories={book.categories}
-          description={book.description}
-        />
+        <Book key={book.id} book={book} />
       ))}
       {data && data?.length < 1 && (
         <div> NIE MA </div>

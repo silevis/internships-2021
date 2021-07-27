@@ -1,5 +1,5 @@
 export interface IProfile {
-  id: string | undefined;
+  id: string;
   firstName: string | undefined;
   lastName: string;
   email: string;
