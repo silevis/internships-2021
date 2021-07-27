@@ -28,17 +28,16 @@ const OwnedBook: FC<IBookProps> = ({
       <img
         src={image}
         alt="A book."
-        className="transform hover:scale-110 cursor-pointer m-3 w-32
-        transition duration-400 ease-in-out hover:-translate-y-1"
+        className="m-3 w-32"
       />
       <div className="ml-2 w-full">
-        <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">{title}</span>
+        {title}
         <br />
         <span className="text-gray-400">{authors?.join(' ')}</span>
         <br />
         <span className="text-gray-400">{categories}</span>
         <br />
-        <span className="text-gray-400">{quantity}</span>
+        <span className="text-gray-400">Quantity of books in stock: {quantity}</span>
       </div>
       <div>
         <DeleteBook

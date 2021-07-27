@@ -5,25 +5,25 @@ import { IBook } from '../interfaces/IBook.interface';
 interface IBookProps {
   id?: string;
   quantity?: number;
+  onQuantityUpdate: (quantity: number) => void;
 }
 
-const UpdateBook: FC<IBookProps> = ({ id, quantity }) => {
-  // eslint-disable-next-line
+const UpdateBook: FC<IBookProps> = ({ id, quantity, onQuantityUpdate }) => {
   const Update = async () => {
     await supabase.from<IBook>('books')
-    .update({ quantity })
-    .match({ id });
+      .update({ quantity })
+      .match({ id });
+    onQuantityUpdate(quantity ?? 0);
   };
 
   return (
     <div>
       <button
         type="button"
-        className="border-gray-400 text-gray-400 rounded-sm border-2 max-h-full ml-2 p-2
-        transition duration-500 ease-in-out hover:bg-gray-400 hover:text-gray-100"
+        className="btn-page"
         onClick={Update}
       >
-        + Zwiększ ilość w magazynie
+        + Add books to the stock
       </button>
     </div>
   );
