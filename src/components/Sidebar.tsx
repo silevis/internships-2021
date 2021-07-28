@@ -66,7 +66,7 @@ const Sidebar = () => {
                 type="button"
                 onClick={() => history.replace(`/books-list/${query}/${value}`)}
               >
-                Filtruj
+                Filter
               </button>
             </div>
           </nav>

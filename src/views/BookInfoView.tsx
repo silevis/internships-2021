@@ -34,7 +34,7 @@ const BookInfoPage = () => {
         <BookInfo book={book} />
       </div>
     </div>
-) : <span>simea</span>;
+) : <span>Book doesn&apos;t exist</span>;
 };
 
 export default BookInfoPage;
