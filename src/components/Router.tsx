@@ -16,7 +16,7 @@ import NoMatch404 from './NoMatch404';
 import UserpageView from '../views/UserpageView';
 import SliderDemo from '../views/SliderDemo';
 
-function AddRouter() {
+const AddRouter = () => {
   const loggedUser = useUser();
   const userInfo = useUserInfo(loggedUser?.id ?? null);
 
@@ -58,6 +58,6 @@ function AddRouter() {
       </Router>
     </div>
   );
-}
+};
 
 export default AddRouter;

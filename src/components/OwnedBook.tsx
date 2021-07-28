@@ -30,13 +30,11 @@ const OwnedBook: FC<IBookProps> = ({
         alt="A book."
         className="m-3 w-32"
       />
-      <div className="ml-2 w-full">
+      <div className="ml-2 w-full flex flex-col">
+        {/* <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">{title}</span> */}
         {title}
-        <br />
         <span className="text-gray-400">{authors?.join(' ')}</span>
-        <br />
         <span className="text-gray-400">{categories}</span>
-        <br />
         <span className="text-gray-400">Quantity of books in stock: {quantity}</span>
       </div>
       <div>

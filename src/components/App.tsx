@@ -1,12 +1,12 @@
 import { UserProvider } from './UserContext';
 import AddRouter from './Router';
 
-function App() {
+const App = () => {
   return (
     <UserProvider>
       <AddRouter />
     </UserProvider>
   );
-}
+};
 
 export default App;
