@@ -39,4 +39,10 @@
     @apply p-1 placeholder-gray-400 text-gray-600 border outline-none mb-2 w-auto;
     max-width: 11rem;
   }
+
+  .main-underline {
+    border: 2px solid #F44336;
+    width: 5rem;
+    height: 1px;
+  }
 }

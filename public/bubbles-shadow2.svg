@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 619 360" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<filter id="d" x="-.18" y="-.18" width="1.36" height="1.41" color-interpolation-filters="sRGB">
+<feFlood flood-color="rgb(0,0,0)" flood-opacity=".10196" result="flood"/>
+<feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+<feGaussianBlur in="composite1" result="blur" stdDeviation="6"/>
+<feOffset dx="0" dy="4" result="offset"/>
+<feComposite in="SourceGraphic" in2="offset" result="composite2"/>
+</filter>
+<filter id="c" x="-.080447" y="-.080447" width="1.1609" height="1.1832" color-interpolation-filters="sRGB">
+<feFlood flood-color="rgb(0,0,0)" flood-opacity=".10196" result="flood"/>
+<feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+<feGaussianBlur in="composite1" result="blur" stdDeviation="6"/>
+<feOffset dx="0" dy="4" result="offset"/>
+<feComposite in="SourceGraphic" in2="offset" result="composite2"/>
+</filter>
+<filter id="b" x="-.11429" y="-.11429" width="1.2286" height="1.2603" color-interpolation-filters="sRGB">
+<feFlood flood-color="rgb(0,0,0)" flood-opacity=".10196" result="flood"/>
+<feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+<feGaussianBlur in="composite1" result="blur" stdDeviation="6"/>
+<feOffset dx="0" dy="4" result="offset"/>
+<feComposite in="SourceGraphic" in2="offset" result="composite2"/>
+</filter>
+<filter id="a" x="-.14694" y="-.14694" width="1.2939" height="1.3347" color-interpolation-filters="sRGB">
+<feFlood flood-color="rgb(0,0,0)" flood-opacity=".10196" result="flood"/>
+<feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/>
+<feGaussianBlur in="composite1" result="blur" stdDeviation="6"/>
+<feOffset dx="0" dy="4" result="offset"/>
+<feComposite in="SourceGraphic" in2="offset" result="composite2"/>
+</filter>
+</defs>
+<g transform="translate(-1315)">
+<circle transform="translate(1755)" cx="89.5" cy="89.5" r="89.5" fill="#fff7c6" filter="url(#c)"/>
+<circle transform="translate(1315)" cx="40" cy="40" r="40" fill="#fff7c6" filter="url(#d)"/>
+<circle transform="translate(1495 80)" cx="63" cy="63" r="63" fill="#e9e0ff" filter="url(#b)"/>
+<circle transform="translate(1643 262)" cx="49" cy="49" r="49" fill="#f1f1f1" filter="url(#a)"/>
+</g>
+</svg>
