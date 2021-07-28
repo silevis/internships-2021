@@ -38,12 +38,12 @@ const BookListView = () => {
   return (
     <div className="content-container">
       <Sidebar />
-      <div className="mt-16">
+      <div className="mt-16 w-full">
         {data && data?.map((book) => (
           <Book key={book.id} book={book} />
         ))}
         {data && data?.length < 1 && (
-          <div>No results</div>
+          <div className="flex justify-center italic">No results</div>
         )}
       </div>
     </div>
