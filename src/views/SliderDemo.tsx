@@ -14,6 +14,7 @@ const SliderDemo = (type?: 'top' | 'random' | any) => {
           .select('*')
           .order('avgRating', { ascending: false });
         setData(books);
+        console.log(error);
       } else {
         // eslint-disable-next-line
         const { data: books, error } = await supabase
