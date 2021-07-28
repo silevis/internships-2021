@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import BookInfo from '../components/BookInfo';
+import BookInfoPage from '../components/BookInfoPage';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 
@@ -8,7 +8,7 @@ interface BookInfoURLParams {
   id: string
 }
 
-const BookInfoPage = () => {
+const BookInfoView = () => {
   const params = useParams<BookInfoURLParams>();
   const [book, setBook] = useState<IBook>();
 
@@ -24,7 +24,7 @@ const BookInfoPage = () => {
     };
     getAllBooks();
   }, [params]);
-  return book ? <BookInfo book={book} /> : <span>simea</span>;
+  return book ? <BookInfoPage book={book} /> : <span>simea</span>;
 };
 
-export default BookInfoPage;
+export default BookInfoView;

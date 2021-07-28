@@ -7,7 +7,7 @@ import { getUserAvatarURL, useUser } from './UserProvider';
 import Avatar from './Avatar';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 
-const EditUserComponent = () => {
+const ChangeAvatarComponent = () => {
     const usr: IBasicUserInfo | null = useUser();
     const [fileInput] = useState(useRef<HTMLInputElement>(null));
     const [status, setStatus] = useState<string>();
@@ -87,4 +87,4 @@ const EditUserComponent = () => {
   );
 };
 
-export default EditUserComponent;
+export default ChangeAvatarComponent;

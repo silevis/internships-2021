@@ -8,7 +8,7 @@ import BookListView from '../views/BookListView';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import SliderDemo from '../views/SliderDemo';
-import BookInfoPage from '../views/BookInfoView';
+import BookInfoView from '../views/BookInfoView';
 import SidebarAdmin from './SidebarAdmin';
 import BookListViewAdminOwned from '../views/BookListViewAdminOwned';
 import BookListViewAdminStore from '../views/BookListViewAdminStore';
@@ -59,7 +59,7 @@ function AddRouter() {
                 <BookListView />
               </Route>
               <Route path="/book/:id" exact>
-                <BookInfoPage />
+                <BookInfoView />
               </Route>
               <Route path="*">
                 <NoMatch404 />
