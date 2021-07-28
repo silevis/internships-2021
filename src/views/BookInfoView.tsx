@@ -14,9 +14,7 @@ const BookInfoPage = () => {
   const [book, setBook] = useState<IBook>();
 
   useEffect(() => {
-    // eslint-disable-next-line
     const getAllBooks = async () => {
-      // eslint-disable-next-line
       const { data } = await supabase
         .from<IBook>('books')
         .select('*')

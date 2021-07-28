@@ -7,8 +7,7 @@ import SidebarAdmin from '../components/SidebarAdmin';
 const BookListViewAdmin = () => {
   const [dataSupabase, setDataSupabase] = useState<IBook[] | null>([]);
   const getAllBooks = async () => {
-    // eslint-disable-next-line
-    const { data: books, error } = await supabase
+    const { data: books } = await supabase
       .from<IBook>('books')
       .select('*');
     if (books !== null) {
