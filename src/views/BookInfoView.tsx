@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BookInfo from '../components/BookInfo';
+import Sidebar from '../components/Sidebar';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 
@@ -13,9 +14,7 @@ const BookInfoPage = () => {
   const [book, setBook] = useState<IBook>();
 
   useEffect(() => {
-    // eslint-disable-next-line
     const getAllBooks = async () => {
-      // eslint-disable-next-line
       const { data } = await supabase
         .from<IBook>('books')
         .select('*')
@@ -26,7 +25,14 @@ const BookInfoPage = () => {
     };
     getAllBooks();
   }, [params]);
-  return book ? <BookInfo book={book} /> : <span>simea</span>;
+  return book ? (
+    <div className="content-container">
+      <Sidebar />
+      <div className="mt-16 w-full">
+        <BookInfo book={book} />
+      </div>
+    </div>
+) : <span>Book doesn&apos;t exist</span>;
 };
 
 export default BookInfoPage;

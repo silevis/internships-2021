@@ -31,9 +31,16 @@ const HomepageInfoSections = () => {
           a month, when the time passes you will need to return it."
           rightAligned={false}
         />
-        <div className="flex-inital bg-gray-100 text-2xl shadow p-4">
-          Our top books:
-          <span className="flex place-content-center"><SliderDemo type="top" /></span>
+        <div className="flex flex-row justify-evenly bg-gray-100 text-2xl shadow p-4">
+          <div className="flex-col items-center">
+            Our top books:
+            <SliderDemo type="top" />
+          </div>
+          <div id="spacer" />
+          <div className="flex-col items-center">
+            Some of our books:
+            <SliderDemo type="random" />
+          </div>
         </div>
       </div>
     );

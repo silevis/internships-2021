@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function SidebarAdmin() {
+const SidebarAdmin = () => {
   const [toggle, setToggled] = useState(true);
 
   return (
@@ -48,6 +48,6 @@ function SidebarAdmin() {
       </div>
     </div>
   );
-}
+};
 
 export default SidebarAdmin;

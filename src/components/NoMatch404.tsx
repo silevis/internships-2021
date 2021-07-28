@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router';
 
-function NoMatch404() {
+const NoMatch404 = () => {
   const location = useLocation();
 
   return (
@@ -12,6 +12,6 @@ function NoMatch404() {
       </h3>
     </div>
   );
-}
+};
 
 export default NoMatch404;

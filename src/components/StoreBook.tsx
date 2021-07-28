@@ -31,15 +31,14 @@ const StoreBook: FC<IBookProps> = ({
 
   useEffect(() => {
     const getBookData = async () => {
-      // eslint-disable-next-line
-      const { data, error } = await supabase
+      const { data: bookData } = await supabase
         .from<IBookProps>('books')
         .select(`
       id, quantity
     `).eq('id', id);
-      if (data !== null) {
-        setData(data);
-        setQuantity(data[0]?.quantity ?? 0);
+      if (bookData !== null) {
+        setData(bookData);
+        setQuantity(bookData[0]?.quantity ?? 0);
       }
     };
     getBookData();
@@ -51,13 +50,11 @@ const StoreBook: FC<IBookProps> = ({
         alt="A book."
         className="transform m-3 w-32"
       />
-      <div className="ml-2 w-full">
+      <div className="ml-2 w-full flex flex-col">
+        {/* <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">{title}</span> */}
         {title}
-        <br />
         <span className="text-gray-400">{authors?.join(' ')}</span>
-        <br />
         <span className="text-gray-400">{categories}</span>
-        <br />
       </div>
       <div>
         <p>Quantity:</p>

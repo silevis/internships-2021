@@ -20,8 +20,9 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
   const delay = 2200;
 
   useEffect(() => {
-    // eslint-disable-next-line
-    timer && clearTimeout(timer);
+    if (timer) {
+      clearTimeout(timer);
+    }
 
     const newTimer = setTimeout(() => {
       const changeIndex = () => {
@@ -34,26 +35,25 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
     // eslint-disable-next-line
   }, [index]);
 
-  function changeSlide(dir = 0) {
+  const changeSlide = (dir = 0) => {
     const newIndex = index + dir;
 
     if (newIndex >= entryCount) return setIndex(0);
     if (newIndex <= -1) return setIndex(entryCount - 1);
 
     return setIndex(newIndex);
-  }
+  };
 
   return (
-    <div className="flex place-content-start mt-2 ml-6">
+    <div className="flex mt-2 ml-6">
       <div className="flex flex-col items-center bg-gray-50 shadow p-2">
-        {index}
         <Slide
           id={entries[index]?.id}
           title={entries[index]?.title}
           author={entries[index]?.authors?.join(' ')}
           image={entries[index]?.image}
           votesAmount={entries[index]?.votesAmount}
-          avgRating={entries[index]?.votesAmount}
+          avgRating={entries[index]?.avgRating}
         />
         <div className="flex flex-row">
           <button
