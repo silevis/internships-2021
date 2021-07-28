@@ -7,10 +7,8 @@ import supabase from '../utils/supabase';
 const SliderDemo = () => {
   const [data, setData] = useState<IBook[] | null>([]);
   useEffect(() => {
-    // eslint-disable-next-line
     const getAllBooks = async () => {
-      // eslint-disable-next-line
-      const { data: books, error } = await supabase
+      const { data: books } = await supabase
         .from<IBook>('books')
         .select(`
       *
@@ -23,7 +21,6 @@ const SliderDemo = () => {
   if (data) {
     return (
       <Slider
-        // eslint-disable-next-line
         entries={data?.map((book: ISupplierBook) => {
           return {
             id: book.id,

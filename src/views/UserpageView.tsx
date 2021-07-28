@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import EditUserComponent from '../components/EditUserComponent';
@@ -9,9 +8,9 @@ import './UserpageView.css';
 
 const UserpageView = () => {
     const usr: IBasicUserInfo | null = useUser();
-    // eslint-disable-next-line max-len
     const [avatarUrl, setAvatarLink] = useState('');
     const styleBg = {
+        // eslint-disable-next-line max-len
         backgroundImage: 'url(https://image.freepik.com/free-photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg)',
     };
 

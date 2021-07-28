@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 
 interface IModalDialogProps {
   title: string;
-  // eslint-disable-next-line no-undef
   okButtonLabel: string;
   onVisibilityChange: () => void;
   onOkButtonClick: () => void;
