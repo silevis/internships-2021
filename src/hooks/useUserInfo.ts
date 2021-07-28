@@ -4,12 +4,10 @@ import { IProfile } from '../interfaces/IProfile.interface';
 
 const useUserInfo = (id: string | null) => {
   const [data, setData] = useState<IProfile[] | null>();
-
   useEffect(() => {
     if (!id) return;
     const getUser = async () => {
-      // eslint-disable-next-line
-      const { data: user, error } = await supabase
+      const { data: user } = await supabase
         .from<IProfile>('profiles')
         .select(`
       *

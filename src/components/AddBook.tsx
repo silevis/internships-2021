@@ -1,4 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { PostgrestError } from '@supabase/supabase-js';
+import { toast } from 'react-toastify';
 import { supabase } from '../utils/supabase';
 import { IBook } from '../interfaces/IBook.interface';
 import { useUser } from './UserContext';
@@ -17,9 +19,11 @@ interface IBookProps {
 
 const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn, publishedDate, categories, quantity }) => {
   const globalUser = useUser();
-  // eslint-disable-next-line
-  const Add = async () => {
-    await supabase.from<IBook>('books').insert({
+  const [err, setErr] = useState<PostgrestError | null>();
+  const addToStore = async () => {
+    const { error } = await supabase
+    .from<IBook>('books')
+    .insert({
       id,
       title,
       description,
@@ -34,16 +38,30 @@ const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn,
       addedDate: new Date(),
       quantity,
     });
+    setErr(error);
   };
 
   return (
-    <button
-      type="button"
-      className="btn-page"
-      onClick={Add}
-    >
-      + Add book to the stock
-    </button>
+    <div>
+      <button
+        type="button"
+        className="btn-page"
+        onClick={addToStore}
+      >
+        + Dodaj książkę do magazynu
+      </button>
+      {err && (
+        toast.error(err.message, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        })
+      )}
+    </div>
   );
 };
 

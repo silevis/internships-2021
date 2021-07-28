@@ -23,7 +23,7 @@ const EditUserComponent = () => {
     })();
   }, [avatarLink]);
 
-  async function upload(f: File | undefined) {
+  const upload = async (f: File | undefined) => {
     if (f === undefined) {
       setStatus('File not found.');
       return;
@@ -60,15 +60,15 @@ const EditUserComponent = () => {
       }).catch((error) => {
         setStatus(`Upload error (${JSON.stringify(error)})`);
       });
-  }
+  };
 
-  function onUploadButtonClickHandler() {
+  const onUploadButtonClickHandler = () => {
     if (fileInput?.current?.files && fileInput?.current?.files.length > 0) {
       upload(fileInput?.current?.files[0]);
     } else {
       setStatus('File not selected.');
     }
-  }
+  };
 
   return (
     <div className="p-4">
