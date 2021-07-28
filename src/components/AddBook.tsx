@@ -3,7 +3,7 @@ import { PostgrestError } from '@supabase/supabase-js';
 import { toast } from 'react-toastify';
 import { supabase } from '../utils/supabase';
 import { IBook } from '../interfaces/IBook.interface';
-import { useUser } from './UserContext';
+import { useUser } from './UserProvider';
 
 interface IBookProps {
   id?: string;

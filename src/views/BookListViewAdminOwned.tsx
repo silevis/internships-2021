@@ -3,7 +3,7 @@ import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import OwnedBook from '../components/OwnedBook';
 
-const BookListViewAdmin = () => {
+const BookListViewAdminOwned = () => {
   const [dataSupabase, setDataSupabase] = useState<IBook[] | null>([]);
 
   const getAllBooks = async () => {
@@ -39,4 +39,4 @@ const BookListViewAdmin = () => {
   );
 };
 
-export default BookListViewAdmin;
+export default BookListViewAdminOwned;

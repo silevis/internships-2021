@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
-import { getUserAvatarURL, useUserUpdate } from './UserContext';
+import { getUserAvatarURL, useUserUpdate } from './UserProvider';
 import ModalDialog from './ModalDialog';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 

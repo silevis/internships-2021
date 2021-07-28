@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // eslint-disable-next-line
 import FileType from 'file-type';
 import supabase from '../utils/supabase';
-import { getUserAvatarURL, useUser } from './UserContext';
+import { getUserAvatarURL, useUser } from './UserProvider';
 import Avatar from './Avatar';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 

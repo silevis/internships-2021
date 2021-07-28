@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import LoginButton from './LoginButton';
 import UserDropdown from './UserDropdown';
 import RegisterButton from './RegisterButton';
-import { isLoggedIn, useUser, useUserUpdate, isAdmin } from './UserContext';
+import { isLoggedIn, useUser, useUserUpdate, isAdmin } from './UserProvider';
 import supabase from '../utils/supabase';
 import useUserInfo from '../hooks/useUserInfo';
 

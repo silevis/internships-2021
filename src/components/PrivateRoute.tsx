@@ -4,7 +4,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import { IPrivateRoute } from '../interfaces/IPrivateRoute.interface';
-import { isAdmin } from './UserContext';
+import { isAdmin } from './UserProvider';
 
 const PrivateRoute: React.FC<IPrivateRoute> = ({ path, exact, user, children }) => {
     return isAdmin(user) ? (<Route path={path} exact={exact}> {children} </Route>)

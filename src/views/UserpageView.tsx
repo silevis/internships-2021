@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import EditUserComponent from '../components/EditUserComponent';
-import { getUserAvatarURL, useUser } from '../components/UserContext';
+import { getUserAvatarURL, useUser } from '../components/UserProvider';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 import './UserpageView.css';
 // guard urla

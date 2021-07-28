@@ -13,7 +13,7 @@ import SidebarAdmin from './SidebarAdmin';
 import BookListViewAdminOwned from '../views/BookListViewAdminOwned';
 import BookListViewAdminStore from '../views/BookListViewAdminStore';
 import PrivateRoute from './PrivateRoute';
-import { useUser, isAdmin } from './UserContext';
+import { useUser, isAdmin } from './UserProvider';
 import useUserInfo from '../hooks/useUserInfo';
 import NoMatch404 from './NoMatch404';
 import UserpageView from '../views/UserpageView';
