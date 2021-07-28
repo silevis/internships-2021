@@ -15,9 +15,6 @@ function Sidebar() {
 
   const history = useHistory();
 
-  // useEffect(() => {
-  // }, [query]);
-
   return (
     <div className="flex justify-between bg-white">
       <div className={`bg-white inline z-40 ${toggle ? 'hidden' : 'fixed lg:static'}`}>
