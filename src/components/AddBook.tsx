@@ -20,7 +20,6 @@ interface IBookProps {
 const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn, publishedDate, categories, quantity }) => {
   const globalUser = useUser();
   const [err, setErr] = useState<PostgrestError | null>();
-  // eslint-disable-next-line
   const addToStore = async () => {
     const { error } = await supabase
     .from<IBook>('books')

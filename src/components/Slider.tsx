@@ -18,8 +18,9 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
   const delay = 2200;
 
   useEffect(() => {
-    // eslint-disable-next-line
-    timer && clearTimeout(timer);
+    if (timer) {
+      clearTimeout(timer);
+    }
 
     const newTimer = setTimeout(() => {
       const changeIndex = () => {

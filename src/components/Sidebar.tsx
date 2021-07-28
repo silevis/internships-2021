@@ -11,14 +11,9 @@ function Sidebar() {
     if (String(event?.target?.value).length > 0) setQuery(String(event?.target?.value));
     else setQuery('*');
   };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // eslint-disable-next-line no-unused-vars
   const [toggle, setToggled] = useState(true);
 
   const history = useHistory();
-
-  // useEffect(() => {
-  // }, [query]);
 
   return (
     <div className="flex justify-between bg-white">

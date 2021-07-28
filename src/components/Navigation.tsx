@@ -26,14 +26,15 @@ function Navigation() {
   }, [userInfo]);
 
   const logout = () => {
-    // eslint-disable-next-line no-unused-expressions
-    setUser && setUser({
-      id: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      avatarUrl: '',
-    });
+    if (setUser) {
+      setUser({
+        id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        avatarUrl: '',
+      });
+    }
     supabase.auth.signOut();
     history.push('/');
   };

@@ -11,10 +11,8 @@ interface IParams {
 
 const BookListView = () => {
   const [data, setData] = useState<IBook[] | null>([]);
-  // eslint-disable-next-line
   const params: IParams = useParams();
   const { rating } = params;
-  // eslint-disable-next-line
   useEffect(() => {
     if (params?.q?.length < 1) params.q = '*';
     const getAllBooks = async () => {
@@ -29,8 +27,7 @@ const BookListView = () => {
       }
     };
     getAllBooks();
-    // eslint-disable-next-line
-  }, [params]);
+  }, [params, rating]);
   return (
     <div>
       {data && data?.map((book) => (
