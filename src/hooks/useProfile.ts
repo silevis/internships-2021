@@ -6,7 +6,6 @@ import useSupaBase from './useSupaBase';
 type ProfileQuery = IProfile;
 
 const useProfile = (id: string) => {
-  // eslint-disable-next-line space-before-function-paren
   const supabaseQuery = useCallback(async () => {
     return supabase
       .from<ProfileQuery>('profiles')
