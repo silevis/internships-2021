@@ -9,7 +9,7 @@ import Navigation from './Navigation';
 import BookInfoPage from '../views/BookInfoView';
 import BookListViewAdminOwned from '../views/BookListViewAdminOwned';
 import BookListViewAdminStore from '../views/BookListViewAdminStore';
-import PrivateRoute from './PrivateRoute';
+import { AdminRoute, UserRoute } from './PrivateRoute';
 import { useUser } from './UserContext';
 import useUserInfo from '../hooks/useUserInfo';
 import NoMatch404 from './NoMatch404';
@@ -38,12 +38,15 @@ function AppRouter() {
               <Route path="/user" exact>
                 <UserpageView />
               </Route>
-              <PrivateRoute path="/admin/owned" exact user={userInfo}>
+              <Route path="/user/books" exact>
+                <BorrowedBooksView />
+              </Route>
+              <AdminRoute path="/admin/owned" exact user={userInfo}>
                 <BookListViewAdminOwned />
-              </PrivateRoute>
-              <PrivateRoute path="/admin/store" exact user={userInfo}>
+              </AdminRoute>
+              <AdminRoute path="/admin/store" exact user={userInfo}>
                 <BookListViewAdminStore />
-              </PrivateRoute>
+              </AdminRoute>
               <Route path="/books-list" exact>
                 <Redirect to="/books-list/*/0" />
               </Route>
