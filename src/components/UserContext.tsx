@@ -31,7 +31,7 @@ export const getUserAvatarURL = async () => {
     .storage
     .from('images/avatars')
     .createSignedUrl(`${loggedUser?.id}`, 43200);
-}
+};
 
 export const UserProvider: FC = ({ children }) => {
   const [user, setUser] = useState<IBasicUserInfo>({

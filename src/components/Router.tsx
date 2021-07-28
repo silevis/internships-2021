@@ -58,6 +58,6 @@ const AddRouter = () => {
       </Router>
     </div>
   );
-}
+};
 
 export default AddRouter;

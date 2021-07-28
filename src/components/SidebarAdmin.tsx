@@ -48,6 +48,6 @@ const SidebarAdmin = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SidebarAdmin;

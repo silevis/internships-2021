@@ -11,7 +11,7 @@ const Tablist: FC<ITablistProps> = ({ tabs, defaultTab }) => {
 
   const tabChangeHandler = (newTabId: number) => {
     setCurrTabID(newTabId);
-  }
+  };
 
   const tabTitleElements = [];
   for (let i = 0; i < tabs.length; i++) {

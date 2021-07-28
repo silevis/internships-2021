@@ -12,6 +12,6 @@ const NoMatch404 = () => {
       </h3>
     </div>
   );
-}
+};
 
 export default NoMatch404;

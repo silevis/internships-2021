@@ -39,7 +39,7 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
     if (newIndex <= -1) return setIndex(entryCount - 1);
 
     return setIndex(newIndex);
-  }
+  };
 
   return (
     <div className="flex place-content-start mt-2 ml-6">
