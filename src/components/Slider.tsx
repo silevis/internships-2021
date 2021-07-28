@@ -44,16 +44,15 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
   }
 
   return (
-    <div className="flex place-content-start mt-2 ml-6">
+    <div className="flex mt-2 ml-6">
       <div className="flex flex-col items-center bg-gray-50 shadow p-2">
-        {index}
         <Slide
           id={entries[index]?.id}
           title={entries[index]?.title}
           author={entries[index]?.authors?.join(' ')}
           image={entries[index]?.image}
           votesAmount={entries[index]?.votesAmount}
-          avgRating={entries[index]?.votesAmount}
+          avgRating={entries[index]?.avgRating}
         />
         <div className="flex flex-row">
           <button
