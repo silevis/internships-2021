@@ -1,0 +1,4 @@
+.landing-page-container {
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 10% 50% 10% auto;
+}
