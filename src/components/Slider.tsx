@@ -33,14 +33,14 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
     // eslint-disable-next-line
   }, [index]);
 
-  function changeSlide(dir = 0) {
+  const changeSlide = (dir = 0) => {
     const newIndex = index + dir;
 
     if (newIndex >= entryCount) return setIndex(0);
     if (newIndex <= -1) return setIndex(entryCount - 1);
 
     return setIndex(newIndex);
-  }
+  };
 
   return (
     <div className="flex place-content-start mt-2 ml-6">

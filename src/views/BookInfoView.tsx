@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BookInfoPage from '../components/BookInfoPage';
+import Sidebar from '../components/Sidebar';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 
@@ -24,7 +25,14 @@ const BookInfoView = () => {
     };
     getAllBooks();
   }, [params]);
-  return book ? <BookInfoPage book={book} /> : <span>simea</span>;
+  return book ? (
+    <div className="content-container">
+      <Sidebar />
+      <div className="mt-16 w-full">
+        <BookInfoPage book={book} />
+      </div>
+    </div>
+) : <span>Book doesn&apos;t exist</span>;
 };
 
 export default BookInfoView;

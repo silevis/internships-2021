@@ -1,5 +1,6 @@
 import { useState, FC, useEffect } from 'react';
 import { IBook } from '../interfaces/IBook.interface';
+import getBookImage from '../utils/utils';
 import BorrowBook from './BorrowBook';
 import Rating from './Rating';
 import SpecificationTable from './SpecificationTable';
@@ -10,7 +11,7 @@ interface IBookInfoProps {
   book: IBook
 }
 
-const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
+const BookInfo: FC<IBookInfoProps> = ({ book }) => {
   const [specsTabList] = useState([{
     key: 'Rok wydania',
     value: book.publishedDate,
@@ -89,14 +90,8 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
           className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen"
           onClick={() => setEnlarged(false)}
         >
-          <div
-            className="relative m-auto flex-col flex rounded-md shadow-xl
-            transform scale-150"
-          >
-            <img
-              src={book.imageLinks[0]}
-              alt="A book."
-            />
+          <div className="relative m-auto flex-col flex rounded-md shadow-xl transform scale-150">
+            <img src={getBookImage(book)} alt="A book." />
           </div>
         </div>
       )}
@@ -104,4 +99,4 @@ const BookInfoPage: FC<IBookInfoProps> = ({ book }) => {
   );
 };
 
-export default BookInfoPage;
+export default BookInfo;

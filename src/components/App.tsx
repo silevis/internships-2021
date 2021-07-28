@@ -1,12 +1,12 @@
 import { UserProvider } from './UserProvider';
 import AddRouter from './AddRouter';
 
-function App() {
+const App = () => {
   return (
     <UserProvider>
       <AddRouter />
     </UserProvider>
   );
-}
+};
 
 export default App;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function Sidebar() {
+const Sidebar = () => {
   const [value, setValue] = useState(0);
   const [query, setQuery] = useState('*');
   const handleSlideChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +12,6 @@ function Sidebar() {
     else setQuery('*');
   };
   const [toggle, setToggled] = useState(true);
-
   const history = useHistory();
 
   return (
@@ -67,7 +66,7 @@ function Sidebar() {
                 type="button"
                 onClick={() => history.replace(`/books-list/${query}/${value}`)}
               >
-                Filtruj
+                Filter
               </button>
             </div>
           </nav>
@@ -84,6 +83,6 @@ function Sidebar() {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;

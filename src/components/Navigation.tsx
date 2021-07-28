@@ -7,7 +7,7 @@ import { isLoggedIn, useUser, useUserUpdate, isAdmin } from './UserProvider';
 import supabase from '../utils/supabase';
 import useUserInfo from '../hooks/useUserInfo';
 
-function Navigation() {
+const Navigation = () => {
   const loggedUser = useUser();
 
   const setUser = useUserUpdate();
@@ -101,6 +101,6 @@ function Navigation() {
       </div>
     </nav>
   );
-}
+};
 
 export default Navigation;

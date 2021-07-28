@@ -23,7 +23,7 @@ export const useUserUpdate = () => {
   return useContext(UserUpdateContext);
 };
 
-export async function getUserAvatarURL() {
+export const getUserAvatarURL = async () => {
   if (!loggedUser) {
     return undefined;
   }
@@ -31,7 +31,7 @@ export async function getUserAvatarURL() {
     .storage
     .from('images/avatars')
     .createSignedUrl(`${loggedUser?.id}`, 43200);
-}
+};
 
 export const UserProvider: FC = ({ children }) => {
   const [user, setUser] = useState<IBasicUserInfo>({
