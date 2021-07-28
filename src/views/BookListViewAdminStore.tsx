@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
 import StoreBook from '../components/StoreBook';
-import SidebarAdmin from '../components/SidebarAdmin';
 
 const BookListViewAdminStore = () => {
   const [dataAPI, setDataAPI] = useState<IGoogleBooksAPIVolumes>();

@@ -14,7 +14,7 @@ import { useUser } from './UserContext';
 import useUserInfo from '../hooks/useUserInfo';
 import NoMatch404 from './NoMatch404';
 import UserpageView from '../views/UserpageView';
-import HomepageView from '../views/HomepageView';
+import SliderDemo from '../views/SliderDemo';
 import BorrowedBooksView from '../views/BorrowedBooksView';
 
 const AddRouter = () => {
@@ -32,7 +32,7 @@ const AddRouter = () => {
             <Redirect to="/" />
           </Route>
           <Route path="/" exact>
-            <HomepageView />
+            <SliderDemo />
           </Route>
           <Route path="/user" exact>
             <UserpageView />
