@@ -4,17 +4,23 @@ import { IBook } from '../interfaces/IBook.interface';
 import { ISupplierBook } from '../interfaces/ISupplierBook.interface';
 import supabase from '../utils/supabase';
 
-const SliderDemo = () => {
+const SliderDemo = (type?: 'top' | 'random' | any) => {
   const [data, setData] = useState<IBook[] | null>([]);
   useEffect(() => {
     const getAllBooks = async () => {
-      // eslint-disable-next-line
-      const { data: books, error } = await supabase
-        .from<IBook>('books')
-        .select(`
-      *
-    `);
-      setData(books);
+      if (type === 'top') {
+        const { data: books, error } = await supabase
+          .from<IBook>('books')
+          .select('*')
+          .order('avgRating', { ascending: false });
+        setData(books);
+      } else {
+        // eslint-disable-next-line
+        const { data: books, error } = await supabase
+          .from<IBook>('books')
+          .select('*');
+        setData(books);
+      }
     };
     getAllBooks();
   }, []);
@@ -29,6 +35,8 @@ const SliderDemo = () => {
             title: book.title,
             authors: book.authors,
             image: book.imageLinks[0],
+            votesAmount: book.votesAmount,
+            avgRating: book.avgRating,
           };
         })}
         entryCount={data.length}
