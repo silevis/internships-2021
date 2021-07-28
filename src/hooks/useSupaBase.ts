@@ -13,7 +13,6 @@ const useSupaBase = <R = unknown>(
   const [response, setResponse] = useState<R | null>(null);
   const [error, setError] = useState<unknown>(undefined);
 
-  // eslint-disable-next-line space-before-function-paren
   const execute = useCallback(async () => {
     setStatus('pending');
     setResponse(null);

@@ -14,9 +14,7 @@ const RegisterButton = () => {
       firstName: '',
       lastName: '',
     },
-    // eslint-disable-next-line
     onSubmit: async (values) => {
-      // eslint-disable-next-line
       const { user, error } = await supabase.auth.signUp({
         email: values.emailAdress,
         password: values.password,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useFormik } from 'formik';
 import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
 import StoreBook from '../components/StoreBook';
 import SidebarAdmin from '../components/SidebarAdmin';
@@ -7,23 +8,40 @@ import SidebarAdmin from '../components/SidebarAdmin';
 const BookListViewAdminStore = () => {
   const [dataAPI, setDataAPI] = useState<IGoogleBooksAPIVolumes>();
   const [error, setError] = useState<boolean>();
-
+  const [filter, setFilter] = useState('book');
+  const formikFilter = useFormik({
+    initialValues: {
+      filter: '',
+    },
+  onSubmit: (values) => {
+    setFilter(values.filter);
+  },
+});
   useEffect(() => {
     const fetchData = async () => {
       try {
         setError(false);
-        const res = await axios.get('https://www.googleapis.com/books/v1/volumes?q=a');
+        const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${filter}`);
         setDataAPI(res.data);
       } catch (e) {
         setError(true);
       }
     };
     fetchData();
-  }, []);
+  }, [filter]);
   return (
-    <div className="container w-full h-full max-w-8xl mx-auto flex mt-12 z-10">
-      <SidebarAdmin />
-      <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
+    <div>
+      <form onSubmit={formikFilter.handleSubmit}>
+        <input
+          id="filter"
+          name="filter"
+          type="text"
+          placeholder="Search"
+          onChange={formikFilter.handleChange}
+          className="input-pri"
+        />
+      </form>
+      <div>
         {dataAPI && dataAPI?.items.map((book) => (
           <StoreBook
             key={book.id ?? 'N/D'}
@@ -36,7 +54,7 @@ const BookListViewAdminStore = () => {
             categories={book.volumeInfo.categories ?? ['N/D']}
             isbn={(book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/D')}
           />
-        ))}
+          ))}
         {error && <p className="text-red-600">There was an error while trying to fetch data!</p>}
       </div>
     </div>

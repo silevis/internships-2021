@@ -15,6 +15,7 @@ import useUserInfo from '../hooks/useUserInfo';
 import NoMatch404 from './NoMatch404';
 import UserpageView from '../views/UserpageView';
 import HomepageView from '../views/HomepageView';
+import BorrowedBooksView from '../views/BorrowedBooksView';
 
 function AddRouter() {
   const loggedUser = useUser();
@@ -35,6 +36,9 @@ function AddRouter() {
           </Route>
           <Route path="/user" exact>
             <UserpageView />
+          </Route>
+          <Route path="/user/books" exact>
+            <BorrowedBooksView />
           </Route>
           <PrivateRoute path="/admin/owned" exact user={userInfo}>
             <BookListViewAdminOwned />

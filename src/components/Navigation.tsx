@@ -14,26 +14,27 @@ function Navigation() {
   const [toggle, setToggled] = useState(false);
   const history = useHistory();
   const userInfo = useUserInfo(loggedUser?.id ?? null);
-  const [items, setItems] = useState([{ link: '/user', label: 'User Profile' }, { link: '/books-list', label: 'User Books' }]);
+  const [items, setItems] = useState([{ link: '/user', label: 'User Profile' }, { link: '/user/books', label: 'User Books' }]);
 
   useEffect(() => {
     if (isAdmin(userInfo)) {
-      setItems([{ link: '/user', label: 'User Profile' }, { link: '/books-list', label: 'User Books' },
-      { link: '/admin/owned', label: 'Owned' }, { link: '/books-list', label: 'Store' }]);
+      setItems([{ link: '/user', label: 'User Profile' }, { link: '/user/books', label: 'User Books' },
+      { link: '/admin/owned', label: 'Owned' }, { link: '/admin/store', label: 'Store' }]);
     } else {
-      setItems([{ link: '/user', label: 'User Profile' }, { link: '/books-list', label: 'User Books' }]);
+      setItems([{ link: '/user', label: 'User Profile' }, { link: '/user/books', label: 'User Books' }]);
     }
   }, [userInfo]);
 
   const logout = () => {
-    // eslint-disable-next-line no-unused-expressions
-    setUser && setUser({
-      id: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      avatarUrl: '',
-    });
+    if (setUser) {
+      setUser({
+        id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        avatarUrl: '',
+      });
+    }
     supabase.auth.signOut();
     history.push('/');
   };
