@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import Book from '../components/Book';
+import Sidebar from '../components/Sidebar';
 
 interface IParams {
   q: string;
@@ -29,13 +30,16 @@ const BookListView = () => {
     getAllBooks();
   }, [params, rating]);
   return (
-    <div>
-      {data && data?.map((book) => (
-        <Book key={book.id} book={book} />
-      ))}
-      {data && data?.length < 1 && (
-        <div> NIE MA </div>
-      )}
+    <div className="content-container">
+      <Sidebar />
+      <div className="mt-16 w-full">
+        {data && data?.map((book) => (
+          <Book key={book.id} book={book} />
+        ))}
+        {data && data?.length < 1 && (
+          <div className="flex justify-center italic">No results</div>
+        )}
+      </div>
     </div>
   );
 };
