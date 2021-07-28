@@ -19,7 +19,7 @@ function Navigation() {
   useEffect(() => {
     if (isAdmin(userInfo)) {
       setItems([{ link: '/user', label: 'User Profile' }, { link: '/books-list', label: 'User Books' },
-      { link: '/admin/owned', label: 'Owned' }, { link: '/books-list', label: 'Store' }]);
+      { link: '/admin/owned', label: 'Owned' }, { link: '/admin/store', label: 'Store' }]);
     } else {
       setItems([{ link: '/user', label: 'User Profile' }, { link: '/books-list', label: 'User Books' }]);
     }
