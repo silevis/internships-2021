@@ -9,9 +9,9 @@ interface ITablistProps {
 const Tablist: FC<ITablistProps> = ({ tabs, defaultTab }) => {
   const [currTabID, setCurrTabID] = useState(defaultTab);
 
-  function tabChangeHandler(newTabId: number) {
+  const tabChangeHandler = (newTabId: number) => {
     setCurrTabID(newTabId);
-  }
+  };
 
   const tabTitleElements = [];
   for (let i = 0; i < tabs.length; i++) {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function Sidebar() {
+const Sidebar = () => {
   const [value, setValue] = useState(0);
   const [query, setQuery] = useState('*');
   const handleSlideChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,14 +11,8 @@ function Sidebar() {
     if (String(event?.target?.value).length > 0) setQuery(String(event?.target?.value));
     else setQuery('*');
   };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // eslint-disable-next-line no-unused-vars
   const [toggle, setToggled] = useState(true);
-
   const history = useHistory();
-
-  // useEffect(() => {
-  // }, [query]);
 
   return (
     <div className="flex justify-between bg-white">
@@ -89,6 +83,6 @@ function Sidebar() {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;
