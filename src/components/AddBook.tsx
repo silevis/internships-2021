@@ -21,7 +21,7 @@ const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn,
   const globalUser = useUser();
   const [err, setErr] = useState<PostgrestError | null>();
   // eslint-disable-next-line
-  const Add = async () => {
+  const addToStore = async () => {
     const { error } = await supabase
     .from<IBook>('books')
     .insert({
@@ -47,7 +47,7 @@ const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn,
       <button
         type="button"
         className="btn-page"
-        onClick={Add}
+        onClick={addToStore}
       >
         + Dodaj książkę do magazynu
       </button>
