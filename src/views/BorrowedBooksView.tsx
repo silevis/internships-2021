@@ -6,7 +6,7 @@ import BorrowedBook from '../components/BorrowedBook';
 
 interface IBookProfileId {
   book: IBook;
-  id: string | undefined;
+  id: string;
   date: Date;
   returnDate: Date;
   profileId: string | undefined;

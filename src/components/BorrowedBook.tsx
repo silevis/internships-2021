@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ReturnBook from './ReturnBook';
 
 interface IBookProps {
-  id: string | undefined;
+  id: string;
   book: IBook;
   returnDate: Date;
   date: Date;
