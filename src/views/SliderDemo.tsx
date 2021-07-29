@@ -34,7 +34,7 @@ const SliderDemo: FC<SliderDemoProps> = ({ type }) => {
       }
     };
     getAllBooks();
-  });
+  }, [type]);
 
   if (data) {
     return (
