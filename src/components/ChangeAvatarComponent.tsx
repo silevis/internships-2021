@@ -2,16 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 // To jest nasze rozwiazanie - Cezary Bula 2021
 // eslint-disable-next-line
 import FileType from 'file-type';
+import { toast } from 'react-toastify';
 import supabase from '../utils/supabase';
 import { getUserAvatarURL, useUser } from './UserContext';
 import Avatar from './Avatar';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 
 const EditUserComponent = () => {
-    const usr: IBasicUserInfo | null = useUser();
-    const [fileInput] = useState(useRef<HTMLInputElement>(null));
-    const [status, setStatus] = useState<string>();
-    const [avatarLink, setAvatarLink] = useState('');
+  const usr: IBasicUserInfo | null = useUser();
+  const [fileInput] = useState(useRef<HTMLInputElement>(null));
+  const [avatarLink, setAvatarLink] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -25,21 +25,57 @@ const EditUserComponent = () => {
 
   const upload = async (f: File | undefined) => {
     if (f === undefined) {
-      setStatus('File not found.');
+      toast.error('File not found', {
+        toastId: 'file-not-found',
+        position: 'top-right',
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
       return;
     }
     if (!usr || !usr.id) {
-      setStatus('Unknown user');
+      toast.error('Unknown user', {
+        toastId: 'unknown-user',
+        position: 'top-right',
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
       return;
     }
     // type checking
     const type = await FileType.fromBuffer(await f.arrayBuffer());
     if (type?.mime !== 'image/jpeg' && type?.mime !== 'image/png') {
-      setStatus('Invalid file type. Supported types: jpg, png.');
+      toast.error('Invalid file type. Supported types: jpg, png.', {
+        toastId: 'invalid-file-type',
+        position: 'top-right',
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
       return;
     }
 
-    setStatus('Uploading...');
+    toast.info('Uploading...', {
+      toastId: 'uploading',
+      position: 'top-right',
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+    });
     await supabase
       .storage.from('images')
       .remove([`avatars/${usr?.id}`]);
@@ -51,14 +87,32 @@ const EditUserComponent = () => {
         if (data.error !== null) {
           throw data.error;
         }
-        setStatus('Upload successful.');
+        toast.success('Upload successful', {
+          toastId: 'upload-success',
+          position: 'top-right',
+          autoClose: 6000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+        });
         const avatarUrl = await getUserAvatarURL();
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript#other_types
         if (avatarUrl?.signedURL) {
           setAvatarLink(avatarUrl?.signedURL);
         }
       }).catch((error) => {
-        setStatus(`Upload error (${JSON.stringify(error)})`);
+        toast.error(`Upload error (${JSON.stringify(error)})`, {
+          toastId: 'upload-error',
+          position: 'top-right',
+          autoClose: 6000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+        });
       });
   };
 
@@ -66,7 +120,16 @@ const EditUserComponent = () => {
     if (fileInput?.current?.files && fileInput?.current?.files.length > 0) {
       upload(fileInput?.current?.files[0]);
     } else {
-      setStatus('File not selected.');
+      toast.warn('File not selected', {
+        toastId: 'file-not-selected',
+        position: 'top-right',
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
     }
   };
 
@@ -79,7 +142,6 @@ const EditUserComponent = () => {
           <input type="file" accept="image/jpeg, image/png" ref={fileInput} required />
           <div className="mt-4">
             <button type="button" onClick={onUploadButtonClickHandler}>Upload file</button>
-            <div className="text-xs h-4"><label className="text-gray-500">Status: </label>{status}</div>
           </div>
         </div>
       </div>
