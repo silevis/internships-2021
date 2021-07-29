@@ -12,6 +12,16 @@ const BorrowBook: FC<IBookBorrow> = ({ bookId, profileId, date, returnDate }) =>
         date,
         returnDate,
       });
+      toast.success('Book borrowed successfully!', {
+        toastId: 'borrow-book-success',
+        position: 'top-right',
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
     } else {
       toast.warn('You must be logged in to borrow a book!', {
         toastId: 'borrow-book-warning',
