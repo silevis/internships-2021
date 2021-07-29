@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import EditUserComponent from '../components/userpage/EditUserComponent';
-import { getUserAvatarURL, useUser } from '../components/UserContext';
+import { getUserAvatarURL, isAdmin, useUser } from '../components/UserContext';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 import './UserpageView.css';
-// guard urla
+import useUserInfo from '../hooks/useUserInfo';
 
 const UserpageView = () => {
   const usr: IBasicUserInfo | null = useUser();
@@ -38,6 +38,9 @@ const UserpageView = () => {
                 <div className="w-min md:mr-2 first-l">{usr?.firstName}</div>
                 <div className="w-min first-l">{usr?.lastName}</div>
               </div>
+            </div>
+            <div className="text-gray-400 w-1/4 flex justify-end p-4">
+              {isAdmin(useUserInfo(usr?.id ?? null)) ? 'Administrator' : 'Użytkownik'}
             </div>
           </div>
           <div className="p-2">

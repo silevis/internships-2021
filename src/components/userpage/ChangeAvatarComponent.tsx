@@ -62,12 +62,18 @@ const EditUserComponent = () => {
       });
   };
 
-  const onUploadButtonClickHandler = () => {
+  const onUploadAttempt = () => {
     if (fileInput?.current?.files && fileInput?.current?.files.length > 0) {
       upload(fileInput?.current?.files[0]);
     } else {
       setStatus('File not selected.');
     }
+  };
+
+  const onDeleteButtonClick = () => {
+    supabase
+      .storage.from('images')
+      .remove([`avatars/${usr?.id}`]);
   };
 
   return (
@@ -76,10 +82,9 @@ const EditUserComponent = () => {
       <div className="flex flex-wrap">
         <Avatar url={avatarLink} className="" />
         <div className="flex flex-col flex-wrap place-content-end m-2">
-          <input type="file" accept="image/jpeg, image/png" ref={fileInput} required />
+          <input type="file" accept="image/jpeg, image/png" onChange={onUploadAttempt} ref={fileInput} required />
           <div className="mt-4">
-            <button type="button" onClick={onUploadButtonClickHandler}>Upload file</button>
-            <div className="text-xs h-4"><label className="text-gray-500">Status: </label>{status}</div>
+            <button type="button" className="btn-page" onClick={onDeleteButtonClick}>Delete current avatar</button>
           </div>
         </div>
       </div>
