@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { IBook } from '../interfaces/IBook.interface';
-import getBookImage from '../utils/utils';
+import { getBookImage } from '../utils/utils';
 import Rating from './Rating';
 import './Book.css';
 import 'react-toastify/dist/ReactToastify.css';
