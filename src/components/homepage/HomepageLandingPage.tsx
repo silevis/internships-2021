@@ -3,20 +3,6 @@ import { Link } from 'react-router-dom';
 import './HomepageLandingPage.css';
 
 const HomepageLandingPage = () => {
-    // const [bookImgs, setBookImgs] = useState<JSX.Element[]>([]);
-    // useEffect(() => {supabase
-    // .from('books')
-    // .select('id,imageLinks')
-    // .then((data) => {
-    //     if (data && data.data) {
-    //       const arr = [];
-    //       for (let i = 0; i < data.data.length; i++) {
-    //         //   console.log();
-    //         arr.push(<img src={data.data[i].imageLinks[0]} alt="ok" />);
-    //       }
-    //       setBookImgs(arr);
-    //     }
-    // })}, [bookImgs]);
     return (
       <section className="w-screen h-screen bg-gray-900">
         <div className="h-full w-full grid grid-rows-1 grid-cols-1 justify-center">
