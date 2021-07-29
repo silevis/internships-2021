@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { toast } from 'react-toastify';
 import supabase from '../utils/supabase';
 import { IBookBorrow } from '../interfaces/IBookBorrow.interface';
 import { IBook } from '../interfaces/IBook.interface';
+import { errorToast, successToast, warningToast } from '../utils/utils';
 
 interface IBookBorrowProps {
   bookId: string;
@@ -13,57 +13,31 @@ interface IBookBorrowProps {
 }
 const BorrowBook: FC<IBookBorrowProps> = ({ bookId, profileId, date, returnDate, quantity }) => {
   const AddOrNotify = async () => {
-      if (supabase.auth.user()) {
-        const { data } = await supabase.from<IBookBorrow>('borrowedBooks')
+    if (supabase.auth.user()) {
+      const { data } = await supabase.from<IBookBorrow>('borrowedBooks')
         .select('id')
         .match({ bookId, profileId });
-        if (!data) {
-          if (quantity >= 0) {
-            await supabase.from<IBookBorrow>('borrowedBooks')
+      if (!data) {
+        if (quantity >= 0) {
+          await supabase.from<IBookBorrow>('borrowedBooks')
             .insert({
               bookId,
               profileId,
               date,
               returnDate,
             });
-            await supabase.from<IBook>('books')
-              .update({ quantity })
-              .match({ id: bookId });
-          } else {
-            toast.error('We don\'t have this book in stock right now', {
-              toastId: 'borrow-book-error',
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: false,
-              progress: undefined,
-            });
-          }
+          await supabase.from<IBook>('books')
+            .update({ quantity })
+            .match({ id: bookId });
+          successToast('Book borrowed successfully!', 'borrow-book-success');
+        } else {
+          errorToast('We don\'t have this book in stock right now', 'borrow-book-error');
+        }
       } else {
-        toast.error('You already borrowed this book', {
-          toastId: 'borrow-book-warning',
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-        });
+        errorToast('You already borrowed this book', 'borrow-book-warning');
       }
     } else {
-      toast.warn('You must be logged in to borrow a book!', {
-        toastId: 'borrow-book-warning',
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-      });
+      warningToast('You must be logged in to borrow a book!', 'borrow-book-warning');
     }
   };
   return (
