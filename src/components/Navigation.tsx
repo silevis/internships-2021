@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import LoginButton from './LoginButton';
 import UserDropdown from './UserDropdown';
 import RegisterButton from './RegisterButton';
@@ -35,6 +36,16 @@ const Navigation = () => {
         avatarUrl: '',
       });
     }
+    toast.success('Logged out successfully', {
+      toastId: 'logout-success',
+      position: 'top-right',
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+    });
     supabase.auth.signOut();
     history.push('/');
   };
