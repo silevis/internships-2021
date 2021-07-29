@@ -44,7 +44,7 @@ const Sidebar = () => {
             Filters
           </div>
           <nav className="mx-4 my-3">
-            <div className="border-b border-gray-200 mx-1 pb-5 mt-5">
+            <div className="flex-col border-b border-gray-200 mx-1 pb-5 mt-5">
               <label htmlFor="searchbar" className="mr-2">Search</label>
               <input
                 type="text"
@@ -53,7 +53,7 @@ const Sidebar = () => {
                 className="p-1 placeholder-gray-400 text-gray-600 border outline-none
                   transition duration-300 ease-in-out focus:ring-2 ring-gray-200"
                 onChange={handleQueryChange}
-              /><br />
+              />
               <div className="flex justify-evenly mt-2">
                 <input type="radio" name="type" id="title" value="title" onChange={() => setFilterType('title')} defaultChecked />
                 Filter by title

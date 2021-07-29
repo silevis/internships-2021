@@ -36,8 +36,8 @@ const BookListView = () => {
       } else if (getFilterType() === 'authors') {
         const { data: books } = await supabase
           .from<IBook>('books')
-          .select('*');
-
+          .select('*')
+          .gte('avgRating', params.rating);
         const x = books?.filter((book) => checkAuthors(book?.authors, params.q)) ?? [];
         setData(x);
       }
