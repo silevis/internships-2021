@@ -6,15 +6,15 @@ const UserContext = React.createContext<IProfile | null>(null);
 const UserUpdateContext = React.createContext<((newUser: IProfile) => void) | null>(null);
 let loggedInUser = supabase.auth.user() ?? null;
 
-export const getUserInfo = async (uId: string) => {
-  if (!uId) {
+export const getUserInfo = async (uid: string) => {
+  if (!uid) {
     return null;
   }
   const { data } = await supabase
     .from<IProfile>('profiles')
     .select(`
       *
-    `).eq('id', uId ?? '');
+    `).eq('id', uid ?? '');
   return data;
 };
 

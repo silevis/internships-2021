@@ -9,7 +9,6 @@ import { successToast } from '../utils/utils';
 
 const Navigation = () => {
   const user = useUser();
-
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
   const history = useHistory();
