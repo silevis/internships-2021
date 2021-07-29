@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { IBook } from '../interfaces/IBook.interface';
 
-let filterType: keyof IBook;
+let filterType: keyof IBook = 'title';
 export const getFilterType = () => {
   return filterType;
 };
@@ -55,7 +55,8 @@ const Sidebar = () => {
                 onChange={handleQueryChange}
               /><br />
               <div className="flex justify-evenly mt-2">
-                <input type="radio" name="type" id="title" value="title" onChange={() => setFilterType('title')} defaultChecked />Filter by title
+                <input type="radio" name="type" id="title" value="title" onChange={() => setFilterType('title')} defaultChecked />
+                Filter by title
                 <input type="radio" name="type" id="author" value="author" onChange={() => setFilterType('authors')} />Filter by author
               </div>
             </div>

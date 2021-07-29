@@ -39,11 +39,8 @@ const BookListView = () => {
           .select('*');
 
         const x = books?.filter((book) => checkAuthors(book?.authors, params.q)) ?? [];
-        console.log(x);
-
         setData(x);
       }
-      console.log(data);
     };
     getAllBooks();
   }, [params]);
