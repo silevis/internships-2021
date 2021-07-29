@@ -1,6 +1,6 @@
 import React from 'react';
 import SliderDemo from '../../views/SliderDemo';
-import HomepageSection from '../HomepageSection';
+import HomepageSection from './HomepageSection';
 
 const HomepageInfoSections = () => {
     const bgStyle = {

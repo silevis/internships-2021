@@ -8,8 +8,7 @@ const HomepageGradientSection = () => {
     const history = useHistory();
 
     const onRegisterSuccess = () => {
-      history.push('/user');
-      console.log('ok');
+      history.push('/books-list');
     };
 
     return (
@@ -22,7 +21,8 @@ const HomepageGradientSection = () => {
           >
             Join us!
           </button>
-          {!registerModalShown ? <></> : <RegisterModal onSuccess={() => onRegisterSuccess()} onVisibilityChange={() => setRegisterModalShown(!registerModalShown)} />}
+          {!registerModalShown ? <></>
+          : <RegisterModal onSuccess={() => onRegisterSuccess()} onVisibilityChange={() => setRegisterModalShown(!registerModalShown)} />}
         </div>
         <div className="col-start-1 row-start-2 row-end-4 col-span-full home-dots-gradient w-full bg-black" />
       </section>
