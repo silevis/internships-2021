@@ -1,9 +1,14 @@
+import { FC } from 'react';
 import ChangeAvatarComponent from './ChangeAvatarComponent';
 
-const EditUserComponent = () => {
+interface IEditUserComponentProps {
+  onAvatarChange: () => void;
+}
+
+const EditUserComponent: FC<IEditUserComponentProps> = ({ onAvatarChange }) => {
     return (
       <div className="m-4">
-        <ChangeAvatarComponent />
+        <ChangeAvatarComponent onAvatarChange={onAvatarChange} />
       </div>
     );
 };

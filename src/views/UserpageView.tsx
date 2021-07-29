@@ -15,13 +15,7 @@ const UserpageView = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      await getUserAvatarURL().then((data) => {
-        if (data?.signedURL) {
-          setAvatarLink(data?.signedURL);
-        }
-      });
-    })();
+    (async () => setAvatarLink(await getUserAvatarURL()))();
   }, []);
 
   return (
@@ -44,7 +38,9 @@ const UserpageView = () => {
             </div>
           </div>
           <div className="p-2">
-            <EditUserComponent />
+            <EditUserComponent
+              onAvatarChange={async () => setAvatarLink(await getUserAvatarURL())}
+            />
           </div>
         </div>
       </div>

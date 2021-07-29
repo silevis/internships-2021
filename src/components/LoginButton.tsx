@@ -36,8 +36,7 @@ const LoginButton = () => {
             firstName: testUser?.firstName ?? 'unknown',
             lastName: testUser?.lastName ?? 'unknown',
             email: testUser?.email ?? 'no email',
-            avatarUrl: (await getUserAvatarURL())?.signedURL
-              ?? `${process.env.PUBLIC_URL}/image-not-found.png`,
+            avatarUrl: await getUserAvatarURL(),
           });
         });
         setLoginModalShown(!loginModalShown);

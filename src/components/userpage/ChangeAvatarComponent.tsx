@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 // To jest nasze rozwiazanie - Cezary Bula 2021
 // eslint-disable-next-line
 import FileType from 'file-type';
@@ -7,7 +7,11 @@ import { getUserAvatarURL, useUser } from '../UserContext';
 import Avatar from '../Avatar';
 import { IBasicUserInfo } from '../../interfaces/IBasicUserInfo.interface';
 
-const EditUserComponent = () => {
+interface IEditUserComponentProps {
+  onAvatarChange: () => void;
+}
+
+const EditUserComponent: FC<IEditUserComponentProps> = ({ onAvatarChange }) => {
     const usr: IBasicUserInfo | null = useUser();
     const [fileInput] = useState(useRef<HTMLInputElement>(null));
     const [status, setStatus] = useState<string>();
@@ -15,13 +19,9 @@ const EditUserComponent = () => {
 
   useEffect(() => {
     (async () => {
-      await getUserAvatarURL().then((data) => {
-        if (data?.signedURL) {
-          setAvatarLink(data?.signedURL);
-        }
-      });
+      setAvatarLink(await getUserAvatarURL());
     })();
-  }, [avatarLink]);
+  }, []);
 
   const upload = async (f: File | undefined) => {
     if (f === undefined) {
@@ -54,9 +54,8 @@ const EditUserComponent = () => {
         setStatus('Upload successful.');
         const avatarUrl = await getUserAvatarURL();
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript#other_types
-        if (avatarUrl?.signedURL) {
-          setAvatarLink(avatarUrl?.signedURL);
-        }
+        setAvatarLink(avatarUrl);
+        onAvatarChange();
       }).catch((error) => {
         setStatus(`Upload error (${JSON.stringify(error)})`);
       });
