@@ -1,0 +1,7 @@
+.homepage-bubble {
+    transform: scaleX(-1);
+}
+
+.homepage-textbox {
+    min-height: 16rem;
+}

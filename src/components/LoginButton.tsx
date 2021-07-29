@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
-import { getUserAvatarURL, useUserUpdate } from './UserContext';
+import { getUserAvatarURL, useUserUpdate, getUserInfo } from './UserContext';
 import ModalDialog from './ModalDialog';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 import { errorToast } from '../utils/utils';
@@ -28,13 +28,17 @@ const LoginButton = () => {
 
       if (user && setUser) {
         // TODO: get the default avatar directly from the supabase avatar store
-        setUser({
-          id: user?.id,
-          firstName: 'unknown',
-          lastName: 'unknown',
-          email: user?.email ?? 'no email',
-          avatarUrl: (await getUserAvatarURL())?.signedURL
-            ?? `${process.env.PUBLIC_URL}/image-not-found.png`,
+        getUserInfo(user?.id).then(async (response) => {
+          const testUser = response?.[0];
+
+          setUser({
+            id: testUser?.id ?? '',
+            firstName: testUser?.firstName ?? 'unknown',
+            lastName: testUser?.lastName ?? 'unknown',
+            email: testUser?.email ?? 'no email',
+            avatarUrl: (await getUserAvatarURL())?.signedURL
+              ?? `${process.env.PUBLIC_URL}/image-not-found.png`,
+          });
         });
         setLoginModalShown(!loginModalShown);
         setStatus('');

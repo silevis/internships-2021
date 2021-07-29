@@ -14,19 +14,27 @@ interface IBookBorrowProps {
 const BorrowBook: FC<IBookBorrowProps> = ({ bookId, profileId, date, returnDate, quantity }) => {
   const AddOrNotify = async () => {
     if (supabase.auth.user()) {
-      if (quantity >= 0) {
-        await supabase.from<IBookBorrow>('borrowedBooks').insert({
-          bookId,
-          profileId,
-          date,
-          returnDate,
-        });
-        await supabase.from<IBook>('books')
-          .update({ quantity })
-          .match({ id: bookId });
-        successToast('Book borrowed successfully!', 'borrow-book-success');
+      const { data } = await supabase.from<IBookBorrow>('borrowedBooks')
+        .select('id')
+        .match({ bookId, profileId });
+      if (!data) {
+        if (quantity >= 0) {
+          await supabase.from<IBookBorrow>('borrowedBooks')
+            .insert({
+              bookId,
+              profileId,
+              date,
+              returnDate,
+            });
+          await supabase.from<IBook>('books')
+            .update({ quantity })
+            .match({ id: bookId });
+          successToast('Book borrowed successfully!', 'borrow-book-success');
+        } else {
+          errorToast('We don\'t have this book in stock right now', 'borrow-book-error');
+        }
       } else {
-        errorToast('We don\'t have this book in stock right now', 'borrow-book-warning');
+        errorToast('You already borrowed this book', 'borrow-book-warning');
       }
     } else {
       warningToast('You must be logged in to borrow a book!', 'borrow-book-warning');
