@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import OwnedBook from '../components/OwnedBook';
-import SidebarAdmin from '../components/SidebarAdmin';
 
 const BookListViewAdmin = () => {
   const [dataSupabase, setDataSupabase] = useState<IBook[] | null>([]);
@@ -18,9 +17,8 @@ const BookListViewAdmin = () => {
     getAllBooks();
   }, []);
   return (
-    <div className="container w-full h-full max-w-8xl mx-auto flex mt-12 z-10">
-      <SidebarAdmin />
-      <div className="min-w-0 w-full pl-5 pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
+    <div className="container w-full h-full max-w-8xl mx-auto flex mt-3">
+      <div className="min-w-0 w-full pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
         {dataSupabase && dataSupabase?.map((book) => (
           <OwnedBook
             key={book.id}

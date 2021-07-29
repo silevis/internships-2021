@@ -12,10 +12,10 @@ const BookListViewAdminStore = () => {
     initialValues: {
       filter: '',
     },
-  onSubmit: (values) => {
-    setFilter(values.filter);
-  },
-});
+    onSubmit: (values) => {
+      setFilter(values.filter);
+    },
+  });
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,7 +29,7 @@ const BookListViewAdminStore = () => {
     fetchData();
   }, [filter]);
   return (
-    <div>
+    <div className="container mx-auto mt-3 shadow-inner">
       <form onSubmit={formikFilter.handleSubmit}>
         <input
           id="filter"
@@ -37,7 +37,7 @@ const BookListViewAdminStore = () => {
           type="text"
           placeholder="Search"
           onChange={formikFilter.handleChange}
-          className="input-pri"
+          className="input-pri mt-3 mx-6"
         />
       </form>
       <div>
@@ -53,7 +53,7 @@ const BookListViewAdminStore = () => {
             categories={book.volumeInfo.categories ?? ['N/D']}
             isbn={(book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/D')}
           />
-          ))}
+        ))}
         {error && <p className="text-red-600">There was an error while trying to fetch data!</p>}
       </div>
     </div>
