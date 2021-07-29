@@ -1,6 +1,4 @@
-import { PostgrestError } from '@supabase/supabase-js';
 import React, { FC, useState } from 'react';
-import { toast } from 'react-toastify';
 import { supabase } from '../utils/supabase';
 import { errorToast } from '../utils/utils';
 

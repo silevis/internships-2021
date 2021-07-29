@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { useFormik } from 'formik';
 import ModalDialog from './ModalDialog';
 import { supabase } from '../utils/supabase';
