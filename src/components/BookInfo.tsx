@@ -78,6 +78,7 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
               profileId={loggedUser?.id}
               date={new Date()}
               returnDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
+              quantity={book.quantity ? book.quantity - 1 : -1}
             />
           </div>
         </div>
