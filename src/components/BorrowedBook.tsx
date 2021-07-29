@@ -22,16 +22,13 @@ const BorrowedBook: FC<IBookProps> = ({
         <div>
           <img
             src={getBookImage(book)}
-            alt={`Zdjecie okladki ${book.title ?? 'N/D'}`}
-            className="transform hover:scale-110 cursor-pointer w-32
-            transition duration-400 ease-in-out hover:-translate-y-1"
+            alt={`${book.title ?? 'N/D'} cover.`}
+            className="w-32"
           />
         </div>
       </div>
       <div className="ml-2 mb-4 md:mb-0 w-full">
-        <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">
-          {book.title ?? 'N/D'}
-        </span>
+        {book.title ?? 'N/D'}
         <div className="text-gray-400 flex flex-col">
           <span>{book.authors?.join(' ') ?? 'N/D'}</span>
           <span>{book.categories ?? 'N/D'}</span>
