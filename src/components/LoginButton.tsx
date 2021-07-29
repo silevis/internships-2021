@@ -4,11 +4,11 @@ import { supabase } from '../utils/supabase';
 import { useUserUpdate, getUserInfo } from './UserContext';
 import ModalDialog from './ModalDialog';
 import { IProfile } from '../interfaces/IProfile.interface';
+import { errorToast, successToast, warningToast } from '../utils/utils';
 
 const LoginButton = () => {
   const setUser = useUserUpdate();
   const [loginModalShown, setLoginModalShown] = useState(false);
-  const [status, setStatus] = useState<string>();
 
   const formikLogin = useFormik({
     initialValues: {
@@ -21,7 +21,7 @@ const LoginButton = () => {
         password: values.password,
       });
       if (error) {
-        setStatus(error.message);
+        errorToast(`Failed to log-in. Error: ${error.message}`, 'login-error');
         return;
       }
 
@@ -39,7 +39,7 @@ const LoginButton = () => {
           });
         });
         setLoginModalShown(!loginModalShown);
-        setStatus('');
+        successToast('Login successful', 'login-success');
       }
     },
   });
@@ -50,7 +50,7 @@ const LoginButton = () => {
       .select('email')
       .eq('email', formikLogin.values.emailAdress);
     if (!data?.length) {
-      setStatus('There\'s no user associated with this email');
+      warningToast('There\'s no user associated with this email', 'login-no-email');
     }
   };
 
@@ -101,7 +101,6 @@ const LoginButton = () => {
                 </div>
               </div>
             </div>
-            <p className="text-red-500 mb-4">{status}</p>
           </form>
         </ModalDialog>
       )}

@@ -5,6 +5,7 @@ import UserDropdown from './UserDropdown';
 import RegisterButton from './RegisterButton';
 import { isLoggedIn, useUser, useUserUpdate, isAdmin } from './UserContext';
 import supabase from '../utils/supabase';
+import { successToast } from '../utils/utils';
 
 const Navigation = () => {
   const user = useUser();
@@ -35,6 +36,7 @@ const Navigation = () => {
     }
     supabase.auth.signOut();
     history.push('/');
+    successToast('Logged out successfully', 'logout-success');
   };
 
   return (
