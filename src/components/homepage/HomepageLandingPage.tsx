@@ -23,14 +23,13 @@ const HomepageLandingPage = () => {
           <div className="row-start-1 col-start-1 flex justify-center">
             <img className="object-contain" src={`${process.env.PUBLIC_URL}/homepage-landscape-bg.png`} alt="ok" />
           </div>
-          <nav className="h-full w-full row-start-1 col-start-1 bg-opacity-60 bg-black">
+          <div className="h-full w-full row-start-1 col-start-1 bg-opacity-60 bg-black">
             <div className="grid h-full w-full landing-page-container text-white">
-              <div className="col-span-full p-4 flex flex-col md:flex-row justify-between">
+              <nav className="col-span-full p-4 flex flex-col md:flex-row justify-between">
                 <div className="landing-page-nav-item-container">
                   <span>
-                    TODO: &gt; AND HOME NOT PERFECTLY CENTERED
                     <span className="flex flex-row items-center">
-                      <span>&gt;</span> <span>Home</span>
+                      <span>Home</span>
                     </span>
                     <hr className="main-underline mt-2" />
                   </span>
@@ -43,9 +42,25 @@ const HomepageLandingPage = () => {
                     </span>
                   </Link>
                 </div>
+              </nav>
+              <div className="col-start-2 row-start-2 landing-page-grid-item-container">
+                <hr className="main-underline" />
+                <span className="text-3xl font-bold">Library &quot;SIEMA&quot;</span>
+              </div>
+              <div className="col-start-2 row-start-3 landing-page-grid-item-container">
+                <span className="text-3xl font-semibold">Key features</span>
+              </div>
+              <div className="col-start-2 row-start-4 landing-page-grid-item-container">
+                <span className="landing-page-our-features">Quality</span>
+              </div>
+              <div className="col-start-1 row-start-4 landing-page-grid-item-container">
+                <span className="landing-page-our-features">Vast range of books</span>
+              </div>
+              <div className="col-start-3 row-start-4 landing-page-grid-item-container">
+                <span className="landing-page-our-features">Tradition</span>
               </div>
             </div>
-          </nav>
+          </div>
         </div>
         {/* <div
           className="flex flex-wrap h-full object-contain"
