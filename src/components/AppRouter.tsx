@@ -35,7 +35,7 @@ function AppRouter() {
             <HomepageView />
           </Route>
           <Route>
-            <header className="fixed w-full top-0 h-10 z-50">
+            <header className="sticky top-0 w-full h-10 z-50">
               <Navigation />
             </header>
             <Switch>

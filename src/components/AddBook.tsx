@@ -22,22 +22,22 @@ const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn,
   const [err, setErr] = useState<PostgrestError | null>();
   const addToStore = async () => {
     const { error } = await supabase
-    .from<IBook>('books')
-    .insert({
-      id,
-      title,
-      description,
-      publishedDate,
-      categories,
-      isbn,
-      imageLinks: [image],
-      authors,
-      votesAmount: Math.floor(Math.random() * 1000) + 1,
-      avgRating: Math.floor(Math.random() * 10) + 1,
-      addedById: globalUser?.id,
-      addedDate: new Date(),
-      quantity,
-    });
+      .from<IBook>('books')
+      .insert({
+        id,
+        title,
+        description,
+        publishedDate,
+        categories,
+        isbn,
+        imageLinks: [image],
+        authors,
+        votesAmount: Math.floor(Math.random() * 1000) + 1,
+        avgRating: Math.floor(Math.random() * 10) + 1,
+        addedById: globalUser?.id,
+        addedDate: new Date(),
+        quantity,
+      });
     setErr(error);
   };
 
@@ -48,17 +48,17 @@ const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn,
         className="btn-page"
         onClick={addToStore}
       >
-        + Dodaj książkę do magazynu
+        + Add books to the stock
       </button>
       {err && (
         toast.error(err.message, {
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
         })
       )}
     </div>

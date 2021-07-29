@@ -12,8 +12,12 @@ interface IPrivateRouteProps {
   user: IProfile | null;
 }
 
-export const AdminRoute: React.FC<IPrivateRouteProps> = ({ path, exact, user, children }) => {
-  return isAdmin(user) ? (<Route path={path} exact={exact}> {children} </Route>)
+const PrivateRoute: React.FC<IPrivateRouteProps> = ({ path, exact, user, children }) => {
+    if (!user && isLoggedIn()) {
+      return <div>Loading...</div>;
+    }
+
+    return isAdmin(user) ? (<Route path={path} exact={exact}> {children} </Route>)
     : (<Redirect to="/" />);
   };
 
