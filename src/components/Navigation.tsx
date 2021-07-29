@@ -26,7 +26,6 @@ const Navigation = () => {
   const logout = () => {
     if (setUser) {
       setUser({
-        avtar: '',
         createdAt: '',
         email: '',
         firstName: '',

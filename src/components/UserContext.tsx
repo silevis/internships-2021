@@ -52,7 +52,6 @@ export const UserProvider: FC = ({ children }) => {
     getUserInfo(loggedInUser?.id ?? '').then((response) => {
       const userInfo = response?.[0];
       setUser({
-        avtar: userInfo?.avtar ?? '',
         createdAt: userInfo?.createdAt ?? '',
         email: userInfo?.email ?? '',
         firstName: userInfo?.firstName ?? '',

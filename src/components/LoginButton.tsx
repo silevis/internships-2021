@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
-import { getUserAvatarURL, useUserUpdate, getUserInfo } from './UserContext';
+import { useUserUpdate, getUserInfo } from './UserContext';
 import ModalDialog from './ModalDialog';
 import { IProfile } from '../interfaces/IProfile.interface';
 import { errorToast } from '../utils/utils';
@@ -31,8 +31,6 @@ const LoginButton = () => {
         getUserInfo(user?.id).then(async (response) => {
           const userInfo = response?.[0];
           setUser({
-            avtar: (await getUserAvatarURL())?.signedURL
-            ?? `${process.env.PUBLIC_URL}/image-not-found.png`,
             createdAt: userInfo?.createdAt ?? '',
             email: userInfo?.email ?? '',
             firstName: userInfo?.firstName ?? '',
