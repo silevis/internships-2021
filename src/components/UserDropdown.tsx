@@ -28,7 +28,7 @@ const UserDropdown: FC<UserDropdownProps> = ({ title, items, logOut }) => {
       {open && (
         <>
           <div
-            className="hidden md:flex md:fixed left-0 top-0 pin z-40 overflow-auto bg-white bg-opacity-0 h-screen w-screen"
+            className="cursor-default hidden md:flex md:fixed left-0 top-0 pin z-40 overflow-auto bg-white bg-opacity-0 h-screen w-screen"
             onClick={() => setOpen(!open)}
           >
             &nbsp;
