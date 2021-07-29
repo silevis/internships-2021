@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
 import { getUserAvatarURL, useUserUpdate, getUserInfo } from './UserContext';
 import ModalDialog from './ModalDialog';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
+import { errorToast } from '../utils/utils';
 
 const LoginButton = () => {
   const setUser = useUserUpdate();
@@ -44,6 +45,12 @@ const LoginButton = () => {
       }
     },
   });
+
+  useEffect(() => {
+    if (status) {
+      errorToast(status, 'login-error');
+    }
+  }, [status]);
 
   const checkEmail = async () => {
     const { data } = await supabase
@@ -102,7 +109,6 @@ const LoginButton = () => {
                 </div>
               </div>
             </div>
-            <p className="text-red-500 mb-4">{status}</p>
           </form>
         </ModalDialog>
       )}
