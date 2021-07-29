@@ -4,7 +4,6 @@ import EditUserComponent from '../components/userpage/EditUserComponent';
 import { getUserAvatarURL, isAdmin, useUser } from '../components/UserContext';
 import { IProfile } from '../interfaces/IProfile.interface';
 import './UserpageView.css';
-import useUserInfo from '../hooks/useUserInfo';
 
 const UserpageView = () => {
   const usr: IProfile | null = useUser();
@@ -34,7 +33,7 @@ const UserpageView = () => {
               </div>
             </div>
             <div className="text-gray-400 w-1/4 flex justify-end p-4">
-              {isAdmin(useUserInfo(usr?.id ?? null)) ? 'Administrator' : 'Użytkownik'}
+              {isAdmin(useUser()) ? 'Administrator' : 'Użytkownik'}
             </div>
           </div>
           <div className="p-2">

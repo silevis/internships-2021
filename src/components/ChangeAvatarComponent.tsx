@@ -14,14 +14,8 @@ const EditUserComponent = () => {
   const [avatarLink, setAvatarLink] = useState('');
 
   useEffect(() => {
-    (async () => {
-      await getUserAvatarURL().then((data) => {
-        if (data?.signedURL) {
-          setAvatarLink(data?.signedURL);
-        }
-      });
-    })();
-  }, [avatarLink]);
+    (async () => setAvatarLink(await getUserAvatarURL()))();
+  }, []);
 
   const upload = async (f: File | undefined) => {
     if (f === undefined) {
@@ -52,11 +46,8 @@ const EditUserComponent = () => {
           throw data.error;
         }
         setStatus('Upload successful.');
-        const avatarUrl = await getUserAvatarURL();
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript#other_types
-        if (avatarUrl?.signedURL) {
-          setAvatarLink(avatarUrl?.signedURL);
-        }
+        setAvatarLink(await getUserAvatarURL());
       }).catch((error) => {
         setStatus(`Upload error (${JSON.stringify(error)})`);
       });
