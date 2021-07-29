@@ -38,7 +38,7 @@ const UserDropdown: FC<UserDropdownProps> = ({ title, items, logOut }) => {
           md:bg-gray-600 text-white border-none md:border border-gray-400 md:border-gray-800 rounded-sm"
           >
             {items.map((item) => (
-              <div className="menu-item border-b border-gray-400 md:border-gray-700">
+              <div key={item.label} className="menu-item border-b border-gray-400 md:border-gray-700">
                 <button type="button">
                   <Link
                     to={`${item.link}`}

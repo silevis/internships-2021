@@ -12,7 +12,7 @@ interface IPrivateRouteProps {
   user: IProfile | null;
 }
 
-const PrivateRoute: React.FC<IPrivateRouteProps> = ({ path, exact, user, children }) => {
+export const AdminRoute: React.FC<IPrivateRouteProps> = ({ path, exact, user, children }) => {
     if (!user && isLoggedIn()) {
       return <div>Loading...</div>;
     }
@@ -21,4 +21,7 @@ const PrivateRoute: React.FC<IPrivateRouteProps> = ({ path, exact, user, childre
     : (<Redirect to="/" />);
   };
 
-export default PrivateRoute;
+export const UserRoute: React.FC<IPrivateRouteProps> = ({ path, exact, children }) => {
+  return isLoggedIn() ? (<Route path={path} exact={exact}> {children} </Route>)
+    : (<Redirect to="/" />);
+};

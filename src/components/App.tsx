@@ -1,10 +1,10 @@
 import { UserProvider } from './UserContext';
-import AddRouter from './Router';
+import AppRouter from './AppRouter';
 
 const App = () => {
   return (
     <UserProvider>
-      <AddRouter />
+      <AppRouter />
     </UserProvider>
   );
 };
