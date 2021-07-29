@@ -6,6 +6,7 @@ import RegisterButton from './RegisterButton';
 import { isLoggedIn, useUser, useUserUpdate, isAdmin } from './UserContext';
 import supabase from '../utils/supabase';
 import useUserInfo from '../hooks/useUserInfo';
+import { successToast } from '../utils/utils';
 
 const Navigation = () => {
   const loggedUser = useUser();
@@ -35,6 +36,7 @@ const Navigation = () => {
         avatarUrl: '',
       });
     }
+    successToast('Logged out successfully', 'logout-success');
     supabase.auth.signOut();
     history.push('/');
   };
