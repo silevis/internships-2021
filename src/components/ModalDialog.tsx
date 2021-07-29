@@ -20,7 +20,7 @@ const ModalDialog: FC<IModalDialogProps> = ({ title, okButtonLabel, onVisibility
         <div>
           {children}
         </div>
-        <button type="submit" className="btn-page mt-3" onClick={() => onOkButtonClick()}>
+        <button type="submit" className="btn-page" onClick={() => onOkButtonClick()}>
           {okButtonLabel}
         </button>
       </div>

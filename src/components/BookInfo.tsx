@@ -1,6 +1,6 @@
 import { useState, FC, useEffect } from 'react';
 import { IBook } from '../interfaces/IBook.interface';
-import { getBookImage } from '../utils/utils';
+import getBookImage from '../utils/utils';
 import BorrowBook from './BorrowBook';
 import Rating from './Rating';
 import SpecificationTable from './SpecificationTable';
@@ -35,11 +35,9 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
   const [tabList] = useState([{
     title: 'Szczegóły',
     content:
-      (
-        <div className="flex justify-center p-1 md:p-4">
-          <SpecificationTable items={specsTabList} />
-        </div>
-      ),
+  <div className="flex justify-center p-1 md:p-4">
+    <SpecificationTable items={specsTabList} />
+  </div>,
   }]);
 
   useEffect(() => {
