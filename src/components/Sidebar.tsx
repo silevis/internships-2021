@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { IBook } from '../interfaces/IBook.interface';
+
+let filterType: keyof IBook;
+export const getFilterType = () => {
+  return filterType;
+};
+
+const setFilterType = (type: keyof IBook) => {
+  filterType = type;
+};
 
 const Sidebar = () => {
   const [value, setValue] = useState(0);
@@ -43,7 +53,11 @@ const Sidebar = () => {
                 className="p-1 placeholder-gray-400 text-gray-600 border outline-none
                   transition duration-300 ease-in-out focus:ring-2 ring-gray-200"
                 onChange={handleQueryChange}
-              />
+              /><br />
+              <div className="flex justify-evenly mt-2">
+                <input type="radio" name="type" id="title" value="title" onChange={() => setFilterType('title')} defaultChecked />Filter by title
+                <input type="radio" name="type" id="author" value="author" onChange={() => setFilterType('authors')} />Filter by author
+              </div>
             </div>
             <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
               <ul className="list-disc">

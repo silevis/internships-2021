@@ -3,32 +3,50 @@ import { useParams } from 'react-router-dom';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import Book from '../components/Book';
-import Sidebar from '../components/Sidebar';
+import Sidebar, { getFilterType } from '../components/Sidebar';
 
 interface IParams {
   q: string;
   rating: string;
 }
 
+const checkAuthors = (authors: string[], query: string) => {
+  let matched = false;
+  if (query === '*') return true;
+  authors?.forEach((author) => {
+    if (author.toLowerCase().includes(query.toLowerCase())) matched = true;
+  });
+  return matched;
+};
+
 const BookListView = () => {
   const [data, setData] = useState<IBook[] | null>([]);
   const params: IParams = useParams();
-  const { rating } = params;
   useEffect(() => {
     if (params?.q?.length < 1) params.q = '*';
     const getAllBooks = async () => {
       const q = `%${params.q ? params.q : '*'}%`;
-      const { data: books } = await supabase
-        .from<IBook>('books')
-        .select('*')
-        .ilike('title', q)
-        .gte('avgRating', rating);
-      if (books !== null) {
+      if (getFilterType() === 'title') {
+        const { data: books } = await supabase
+          .from<IBook>('books')
+          .select('*')
+          .ilike('title', q)
+          .gte('avgRating', params.rating);
         setData(books);
+      } else if (getFilterType() === 'authors') {
+        const { data: books } = await supabase
+          .from<IBook>('books')
+          .select('*');
+
+        const x = books?.filter((book) => checkAuthors(book?.authors, params.q)) ?? [];
+        console.log(x);
+
+        setData(x);
       }
+      console.log(data);
     };
     getAllBooks();
-  }, [params, rating]);
+  }, [params]);
   return (
     <div className="content-container">
       <Sidebar />
