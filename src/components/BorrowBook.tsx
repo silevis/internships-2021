@@ -13,19 +13,36 @@ interface IBookBorrowProps {
 }
 const BorrowBook: FC<IBookBorrowProps> = ({ bookId, profileId, date, returnDate, quantity }) => {
   const AddOrNotify = async () => {
-    if (supabase.auth.user()) {
-      if (quantity >= 0) {
-        await supabase.from<IBookBorrow>('borrowedBooks').insert({
-          bookId,
-          profileId,
-          date,
-          returnDate,
-        });
-        await supabase.from<IBook>('books')
-          .update({ quantity })
-          .match({ id: bookId });
+      if (supabase.auth.user()) {
+        const { data } = await supabase.from<IBookBorrow>('borrowedBooks')
+        .select('id')
+        .match({ bookId, profileId });
+        if (!data) {
+          if (quantity >= 0) {
+            await supabase.from<IBookBorrow>('borrowedBooks')
+            .insert({
+              bookId,
+              profileId,
+              date,
+              returnDate,
+            });
+            await supabase.from<IBook>('books')
+              .update({ quantity })
+              .match({ id: bookId });
+          } else {
+            toast.error('We don\'t have this book in stock right now', {
+              toastId: 'borrow-book-error',
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: false,
+              progress: undefined,
+            });
+          }
       } else {
-        toast.error('We don\'t have this book in stock right now', {
+        toast.error('You already borrowed this book', {
           toastId: 'borrow-book-warning',
           position: 'top-right',
           autoClose: 5000,
@@ -34,9 +51,9 @@ const BorrowBook: FC<IBookBorrowProps> = ({ bookId, profileId, date, returnDate,
           pauseOnHover: true,
           draggable: false,
           progress: undefined,
-      });
-    }
-  } else {
+        });
+      }
+    } else {
       toast.warn('You must be logged in to borrow a book!', {
         toastId: 'borrow-book-warning',
         position: 'top-right',
