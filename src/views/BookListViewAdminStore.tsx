@@ -3,10 +3,10 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
 import StoreBook from '../components/StoreBook';
-import { errorToast } from '../utils/utils';
 
 const BookListViewAdminStore = () => {
   const [dataAPI, setDataAPI] = useState<IGoogleBooksAPIVolumes>();
+  const [error, setError] = useState<boolean>();
   const [filter, setFilter] = useState('book');
   const formikFilter = useFormik({
     initialValues: {
@@ -19,15 +19,15 @@ const BookListViewAdminStore = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setError(false);
         const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${filter}`);
         setDataAPI(res.data);
       } catch (e) {
-        errorToast('There was a problem with fetching data!', 'API-error');
+        setError(true);
       }
     };
     fetchData();
   }, [filter]);
-
   return (
     <div className="container mx-auto mt-3 shadow-inner">
       <form onSubmit={formikFilter.handleSubmit}>
@@ -54,6 +54,7 @@ const BookListViewAdminStore = () => {
             isbn={(book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/D')}
           />
         ))}
+        {error && <p className="text-red-600">There was an error while trying to fetch data!</p>}
       </div>
     </div>
   );

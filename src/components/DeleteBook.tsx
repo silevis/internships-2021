@@ -1,6 +1,7 @@
+import { PostgrestError } from '@supabase/supabase-js';
 import React, { FC, useState } from 'react';
+import { toast } from 'react-toastify';
 import { supabase } from '../utils/supabase';
-import { errorToast } from '../utils/utils';
 
 interface IBookProps {
   id?: string;
@@ -9,12 +10,13 @@ interface IBookProps {
 }
 const DeleteBook: FC<IBookProps> = ({ id, onBookDelete, title }) => {
   const [modal, setModal] = useState(false);
+  const [err, setErr] = useState<PostgrestError | null>();
   const Delete = async () => {
     const { error } = await supabase
       .from('books')
       .delete()
       .match({ id });
-    if (error) errorToast('There was a problem with deleting this book!', 'delete-book-error');
+      setErr(error);
     onBookDelete();
   };
   return (
@@ -42,6 +44,17 @@ const DeleteBook: FC<IBookProps> = ({ id, onBookDelete, title }) => {
             </button>
           </div>
         </div>
+      )}
+      {err && (
+        toast.error('There was a problem with deleting this book!', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          })
       )}
     </div>
   );

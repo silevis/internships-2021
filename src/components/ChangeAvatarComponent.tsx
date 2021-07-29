@@ -6,12 +6,12 @@ import supabase from '../utils/supabase';
 import { getUserAvatarURL, useUser } from './UserContext';
 import Avatar from './Avatar';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
-import { errorToast, infoToast, successToast, warningToast } from '../utils/utils';
 
 const EditUserComponent = () => {
-  const usr: IBasicUserInfo | null = useUser();
-  const [fileInput] = useState(useRef<HTMLInputElement>(null));
-  const [avatarLink, setAvatarLink] = useState('');
+    const usr: IBasicUserInfo | null = useUser();
+    const [fileInput] = useState(useRef<HTMLInputElement>(null));
+    const [status, setStatus] = useState<string>();
+    const [avatarLink, setAvatarLink] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -25,20 +25,21 @@ const EditUserComponent = () => {
 
   const upload = async (f: File | undefined) => {
     if (f === undefined) {
-      errorToast('File not found', 'file-not-found');
+      setStatus('File not found.');
       return;
     }
     if (!usr || !usr.id) {
-      errorToast('Unknown user', 'unknown-user');
+      setStatus('Unknown user');
       return;
     }
     // type checking
     const type = await FileType.fromBuffer(await f.arrayBuffer());
     if (type?.mime !== 'image/jpeg' && type?.mime !== 'image/png') {
-      errorToast('Invalid file type. Supported types: jpg, png.', 'invalid-file-type');
+      setStatus('Invalid file type. Supported types: jpg, png.');
       return;
     }
-    infoToast('Uploading...', 'uploading');
+
+    setStatus('Uploading...');
     await supabase
       .storage.from('images')
       .remove([`avatars/${usr?.id}`]);
@@ -50,14 +51,14 @@ const EditUserComponent = () => {
         if (data.error !== null) {
           throw data.error;
         }
-        successToast('Upload successful', 'upload-success');
+        setStatus('Upload successful.');
         const avatarUrl = await getUserAvatarURL();
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript#other_types
         if (avatarUrl?.signedURL) {
           setAvatarLink(avatarUrl?.signedURL);
         }
       }).catch((error) => {
-        errorToast(`Upload error (${JSON.stringify(error)})`, 'upload-error');
+        setStatus(`Upload error (${JSON.stringify(error)})`);
       });
   };
 
@@ -65,7 +66,7 @@ const EditUserComponent = () => {
     if (fileInput?.current?.files && fileInput?.current?.files.length > 0) {
       upload(fileInput?.current?.files[0]);
     } else {
-      warningToast('File not selected', 'file-not-selected');
+      setStatus('File not selected.');
     }
   };
 
@@ -78,6 +79,7 @@ const EditUserComponent = () => {
           <input type="file" accept="image/jpeg, image/png" ref={fileInput} required />
           <div className="mt-4">
             <button type="button" onClick={onUploadButtonClickHandler}>Upload file</button>
+            <div className="text-xs h-4"><label className="text-gray-500">Status: </label>{status}</div>
           </div>
         </div>
       </div>
