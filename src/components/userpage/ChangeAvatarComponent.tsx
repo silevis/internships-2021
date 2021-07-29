@@ -86,6 +86,7 @@ const EditUserComponent = () => {
           <div className="mt-4">
             <button type="button" className="btn-page" onClick={onDeleteButtonClick}>Delete current avatar</button>
           </div>
+          {status}
         </div>
       </div>
     </div>
