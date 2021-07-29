@@ -48,12 +48,6 @@ const HomepageLandingPage = () => {
             </div>
           </div>
         </div>
-        {/* <div
-          className="flex flex-wrap h-full object-contain"
-          style={{
-            backgroundImage: `url(${process.env.PUBLIC_URL}/homepage-landscape-bg.png`,
-        }}
-        /> */}
       </section>
     );
 };
