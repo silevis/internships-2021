@@ -27,7 +27,7 @@ const BorrowedBooksView = () => {
 
   useEffect(() => {
     getBorrowedBooks();
-  }, []);
+  });
 
   return (
     <div className="container mx-auto mt-3 py-1 shadow-inner">
