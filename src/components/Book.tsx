@@ -15,7 +15,7 @@ interface IBookProps {
 const Book: FC<IBookProps> = ({
   book,
 }) => {
-  const loggedUser = useUser();
+  const user = useUser();
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
       <div className="m-3 flex justify-center">
@@ -44,7 +44,7 @@ const Book: FC<IBookProps> = ({
       <div>
         <BorrowBook
           bookId={book.id}
-          profileId={loggedUser?.id}
+          profileId={user?.id}
           date={new Date()}
           returnDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
           quantity={book.quantity ? book.quantity - 1 : -1}
