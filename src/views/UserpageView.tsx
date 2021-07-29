@@ -39,9 +39,6 @@ const UserpageView = () => {
                 <div className="w-min first-l">{usr?.lastName}</div>
               </div>
             </div>
-            <div className="text-gray-400 w-1/4 flex justify-end p-4">
-              ROLA USERA
-            </div>
           </div>
           <div className="p-2">
             <EditUserComponent />
