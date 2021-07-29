@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
 import { supabase } from '../utils/supabase';
 import { getUserAvatarURL, useUserUpdate } from './UserContext';
 import ModalDialog from './ModalDialog';
@@ -40,6 +41,21 @@ const LoginButton = () => {
       }
     },
   });
+
+  useEffect(() => {
+    if (status) {
+      toast.error(status, {
+        toastId: 'login-error',
+        position: 'top-right',
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
+    }
+  }, [status]);
 
   const checkEmail = async () => {
     const { data } = await supabase
@@ -98,7 +114,6 @@ const LoginButton = () => {
                 </div>
               </div>
             </div>
-            <p className="text-red-500 mb-4">{status}</p>
           </form>
         </ModalDialog>
       )}
