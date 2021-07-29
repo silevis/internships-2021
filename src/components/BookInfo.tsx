@@ -1,6 +1,6 @@
 import { useState, FC, useEffect } from 'react';
 import { IBook } from '../interfaces/IBook.interface';
-import getBookImage from '../utils/utils';
+import { getBookImage } from '../utils/utils';
 import BorrowBook from './BorrowBook';
 import Rating from './Rating';
 import SpecificationTable from './SpecificationTable';

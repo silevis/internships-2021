@@ -23,6 +23,12 @@ const EditUserComponent: FC<IEditUserComponentProps> = ({ onAvatarChange }) => {
     })();
   }, []);
 
+  const onAvatarChangeWrapper = async () => {
+    onAvatarChange();
+    const avatarUrl = await getUserAvatarURL();
+    setAvatarLink(avatarUrl);
+  };
+
   const upload = async (f: File | undefined) => {
     if (f === undefined) {
       errorToast('File not found', 'file-not-found');
@@ -52,10 +58,8 @@ const EditUserComponent: FC<IEditUserComponentProps> = ({ onAvatarChange }) => {
           throw data.error;
         }
         successToast('Upload successful', 'upload-success');
-        const avatarUrl = await getUserAvatarURL();
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript#other_types
-        setAvatarLink(avatarUrl);
-        onAvatarChange();
+        setAvatarLink(await getUserAvatarURL());
+        onAvatarChangeWrapper();
       }).catch((error) => {
         errorToast(`Upload error (${JSON.stringify(error)})`, 'upload-error');
       });
@@ -72,7 +76,14 @@ const EditUserComponent: FC<IEditUserComponentProps> = ({ onAvatarChange }) => {
   const onDeleteButtonClick = () => {
     supabase
       .storage.from('images')
-      .remove([`avatars/${usr?.id}`]);
+      .remove([`avatars/${usr?.id}`])
+      .then(() => {
+        onAvatarChangeWrapper();
+        infoToast('Avatar has been successfully deleted', 'delete-avatar-success');
+      })
+      .catch((err) => {
+        errorToast(`An error occured when removing avatar: ${JSON.stringify(err)}`, 'delete-avatar-error');
+      });
   };
 
   return (
