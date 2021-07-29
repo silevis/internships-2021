@@ -1,0 +1,16 @@
+.landing-page-container {
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 10% 50% 10% 10%;
+}
+
+.landing-page-nav-item-container {
+    @apply flex flex-col justify-center items-center w-1/4 uppercase;
+}
+
+.landing-page-grid-item-container {
+    @apply flex flex-col justify-center items-center;
+}
+
+.landing-page-our-features {
+    @apply text-xl font-medium;
+}

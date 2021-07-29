@@ -47,7 +47,7 @@ const BookListView = () => {
   return (
     <div className="content-container">
       <Sidebar />
-      <div className="mt-16 w-full">
+      <div className="mt-3 w-full shadow-inner">
         {data && data?.map((book) => (
           <Book key={book.id} book={book} />
         ))}
