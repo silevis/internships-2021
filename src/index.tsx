@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
     <ToastContainer
-      position="top-right"
+      position="bottom-right"
       transition={Slide}
       autoClose={6000}
       hideProgressBar={false}
