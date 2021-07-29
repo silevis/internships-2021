@@ -1,9 +1,9 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import ModalDialog from './ModalDialog';
 import { supabase } from '../utils/supabase';
-
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
+import { errorToast } from '../utils/utils';
 
 interface IRegisterModalProps {
   onVisibilityChange: () => void,
@@ -57,6 +57,12 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
       setStatus('A user with this email address has already been registered');
     }
   };
+
+  useEffect(() => {
+    if (status) {
+      errorToast(status, 'register-error');
+    }
+  }, [status]);
 
   return (
     <ModalDialog
@@ -119,7 +125,6 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
             />
           </div>
         </div>
-        <p className="text-red-500 mb-4">{status}</p>
       </form>
     </ModalDialog>
   );
