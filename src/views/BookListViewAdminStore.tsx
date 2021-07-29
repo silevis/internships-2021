@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
 import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
 import StoreBook from '../components/StoreBook';
 
@@ -12,10 +13,10 @@ const BookListViewAdminStore = () => {
     initialValues: {
       filter: '',
     },
-  onSubmit: (values) => {
-    setFilter(values.filter);
-  },
-});
+    onSubmit: (values) => {
+      setFilter(values.filter);
+    },
+  });
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,6 +29,22 @@ const BookListViewAdminStore = () => {
     };
     fetchData();
   }, [filter]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error('There was a problem with fetching data!', {
+        toastId: 'API-error',
+        position: 'top-right',
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
+    }
+  }, [error]);
+
   return (
     <div>
       <form onSubmit={formikFilter.handleSubmit}>
@@ -53,8 +70,7 @@ const BookListViewAdminStore = () => {
             categories={book.volumeInfo.categories ?? ['N/D']}
             isbn={(book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/D')}
           />
-          ))}
-        {error && <p className="text-red-600">There was an error while trying to fetch data!</p>}
+        ))}
       </div>
     </div>
   );
