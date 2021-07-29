@@ -28,7 +28,7 @@ const BorrowedBooksView = () => {
   }, [loggedUser]);
 
   return (
-    <div>
+    <div className="container mx-auto mt-3 py-1 shadow-inner">
       {info && info?.map((book) => (
         <BorrowedBook key={book.book.id} book={book.book} returnDate={book.returnDate} date={book.date} />
       ))}

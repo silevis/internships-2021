@@ -46,7 +46,7 @@ const BookListViewAdminStore = () => {
   }, [error]);
 
   return (
-    <div>
+    <div className="container mx-auto mt-3 shadow-inner">
       <form onSubmit={formikFilter.handleSubmit}>
         <input
           id="filter"
@@ -54,7 +54,7 @@ const BookListViewAdminStore = () => {
           type="text"
           placeholder="Search"
           onChange={formikFilter.handleChange}
-          className="input-pri"
+          className="input-pri mt-3 mx-6"
         />
       </form>
       <div>
