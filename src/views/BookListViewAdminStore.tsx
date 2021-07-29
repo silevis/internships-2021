@@ -7,7 +7,6 @@ import { errorToast } from '../utils/utils';
 
 const BookListViewAdminStore = () => {
   const [dataAPI, setDataAPI] = useState<IGoogleBooksAPIVolumes>();
-  const [error, setError] = useState<boolean>();
   const [filter, setFilter] = useState('book');
   const formikFilter = useFormik({
     initialValues: {
@@ -20,21 +19,14 @@ const BookListViewAdminStore = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setError(false);
         const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${filter}`);
         setDataAPI(res.data);
       } catch (e) {
-        setError(true);
+        errorToast('There was a problem with fetching data!', 'API-error');
       }
     };
     fetchData();
   }, [filter]);
-
-  useEffect(() => {
-    if (error) {
-      errorToast('There was a problem with fetching data!', 'API-error');
-    }
-  }, [error]);
 
   return (
     <div className="container mx-auto mt-3 shadow-inner">
