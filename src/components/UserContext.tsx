@@ -5,7 +5,16 @@ import supabase from '../utils/supabase';
 
 const UserContext = React.createContext<IBasicUserInfo | null>(null);
 const UserUpdateContext = React.createContext<((newUser: IBasicUserInfo) => void) | null>(null);
-const loggedUser = supabase.auth.user() ?? null;
+let loggedUser = supabase.auth.user() ?? null;
+
+export const getUserInfo = async (uId: string) => {
+  const { data } = await supabase
+    .from<IProfile>('profiles')
+    .select(`
+      *
+    `).eq('id', uId ?? '');
+  return data;
+};
 
 export const isAdmin = (user: IProfile | null) => {
   return user?.isAdmin;
@@ -34,13 +43,21 @@ export const getUserAvatarURL = async () => {
 };
 
 export const UserProvider: FC = ({ children }) => {
-  const [user, setUser] = useState<IBasicUserInfo>({
-    id: loggedUser?.id ?? '',
-    firstName: '',
-    lastName: '',
-    email: loggedUser?.email ?? '',
-    avatarUrl: '',
-  });
+  const [user, setUser] = useState<IBasicUserInfo | null>(null);
+  loggedUser = supabase.auth.user();
+
+  if (!user) {
+    getUserInfo(loggedUser?.id ?? '').then((response) => {
+      const testUser = response?.[0];
+      setUser({
+        id: testUser?.id ?? '',
+        firstName: testUser?.firstName ?? '',
+        lastName: testUser?.lastName ?? '',
+        email: testUser?.email ?? '',
+        avatarUrl: '',
+      });
+    });
+  }
 
   const toggleUser = (newUser: IBasicUserInfo) => {
     setUser(newUser);
