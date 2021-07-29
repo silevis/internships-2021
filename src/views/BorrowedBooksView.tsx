@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import supabase from '../utils/supabase';
 import { useUser } from '../components/UserContext';
 import { IBook } from '../interfaces/IBook.interface';
@@ -15,7 +15,7 @@ const BorrowedBooksView = () => {
   const [info, setInfo] = useState<null | IBookProfileId[]>([]);
   const user = useUser();
 
-  const getBorrowedBooks = async () => {
+  const getBorrowedBooks = useCallback(async () => {
     const { data } = await supabase
       .from<IBookProfileId>('borrowedBooks')
       .select('id, date, returnDate, book:books(*)')
@@ -23,11 +23,11 @@ const BorrowedBooksView = () => {
     if (data !== null) {
       setInfo(data);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     getBorrowedBooks();
-  });
+  }, [getBorrowedBooks]);
 
   return (
     <div className="container mx-auto mt-3 py-1 shadow-inner">
