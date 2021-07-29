@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
 import { getUserAvatarURL, useUserUpdate, getUserInfo } from './UserContext';
 import ModalDialog from './ModalDialog';
-import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
+import { IProfile } from '../interfaces/IProfile.interface';
 
 const LoginButton = () => {
   const setUser = useUserUpdate();
@@ -28,15 +28,16 @@ const LoginButton = () => {
       if (user && setUser) {
         // TODO: get the default avatar directly from the supabase avatar store
         getUserInfo(user?.id).then(async (response) => {
-          const testUser = response?.[0];
-
+          const userInfo = response?.[0];
           setUser({
-            id: testUser?.id ?? '',
-            firstName: testUser?.firstName ?? 'unknown',
-            lastName: testUser?.lastName ?? 'unknown',
-            email: testUser?.email ?? 'no email',
-            avatarUrl: (await getUserAvatarURL())?.signedURL
-              ?? `${process.env.PUBLIC_URL}/image-not-found.png`,
+            avtar: (await getUserAvatarURL())?.signedURL
+            ?? `${process.env.PUBLIC_URL}/image-not-found.png`,
+            createdAt: userInfo?.createdAt ?? '',
+            email: userInfo?.email ?? '',
+            firstName: userInfo?.firstName ?? '',
+            id: userInfo?.id ?? '',
+            isAdmin: userInfo?.isAdmin ?? false,
+            lastName: userInfo?.lastName ?? '',
           });
         });
         setLoginModalShown(!loginModalShown);
@@ -47,7 +48,7 @@ const LoginButton = () => {
 
   const checkEmail = async () => {
     const { data } = await supabase
-      .from<IBasicUserInfo>('profiles')
+      .from<IProfile>('profiles')
       .select('email')
       .eq('email', formikLogin.values.emailAdress);
     if (!data?.length) {
