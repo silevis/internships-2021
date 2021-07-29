@@ -15,14 +15,12 @@ import {
   UserRoute,
 } from './PrivateRoute';
 import { useUser } from './UserContext';
-import useUserInfo from '../hooks/useUserInfo';
 import NoMatch404 from './NoMatch404';
 import UserpageView from '../views/UserpageView';
 import HomepageView from '../views/HomepageView';
 
 function AppRouter() {
-  const loggedUser = useUser();
-  const userInfo = useUserInfo(loggedUser?.id ?? null);
+  const user = useUser();
 
   return (
     <div className="h-full">
@@ -39,16 +37,16 @@ function AppRouter() {
               <Navigation />
             </header>
             <Switch>
-              <UserRoute path="/user" exact user={userInfo}>
+              <UserRoute path="/user" exact user={user}>
                 <UserpageView />
               </UserRoute>
-              <UserRoute path="/user/books" exact user={userInfo}>
+              <UserRoute path="/user/books" exact user={user}>
                 <BorrowedBooksView />
               </UserRoute>
-              <AdminRoute path="/admin/owned" exact user={userInfo}>
+              <AdminRoute path="/admin/owned" exact user={user}>
                 <BookListViewAdminOwned />
               </AdminRoute>
-              <AdminRoute path="/admin/store" exact user={userInfo}>
+              <AdminRoute path="/admin/store" exact user={user}>
                 <BookListViewAdminStore />
               </AdminRoute>
               <Route path="/books-list" exact>

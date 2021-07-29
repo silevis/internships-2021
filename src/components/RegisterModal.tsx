@@ -2,8 +2,7 @@ import React, { FC, useState } from 'react';
 import { useFormik } from 'formik';
 import ModalDialog from './ModalDialog';
 import { supabase } from '../utils/supabase';
-
-import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
+import { IProfile } from '../interfaces/IProfile.interface';
 
 interface IRegisterModalProps {
   onVisibilityChange: () => void,
@@ -30,7 +29,7 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
         return;
       }
       if (user) {
-        await supabase.from<IBasicUserInfo>('profiles').insert({
+        await supabase.from<IProfile>('profiles').insert({
           id: user.id,
           firstName: values.firstName,
           lastName: values.lastName,
@@ -49,7 +48,7 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
 
   const checkEmail = async () => {
     const { data } = await supabase
-      .from<IBasicUserInfo>('profiles')
+      .from<IProfile>('profiles')
       .select('email')
       .eq('email', formikRegister.values.emailAdress);
 

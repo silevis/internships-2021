@@ -5,34 +5,32 @@ import UserDropdown from './UserDropdown';
 import RegisterButton from './RegisterButton';
 import { isLoggedIn, useUser, useUserUpdate, isAdmin } from './UserContext';
 import supabase from '../utils/supabase';
-import useUserInfo from '../hooks/useUserInfo';
 
 const Navigation = () => {
-  const loggedUser = useUser();
-
+  const user = useUser();
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
   const history = useHistory();
-  const userInfo = useUserInfo(loggedUser?.id ?? null);
   const [items, setItems] = useState([{ link: '/user', label: 'User Profile' }, { link: '/user/books', label: 'User Books' }]);
 
   useEffect(() => {
-    if (isAdmin(userInfo)) {
+    if (isAdmin(user)) {
       setItems([{ link: '/user', label: 'User Profile' }, { link: '/user/books', label: 'User Books' },
       { link: '/admin/owned', label: 'Owned' }, { link: '/admin/store', label: 'Store' }]);
     } else {
       setItems([{ link: '/user', label: 'User Profile' }, { link: '/user/books', label: 'User Books' }]);
     }
-  }, [userInfo]);
+  }, [user]);
 
   const logout = () => {
     if (setUser) {
       setUser({
-        id: '',
-        firstName: '',
-        lastName: '',
+        createdAt: '',
         email: '',
-        avatarUrl: '',
+        firstName: '',
+        id: '',
+        isAdmin: false,
+        lastName: '',
       });
     }
     supabase.auth.signOut();
@@ -86,7 +84,7 @@ const Navigation = () => {
 
             {isLoggedIn() ? (
               <UserDropdown
-                title={loggedUser?.email}
+                title={user?.email}
                 items={items}
                 logOut={logout}
               />

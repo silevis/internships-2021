@@ -1,5 +1,4 @@
 export interface IProfile {
-  avtar: string;
   createdAt: string;
   email: string;
   firstName: string;

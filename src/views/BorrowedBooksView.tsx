@@ -12,20 +12,20 @@ interface IBookProfileId {
 }
 const BorrowedBooksView = () => {
   const [info, setInfo] = useState<null | IBookProfileId[]>([]);
-  const loggedUser = useUser();
+  const user = useUser();
 
   useEffect(() => {
     const getBorrowedBooks = async () => {
       const { data } = await supabase
         .from<IBookProfileId>('borrowedBooks')
         .select('date, returnDate, book:books(*)')
-        .eq('profileId', loggedUser?.id);
+        .eq('profileId', user?.id);
       if (data !== null) {
         setInfo(data);
       }
     };
     getBorrowedBooks();
-  }, [loggedUser]);
+  }, [user]);
 
   return (
     <div className="container mx-auto mt-3 py-1 shadow-inner">

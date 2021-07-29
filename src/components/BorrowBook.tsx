@@ -17,9 +17,9 @@ const BorrowBook: FC<IBookBorrowProps> = ({ bookId, profileId, date, returnDate,
         const { data } = await supabase.from<IBookBorrow>('borrowedBooks')
         .select('id')
         .match({ bookId, profileId });
-        if (!data) {
-          if (quantity >= 0) {
-            await supabase.from<IBookBorrow>('borrowedBooks')
+      if (!data?.length) {
+        if (quantity >= 0) {
+          await supabase.from<IBookBorrow>('borrowedBooks')
             .insert({
               bookId,
               profileId,

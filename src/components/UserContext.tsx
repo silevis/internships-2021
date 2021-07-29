@@ -1,19 +1,21 @@
 import React, { FC, useContext, useState } from 'react';
-import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
 import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
 import { DefaultUserAvatarUrl } from '../utils/utils';
 
-const UserContext = React.createContext<IBasicUserInfo | null>(null);
-const UserUpdateContext = React.createContext<((newUser: IBasicUserInfo) => void) | null>(null);
-let loggedUser = supabase.auth.user() ?? null;
+const UserContext = React.createContext<IProfile | null>(null);
+const UserUpdateContext = React.createContext<((newUser: IProfile) => void) | null>(null);
+let loggedInUser = supabase.auth.user() ?? null;
 
-export const getUserInfo = async (uId: string) => {
+export const getUserInfo = async (uid: string) => {
+  if (!uid) {
+    return null;
+  }
   const { data } = await supabase
     .from<IProfile>('profiles')
     .select(`
       *
-    `).eq('id', uId ?? '');
+    `).eq('id', uid ?? '');
   return data;
 };
 
@@ -34,34 +36,35 @@ export const useUserUpdate = () => {
 };
 
 export const getUserAvatarURL = async () => {
-  if (!loggedUser) {
+  if (!loggedInUser) {
     return DefaultUserAvatarUrl;
   }
   const { signedURL } = await supabase
     .storage
     .from('images/avatars')
-    .createSignedUrl(`${loggedUser?.id}`, 43200);
+    .createSignedUrl(`${loggedInUser?.id}`, 43200);
   return signedURL ?? DefaultUserAvatarUrl;
 };
 
 export const UserProvider: FC = ({ children }) => {
-  const [user, setUser] = useState<IBasicUserInfo | null>(null);
-  loggedUser = supabase.auth.user();
+  const [user, setUser] = useState<IProfile | null>(null);
+  loggedInUser = supabase.auth.user();
 
   if (!user) {
-    getUserInfo(loggedUser?.id ?? '').then((response) => {
-      const testUser = response?.[0];
+    getUserInfo(loggedInUser?.id ?? '').then((response) => {
+      const userInfo = response?.[0];
       setUser({
-        id: testUser?.id ?? '',
-        firstName: testUser?.firstName ?? '',
-        lastName: testUser?.lastName ?? '',
-        email: testUser?.email ?? '',
-        avatarUrl: '',
+        createdAt: userInfo?.createdAt ?? '',
+        email: userInfo?.email ?? '',
+        firstName: userInfo?.firstName ?? '',
+        id: userInfo?.id ?? '',
+        isAdmin: userInfo?.isAdmin ?? false,
+        lastName: userInfo?.lastName ?? '',
       });
     });
   }
 
-  const toggleUser = (newUser: IBasicUserInfo) => {
+  const toggleUser = (newUser: IProfile) => {
     setUser(newUser);
   };
 
