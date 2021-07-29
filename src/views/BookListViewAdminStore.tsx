@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
 import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
 import StoreBook from '../components/StoreBook';
+import { errorToast } from '../utils/utils';
 
 const BookListViewAdminStore = () => {
   const [dataAPI, setDataAPI] = useState<IGoogleBooksAPIVolumes>();
@@ -32,16 +32,7 @@ const BookListViewAdminStore = () => {
 
   useEffect(() => {
     if (error) {
-      toast.error('There was a problem with fetching data!', {
-        toastId: 'API-error',
-        position: 'top-right',
-        autoClose: 6000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-      });
+      errorToast('There was a problem with fetching data!', 'API-error');
     }
   }, [error]);
 

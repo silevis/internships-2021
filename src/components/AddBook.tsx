@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 import { PostgrestError } from '@supabase/supabase-js';
-import { toast } from 'react-toastify';
 import { supabase } from '../utils/supabase';
 import { IBook } from '../interfaces/IBook.interface';
 import { useUser } from './UserContext';
+import { errorToast } from '../utils/utils';
 
 interface IBookProps {
   id?: string;
@@ -51,15 +51,7 @@ const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn,
         + Add books to the stock
       </button>
       {err && (
-        toast.error(err.message, {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
+        errorToast(err.message, 'adding-book-error')
       )}
     </div>
   );

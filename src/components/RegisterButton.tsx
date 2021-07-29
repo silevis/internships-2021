@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
 import ModalDialog from './ModalDialog';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
+import { errorToast } from '../utils/utils';
 
 const RegisterButton = () => {
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -45,6 +46,12 @@ const RegisterButton = () => {
       setStatus('A user with this email address has already been registered');
     }
   };
+
+  useEffect(() => {
+    if (status) {
+      errorToast(status, 'register-error');
+    }
+  }, [status]);
 
   return (
     <div>
@@ -117,7 +124,6 @@ const RegisterButton = () => {
                   />
                 </div>
               </div>
-              <p className="text-red-500 mb-4">{status}</p>
             </form>
           </ModalDialog>
         )}

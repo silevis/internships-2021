@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import LoginButton from './LoginButton';
 import UserDropdown from './UserDropdown';
 import RegisterButton from './RegisterButton';
 import { isLoggedIn, useUser, useUserUpdate, isAdmin } from './UserContext';
 import supabase from '../utils/supabase';
 import useUserInfo from '../hooks/useUserInfo';
+import { successToast } from '../utils/utils';
 
 const Navigation = () => {
   const loggedUser = useUser();
@@ -36,16 +36,7 @@ const Navigation = () => {
         avatarUrl: '',
       });
     }
-    toast.success('Logged out successfully', {
-      toastId: 'logout-success',
-      position: 'top-right',
-      autoClose: 6000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      progress: undefined,
-    });
+    successToast('Logged out successfully', 'logout-success');
     supabase.auth.signOut();
     history.push('/');
   };

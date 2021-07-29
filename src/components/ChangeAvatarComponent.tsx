@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 // To jest nasze rozwiazanie - Cezary Bula 2021
 // eslint-disable-next-line
 import FileType from 'file-type';
-import { toast } from 'react-toastify';
 import supabase from '../utils/supabase';
 import { getUserAvatarURL, useUser } from './UserContext';
 import Avatar from './Avatar';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
+import { errorToast, infoToast, successToast, warningToast } from '../utils/utils';
 
 const EditUserComponent = () => {
   const usr: IBasicUserInfo | null = useUser();
@@ -25,57 +25,20 @@ const EditUserComponent = () => {
 
   const upload = async (f: File | undefined) => {
     if (f === undefined) {
-      toast.error('File not found', {
-        toastId: 'file-not-found',
-        position: 'top-right',
-        autoClose: 6000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-      });
+      errorToast('File not found', 'file-not-found');
       return;
     }
     if (!usr || !usr.id) {
-      toast.error('Unknown user', {
-        toastId: 'unknown-user',
-        position: 'top-right',
-        autoClose: 6000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-      });
+      errorToast('Unknown user', 'unknown-user');
       return;
     }
     // type checking
     const type = await FileType.fromBuffer(await f.arrayBuffer());
     if (type?.mime !== 'image/jpeg' && type?.mime !== 'image/png') {
-      toast.error('Invalid file type. Supported types: jpg, png.', {
-        toastId: 'invalid-file-type',
-        position: 'top-right',
-        autoClose: 6000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-      });
+      errorToast('Invalid file type. Supported types: jpg, png.', 'invalid-file-type');
       return;
     }
-
-    toast.info('Uploading...', {
-      toastId: 'uploading',
-      position: 'top-right',
-      autoClose: 6000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      progress: undefined,
-    });
+    infoToast('Uploading...', 'uploading');
     await supabase
       .storage.from('images')
       .remove([`avatars/${usr?.id}`]);
@@ -87,32 +50,14 @@ const EditUserComponent = () => {
         if (data.error !== null) {
           throw data.error;
         }
-        toast.success('Upload successful', {
-          toastId: 'upload-success',
-          position: 'top-right',
-          autoClose: 6000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-        });
+        successToast('Upload successful', 'upload-success');
         const avatarUrl = await getUserAvatarURL();
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript#other_types
         if (avatarUrl?.signedURL) {
           setAvatarLink(avatarUrl?.signedURL);
         }
       }).catch((error) => {
-        toast.error(`Upload error (${JSON.stringify(error)})`, {
-          toastId: 'upload-error',
-          position: 'top-right',
-          autoClose: 6000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-        });
+        errorToast(`Upload error (${JSON.stringify(error)})`, 'upload-error');
       });
   };
 
@@ -120,16 +65,7 @@ const EditUserComponent = () => {
     if (fileInput?.current?.files && fileInput?.current?.files.length > 0) {
       upload(fileInput?.current?.files[0]);
     } else {
-      toast.warn('File not selected', {
-        toastId: 'file-not-selected',
-        position: 'top-right',
-        autoClose: 6000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-      });
+      warningToast('File not selected', 'file-not-selected');
     }
   };
 

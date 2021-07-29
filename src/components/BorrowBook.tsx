@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { toast } from 'react-toastify';
 import supabase from '../utils/supabase';
 import { IBookBorrow } from '../interfaces/IBookBorrow.interface';
 import { IBook } from '../interfaces/IBook.interface';
+import { errorToast, successToast, warningToast } from '../utils/utils';
 
 interface IBookBorrowProps {
   bookId: string;
@@ -24,39 +24,12 @@ const BorrowBook: FC<IBookBorrowProps> = ({ bookId, profileId, date, returnDate,
         await supabase.from<IBook>('books')
           .update({ quantity })
           .match({ id: bookId });
-        toast.success('Book borrowed successfully!', {
-          toastId: 'borrow-book-success',
-          position: 'top-right',
-          autoClose: 6000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-        });
+        successToast('Book borrowed successfully!', 'borrow-book-success');
       } else {
-        toast.error('We don\'t have this book in stock right now', {
-          toastId: 'borrow-book-warning',
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-        });
+        errorToast('We don\'t have this book in stock right now', 'borrow-book-warning');
       }
     } else {
-      toast.warn('You must be logged in to borrow a book!', {
-        toastId: 'borrow-book-warning',
-        position: 'top-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-      });
+      warningToast('You must be logged in to borrow a book!', 'borrow-book-warning');
     }
   };
   return (

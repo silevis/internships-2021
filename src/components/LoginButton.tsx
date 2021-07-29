@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
 import { supabase } from '../utils/supabase';
 import { getUserAvatarURL, useUserUpdate } from './UserContext';
 import ModalDialog from './ModalDialog';
 import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
+import { errorToast } from '../utils/utils';
 
 const LoginButton = () => {
   const setUser = useUserUpdate();
@@ -44,16 +44,7 @@ const LoginButton = () => {
 
   useEffect(() => {
     if (status) {
-      toast.error(status, {
-        toastId: 'login-error',
-        position: 'top-right',
-        autoClose: 6000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-      });
+      errorToast(status, 'login-error');
     }
   }, [status]);
 
