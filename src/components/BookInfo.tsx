@@ -47,7 +47,7 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
   }, []);
 
   const [enlarged, setEnlarged] = useState(false);
-  const loggedUser = useUser();
+  const user = useUser();
 
   return (
     <div className="w-11/12 m-auto mt-8">
@@ -77,7 +77,7 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
             <Rating bare={false} votesAmount={book.votesAmount} avgRating={book.avgRating} />
             <BorrowBook
               bookId={book.id}
-              profileId={loggedUser?.id}
+              profileId={user?.id}
               date={new Date()}
               returnDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
               quantity={book.quantity ? book.quantity - 1 : -1}

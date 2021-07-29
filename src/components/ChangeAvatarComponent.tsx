@@ -5,11 +5,11 @@ import FileType from 'file-type';
 import supabase from '../utils/supabase';
 import { getUserAvatarURL, useUser } from './UserContext';
 import Avatar from './Avatar';
-import { IBasicUserInfo } from '../interfaces/IBasicUserInfo.interface';
+import { IProfile } from '../interfaces/IProfile.interface';
 import { errorToast, infoToast, successToast, warningToast } from '../utils/utils';
 
 const EditUserComponent = () => {
-  const usr: IBasicUserInfo | null = useUser();
+  const usr: IProfile | null = useUser();
   const [fileInput] = useState(useRef<HTMLInputElement>(null));
   const [avatarLink, setAvatarLink] = useState('');
 
