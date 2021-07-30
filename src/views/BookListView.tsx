@@ -4,7 +4,7 @@ import { IBook } from '../interfaces/IBook.interface';
 import Book from '../components/Book';
 import supabase from '../utils/supabase';
 import { filterByAuthor, filterByTitle } from '../components/Filtering';
-import Sidebar, { getFilterType } from '../components/Sidebar';
+import Sidebar, { getFilterType, getCat } from '../components/Sidebar';
 import Pagination from '../components/Pagination';
 import NoResults from '../components/NoResults';
 
