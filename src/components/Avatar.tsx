@@ -10,7 +10,7 @@ const Avatar: FC<IAvatarProps> = ({ url, className }) => {
       <img
         className={`w-32 h-32 rounded-full object-cover ${className}`}
         src={url}
-        alt="Zdjęcie użytkownika"
+        alt="User avatar"
       />
     );
 };

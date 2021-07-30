@@ -5,6 +5,8 @@ import supabase from '../utils/supabase';
 import Book from '../components/Book';
 import Sidebar, { getFilterType } from '../components/Sidebar';
 import Pagination from '../components/Pagination';
+import NoResults from '../components/NoResults';
+
 
 interface IParams {
   q: string;
@@ -62,15 +64,15 @@ const BookListView = () => {
     getNumberOfBooks();
   }, [params, startIndex, endIndex]);
   return (
-    <div className="content-container">
-      <Sidebar />
-      <div className="mt-3 w-full shadow-inner">
-        {data && data?.map((book) => (
-          <Book key={book.id} book={book} />
-        ))}
-        {data && data?.length < 1 && (
-          <div className="flex justify-center italic">No results</div>
-        )}
+    <div className="bg-gray-50">
+      <div className="content-container">
+        <Sidebar />
+        <div className="mt-3 w-full shadow-inner">
+          {data && data?.map((book) => (
+            <Book key={book.id} book={book} />
+          ))}
+          {data && data?.length < 1 && <NoResults />}
+        </div>
       </div>
       <Pagination
         count={numberOfBooks || 10}

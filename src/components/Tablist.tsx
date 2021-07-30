@@ -19,12 +19,13 @@ const Tablist: FC<ITablistProps> = ({ tabs, defaultTab }) => {
       <button
         key={i}
         type="button"
-        className="flex-initial p-4 cursor-pointer auto-rows-min border-r border-gray-300"
+        // todo: if we will create more tabs, remove the 'cursor default' style
+        className={`${tabs.length > 1 ? 'cursor-pointer' : 'cursor-default'} flex-initial p-4 auto-rows-min border-r border-gray-300`}
         onClick={() => tabChangeHandler(i)}
       >
         {tabs[i].title}
       </button>
-);
+    );
   }
 
   // todo: set the height of the tablist to the maximum height of a tab content

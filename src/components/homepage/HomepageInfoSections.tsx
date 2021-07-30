@@ -1,5 +1,4 @@
 import React from 'react';
-import SliderDemo from '../../views/SliderDemo';
 import HomepageSection from './HomepageSection';
 
 const HomepageInfoSections = () => {
@@ -8,7 +7,7 @@ const HomepageInfoSections = () => {
     };
 
     return (
-      <div className="flex flex-col gap-24 w-full" style={bgStyle}>
+      <div className="lg:container flex flex-col gap-24 w-full" style={bgStyle}>
         <HomepageSection
           title="Who are we?"
           content="We are a group of enthusiasts who love books! Have you ever had a problem, when you couldn&apos;t get your hands
@@ -31,17 +30,6 @@ const HomepageInfoSections = () => {
           a month, when the time passes you will need to return it."
           rightAligned={false}
         />
-        <div className="flex flex-row justify-evenly bg-gray-100 text-2xl shadow p-4">
-          <div className="flex-col items-center">
-            Our top books:
-            <SliderDemo type="top" />
-          </div>
-          <div id="spacer" />
-          <div className="flex-col items-center">
-            Some of our books:
-            <SliderDemo type="random" />
-          </div>
-        </div>
       </div>
     );
 };
