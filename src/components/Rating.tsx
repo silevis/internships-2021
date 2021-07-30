@@ -33,7 +33,7 @@ const Rating: FC<RatingProps> = ({ bare, votesAmount, avgRating }) => {
         {icons}
       </div>
       {!bare && <span className="text-gray-600 text-xs mt-1">Number of votes: {votesAmount}</span>}
-      {!bare && <span className="text-gray-600 text-xs mt-1 mb-2">Average grade: {Math.round(avgRating * 100) / 100}</span>}
+      {!bare && <span className="text-gray-600 text-xs mt-1 mb-2">Average rating: {Math.round(avgRating * 100) / 100}</span>}
     </div>
   );
 };
