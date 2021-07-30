@@ -4,7 +4,9 @@ import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import Book from '../components/Book';
 import Sidebar, { getFilterType } from '../components/Sidebar';
+import Pagination from '../components/Pagination';
 import NoResults from '../components/NoResults';
+
 
 interface IParams {
   q: string;
@@ -22,8 +24,21 @@ const checkAuthors = (authors: string[], query: string) => {
 
 const BookListView = () => {
   const [data, setData] = useState<IBook[] | null>([]);
+  const [numberOfBooks, setNumberOfBooks] = useState<number | null>(10);
   const params: IParams = useParams();
+  const [startIndex, setStartIndex] = useState<number>(0);
+  const [endIndex, setEndIndex] = useState<number>(10);
+  const onPageChange = (selectedPage: { selected: number }) => {
+    setStartIndex(selectedPage.selected * 10);
+    setEndIndex((selectedPage.selected * 10) + 10);
+  };
   useEffect(() => {
+    const getNumberOfBooks = async () => {
+      const { count } = await supabase
+      .from<IBook>('books')
+      .select('id', { count: 'exact' });
+      setNumberOfBooks(count);
+    };
     if (params?.q?.length < 1) params.q = '*';
     const getAllBooks = async () => {
       const q = `%${params.q ? params.q : '*'}%`;
@@ -32,19 +47,22 @@ const BookListView = () => {
           .from<IBook>('books')
           .select('*')
           .ilike('title', q)
-          .gte('avgRating', params.rating);
+          .gte('avgRating', params.rating)
+          .range(startIndex, endIndex);
         setData(books);
       } else if (getFilterType() === 'authors') {
         const { data: books } = await supabase
           .from<IBook>('books')
           .select('*')
-          .gte('avgRating', params.rating);
+          .gte('avgRating', params.rating)
+          .range(startIndex, endIndex);
         const x = books?.filter((book) => checkAuthors(book?.authors, params.q)) ?? [];
         setData(x);
       }
     };
     getAllBooks();
-  }, [params]);
+    getNumberOfBooks();
+  }, [params, startIndex, endIndex]);
   return (
     <div className="bg-gray-50">
       <div className="content-container">
@@ -56,6 +74,12 @@ const BookListView = () => {
           {data && data?.length < 1 && <NoResults />}
         </div>
       </div>
+      <Pagination
+        count={numberOfBooks || 10}
+        pageSize={10}
+        currentPage={startIndex / 10}
+        onPageChange={onPageChange}
+      />
     </div>
   );
 };
