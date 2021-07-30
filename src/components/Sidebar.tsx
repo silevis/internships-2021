@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { IBook } from '../interfaces/IBook.interface';
+
+let filterType: keyof IBook = 'title';
+export const getFilterType = () => {
+  return filterType;
+};
+
+const setFilterType = (type: keyof IBook) => {
+  filterType = type;
+};
 
 const Sidebar = () => {
   const [value, setValue] = useState(0);
@@ -34,7 +44,7 @@ const Sidebar = () => {
             Filters
           </div>
           <nav className="mx-4 my-3">
-            <div className="border-b border-gray-200 mx-1 pb-5 mt-5">
+            <div className="flex-col border-b border-gray-200 mx-1 pb-5 mt-5">
               <label htmlFor="searchbar" className="mr-2">Search</label>
               <input
                 type="text"
@@ -43,6 +53,11 @@ const Sidebar = () => {
                 className="input-alt"
                 onChange={handleQueryChange}
               />
+              <div className="flex justify-evenly mt-2">
+                <input type="radio" name="type" id="title" value="title" onChange={() => setFilterType('title')} defaultChecked />
+                Filter by title
+                <input type="radio" name="type" id="author" value="author" onChange={() => setFilterType('authors')} />Filter by author
+              </div>
             </div>
             <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
               <ul className="list-disc">

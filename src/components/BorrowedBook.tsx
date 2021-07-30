@@ -4,17 +4,22 @@ import { getBookImage } from '../utils/utils';
 import Rating from './Rating';
 import './Book.css';
 import 'react-toastify/dist/ReactToastify.css';
+import ReturnBook from './ReturnBook';
 
 interface IBookProps {
+  id: string;
   book: IBook;
   returnDate: Date;
   date: Date;
+  onBookReturn: () => void;
 }
 
 const BorrowedBook: FC<IBookProps> = ({
   book,
   returnDate,
   date,
+  id,
+  onBookReturn,
 }) => {
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
@@ -37,6 +42,13 @@ const BorrowedBook: FC<IBookProps> = ({
             <Rating votesAmount={book.votesAmount} avgRating={book.avgRating} bare />
           </div>
         </div>
+        <ReturnBook
+          id={id}
+          bookId={book.id}
+          quantity={book.quantity + 1}
+          onBookReturn={onBookReturn}
+          title={book.title}
+        />
         <p className="text-right">Date: {date}</p>
         <p className="text-right">Return date: {returnDate}</p>
       </div>

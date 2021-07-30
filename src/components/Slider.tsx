@@ -23,7 +23,6 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
     if (timer) {
       clearTimeout(timer);
     }
-
     const newTimer = setTimeout(() => {
       const changeIndex = () => {
         if (index === entryCount - 1) return setIndex(0);
