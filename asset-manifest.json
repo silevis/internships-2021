@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/internships-2021/static/css/main.90e84e91.chunk.css",
-    "main.js": "/internships-2021/static/js/main.8142c2d9.chunk.js",
-    "main.js.map": "/internships-2021/static/js/main.8142c2d9.chunk.js.map",
-    "runtime-main.js": "/internships-2021/static/js/runtime-main.595b9399.js",
-    "runtime-main.js.map": "/internships-2021/static/js/runtime-main.595b9399.js.map",
+    "main.css": "/internships-2021/static/css/main.1174a4e1.chunk.css",
+    "main.js": "/internships-2021/static/js/main.6d6e729b.chunk.js",
+    "main.js.map": "/internships-2021/static/js/main.6d6e729b.chunk.js.map",
+    "runtime-main.js": "/internships-2021/static/js/runtime-main.191f7c1e.js",
+    "runtime-main.js.map": "/internships-2021/static/js/runtime-main.191f7c1e.js.map",
     "static/css/2.f6c7d7d9.chunk.css": "/internships-2021/static/css/2.f6c7d7d9.chunk.css",
-    "static/js/2.1c5731cf.chunk.js": "/internships-2021/static/js/2.1c5731cf.chunk.js",
-    "static/js/2.1c5731cf.chunk.js.map": "/internships-2021/static/js/2.1c5731cf.chunk.js.map",
-    "static/js/3.87bb2dc5.chunk.js": "/internships-2021/static/js/3.87bb2dc5.chunk.js",
-    "static/js/3.87bb2dc5.chunk.js.map": "/internships-2021/static/js/3.87bb2dc5.chunk.js.map",
+    "static/js/2.865d86be.chunk.js": "/internships-2021/static/js/2.865d86be.chunk.js",
+    "static/js/2.865d86be.chunk.js.map": "/internships-2021/static/js/2.865d86be.chunk.js.map",
+    "static/js/3.a54c4184.chunk.js": "/internships-2021/static/js/3.a54c4184.chunk.js",
+    "static/js/3.a54c4184.chunk.js.map": "/internships-2021/static/js/3.a54c4184.chunk.js.map",
     "index.html": "/internships-2021/index.html",
     "static/css/2.f6c7d7d9.chunk.css.map": "/internships-2021/static/css/2.f6c7d7d9.chunk.css.map",
-    "static/css/main.90e84e91.chunk.css.map": "/internships-2021/static/css/main.90e84e91.chunk.css.map",
-    "static/js/2.1c5731cf.chunk.js.LICENSE.txt": "/internships-2021/static/js/2.1c5731cf.chunk.js.LICENSE.txt"
+    "static/css/main.1174a4e1.chunk.css.map": "/internships-2021/static/css/main.1174a4e1.chunk.css.map",
+    "static/js/2.865d86be.chunk.js.LICENSE.txt": "/internships-2021/static/js/2.865d86be.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.595b9399.js",
+    "static/js/runtime-main.191f7c1e.js",
     "static/css/2.f6c7d7d9.chunk.css",
-    "static/js/2.1c5731cf.chunk.js",
-    "static/css/main.90e84e91.chunk.css",
-    "static/js/main.8142c2d9.chunk.js"
+    "static/js/2.865d86be.chunk.js",
+    "static/css/main.1174a4e1.chunk.css",
+    "static/js/main.6d6e729b.chunk.js"
   ]
 }
