@@ -17,7 +17,7 @@ const Book: FC<IBookProps> = ({
 }) => {
   const user = useUser();
   return (
-    <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
+    <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-white shadow p-3 m-3 mx-6">
       <div className="m-3 flex justify-center">
         <Link to={`/book/${book.id}`}>
           <img

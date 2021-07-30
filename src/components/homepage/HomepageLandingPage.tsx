@@ -4,10 +4,10 @@ import './HomepageLandingPage.css';
 
 const HomepageLandingPage = () => {
     return (
-      <section className="w-screen h-screen bg-gray-900">
+      <section className="landing-container2 h-screen w-screen bg-gray-900">
         <div className="h-full w-full grid grid-rows-1 grid-cols-1 justify-center">
           <div className="row-start-1 col-start-1 flex justify-center">
-            <img className="object-contain" src={`${process.env.PUBLIC_URL}/homepage-landscape-bg.png`} alt="ok" />
+            <img className="object-cover w-full h-full" src={`${process.env.PUBLIC_URL}/homepage-landscape-bg.jpg`} alt="ok" />
           </div>
           <div className="h-full w-full row-start-1 col-start-1 bg-opacity-60 bg-black">
             <div className="grid h-full w-full landing-page-container text-white">
