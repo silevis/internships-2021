@@ -45,7 +45,7 @@ const StoreBook: FC<IBookProps> = ({
     getBookData();
   }, [id]);
 
-  const negativeQuantityHandler = (value: string) => {
+  const incorrectQuantityHandler = (value: string) => {
     if (value.includes('-')) {
       return warningToast('You have tried to add negative value!', 'negative-value-m-warning');
     }
@@ -77,7 +77,7 @@ const StoreBook: FC<IBookProps> = ({
           id="quantity"
           name="quantity"
           type="number"
-          onChange={(event) => negativeQuantityHandler(event.target.value)}
+          onChange={(event) => incorrectQuantityHandler(event.target.value)}
         />
         {data?.length !== 0 && (
           <div>
