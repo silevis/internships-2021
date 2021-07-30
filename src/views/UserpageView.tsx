@@ -33,7 +33,7 @@ const UserpageView = () => {
               </div>
             </div>
             <div className="text-gray-400 w-1/4 flex justify-end p-4">
-              {isAdmin(useUser()) ? 'Administrator' : 'Użytkownik'}
+              {isAdmin(useUser()) ? 'Administrator' : 'User'}
             </div>
           </div>
           <div className="p-2">

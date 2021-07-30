@@ -3,6 +3,7 @@ import supabase from '../utils/supabase';
 import { useUser } from '../components/UserContext';
 import { IBook } from '../interfaces/IBook.interface';
 import BorrowedBook from '../components/BorrowedBook';
+import NoResults from '../components/NoResults';
 
 interface IBookProfileId {
   book: IBook;
@@ -41,9 +42,7 @@ const BorrowedBooksView = () => {
           onBookReturn={getBorrowedBooks}
         />
       ))}
-      {info && info?.length < 1 && (
-        <div> NIE MA </div>
-      )}
+      {info && info?.length < 1 && <NoResults />}
     </div>
   );
 };

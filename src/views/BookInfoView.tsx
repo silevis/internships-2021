@@ -26,7 +26,7 @@ const BookInfoPage = () => {
     getAllBooks();
   }, [params]);
   return book ? (
-    <div className="content-container">
+    <div className="content-container bg-white">
       <Sidebar />
       <div className="mt-16 w-full">
         <BookInfo book={book} />
