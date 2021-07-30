@@ -1,4 +1,4 @@
-import { IBook } from '../interfaces/IBook.interface';
+ import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 
 const isMatching = (items: string[], query: string, fullMatch = false) => {
@@ -11,25 +11,27 @@ const isMatching = (items: string[], query: string, fullMatch = false) => {
   return matched;
 };
 
-export const filterByTitle = async (query:string, rating:string, cat:string) => {
+export const filterByTitle = async (query:string, rating:string, cat:string, startIndex: number, endIndex: number) => {
   let q = `%${query}%`;
   if (query.length < 1) q = '*';
   const { data: books } = await supabase
     .from<IBook>('books')
     .select('*')
     .ilike('title', q)
-    .gte('avgRating', rating);
+    .gte('avgRating', rating)
+    .range(startIndex, endIndex);
   const y = books?.filter((book) => isMatching(book?.categories, cat, true)) ?? [];
   return y;
 };
 
-export const filterByAuthor = async (query:string, rating:string, cat:string) => {
+export const filterByAuthor = async (query:string, rating:string, cat:string, startIndex: number, endIndex: number) => {
   let q = query;
   if (query.length < 1) q = '*';
   const { data: books } = await supabase
           .from<IBook>('books')
           .select('*')
-          .gte('avgRating', rating);
+          .gte('avgRating', rating)
+          .range(startIndex, endIndex);
   const x = books?.filter((book) => isMatching(book.authors, q)) ?? [];
   const y = x?.filter((book) => isMatching(book?.categories, cat, true)) ?? [];
   return y;

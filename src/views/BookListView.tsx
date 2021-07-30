@@ -33,9 +33,9 @@ const BookListView = () => {
     if (params?.q?.length < 1) params.q = '*';
     const getAllBooks = async () => {
       if (getFilterType() === 'title') {
-        setData(await filterByTitle(params.q, params.rating, getCat()));
+        setData(await filterByTitle(params.q, params.rating, getCat(), startIndex, endIndex));
       } else if (getFilterType() === 'authors') {
-        setData(await filterByAuthor(params.q, params.rating, getCat()));
+        setData(await filterByAuthor(params.q, params.rating, getCat(), startIndex, endIndex));
       }
     };
     getAllBooks();
