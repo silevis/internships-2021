@@ -13,7 +13,7 @@ const BookListViewAdminStore = () => {
       filter: '',
     },
     onSubmit: (values) => {
-      setFilter(values.filter);
+      setFilter(!values.filter ? 'book' : values.filter);
     },
   });
   useEffect(() => {
