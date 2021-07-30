@@ -13,25 +13,25 @@ const Pagination: FC<PaginationProps> = ({ count, currentPage, pageSize, onPageC
 
   return (
     <ReactPaginate
-      // previousLabel={(
-      //   <>
-      //     <span aria-hidden="true">‹</span>
-      //     <span className="sr-only">Previous</span>
-      //   </>
-      // )}
-      // nextLabel={(
-      //   <>
-      //     <span aria-hidden="true">›</span>
-      //     <span className="sr-only">Next</span>
-      //   </>
-      // )}
+      previousLabel={(
+        <>
+          <span aria-hidden="true">⮜</span>
+          <span className="sr-only">⮜</span>
+        </>
+        )}
+      nextLabel={(
+        <>
+          <span aria-hidden="true">⮞</span>
+          <span className="sr-only">⮞</span>
+        </>
+       )}
       // TODO make css classes for pagination
       previousClassName="page-item"
-      previousLinkClassName="page-link"
+      previousLinkClassName="page-link btn-page bg-white"
       nextClassName="page-item"
-      nextLinkClassName="page-link"
-      containerClassName="pagination"
-      pageClassName="page-item"
+      nextLinkClassName="page-link btn-page bg-white"
+      containerClassName="flex flex-row"
+      pageClassName="page-item mx-1 btn-page bg-white"
       pageLinkClassName="page-link"
       breakClassName="page-item"
       breakLinkClassName="page-link"

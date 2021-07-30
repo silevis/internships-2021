@@ -66,7 +66,6 @@ const StoreBook: FC<IBookProps> = ({
         className="transform m-3 w-32"
       />
       <div className="ml-2 w-full flex flex-col">
-        {/* <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">{title}</span> */}
         {title}
         <span className="text-gray-400">{authors?.join(' ')}</span>
         <span className="text-gray-400">{categories}</span>
@@ -81,7 +80,7 @@ const StoreBook: FC<IBookProps> = ({
         />
         {data?.length !== 0 && (
           <div>
-            <div className="bg-red-500 text-white">In a stock: {quantity} </div>
+            <div className="bg-gray-400 text-white">In a stock: {quantity} </div>
             <UpdateBook
               id={id}
               quantity={Number(quantityInput) + (quantity ?? 0)}

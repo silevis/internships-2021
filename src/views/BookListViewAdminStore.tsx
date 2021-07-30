@@ -34,6 +34,14 @@ const BookListViewAdminStore = () => {
   };
   return (
     <div className="container mx-auto mt-3 shadow-inner">
+      <div className="fixed left-0 flex flex-row w-full justify-center z-40 mt-2">
+        <Pagination
+          count={dataAPI?.totalItems ? dataAPI.totalItems : 10}
+          pageSize={10}
+          currentPage={index / 10}
+          onPageChange={onPageChange}
+        />
+      </div>
       <form onSubmit={formikFilter.handleSubmit}>
         <input
           id="filter"
@@ -59,12 +67,6 @@ const BookListViewAdminStore = () => {
           />
         ))}
       </div>
-      <Pagination
-        count={dataAPI?.totalItems ? dataAPI.totalItems : 10}
-        pageSize={10}
-        currentPage={index / 10}
-        onPageChange={onPageChange}
-      />
     </div>
   );
 };
