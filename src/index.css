@@ -31,23 +31,23 @@
     transition: transform 0.5s, filter 0.25s;
   }
   .btn-nav {
-    @apply px-4 py-2 md:py-0 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 border-t md:border-t-0 md:border-l border-gray-400 cursor-pointer;
+    @apply px-4 py-2 md:py-0 text-gray-200 transition duration-300 ease-in-out hover:text-indigo-500 border-t md:border-t-0 md:border-l border-gray-400 cursor-pointer;
   }
 
   .btn-nav-end {
-    @apply px-4 py-2 md:py-0 text-gray-200 transition duration-500 ease-in-out hover:text-indigo-500 border-t border-b md:border-t-0 md:border-b-0 md:border-l md:border-r border-gray-400 cursor-pointer;
+    @apply px-4 py-2 md:py-0 text-gray-200 transition duration-300 ease-in-out hover:text-indigo-500 border-t border-b md:border-t-0 md:border-b-0 md:border-l md:border-r border-gray-400 cursor-pointer;
   }
 
   .btn-page {
-    @apply border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1 transition duration-500 ease-in-out hover:bg-gray-400 hover:text-white;
+    @apply border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1 transition duration-300 ease-in-out hover:bg-gray-400 hover:text-white;
   }
 
   .btn-exit {
-    @apply border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2 transition duration-500 hover:bg-red-400 hover:text-white;
+    @apply border-red-400 text-red-400 rounded-sm border-2 max-h-full px-2 transition duration-300 hover:bg-red-400 hover:text-white;
   }
 
   .btn-sidebar {
-    @apply fixed inset-y-0 left-0 px-1 mt-2 max-h-full bg-white text-gray-500 border border-gray-500 transition duration-500 ease-in-out hover:bg-gray-700 hover:text-white hover:border-gray-700 lg:hidden;
+    @apply fixed inset-y-0 left-0 px-1 mt-2 max-h-full bg-white text-gray-500 border border-gray-500 transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white hover:border-gray-700 lg:hidden;
   }
 
   .btn-subtle {
@@ -61,6 +61,12 @@
   .input-pri {
     @apply p-1 placeholder-gray-400 text-gray-600 border outline-none transition duration-300 ease-in-out focus:ring-2 ring-gray-200;
     max-width: 11rem;
+  }
+
+  .input-alt {
+    @apply p-1 placeholder-gray-400 text-gray-600 border outline-none
+    transition duration-300 ease-in-out focus:ring-2 ring-gray-200;
+    max-width: 12rem;
   }
 
   .main-underline {

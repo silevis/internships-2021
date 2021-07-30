@@ -3,6 +3,10 @@
     grid-template-rows: 10% 50% 10% 10%;
 }
 
+.landing-container2 {
+    max-height: 1000px;
+}
+
 .landing-page-nav-item-container {
     @apply flex flex-col justify-center items-center w-1/4 uppercase;
 }

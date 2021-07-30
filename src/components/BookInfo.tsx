@@ -13,33 +13,33 @@ interface IBookInfoProps {
 
 const BookInfo: FC<IBookInfoProps> = ({ book }) => {
   const [specsTabList] = useState([{
-    key: 'Rok wydania',
+    key: 'Published date',
     value: book.publishedDate,
   }, {
     key: 'ID',
     value: book.id,
   }, {
-    key: 'Tytul',
+    key: 'Title',
     value: book.title,
   }, {
     key: 'ISBN',
     value: book.isbn,
   }, {
-    key: 'Autorzy',
+    key: 'Authors',
     value: book.authors?.join(', '),
   }, {
-    key: 'Kategorie',
+    key: 'Categories',
     value: book.categories?.join(', '),
   }]);
 
   const [tabList] = useState([{
-    title: 'Szczegóły',
+    title: 'Details',
     content:
-    (
-      <div className="flex justify-center p-1 md:p-4">
-        <SpecificationTable items={specsTabList} />
-      </div>
-    ),
+      (
+        <div className="flex justify-center p-1 md:p-4">
+          <SpecificationTable items={specsTabList} />
+        </div>
+      ),
   }]);
 
   useEffect(() => {

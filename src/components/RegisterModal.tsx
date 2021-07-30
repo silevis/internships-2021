@@ -24,6 +24,10 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
         email: values.emailAdress,
         password: values.password,
       });
+      if (!values.firstName || !values.lastName) {
+        errorToast('First Name and Last name are required fields', 'register-supabase-error');
+        return;
+      }
       if (error) {
         errorToast(error.message, 'register-supabase-error');
         return;
@@ -53,7 +57,7 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
       .select('email')
       .eq('email', formikRegister.values.emailAdress);
 
-    if (!data?.length) {
+    if (data?.length) {
       warningToast('A user with this email address has already been registered', 'register-email-used');
     }
   };

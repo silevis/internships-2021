@@ -39,7 +39,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className="flex justify-between bg-white">
+    <div className="flex justify-between ">
       <div className={`bg-white inline z-40 ${toggle ? 'hidden' : 'fixed lg:static'}`}>
         <button
           type="button"
@@ -64,8 +64,7 @@ const Sidebar = () => {
                 type="text"
                 placeholder="Enter book name"
                 id="searchbar"
-                className="p-1 placeholder-gray-400 text-gray-600 border outline-none
-                  transition duration-300 ease-in-out focus:ring-2 ring-gray-200"
+                className="input-alt"
                 onChange={handleQueryChange}
               />
               <div className="flex justify-evenly mt-2">

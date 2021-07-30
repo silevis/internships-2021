@@ -20,7 +20,7 @@ const SpecificationTable: FC<ISpecsTableProps> = ({ items }) => {
 );
   }
   return (
-    <div>
+    <div className="w-full">
       {tableRows}
     </div>
   );

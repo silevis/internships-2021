@@ -4,29 +4,34 @@ import { useFormik } from 'formik';
 import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
 import StoreBook from '../components/StoreBook';
 import { errorToast } from '../utils/utils';
+import Pagination from '../components/Pagination';
 
 const BookListViewAdminStore = () => {
   const [dataAPI, setDataAPI] = useState<IGoogleBooksAPIVolumes>();
   const [filter, setFilter] = useState('book');
+  const [index, setIndex] = useState(0);
   const formikFilter = useFormik({
     initialValues: {
       filter: '',
     },
     onSubmit: (values) => {
-      setFilter(values.filter);
+      setFilter(!values.filter ? 'book' : values.filter);
     },
   });
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${filter}`);
+        const res = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${filter}&startIndex=${index}`);
         setDataAPI(res.data);
       } catch (e) {
         errorToast('There was a problem with fetching data!', 'API-error');
       }
     };
     fetchData();
-  }, [filter]);
+  }, [filter, index]);
+  const onPageChange = (selectedPage: { selected: number }) => {
+    setIndex(selectedPage.selected * 10);
+  };
   return (
     <div className="container mx-auto mt-3 shadow-inner">
       <form onSubmit={formikFilter.handleSubmit}>
@@ -54,6 +59,12 @@ const BookListViewAdminStore = () => {
           />
         ))}
       </div>
+      <Pagination
+        count={dataAPI?.totalItems ? dataAPI.totalItems : 10}
+        pageSize={10}
+        currentPage={index / 10}
+        onPageChange={onPageChange}
+      />
     </div>
   );
 };
