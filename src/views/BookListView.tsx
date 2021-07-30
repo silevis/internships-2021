@@ -45,15 +45,17 @@ const BookListView = () => {
     getAllBooks();
   }, [params]);
   return (
-    <div className="content-container">
-      <Sidebar />
-      <div className="mt-3 w-full shadow-inner">
-        {data && data?.map((book) => (
-          <Book key={book.id} book={book} />
-        ))}
-        {data && data?.length < 1 && (
-          <div className="flex justify-center italic">No results</div>
-        )}
+    <div className="bg-gray-50">
+      <div className="content-container">
+        <Sidebar />
+        <div className="mt-3 w-full shadow-inner">
+          {data && data?.map((book) => (
+            <Book key={book.id} book={book} />
+          ))}
+          {data && data?.length < 1 && (
+            <div className="flex justify-center italic">No results</div>
+          )}
+        </div>
       </div>
     </div>
   );
