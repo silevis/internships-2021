@@ -44,7 +44,7 @@ const ReturnBook: FC<IBookReturnProps> = ({ id, bookId, quantity, onBookReturn, 
               className="btn-page"
               onClick={Return}
             >
-              - Retrun Book
+              - Return Book
             </button>
           </div>
         </div>
