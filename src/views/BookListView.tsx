@@ -7,7 +7,6 @@ import Sidebar, { getFilterType } from '../components/Sidebar';
 import Pagination from '../components/Pagination';
 import NoResults from '../components/NoResults';
 
-
 interface IParams {
   q: string;
   rating: string;
