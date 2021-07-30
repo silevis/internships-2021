@@ -88,7 +88,7 @@ const EditUserComponent: FC<IEditUserComponentProps> = ({ onAvatarChange }) => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl">Zmiana zdjęcia użytkownika</h1>
+      <h1 className="text-2xl">Change avatar</h1>
       <div className="flex flex-wrap">
         <Avatar url={avatarLink} className="" />
         <div className="flex flex-col flex-wrap place-content-end m-2">

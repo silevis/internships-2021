@@ -4,6 +4,7 @@ import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import Book from '../components/Book';
 import Sidebar, { getFilterType } from '../components/Sidebar';
+import NoResults from '../components/NoResults';
 
 interface IParams {
   q: string;
@@ -52,9 +53,7 @@ const BookListView = () => {
           {data && data?.map((book) => (
             <Book key={book.id} book={book} />
           ))}
-          {data && data?.length < 1 && (
-            <div className="flex justify-center italic">No results</div>
-          )}
+          {data && data?.length < 1 && <NoResults />}
         </div>
       </div>
     </div>
