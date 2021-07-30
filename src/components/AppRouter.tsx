@@ -23,7 +23,7 @@ function AppRouter() {
   const user = useUser();
 
   return (
-    <div className="h-screen bg-gray-50">
+    <div className="h-full bg-gray-50">
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/internships-2021" exact>

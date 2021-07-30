@@ -66,6 +66,14 @@ const BookListView = () => {
     <div className="bg-gray-50">
       <div className="content-container">
         <Sidebar />
+        <div className="fixed left-0 flex flex-row w-full justify-center z-40 mt-2">
+          <Pagination
+            count={numberOfBooks || 10}
+            pageSize={10}
+            currentPage={startIndex / 10}
+            onPageChange={onPageChange}
+          />
+        </div>
         <div className="mt-3 w-full shadow-inner">
           {data && data?.map((book) => (
             <Book key={book.id} book={book} />
@@ -73,12 +81,6 @@ const BookListView = () => {
           {data && data?.length < 1 && <NoResults />}
         </div>
       </div>
-      <Pagination
-        count={numberOfBooks || 10}
-        pageSize={10}
-        currentPage={startIndex / 10}
-        onPageChange={onPageChange}
-      />
     </div>
   );
 };
