@@ -10,7 +10,7 @@ const UserpageView = () => {
   const [avatarUrl, setAvatarLink] = useState('');
   const styleBg = {
     // eslint-disable-next-line max-len
-    backgroundImage: 'url(https://image.freepik.com/free-photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg)',
+    backgroundImage: `url(${process.env.PUBLIC_URL}/userpage-background.jpg)`,
   };
 
   useEffect(() => {
@@ -19,12 +19,12 @@ const UserpageView = () => {
 
   return (
     <div className="container mx-auto mt-3">
-      <div className="h-32 bg-gray-500 bg-no-repeat bg-center" style={styleBg} />
+      <div className="h-32 bg-gray-500 bg-no-repeat bg-center object-contain" style={styleBg} />
       <div className="mx-16 bg-white relative -top-4 z-30">
         <div className="shadow-md">
           <div className="flex flex-col md:flex-row">
             <div className="w-1/4 relative h-24">
-              <Avatar url={avatarUrl} className="relative -top-16 left-2" />
+              <Avatar url={avatarUrl} className="relative -top-16 left-2 shadow" />
             </div>
             <div className="mt-2 w-1/2">
               <div className="flex uppercase">
