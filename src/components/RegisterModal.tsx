@@ -57,7 +57,7 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
       .select('email')
       .eq('email', formikRegister.values.emailAdress);
 
-    if (!data?.length) {
+    if (data?.length) {
       warningToast('A user with this email address has already been registered', 'register-email-used');
     }
   };
