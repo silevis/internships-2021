@@ -35,11 +35,11 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
   const [tabList] = useState([{
     title: 'Szczegóły',
     content:
-      (
-        <div className="flex justify-center p-1 md:p-4">
-          <SpecificationTable items={specsTabList} />
-        </div>
-      ),
+    (
+      <div className="flex justify-center p-1 md:p-4">
+        <SpecificationTable items={specsTabList} />
+      </div>
+    ),
   }]);
 
   useEffect(() => {

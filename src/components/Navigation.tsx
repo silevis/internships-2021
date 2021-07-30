@@ -34,9 +34,9 @@ const Navigation = () => {
         lastName: '',
       });
     }
-    successToast('Logged out successfully', 'logout-success');
     supabase.auth.signOut();
     history.push('/');
+    successToast('Logged out successfully', 'logout-success');
   };
 
   return (

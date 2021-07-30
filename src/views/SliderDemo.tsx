@@ -10,6 +10,7 @@ interface SliderDemoProps {
 
 const SliderDemo: FC<SliderDemoProps> = ({ type }) => {
   const [data, setData] = useState<IBook[] | null>([]);
+
   useEffect(() => {
     const getAllBooks = async () => {
       if (type === 'top') {
@@ -34,7 +35,7 @@ const SliderDemo: FC<SliderDemoProps> = ({ type }) => {
       }
     };
     getAllBooks();
-  });
+  }, [type]);
 
   if (data) {
     return (

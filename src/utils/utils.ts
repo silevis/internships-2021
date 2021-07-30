@@ -3,6 +3,8 @@ import { IBook } from '../interfaces/IBook.interface';
 
 const DefaultImageUrl = `${process.env.PUBLIC_URL}/image-not-found.png`;
 
+export const DefaultUserAvatarUrl = `${process.env.PUBLIC_URL}/defaultAvatar.png`;
+
 export const getBookImage = (book: IBook): string => {
   if (book?.imageLinks?.length <= book.featuredImageId) return DefaultImageUrl;
   return book.imageLinks[book.featuredImageId];
@@ -11,7 +13,6 @@ export const getBookImage = (book: IBook): string => {
 export const warningToast = (msg: string, id: string) => {
   toast.warn(msg, {
     toastId: id,
-    position: 'top-right',
     autoClose: 6000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -24,7 +25,6 @@ export const warningToast = (msg: string, id: string) => {
 export const infoToast = (msg: string, id: string) => {
   toast.info(msg, {
     toastId: id,
-    position: 'top-right',
     autoClose: 6000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -37,7 +37,6 @@ export const infoToast = (msg: string, id: string) => {
 export const successToast = (msg: string, id: string) => {
   toast.success(msg, {
     toastId: id,
-    position: 'top-right',
     autoClose: 6000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -50,7 +49,6 @@ export const successToast = (msg: string, id: string) => {
 export const errorToast = (msg: string, id: string) => {
   toast.error(msg, {
     toastId: id,
-    position: 'top-right',
     autoClose: 6000,
     hideProgressBar: false,
     closeOnClick: true,

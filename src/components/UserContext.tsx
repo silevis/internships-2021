@@ -1,6 +1,7 @@
 import React, { FC, useContext, useState } from 'react';
 import { IProfile } from '../interfaces/IProfile.interface';
 import supabase from '../utils/supabase';
+import { DefaultUserAvatarUrl } from '../utils/utils';
 
 const UserContext = React.createContext<IProfile | null>(null);
 const UserUpdateContext = React.createContext<((newUser: IProfile) => void) | null>(null);
@@ -36,12 +37,13 @@ export const useUserUpdate = () => {
 
 export const getUserAvatarURL = async () => {
   if (!loggedInUser) {
-    return undefined;
+    return DefaultUserAvatarUrl;
   }
-  return supabase
+  const { signedURL } = await supabase
     .storage
     .from('images/avatars')
     .createSignedUrl(`${loggedInUser?.id}`, 43200);
+  return signedURL ?? DefaultUserAvatarUrl;
 };
 
 export const UserProvider: FC = ({ children }) => {

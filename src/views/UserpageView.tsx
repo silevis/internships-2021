@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
-import EditUserComponent from '../components/EditUserComponent';
-import { getUserAvatarURL, useUser } from '../components/UserContext';
+import EditUserComponent from '../components/userpage/EditUserComponent';
+import { getUserAvatarURL, isAdmin, useUser } from '../components/UserContext';
 import { IProfile } from '../interfaces/IProfile.interface';
 import './UserpageView.css';
-// guard urla
 
 const UserpageView = () => {
   const usr: IProfile | null = useUser();
@@ -15,13 +14,7 @@ const UserpageView = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      await getUserAvatarURL().then((data) => {
-        if (data?.signedURL) {
-          setAvatarLink(data?.signedURL);
-        }
-      });
-    })();
+    (async () => setAvatarLink(await getUserAvatarURL()))();
   }, []);
 
   return (
@@ -39,9 +32,14 @@ const UserpageView = () => {
                 <div className="w-min first-l">{usr?.lastName}</div>
               </div>
             </div>
+            <div className="text-gray-400 w-1/4 flex justify-end p-4">
+              {isAdmin(useUser()) ? 'Administrator' : 'Użytkownik'}
+            </div>
           </div>
           <div className="p-2">
-            <EditUserComponent />
+            <EditUserComponent
+              onAvatarChange={async () => setAvatarLink(await getUserAvatarURL())}
+            />
           </div>
         </div>
       </div>

@@ -27,7 +27,6 @@ const BookListViewAdminStore = () => {
     };
     fetchData();
   }, [filter]);
-
   return (
     <div className="container mx-auto mt-3 shadow-inner">
       <form onSubmit={formikFilter.handleSubmit}>

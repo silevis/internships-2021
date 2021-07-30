@@ -50,6 +50,14 @@
     @apply fixed inset-y-0 left-0 px-1 mt-2 max-h-full bg-white text-gray-500 border border-gray-500 transition duration-500 ease-in-out hover:bg-gray-700 hover:text-white hover:border-gray-700 lg:hidden;
   }
 
+  .btn-subtle {
+    @apply p-2 border transition duration-100;
+    border-color: #B7E2FF;
+  }
+  .btn-subtle:hover {
+    background-color: #B7E2FF;
+  }
+
   .input-pri {
     @apply p-1 placeholder-gray-400 text-gray-600 border outline-none transition duration-300 ease-in-out focus:ring-2 ring-gray-200;
     max-width: 11rem;

@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
 import { useUserUpdate, getUserInfo } from './UserContext';
 import ModalDialog from './ModalDialog';
 import { IProfile } from '../interfaces/IProfile.interface';
-import { errorToast } from '../utils/utils';
+import { errorToast, successToast, warningToast } from '../utils/utils';
 
 const LoginButton = () => {
   const setUser = useUserUpdate();
   const [loginModalShown, setLoginModalShown] = useState(false);
-  const [status, setStatus] = useState<string>();
 
   const formikLogin = useFormik({
     initialValues: {
@@ -22,7 +21,7 @@ const LoginButton = () => {
         password: values.password,
       });
       if (error) {
-        setStatus(error.message);
+        errorToast(`Failed to log-in. Error: ${error.message}`, 'login-error');
         return;
       }
 
@@ -40,16 +39,10 @@ const LoginButton = () => {
           });
         });
         setLoginModalShown(!loginModalShown);
-        setStatus('');
+        successToast('Login successful', 'login-success');
       }
     },
   });
-
-  useEffect(() => {
-    if (status) {
-      errorToast(status, 'login-error');
-    }
-  }, [status]);
 
   const checkEmail = async () => {
     const { data } = await supabase
@@ -57,7 +50,7 @@ const LoginButton = () => {
       .select('email')
       .eq('email', formikLogin.values.emailAdress);
     if (!data?.length) {
-      setStatus('There\'s no user associated with this email');
+      warningToast('There\'s no user associated with this email', 'login-no-email');
     }
   };
 

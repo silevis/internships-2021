@@ -26,15 +26,15 @@ const BorrowBook: FC<IBookBorrowProps> = ({ bookId, profileId, date, returnDate,
               date,
               returnDate,
             });
-          await supabase.from<IBook>('books')
-            .update({ quantity })
-            .match({ id: bookId });
-          successToast('Book borrowed successfully!', 'borrow-book-success');
-        } else {
-          errorToast('We don\'t have this book in stock right now', 'borrow-book-error');
-        }
+            await supabase.from<IBook>('books')
+              .update({ quantity })
+              .match({ id: bookId });
+            successToast('Book borrowed successfully!', 'borrow-book-success');
+          } else {
+            errorToast('This book is not in stock right now', 'borrow-book-error');
+          }
       } else {
-        errorToast('You already borrowed this book', 'borrow-book-warning');
+        errorToast('You have already borrowed this book', 'borrow-book-warning');
       }
     } else {
       warningToast('You must be logged in to borrow a book!', 'borrow-book-warning');

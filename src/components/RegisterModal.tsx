@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { useFormik } from 'formik';
 import ModalDialog from './ModalDialog';
 import { supabase } from '../utils/supabase';
 import { IProfile } from '../interfaces/IProfile.interface';
-import { errorToast } from '../utils/utils';
+import { errorToast, successToast, warningToast } from '../utils/utils';
 
 interface IRegisterModalProps {
   onVisibilityChange: () => void,
@@ -11,7 +11,6 @@ interface IRegisterModalProps {
 }
 
 const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange }) => {
-  const [status, setStatus] = useState<string>();
   const formikRegister = useFormik({
     initialValues: {
       emailAdress: '',
@@ -26,7 +25,7 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
         password: values.password,
       });
       if (error) {
-        setStatus(error.message);
+        errorToast(error.message, 'register-supabase-error');
         return;
       }
       if (user) {
@@ -36,10 +35,11 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
           lastName: values.lastName,
           email: values.emailAdress,
         }).then((resp) => {
-          // TODO: toast showing the register status
-          setStatus(resp.statusText);
           if (resp.status === 201) {
+            successToast('Registered successfully!', 'register-success');
             onSuccess();
+          } else {
+            warningToast(resp.statusText, 'register-warning');
           }
         });
         onVisibilityChange();
@@ -54,15 +54,9 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
       .eq('email', formikRegister.values.emailAdress);
 
     if (!data?.length) {
-      setStatus('A user with this email address has already been registered');
+      warningToast('A user with this email address has already been registered', 'register-email-used');
     }
   };
-
-  useEffect(() => {
-    if (status) {
-      errorToast(status, 'register-error');
-    }
-  }, [status]);
 
   return (
     <ModalDialog
