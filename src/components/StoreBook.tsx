@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import UpdateBook from './UpdateBook';
 import supabase from '../utils/supabase';
 import AddBook from './AddBook';
+import { warningToast } from '../utils/utils';
 
 interface IBookProps {
   id?: string;
@@ -43,6 +44,20 @@ const StoreBook: FC<IBookProps> = ({
     };
     getBookData();
   }, [id]);
+
+  const negativeQuantityHandler = (value: string) => {
+    if (value.includes('-')) {
+      return warningToast('You have tried to add negative value!', 'negative-value-m-warning');
+    }
+    if (value.includes(',')) {
+      return warningToast('You have tried to add float value!', 'negative-value-dot-warning');
+    }
+    if (value.includes('.')) {
+      return warningToast('You have tried to add float value!', 'negative-value-coma-warning');
+    }
+    return setQuantityInput(value);
+  };
+
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
       <img
@@ -62,7 +77,7 @@ const StoreBook: FC<IBookProps> = ({
           id="quantity"
           name="quantity"
           type="number"
-          onChange={(event) => setQuantityInput(event.target.value)}
+          onChange={(event) => negativeQuantityHandler(event.target.value)}
         />
         {data?.length !== 0 && (
           <div>
