@@ -6,12 +6,6 @@ import StoreBook from '../components/StoreBook';
 import { errorToast } from '../utils/utils';
 import Pagination from '../components/Pagination';
 
-// interface PaginationProps {
-//   count: number;
-//   currentPage: number;
-//   pageSize: number;
-//   onPageChange: (selectedPage: { selected: number }) => void;
-// }
 const BookListViewAdminStore = () => {
   const [dataAPI, setDataAPI] = useState<IGoogleBooksAPIVolumes>();
   const [filter, setFilter] = useState('book');

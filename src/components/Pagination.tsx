@@ -13,7 +13,6 @@ const Pagination: FC<PaginationProps> = ({ count, currentPage, pageSize, onPageC
 
   return (
     <ReactPaginate
-      // TODO make css classes for pagination
       // previousLabel={(
       //   <>
       //     <span aria-hidden="true">‹</span>
@@ -26,16 +25,18 @@ const Pagination: FC<PaginationProps> = ({ count, currentPage, pageSize, onPageC
       //     <span className="sr-only">Next</span>
       //   </>
       // )}
-      // previousClassName="page-item"
-      // previousLinkClassName="page-link"
-      // nextClassName="page-item"
-      // nextLinkClassName="page-link"
-      // containerClassName="pagination"
-      // pageClassName="page-item"
-      // pageLinkClassName="page-link"
-      // breakClassName="page-item"
-      // breakLinkClassName="page-link"
-      // activeClassName="active"
+      // TODO make css classes for pagination
+      previousClassName="page-item"
+      previousLinkClassName="page-link"
+      nextClassName="page-item"
+      nextLinkClassName="page-link"
+      containerClassName="pagination"
+      pageClassName="page-item"
+      pageLinkClassName="page-link"
+      breakClassName="page-item"
+      breakLinkClassName="page-link"
+      activeClassName="active"
+      // TODO make css classes for pagination
       pageRangeDisplayed={5}
       marginPagesDisplayed={1}
       pageCount={pageCount}
