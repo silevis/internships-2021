@@ -17,7 +17,7 @@ const ReturnBook: FC<IBookReturnProps> = ({ id, bookId, quantity, onBookReturn, 
       .from('borrowedBooks')
       .delete()
       .match({ id });
-      await supabase.from<IBook>('books')
+    await supabase.from<IBook>('books')
       .update({ quantity })
       .match({ id: bookId });
     if (error) errorToast('There was a problem with returning this book!', 'return-book-error');
@@ -27,7 +27,7 @@ const ReturnBook: FC<IBookReturnProps> = ({ id, bookId, quantity, onBookReturn, 
     <div>
       <button
         type="button"
-        className="btn-page"
+        className="btn-page mt-2"
         onClick={() => setModal(true)}
       >
         - Return Book
