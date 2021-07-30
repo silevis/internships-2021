@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { IBook } from '../interfaces/IBook.interface';
+import { getCategories } from './Filtering';
 
 let filterType: keyof IBook = 'title';
-export const getFilterType = () => {
-  return filterType;
-};
+let chosenCat = '*';
 
 const setFilterType = (type: keyof IBook) => {
   filterType = type;
+};
+
+const handleCatChange = (category: string) => {
+  chosenCat = category;
+};
+export const getFilterType = () => {
+  return filterType;
+};
+export const getCat = () => {
+  return chosenCat;
 };
 
 const Sidebar = () => {
@@ -23,6 +32,11 @@ const Sidebar = () => {
   };
   const [toggle, setToggled] = useState(true);
   const history = useHistory();
+  const [categories, setCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    getCategories().then((data) => setCategories(data));
+  }, []);
 
   return (
     <div className="flex justify-between bg-white">
@@ -61,17 +75,18 @@ const Sidebar = () => {
               </div>
             </div>
             <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
-              <ul className="list-disc">
-                <li>Fiction</li>
-                <li>Literature of fact, journalism</li>
-                <li>Popular science literature</li>
-                <li>Children&apos;s literature</li>
-                <li>Comics</li>
-                <li>Poetry, drama satire</li>
-                <li>Other</li>
+              <span className="font-bold">Categories</span>
+              <ul className="list-none">
+                <li><input type="radio" name="cat" value="*" defaultChecked onClick={() => handleCatChange('*')} /> All</li>
+                {categories.map((category) => (
+                  <li key={category}><input type="radio" name="cat" value={category} onClick={() => handleCatChange(category)} />
+                    {` ${category}`}
+                  </li>
+                ))}
               </ul>
             </div>
-            <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
+            <div className="flex flex-col border-b border-gray-200 mx-1 pl-4 pb-5 mt-5 items-center">
+              <span className="font-bold"> Ratings </span>
               <input type="range" min="0" max="10" defaultValue="0" onChange={handleSlideChange} />
               <span className="ml-2" id="range">{value > 0 ? value : 'All'}</span>
             </div>
