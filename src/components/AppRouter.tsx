@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import BookListView from '../views/BookListView';
 import Navigation from './Navigation';
-import BookInfoPage from '../views/BookInfoView';
+import BookInfoView from '../views/BookInfoView';
 import BookListViewAdminOwned from '../views/BookListViewAdminOwned';
 import BookListViewAdminStore from '../views/BookListViewAdminStore';
 import BorrowedBooksView from '../views/BorrowedBooksView';
@@ -14,7 +14,7 @@ import {
   AdminRoute,
   UserRoute,
 } from './PrivateRoute';
-import { useUser } from './UserContext';
+import { useUser } from './UserProvider';
 import NoMatch404 from './NoMatch404';
 import UserpageView from '../views/UserpageView';
 import HomepageView from '../views/HomepageView';
@@ -56,7 +56,7 @@ function AppRouter() {
                 <BookListView />
               </Route>
               <Route path="/book/:id" exact>
-                <BookInfoPage />
+                <BookInfoView />
               </Route>
               <Route path="*">
                 <NoMatch404 />

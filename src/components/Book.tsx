@@ -6,8 +6,8 @@ import Rating from './Rating';
 import './Book.css';
 import 'react-toastify/dist/ReactToastify.css';
 import BorrowBook from './BorrowBook';
-import { useUser } from './UserContext';
 import supabase from '../utils/supabase';
+import { useUser } from './UserProvider';
 
 interface IBookProps {
   book: IBook;

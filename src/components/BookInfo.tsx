@@ -6,7 +6,7 @@ import BorrowBook from './BorrowBook';
 import Rating from './Rating';
 import SpecificationTable from './SpecificationTable';
 import Tablist from './Tablist';
-import { useUser } from './UserContext';
+import { useUser } from './UserProvider';
 
 interface IBookInfoProps {
   book: IBook
