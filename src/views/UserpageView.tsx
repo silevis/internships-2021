@@ -17,7 +17,7 @@ const UserpageView = () => {
   }, []);
 
   return (
-    <div className="container mx-auto mt-3">
+    <div className="container mx-auto">
       <div className="h-32 bg-gray-500 bg-no-repeat bg-center object-contain" style={styleBg} />
       <div className="mx-16 bg-white relative -top-4 z-30">
         <div className="shadow-md">

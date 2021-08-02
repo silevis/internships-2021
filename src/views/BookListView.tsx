@@ -29,7 +29,7 @@ const BookListView = () => {
     <div className="bg-gray-50">
       <div className="content-container">
         <Sidebar />
-        <div className="mt-3 w-full shadow-inner">
+        <div className="w-full shadow-inner">
           {data && data?.map((book) => (
             <Book key={book.id} book={book} />
           ))}
