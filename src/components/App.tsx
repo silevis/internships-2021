@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import { UserProvider } from './UserContext';
+import { UserProvider } from './UserProvider';
 import AppRouter from './AppRouter';
 
 export const PageExitAnimation = {

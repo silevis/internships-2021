@@ -11,7 +11,7 @@ interface BookInfoURLParams {
   id: string
 }
 
-const BookInfoPage = () => {
+const BookInfoView = () => {
   const params = useParams<BookInfoURLParams>();
   const [book, setBook] = useState<IBook>();
 
@@ -41,4 +41,4 @@ const BookInfoPage = () => {
 );
 };
 
-export default BookInfoPage;
+export default BookInfoView;

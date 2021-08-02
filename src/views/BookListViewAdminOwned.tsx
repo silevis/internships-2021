@@ -5,7 +5,7 @@ import supabase from '../utils/supabase';
 import OwnedBook from '../components/OwnedBook';
 import { PageExitAnimation } from '../components/App';
 
-const BookListViewAdmin = () => {
+const BookListViewAdminOwned = () => {
   const [dataSupabase, setDataSupabase] = useState<IBook[] | null>([]);
   const getAllBooks = async () => {
     const { data: books } = await supabase
@@ -42,4 +42,4 @@ const BookListViewAdmin = () => {
     </motion.div>
   );
 };
-export default BookListViewAdmin;
+export default BookListViewAdminOwned;
