@@ -16,7 +16,7 @@ const UserDropdown: FC<UserDropdownProps> = ({ title, items, logOut }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative btn-nav-end">
+    <div className="relative btn-nav-end cursor-default">
       <button
         type="button"
         className="navbar-nav text-left relative"

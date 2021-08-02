@@ -6,7 +6,7 @@ import Rating from './Rating';
 import './Book.css';
 import 'react-toastify/dist/ReactToastify.css';
 import BorrowBook from './BorrowBook';
-import { useUser } from './UserContext';
+import { useUser } from './UserProvider';
 
 interface IBookProps {
   book: IBook;

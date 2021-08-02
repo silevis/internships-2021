@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { supabase } from '../utils/supabase';
-import { useUserUpdate, getUserInfo } from './UserContext';
+import { useUserUpdate, getUserInfo } from './UserProvider';
 import ModalDialog from './ModalDialog';
 import { IProfile } from '../interfaces/IProfile.interface';
 import { errorToast, successToast, warningToast } from '../utils/utils';
