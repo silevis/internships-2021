@@ -3,16 +3,16 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 // eslint-disable-next-line
 import FileType from 'file-type';
 import supabase from '../../utils/supabase';
-import { getUserAvatarURL, useUser } from '../UserContext';
+import { getUserAvatarURL, useUser } from '../UserProvider';
 import Avatar from '../Avatar';
 import { errorToast, infoToast, successToast, warningToast } from '../../utils/utils';
 import { IProfile } from '../../interfaces/IProfile.interface';
 
-interface IEditUserComponentProps {
+interface IChangeAvatarComponentProps {
   onAvatarChange: () => void;
 }
 
-const EditUserComponent: FC<IEditUserComponentProps> = ({ onAvatarChange }) => {
+const ChangeAvatarComponent: FC<IChangeAvatarComponentProps> = ({ onAvatarChange }) => {
     const usr: IProfile | null = useUser();
     const [fileInput] = useState(useRef<HTMLInputElement>(null));
     const [avatarLink, setAvatarLink] = useState('');
@@ -102,4 +102,4 @@ const EditUserComponent: FC<IEditUserComponentProps> = ({ onAvatarChange }) => {
   );
 };
 
-export default EditUserComponent;
+export default ChangeAvatarComponent;
