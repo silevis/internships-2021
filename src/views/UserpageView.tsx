@@ -9,7 +9,6 @@ const UserpageView = () => {
   const usr: IProfile | null = useUser();
   const [avatarUrl, setAvatarLink] = useState('');
   const styleBg = {
-    // eslint-disable-next-line max-len
     backgroundImage: `url(${process.env.PUBLIC_URL}/userpage-background.jpg)`,
   };
 
