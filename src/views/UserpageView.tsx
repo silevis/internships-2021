@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import EditUserComponent from '../components/userpage/EditUserComponent';
-import { getUserAvatarURL, isAdmin, useUser } from '../components/UserContext';
+import { getUserAvatarURL, isAdmin, useUser } from '../components/UserProvider';
 import { IProfile } from '../interfaces/IProfile.interface';
 import './UserpageView.css';
 
