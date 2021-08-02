@@ -51,6 +51,10 @@ const StoreBook: FC<IBookProps> = ({
     if (value.includes(',') || value.includes('.')) {
       return warningToast('You have tried to add float value!', 'float-value-warning');
     }
+    // eslint-disable-next-line
+    if (isNaN(Number(value))) {
+      return warningToast('You have tried to add NaN value', 'NaN-value-warning');
+    }
     return setQuantityInput(value);
   };
 
