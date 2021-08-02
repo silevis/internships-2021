@@ -18,9 +18,9 @@ const BookListView = () => {
     if (params?.q?.length < 1) params.q = '*';
     const getAllBooks = async () => {
       if (getFilterType() === 'title') {
-        setData(await filterByTitle(params.q, params.rating, getCat(), startIndex, endIndex));
+        setData(await filterByTitle(params.q, params.rating, getCat()));
       } else if (getFilterType() === 'authors') {
-        setData(await filterByAuthor(params.q, params.rating, getCat(), startIndex, endIndex));
+        setData(await filterByAuthor(params.q, params.rating, getCat()));
       }
     };
     getAllBooks();
