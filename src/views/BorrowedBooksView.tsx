@@ -23,7 +23,6 @@ const BorrowedBooksView = () => {
       .select('id, date, returnDate, book:books(*), profile:profiles(*)');
     if (data !== null) {
       setInfo(data);
-      console.log(data);
     }
   }, []);
 
