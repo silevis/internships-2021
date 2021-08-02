@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { IBook } from '../interfaces/IBook.interface';
@@ -7,6 +7,7 @@ import Rating from './Rating';
 import './Book.css';
 import 'react-toastify/dist/ReactToastify.css';
 import BorrowBook from './BorrowBook';
+import supabase from '../utils/supabase';
 import { useUser } from './UserProvider';
 
 interface IBookProps {
@@ -23,6 +24,23 @@ const Book: FC<IBookProps> = ({ book }) => {
     },
   };
   const user = useUser();
+  const [status, setStatus] = useState(true);
+  const isBorrowed = useCallback(async () => {
+    if (supabase.auth.user()) {
+    const { data } = await supabase
+    .from('borrowedBooks')
+    .select('id')
+    .match({ bookId: book.id, profileId: user?.id });
+    if (data?.length) {
+      setStatus(true);
+      return;
+    }
+    setStatus(false);
+  }
+  }, [book, user]);
+  useEffect(() => {
+    isBorrowed();
+  }, [isBorrowed]);
   return (
     <motion.div
       className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-white shadow p-3 m-3 mx-6"
@@ -54,13 +72,22 @@ const Book: FC<IBookProps> = ({ book }) => {
         </div>
       </div>
       <div>
+        {book.quantity !== 0 && !status && (
         <BorrowBook
           bookId={book.id}
           profileId={user?.id}
           date={new Date()}
           returnDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
           quantity={book.quantity ? book.quantity - 1 : -1}
+          onBookBorrow={isBorrowed}
         />
+        )}
+        {status && book.quantity !== 0 && (
+          <span>You already borrowed this book</span>
+        )}
+        {book.quantity === 0 && (
+          <span>Not in stock right now</span>
+        )}
       </div>
     </motion.div>
   );

@@ -35,7 +35,7 @@ function AppRouter() {
         </Route>
         <Route>
           <div className="h-screen bg-gray-50">
-            <header className="sticky top-0 w-full h-10 z-50">
+            <header className="sticky top-0 w-full h-auto z-50">
               <Navigation />
             </header>
             <Switch>

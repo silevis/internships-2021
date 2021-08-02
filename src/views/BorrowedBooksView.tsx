@@ -34,7 +34,7 @@ const BorrowedBooksView = () => {
 
   return (
     <motion.div exit={PageExitAnimation}>
-      <div className="container mx-auto mt-3 py-1 shadow-inner">
+      <div className="container mx-auto py-1 shadow-inner">
         {info && info?.map((book) => (
           <BorrowedBook
             key={book.book.id}

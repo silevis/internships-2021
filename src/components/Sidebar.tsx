@@ -39,7 +39,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <div className="flex justify-between ">
+    <>
       <div className={`bg-white inline z-40 ${toggle ? 'hidden' : 'fixed lg:static'}`}>
         <button
           type="button"
@@ -57,7 +57,7 @@ const Sidebar = () => {
           <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
             Filters
           </div>
-          <nav className="mx-4 my-3">
+          <nav className="mx-4 mt-3 mb-10">
             <div className="flex-col border-b border-gray-200 mx-1 pb-5 mt-5">
               <label htmlFor="searchbar" className="mr-2">Search</label>
               <input
@@ -113,7 +113,7 @@ const Sidebar = () => {
           ⮞
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -20,7 +20,7 @@ const BookListViewAdminOwned = () => {
   }, []);
   return (
     <motion.div exit={PageExitAnimation}>
-      <div className="container w-full h-full max-w-8xl mx-auto flex mt-3">
+      <div className="container w-full h-full max-w-8xl mx-auto flex">
         <div className="min-w-0 w-full pt-3 flex-auto lg:static lg:max-h-full lg:overflow-visible shadow-inner">
           {dataSupabase && dataSupabase?.map((book) => (
             <OwnedBook

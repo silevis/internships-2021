@@ -60,7 +60,7 @@ const BookListViewAdminStore = () => {
               categories={book.volumeInfo.categories ?? ['N/D']}
               isbn={(book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/D')}
             />
-          ))}
+        ))}
         </div>
         <div className="flex flex-row w-full justify-center mb-2 text-xl">
           <Pagination
