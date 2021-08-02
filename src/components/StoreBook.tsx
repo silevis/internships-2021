@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useCallback } from 'react';
 import UpdateBook from './UpdateBook';
 import supabase from '../utils/supabase';
 import AddBook from './AddBook';
@@ -29,31 +29,27 @@ const StoreBook: FC<IBookProps> = ({
   const [quantityInput, setQuantityInput] = useState('1');
   const [quantity, setQuantity] = useState<number | null>(null);
   const [data, setData] = useState<IBookProps[] | null>([]);
-
-  useEffect(() => {
-    const getBookData = async () => {
-      const { data: bookData } = await supabase
-        .from<IBookProps>('books')
-        .select(`
-      id, quantity
-    `).eq('id', id);
-      if (bookData !== null) {
-        setData(bookData);
-        setQuantity(bookData[0]?.quantity ?? 0);
-      }
-    };
-    getBookData();
+  const getBookData = useCallback(async () => {
+    const { data: bookData } = await supabase
+      .from<IBookProps>('books')
+      .select(`
+    id, quantity
+  `).eq('id', id);
+    if (bookData !== null) {
+      setData(bookData);
+      setQuantity(bookData[0]?.quantity ?? 0);
+    }
   }, [id]);
+  useEffect(() => {
+    getBookData();
+  }, [getBookData]);
 
   const incorrectQuantityHandler = (value: string) => {
     if (value.includes('-')) {
-      return warningToast('You have tried to add negative value!', 'negative-value-m-warning');
+      return warningToast('You have tried to add negative value!', 'negative-value-warning');
     }
-    if (value.includes(',')) {
-      return warningToast('You have tried to add float value!', 'negative-value-dot-warning');
-    }
-    if (value.includes('.')) {
-      return warningToast('You have tried to add float value!', 'negative-value-coma-warning');
+    if (value.includes(',') || value.includes('.')) {
+      return warningToast('You have tried to add float value!', 'float-value-warning');
     }
     return setQuantityInput(value);
   };
@@ -99,6 +95,7 @@ const StoreBook: FC<IBookProps> = ({
             publishedDate={publishedDate}
             categories={categories}
             quantity={Number(quantityInput)}
+            onQuantityUpdate={getBookData}
           />
         )}
       </div>
