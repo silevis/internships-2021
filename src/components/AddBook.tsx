@@ -15,9 +15,21 @@ interface IBookProps {
   authors?: string[];
   categories?: string[];
   quantity: number;
+  onQuantityUpdate: () => void;
 }
 
-const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn, publishedDate, categories, quantity }) => {
+const AddBook: FC<IBookProps> = ({
+  id,
+  title,
+  authors,
+  image,
+  description,
+  isbn,
+  publishedDate,
+  categories,
+  quantity,
+  onQuantityUpdate,
+}) => {
   const globalUser = useUser();
   const [err, setErr] = useState<PostgrestError | null>();
   const addToStore = async () => {
@@ -38,6 +50,7 @@ const AddBook: FC<IBookProps> = ({ id, title, authors, image, description, isbn,
         addedDate: new Date(),
         quantity,
       });
+    onQuantityUpdate();
     setErr(error);
   };
 

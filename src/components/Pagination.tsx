@@ -16,27 +16,24 @@ const Pagination: FC<PaginationProps> = ({ count, currentPage, pageSize, onPageC
       previousLabel={(
         <>
           <span aria-hidden="true">⮜</span>
-          <span className="sr-only">⮜</span>
         </>
-        )}
+      )}
       nextLabel={(
         <>
           <span aria-hidden="true">⮞</span>
-          <span className="sr-only">⮞</span>
         </>
-       )}
-      // TODO make css classes for pagination
-      previousClassName="page-item"
-      previousLinkClassName="page-link btn-page bg-white"
-      nextClassName="page-item"
-      nextLinkClassName="page-link btn-page bg-white"
+      )}
+      previousClassName="rounded-sm bg-gray-200 text-gray-400 border border-gray-300 border-opacity-50
+      transition duration-300 ease-in-out hover:text-indigo-500 hover:bg-gray-50 cursor-pointer"
+      previousLinkClassName="w-full px-3"
+      nextClassName="rounded-sm bg-gray-200 text-gray-400 border border-gray-300 border-opacity-50
+      transition duration-300 ease-in-out hover:text-indigo-500 hover:bg-gray-50 cursor-pointer"
+      nextLinkClassName="w-full px-3"
       containerClassName="flex flex-row"
-      pageClassName="page-item mx-1 btn-page bg-white"
-      pageLinkClassName="page-link"
-      breakClassName="page-item"
-      breakLinkClassName="page-link"
-      activeClassName="active"
-      // TODO make css classes for pagination
+      pageClassName="px-2 transition duration-300 ease-in-out hover:text-indigo-500 cursor-pointer"
+      activeClassName="text-indigo-500"
+      disabledClassName="rounded-sm bg-gray-200 text-gray-400 border border-gray-300 border-opacity-50 opacity-25
+      disabled:hover:text-gray-500 hover:bg-gray-200"
       pageRangeDisplayed={5}
       marginPagesDisplayed={1}
       pageCount={pageCount}
