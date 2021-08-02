@@ -3,9 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import LoginButton from './LoginButton';
 import UserDropdown from './UserDropdown';
 import RegisterButton from './RegisterButton';
-import { isLoggedIn, useUser, useUserUpdate, isAdmin } from './UserProvider';
-import supabase from '../utils/supabase';
-import { successToast } from '../utils/utils';
+import { isLoggedIn, useUser, useUserUpdate, isAdmin } from '../UserProvider';
+import supabase from '../../utils/supabase';
+import { successToast } from '../../utils/utils';
 
 const Navigation = () => {
   const user = useUser();

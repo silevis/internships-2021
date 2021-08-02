@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import Slider from '../components/Slider';
+import Slider from '../components/homepage/Slider';
 import { IBook } from '../interfaces/IBook.interface';
 import { ISupplierBook } from '../interfaces/ISupplierBook.interface';
 import supabase from '../utils/supabase';

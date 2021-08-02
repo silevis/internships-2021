@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { IBook } from '../interfaces/IBook.interface';
-import Book from '../components/Book';
-import { filterByAuthor, filterByTitle } from '../components/Filtering';
-import Sidebar, { getFilterType, getCat } from '../components/Sidebar';
-import NoResults from '../components/NoResults';
+import Book from '../components/universal/Book';
+import { filterByAuthor, filterByTitle } from '../components/common/Filtering';
+import Sidebar, { getFilterType, getCat } from '../components/common/Sidebar';
+import NoResults from '../components/booklists/NoResults';
 import { PageExitAnimation } from '../components/App';
 
 interface IParams {

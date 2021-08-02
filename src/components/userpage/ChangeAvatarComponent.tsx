@@ -4,7 +4,7 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import FileType from 'file-type';
 import supabase from '../../utils/supabase';
 import { getUserAvatarURL, useUser } from '../UserProvider';
-import Avatar from '../Avatar';
+import Avatar from './Avatar';
 import { errorToast, infoToast, successToast, warningToast } from '../../utils/utils';
 import { IProfile } from '../../interfaces/IProfile.interface';
 

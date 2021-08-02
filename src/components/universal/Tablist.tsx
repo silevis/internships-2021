@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { ITab } from '../interfaces/ITab.interface';
+import { ITab } from '../../interfaces/ITab.interface';
 
 interface ITablistProps {
   tabs: ITab[],
@@ -19,7 +19,6 @@ const Tablist: FC<ITablistProps> = ({ tabs, defaultTab }) => {
       <button
         key={i}
         type="button"
-        // todo: if we will create more tabs, remove the 'cursor default' style
         className={`${tabs.length > 1 ? 'cursor-pointer' : 'cursor-default'} flex-initial p-4 auto-rows-min border-r border-gray-300`}
         onClick={() => tabChangeHandler(i)}
       >

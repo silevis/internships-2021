@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
-import OwnedBook from '../components/OwnedBook';
+import OwnedBook from '../components/booklists/OwnedBook';
 import { PageExitAnimation } from '../components/App';
 
 const BookListViewAdminOwned = () => {

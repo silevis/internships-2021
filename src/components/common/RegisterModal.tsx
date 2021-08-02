@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { useFormik } from 'formik';
-import ModalDialog from './ModalDialog';
-import { supabase } from '../utils/supabase';
-import { IProfile } from '../interfaces/IProfile.interface';
-import { errorToast, successToast, warningToast } from '../utils/utils';
+import ModalDialog from '../universal/ModalDialog';
+import { supabase } from '../../utils/supabase';
+import { IProfile } from '../../interfaces/IProfile.interface';
+import { errorToast, successToast, warningToast } from '../../utils/utils';
 
 interface IRegisterModalProps {
   onVisibilityChange: () => void,

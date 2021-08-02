@@ -2,10 +2,10 @@ import { useState, FC, useEffect, useCallback } from 'react';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import { getBookImage } from '../utils/utils';
-import BorrowBook from './BorrowBook';
-import Rating from './Rating';
-import SpecificationTable from './SpecificationTable';
-import Tablist from './Tablist';
+import BorrowBook from './booklists/BorrowBook';
+import SpecificationTable from './universal/SpecificationTable';
+import Rating from './universal/Rating';
+import Tablist from './universal/Tablist';
 import { useUser } from './UserProvider';
 
 interface IBookInfoProps {

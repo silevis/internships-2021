@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import { IBookBorrow } from '../interfaces/IBookBorrow.interface';
-import supabase from '../utils/supabase';
+import { IBookBorrow } from '../../interfaces/IBookBorrow.interface';
+import supabase from '../../utils/supabase';
 import DeleteBook from './DeleteBook';
 
 interface IBookProps {

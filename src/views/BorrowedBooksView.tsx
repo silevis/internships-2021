@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import supabase from '../utils/supabase';
 import { useUser } from '../components/UserProvider';
 import { IBook } from '../interfaces/IBook.interface';
-import BorrowedBook from '../components/BorrowedBook';
-import NoResults from '../components/NoResults';
+import BorrowedBook from '../components/booklists/BorrowedBook';
+import NoResults from '../components/booklists/NoResults';
 import { PageExitAnimation } from '../components/App';
 
 interface IBookProfileId {
