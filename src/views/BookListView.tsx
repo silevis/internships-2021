@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { IBook } from '../interfaces/IBook.interface';
 import Book from '../components/Book';
 import { filterByAuthor, filterByTitle } from '../components/Filtering';
 import Sidebar, { getFilterType, getCat } from '../components/Sidebar';
 import NoResults from '../components/NoResults';
+import { PageExitAnimation } from '../components/App';
 
 interface IParams {
   q: string;
@@ -25,18 +27,21 @@ const BookListView = () => {
     };
     getAllBooks();
   }, [params]);
+
   return (
-    <div className="bg-gray-50">
-      <div className="content-container">
-        <Sidebar />
-        <div className="w-full shadow-inner">
-          {data && data?.map((book) => (
-            <Book key={book.id} book={book} />
-          ))}
-          {data && data?.length < 1 && <NoResults />}
+    <motion.div exit={PageExitAnimation}>
+      <div className="bg-gray-50">
+        <div className="content-container">
+          <Sidebar />
+          <div className="w-full shadow-inner">
+            {data && data?.map((book) => (
+              <Book key={book.id} book={book} />
+            ))}
+            {data && data?.length < 1 && <NoResults />}
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
