@@ -1,5 +1,6 @@
-import { useState, FC, useEffect } from 'react';
+import { useState, FC, useEffect, useCallback } from 'react';
 import { IBook } from '../interfaces/IBook.interface';
+import supabase from '../utils/supabase';
 import { getBookImage } from '../utils/utils';
 import BorrowBook from './BorrowBook';
 import Rating from './Rating';
@@ -48,7 +49,23 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
 
   const [enlarged, setEnlarged] = useState(false);
   const user = useUser();
-
+  const [status, setStatus] = useState(true);
+  const isBorrowed = useCallback(async () => {
+    if (supabase.auth.user()) {
+    const { data } = await supabase
+    .from('borrowedBooks')
+    .select('id')
+    .match({ bookId: book.id, profileId: user?.id });
+    if (data?.length) {
+      setStatus(true);
+      return;
+    }
+    setStatus(false);
+  }
+  }, [book, user]);
+  useEffect(() => {
+    isBorrowed();
+  }, [isBorrowed]);
   return (
     <div className="w-11/12 m-auto mt-8">
       <div className="md:w-11/12 m-auto flex flex-wrap flex-col md:flex-row items-start">
@@ -75,13 +92,22 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
           </div>
           <div className="lg:w-2/12 mt-4 lg:ml-4">
             <Rating bare={false} votesAmount={book.votesAmount} avgRating={book.avgRating} />
-            <BorrowBook
-              bookId={book.id}
-              profileId={user?.id}
-              date={new Date()}
-              returnDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
-              quantity={book.quantity ? book.quantity - 1 : -1}
-            />
+            {book.quantity !== 0 && !status && (
+              <BorrowBook
+                bookId={book.id}
+                profileId={user?.id}
+                date={new Date()}
+                returnDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
+                quantity={book.quantity ? book.quantity - 1 : -1}
+                onBookBorrow={isBorrowed}
+              />
+            )}
+            {status && book.quantity !== 0 && (
+              <span>You already borrowed this book</span>
+            )}
+            {book.quantity === 0 && (
+              <span>Not in stock right now</span>
+            )}
           </div>
         </div>
       </div>
