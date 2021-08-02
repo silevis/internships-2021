@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { supabase } from '../utils/supabase';
-import { IBook } from '../interfaces/IBook.interface';
+import { supabase } from '../../utils/supabase';
+import { IBook } from '../../interfaces/IBook.interface';
 
 interface IBookProps {
   id?: string;

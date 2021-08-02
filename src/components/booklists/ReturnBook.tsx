@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
-import { IBook } from '../interfaces/IBook.interface';
-import { supabase } from '../utils/supabase';
-import { errorToast } from '../utils/utils';
+import { IBook } from '../../interfaces/IBook.interface';
+import { supabase } from '../../utils/supabase';
+import { errorToast } from '../../utils/utils';
 
 interface IBookReturnProps {
   id?: string;

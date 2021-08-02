@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import { IGoogleBooksAPIVolumes } from '../interfaces/IGoogleBooksAPIVolumes.interface';
-import StoreBook from '../components/StoreBook';
+import StoreBook from '../components/booklists/StoreBook';
 import { errorToast } from '../utils/utils';
-import Pagination from '../components/Pagination';
+import Pagination from '../components/booklists/Pagination';
 import { PageExitAnimation } from '../components/App';
 
 const BookListViewAdminStore = () => {

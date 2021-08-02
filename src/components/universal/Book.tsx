@@ -1,14 +1,14 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { IBook } from '../interfaces/IBook.interface';
-import { getBookImage } from '../utils/utils';
+import { IBook } from '../../interfaces/IBook.interface';
+import { getBookImage } from '../../utils/utils';
 import Rating from './Rating';
 import './Book.css';
 import 'react-toastify/dist/ReactToastify.css';
-import BorrowBook from './BorrowBook';
-import supabase from '../utils/supabase';
-import { useUser } from './UserProvider';
+import BorrowBook from '../booklists/BorrowBook';
+import supabase from '../../utils/supabase';
+import { useUser } from '../UserProvider';
 
 interface IBookProps {
   book: IBook;

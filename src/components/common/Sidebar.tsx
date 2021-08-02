@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { IBook } from '../interfaces/IBook.interface';
+import { IBook } from '../../interfaces/IBook.interface';
 import { getCategories } from './Filtering';
 
 let filterType: keyof IBook = 'title';

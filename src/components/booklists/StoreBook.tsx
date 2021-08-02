@@ -1,8 +1,8 @@
 import React, { FC, useState, useEffect, useCallback } from 'react';
 import UpdateBook from './UpdateBook';
-import supabase from '../utils/supabase';
+import supabase from '../../utils/supabase';
 import AddBook from './AddBook';
-import { warningToast } from '../utils/utils';
+import { warningToast } from '../../utils/utils';
 
 interface IBookProps {
   id?: string;

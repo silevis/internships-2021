@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import BookListView from '../views/BookListView';
-import Navigation from './Navigation';
+import Navigation from './common/Navigation';
 import BookInfoView from '../views/BookInfoView';
 import BookListViewAdminOwned from '../views/BookListViewAdminOwned';
 import BookListViewAdminStore from '../views/BookListViewAdminStore';
@@ -14,7 +14,7 @@ import BorrowedBooksView from '../views/BorrowedBooksView';
 import {
   AdminRoute,
   UserRoute,
-} from './PrivateRoute';
+} from './universal/PrivateRoute';
 import { useUser } from './UserProvider';
 import NoMatch404 from './NoMatch404';
 import UserpageView from '../views/UserpageView';

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import BookInfo from '../components/BookInfo';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/common/Sidebar';
 import { IBook } from '../interfaces/IBook.interface';
 import supabase from '../utils/supabase';
 import { PageExitAnimation } from '../components/App';

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { IBook } from '../interfaces/IBook.interface';
-import { getBookImage } from '../utils/utils';
-import Rating from './Rating';
-import './Book.css';
+import { IBook } from '../../interfaces/IBook.interface';
+import { getBookImage } from '../../utils/utils';
+import Rating from '../universal/Rating';
+import '../universal/Book.css';
 import 'react-toastify/dist/ReactToastify.css';
 import ReturnBook from './ReturnBook';
 

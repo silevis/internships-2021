@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Rating from './Rating';
+import Rating from '../universal/Rating';
 
 const Slide = ({ id = '', title = '', author = '', image = '', votesAmount = 0, avgRating = 0 }) => {
   return (

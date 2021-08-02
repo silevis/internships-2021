@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Avatar from '../components/Avatar';
+import Avatar from '../components/userpage/Avatar';
 import EditUserComponent from '../components/userpage/EditUserComponent';
 import { getUserAvatarURL, isAdmin, useUser } from '../components/UserProvider';
 import { IProfile } from '../interfaces/IProfile.interface';

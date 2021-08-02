@@ -3,8 +3,8 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import { IProfile } from '../interfaces/IProfile.interface';
-import { isAdmin, isLoggedIn } from './UserProvider';
+import { IProfile } from '../../interfaces/IProfile.interface';
+import { isAdmin, isLoggedIn } from '../UserProvider';
 
 interface IPrivateRouteProps {
   path: string;

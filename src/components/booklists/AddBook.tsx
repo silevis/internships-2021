@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 import { PostgrestError } from '@supabase/supabase-js';
-import { supabase } from '../utils/supabase';
-import { IBook } from '../interfaces/IBook.interface';
-import { useUser } from './UserProvider';
-import { errorToast } from '../utils/utils';
+import { supabase } from '../../utils/supabase';
+import { IBook } from '../../interfaces/IBook.interface';
+import { useUser } from '../UserProvider';
+import { errorToast } from '../../utils/utils';
 
 interface IBookProps {
   id?: string;

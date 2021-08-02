@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import supabase from '../utils/supabase';
-import { IBookBorrow } from '../interfaces/IBookBorrow.interface';
-import { IBook } from '../interfaces/IBook.interface';
-import { errorToast, successToast, warningToast } from '../utils/utils';
+import supabase from '../../utils/supabase';
+import { IBookBorrow } from '../../interfaces/IBookBorrow.interface';
+import { IBook } from '../../interfaces/IBook.interface';
+import { errorToast, successToast, warningToast } from '../../utils/utils';
 
 interface IBookBorrowProps {
   bookId: string;

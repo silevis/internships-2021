@@ -1,5 +1,5 @@
-import { IBook } from '../interfaces/IBook.interface';
-import supabase from '../utils/supabase';
+import { IBook } from '../../interfaces/IBook.interface';
+import supabase from '../../utils/supabase';
 
 const isMatching = (items: string[], query: string, fullMatch = false) => {
   let matched = false;
