@@ -16,10 +16,10 @@ const Navigation = () => {
 
   useEffect(() => {
     if (isAdmin(user)) {
-      setItems([{ link: '/user', label: 'User Profile' }, { link: '/user/books', label: 'User Books' },
+      setItems([{ link: '/user', label: 'My Profile' },
       { link: '/admin/owned', label: 'Owned' }, { link: '/admin/store', label: 'Store' }]);
     } else {
-      setItems([{ link: '/user', label: 'User Profile' }, { link: '/user/books', label: 'User Books' }]);
+      setItems([{ link: '/user', label: 'My Profile' }]);
     }
   }, [user]);
 
@@ -84,12 +84,26 @@ const Navigation = () => {
               </Link>
             </button>
 
+            {isLoggedIn() && (
+              <button
+                type="button"
+                className="btn-nav text-left relative"
+              >
+                <Link
+                  to="/user/books"
+                >
+                  My Books
+                </Link>
+              </button>
+            )}
+
             {isLoggedIn() ? (
               <UserDropdown
                 title={user?.email}
                 items={items}
                 logOut={logout}
               />
+
             ) : (
               <>
                 <LoginButton />
