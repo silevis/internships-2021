@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import EditUserComponent from '../components/userpage/EditUserComponent';
-import { getUserAvatarURL, isAdmin, useUser } from '../components/UserContext';
+import { getUserAvatarURL, isAdmin, useUser } from '../components/UserProvider';
 import { IProfile } from '../interfaces/IProfile.interface';
 import './UserpageView.css';
 
@@ -9,7 +9,6 @@ const UserpageView = () => {
   const usr: IProfile | null = useUser();
   const [avatarUrl, setAvatarLink] = useState('');
   const styleBg = {
-    // eslint-disable-next-line max-len
     backgroundImage: `url(${process.env.PUBLIC_URL}/userpage-background.jpg)`,
   };
 
