@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import supabase from '../utils/supabase';
-import { useUser } from '../components/UserContext';
+import { useUser } from '../components/UserProvider';
 import { IBook } from '../interfaces/IBook.interface';
 import BorrowedBook from '../components/BorrowedBook';
 import NoResults from '../components/NoResults';
