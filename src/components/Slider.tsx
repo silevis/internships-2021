@@ -31,7 +31,10 @@ const Slider: FC<ISliderProps> = ({ entryCount, entries }) => {
       changeIndex();
     }, delay);
     setTimer(newTimer);
-    // eslint-disable-next-line
+    return () => {
+      clearTimeout(newTimer);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
   const changeSlide = (dir = 0) => {
