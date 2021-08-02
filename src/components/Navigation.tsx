@@ -16,10 +16,10 @@ const Navigation = () => {
 
   useEffect(() => {
     if (isAdmin(user)) {
-      setItems([{ link: '/user', label: 'User Profile' },
+      setItems([{ link: '/user', label: 'My Profile' },
       { link: '/admin/owned', label: 'Owned' }, { link: '/admin/store', label: 'Store' }]);
     } else {
-      setItems([{ link: '/user', label: 'User Profile' }]);
+      setItems([{ link: '/user', label: 'My Profile' }]);
     }
   }, [user]);
 
