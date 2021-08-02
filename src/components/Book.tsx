@@ -24,7 +24,7 @@ const Book: FC<IBookProps> = ({ book }) => {
     },
   };
   const user = useUser();
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
   const isBorrowed = useCallback(async () => {
     if (supabase.auth.user()) {
     const { data } = await supabase
