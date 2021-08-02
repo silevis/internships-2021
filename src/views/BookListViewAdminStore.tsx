@@ -33,7 +33,7 @@ const BookListViewAdminStore = () => {
     setIndex(selectedPage.selected * 10);
   };
   return (
-    <div className="container mx-auto mt-3 shadow-inner">
+    <div className="container mx-auto shadow-inner">
       <form onSubmit={formikFilter.handleSubmit}>
         <input
           id="filter"
