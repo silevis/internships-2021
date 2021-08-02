@@ -84,25 +84,26 @@ const Navigation = () => {
               </Link>
             </button>
 
-            {isLoggedIn() ? (
-              <div className="flex">
-                <button
-                  type="button"
-                  className="btn-nav text-left relative"
+            {isLoggedIn() && (
+              <button
+                type="button"
+                className="btn-nav text-left relative"
+              >
+                <Link
+                  to="/user/books"
                 >
-                  <Link
-                    to="/user/books"
-                  >
-                    My Books
-                  </Link>
-                </button>
+                  My Books
+                </Link>
+              </button>
+            )}
 
-                <UserDropdown
-                  title={user?.email}
-                  items={items}
-                  logOut={logout}
-                />
-              </div>
+            {isLoggedIn() ? (
+              <UserDropdown
+                title={user?.email}
+                items={items}
+                logOut={logout}
+              />
+
             ) : (
               <>
                 <LoginButton />
