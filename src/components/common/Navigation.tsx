@@ -17,7 +17,7 @@ const Navigation = () => {
   useEffect(() => {
     if (isAdmin(user)) {
       setItems([{ link: '/user', label: 'My Profile' },
-      { link: '/admin/owned', label: 'Owned' }, { link: '/admin/store', label: 'Store' }]);
+      { link: '/admin/owned', label: 'Owned' }, { link: '/admin/store', label: 'Store' }, { link: '/admin/borrowed', label: 'Borrowed' }]);
     } else {
       setItems([{ link: '/user', label: 'My Profile' }]);
     }

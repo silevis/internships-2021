@@ -4,21 +4,22 @@ import { getBookImage } from '../../utils/utils';
 import Rating from '../universal/Rating';
 import '../universal/Book.css';
 import 'react-toastify/dist/ReactToastify.css';
-// import ReturnBook from './ReturnBook';
-import { IProfile } from '../../interfaces/IProfile.interface';
+import ReturnBook from './ReturnBook';
 
-interface IBorrowedBookInfoProps {
+interface IBookProps {
+  id: string;
   book: IBook;
-  profile: IProfile;
-  date: Date;
   returnDate: Date;
+  date: Date;
+  onBookReturn: () => void;
 }
 
-const BorrowedBooksView: FC<IBorrowedBookInfoProps> = ({
+const UserBook: FC<IBookProps> = ({
   book,
-  profile,
   returnDate,
   date,
+  id,
+  onBookReturn,
 }) => {
   return (
     <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
@@ -41,19 +42,18 @@ const BorrowedBooksView: FC<IBorrowedBookInfoProps> = ({
             <Rating votesAmount={book.votesAmount} avgRating={book.avgRating} bare />
           </div>
         </div>
-        {/* <ReturnBook
+        <ReturnBook
           id={id}
           bookId={book.id}
           quantity={book.quantity + 1}
           onBookReturn={onBookReturn}
           title={book.title}
-        /> */}
+        />
         <p className="text-right">Date: {date}</p>
         <p className="text-right">Return date: {returnDate}</p>
-        <p className="text-right">User: {`${profile.firstName} ${profile.lastName}`}</p>
       </div>
     </div>
   );
 };
 
-export default BorrowedBooksView;
+export default UserBook;
