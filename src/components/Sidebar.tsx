@@ -23,6 +23,9 @@ export const getCat = () => {
 const Sidebar = () => {
   const [value, setValue] = useState(0);
   const [query, setQuery] = useState('*');
+  const [toggle, setToggled] = useState(true);
+  const [categories, setCategories] = useState<string[]>();
+  const history = useHistory();
   const handleSlideChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(Number(event?.target?.value));
   };
@@ -30,9 +33,6 @@ const Sidebar = () => {
     if (String(event?.target?.value).length > 0) setQuery(String(event?.target?.value));
     else setQuery('*');
   };
-  const [toggle, setToggled] = useState(true);
-  const history = useHistory();
-  const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     getCategories().then((data) => setCategories(data));
@@ -76,9 +76,12 @@ const Sidebar = () => {
             <div className="border-b border-gray-200 mx-1 pl-4 pb-5 mt-5">
               <span className="font-bold">Categories</span>
               <ul className="list-none">
-                <li><input type="radio" name="cat" value="*" defaultChecked onClick={() => handleCatChange('*')} /> All</li>
-                {categories.map((category) => (
-                  <li key={category}><input type="radio" name="cat" value={category} onClick={() => handleCatChange(category)} />
+                <li>
+                  <input type="radio" name="cat" value="*" defaultChecked onClick={() => handleCatChange('*')} /> All
+                </li>
+                {categories?.map((category) => (
+                  <li key={category}>
+                    <input type="radio" name="cat" value={category} onClick={() => handleCatChange(category)} />
                     {` ${category}`}
                   </li>
                 ))}

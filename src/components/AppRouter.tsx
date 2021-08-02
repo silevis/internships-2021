@@ -1,9 +1,10 @@
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
+  useLocation,
 } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import BookListView from '../views/BookListView';
 import Navigation from './Navigation';
 import BookInfoPage from '../views/BookInfoView';
@@ -21,18 +22,19 @@ import HomepageView from '../views/HomepageView';
 
 function AppRouter() {
   const user = useUser();
+  const loc = useLocation();
 
   return (
-    <div className="h-full bg-gray-50">
-      <Router basename={process.env.PUBLIC_URL}>
-        <Switch>
-          <Route path="/internships-2021" exact>
-            <Redirect to="/" />
-          </Route>
-          <Route path="/" exact>
-            <HomepageView />
-          </Route>
-          <Route>
+    <AnimatePresence exitBeforeEnter initial={false}>
+      <Switch location={loc} key={loc.pathname}>
+        <Route path="/internships-2021" exact>
+          <Redirect to="/" />
+        </Route>
+        <Route path="/" exact>
+          <HomepageView />
+        </Route>
+        <Route>
+          <div className="h-screen bg-gray-50">
             <header className="sticky top-0 w-full h-10 z-50">
               <Navigation />
             </header>
@@ -62,10 +64,10 @@ function AppRouter() {
                 <NoMatch404 />
               </Route>
             </Switch>
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+          </div>
+        </Route>
+      </Switch>
+    </AnimatePresence>
   );
 }
 

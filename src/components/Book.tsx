@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { IBook } from '../interfaces/IBook.interface';
 import { getBookImage } from '../utils/utils';
 import Rating from './Rating';
@@ -12,12 +13,23 @@ interface IBookProps {
   book: IBook;
 }
 
-const Book: FC<IBookProps> = ({
-  book,
-}) => {
+const Book: FC<IBookProps> = ({ book }) => {
+  const motionVariants = {
+    hidden: {
+      x: -100,
+    },
+    shown: {
+      x: 0,
+    },
+  };
   const user = useUser();
   return (
-    <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-white shadow p-3 m-3 mx-6">
+    <motion.div
+      className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-white shadow p-3 m-3 mx-6"
+      variants={motionVariants}
+      initial="hidden"
+      animate="shown"
+    >
       <div className="m-3 flex justify-center">
         <Link to={`/book/${book.id}`}>
           <img
@@ -50,7 +62,7 @@ const Book: FC<IBookProps> = ({
           quantity={book.quantity ? book.quantity - 1 : -1}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
