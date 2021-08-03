@@ -6,7 +6,9 @@ import Book from '../components/universal/Book';
 import { filterByAuthor, filterByTitle } from '../components/common/Filtering';
 import Sidebar, { getFilterType, getCat } from '../components/common/Sidebar';
 import NoResults from '../components/booklists/NoResults';
+import Pagination from '../components/booklists/Pagination';
 import { PageExitAnimation } from '../components/App';
+import supabase from '../utils/supabase';
 
 interface IParams {
   q: string;
@@ -16,17 +18,31 @@ interface IParams {
 const BookListView = () => {
   const [data, setData] = useState<IBook[] | null>([]);
   const params: IParams = useParams();
+  const [numberOfBooks, setNumberOfBooks] = useState<number | null>(10);
+  const [startIndex, setStartIndex] = useState<number>(0);
+  const [endIndex, setEndIndex] = useState<number>(10);
+  const onPageChange = (selectedPage: { selected: number }) => {
+    setStartIndex(selectedPage.selected * 10);
+    setEndIndex((selectedPage.selected * 10) + 10);
+  };
   useEffect(() => {
+    const getNumberOfBooks = async () => {
+      const { count } = await supabase
+      .from<IBook>('books')
+      .select('id', { count: 'exact' });
+      setNumberOfBooks(count);
+    };
     if (params?.q?.length < 1) params.q = '*';
     const getAllBooks = async () => {
       if (getFilterType() === 'title') {
-        setData(await filterByTitle(params.q, params.rating, getCat()));
+        setData(await filterByTitle(params.q, params.rating, getCat(), startIndex, endIndex));
       } else if (getFilterType() === 'authors') {
-        setData(await filterByAuthor(params.q, params.rating, getCat()));
+        setData(await filterByAuthor(params.q, params.rating, getCat(), startIndex, endIndex));
       }
     };
     getAllBooks();
-  }, [params]);
+    getNumberOfBooks();
+  }, [params, startIndex, endIndex]);
 
   return (
     <motion.div exit={PageExitAnimation}>
@@ -39,6 +55,14 @@ const BookListView = () => {
             ))}
             {data && data?.length < 1 && <NoResults />}
           </div>
+        </div>
+        <div className="flex flex-row w-full justify-center mb-2 text-xl">
+          <Pagination
+            count={numberOfBooks || 10}
+            pageSize={10}
+            currentPage={startIndex / 10}
+            onPageChange={onPageChange}
+          />
         </div>
       </div>
     </motion.div>
