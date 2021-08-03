@@ -12,6 +12,9 @@ const Navigation = () => {
   const setUser = useUserUpdate();
   const [toggle, setToggled] = useState(false);
   const history = useHistory();
+  /**
+   * tutaj nie porzebujemy stanu
+   */
   const [items, setItems] = useState([{ link: '/user', label: 'User Profile' }, { link: '/user/books', label: 'User Books' }]);
 
   useEffect(() => {

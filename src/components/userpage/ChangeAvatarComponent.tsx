@@ -13,9 +13,13 @@ interface IChangeAvatarComponentProps {
 }
 
 const ChangeAvatarComponent: FC<IChangeAvatarComponentProps> = ({ onAvatarChange }) => {
-    const usr: IProfile | null = useUser();
-    const [fileInput] = useState(useRef<HTMLInputElement>(null));
-    const [avatarLink, setAvatarLink] = useState('');
+  const usr: IProfile | null = useUser();
+  /**
+   * TODO
+   * nie robimy hooka w hooku
+   */
+  const [fileInput] = useState(useRef<HTMLInputElement>(null));
+  const [avatarLink, setAvatarLink] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -50,6 +54,9 @@ const ChangeAvatarComponent: FC<IChangeAvatarComponentProps> = ({ onAvatarChange
       .storage.from('images')
       .remove([`avatars/${usr?.id}`]);
 
+    /**
+     * TODO mieszanie await z then/catch
+     */
     supabase
       .storage.from('images/avatars')
       .upload(`${usr?.id}`, f)

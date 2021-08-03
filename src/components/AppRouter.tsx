@@ -22,11 +22,18 @@ import HomepageView from '../views/HomepageView';
 
 function AppRouter() {
   const user = useUser();
+  /**
+   * TODO nie korzystamy z takich skrótów, nazwy zmiennych muszą w jasny sposób określać co przechowywują
+   */
   const loc = useLocation();
 
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
       <Switch location={loc} key={loc.pathname}>
+        {/*
+          TODO
+          definiując scieki warto skorzystać z enumów
+         */}
         <Route path="/internships-2021" exact>
           <Redirect to="/" />
         </Route>

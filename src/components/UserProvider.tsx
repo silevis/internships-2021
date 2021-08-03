@@ -5,6 +5,10 @@ import { DefaultUserAvatarUrl } from '../utils/utils';
 
 const UserContext = React.createContext<IProfile | null>(null);
 const UserUpdateContext = React.createContext<((newUser: IProfile) => void) | null>(null);
+
+/**
+ * TODO lepiej korzystać z operatora || niz ?? - trzeba znać róznice między nimi
+ */
 let loggedInUser = supabase.auth.user() ?? null;
 
 export const getUserInfo = async (uid: string) => {
@@ -23,11 +27,14 @@ export const isAdmin = (user: IProfile | null) => {
   return user?.isAdmin;
 };
 
+/**
+ * TODO funkcje rozpoczynające się na isXxxx powinny zwracać boolean
+ */
 export const isLoggedIn = () => {
   return supabase.auth.user();
 };
 
-export const useUser = () => {
+export const useUser = (): any => {
   return useContext(UserContext);
 };
 

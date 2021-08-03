@@ -13,6 +13,10 @@ const Tablist: FC<ITablistProps> = ({ tabs, defaultTab }) => {
     setCurrTabID(newTabId);
   };
 
+  /**
+   * TODO
+   * zamast pelie warto skorzystać z funkcyjnego podejscia
+   */
   const tabTitleElements = [];
   for (let i = 0; i < tabs.length; i++) {
     tabTitleElements.push(

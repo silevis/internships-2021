@@ -13,6 +13,10 @@ interface IBookInfoProps {
 }
 
 const BookInfo: FC<IBookInfoProps> = ({ book }) => {
+  /**
+   * TODO
+   * kiedy uzywamy useState, a nie uzywany settera wartości, to coś poszło nie tak...
+   */
   const [specsTabList] = useState([{
     key: 'Published date',
     value: book.publishedDate,
@@ -52,16 +56,16 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
   const [status, setStatus] = useState(true);
   const isBorrowed = useCallback(async () => {
     if (supabase.auth.user()) {
-    const { data } = await supabase
-    .from('borrowedBooks')
-    .select('id')
-    .match({ bookId: book.id, profileId: user?.id });
-    if (data?.length) {
-      setStatus(true);
-      return;
+      const { data } = await supabase
+        .from('borrowedBooks')
+        .select('id')
+        .match({ bookId: book.id, profileId: user?.id });
+      if (data?.length) {
+        setStatus(true);
+        return;
+      }
+      setStatus(false);
     }
-    setStatus(false);
-  }
   }, [book, user]);
   useEffect(() => {
     isBorrowed();

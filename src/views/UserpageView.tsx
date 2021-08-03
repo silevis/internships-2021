@@ -8,7 +8,13 @@ import './UserpageView.css';
 import { PageExitAnimation } from '../components/App';
 
 const UserpageView = () => {
-  const usr: IProfile | null = useUser();
+  /**
+   * Nie ma potrzeby typowania zmiennych jeśli funckja, która zwraca dane jest poprawnie otypowana jak ponizej
+   */
+  const usr = useUser();
+  /**
+   * rozbiezne nazwy zmiennych wyciągniete z useState - raz url - potem link
+   */
   const [avatarUrl, setAvatarLink] = useState('');
   const styleBg = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/userpage-background.jpg)`,
@@ -39,6 +45,11 @@ const UserpageView = () => {
               </div>
             </div>
             <div className="p-2">
+              {/*
+                TODO
+                przy duzych komponentach przekazywanie funckji do wnetrza komponentu powoduje jej ponowne utworzenie
+                a co za tym idzie React nie moze memoizowac komponentow, do tego celu najlepiej uzyc hooka useCallback
+               */}
               <EditUserComponent
                 onAvatarChange={async () => setAvatarLink(await getUserAvatarURL())}
               />

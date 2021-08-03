@@ -2,6 +2,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { UserProvider } from './UserProvider';
 import AppRouter from './AppRouter';
 
+/**
+ * TODO
+ * Piszemy z małej nazwy zmiennych
+ */
 export const PageExitAnimation = {
   opacity: 0,
   transition: {

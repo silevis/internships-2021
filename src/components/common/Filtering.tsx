@@ -2,8 +2,11 @@ import { IBook } from '../../interfaces/IBook.interface';
 import supabase from '../../utils/supabase';
 
 const isMatching = (items: string[], query: string, fullMatch = false) => {
-  let matched = false;
   if (query === '*') return true;
+  let matched = false;
+  /**
+   * inne funckja na tablicach np: some
+   */
   items?.forEach((item) => {
     if (fullMatch && (item.toLowerCase() === query.toLowerCase())) matched = true;
     else if (item.toLowerCase().includes(query.toLowerCase())) matched = true;
@@ -11,7 +14,7 @@ const isMatching = (items: string[], query: string, fullMatch = false) => {
   return matched;
 };
 
-export const filterByTitle = async (query:string, rating:string, cat:string) => {
+export const filterByTitle = async (query: string, rating: string, cat: string) => {
   let q = `%${query}%`;
   if (query.length < 1) q = '*';
   const { data: books } = await supabase
@@ -23,13 +26,13 @@ export const filterByTitle = async (query:string, rating:string, cat:string) => 
   return y;
 };
 
-export const filterByAuthor = async (query:string, rating:string, cat:string) => {
+export const filterByAuthor = async (query: string, rating: string, cat: string) => {
   let q = query;
   if (query.length < 1) q = '*';
   const { data: books } = await supabase
-          .from<IBook>('books')
-          .select('*')
-          .gte('avgRating', rating);
+    .from<IBook>('books')
+    .select('*')
+    .gte('avgRating', rating);
   const x = books?.filter((book) => isMatching(book.authors, q)) ?? [];
   const y = x?.filter((book) => isMatching(book?.categories, cat, true)) ?? [];
   return y;
@@ -37,8 +40,8 @@ export const filterByAuthor = async (query:string, rating:string, cat:string) =>
 
 export const getCategories = async () => {
   const { data: categories } = await supabase
-          .from<IBook>('books')
-          .select('categories');
+    .from<IBook>('books')
+    .select('categories');
 
   const all: string[] = [];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

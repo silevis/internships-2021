@@ -7,6 +7,10 @@ import BorrowedBook from '../components/booklists/BorrowedBook';
 import NoResults from '../components/booklists/NoResults';
 import { PageExitAnimation } from '../components/App';
 
+/**
+ * TODO
+ * ten interfejs nie powinien sie tutaj znajdować - nie nalezy do komponentu
+ */
 interface IBookProfileId {
   book: IBook;
   id: string;
@@ -18,6 +22,9 @@ const BorrowedBooksView = () => {
   const [info, setInfo] = useState<null | IBookProfileId[]>([]);
   const user = useUser();
 
+  /**
+   * propsy za callback
+   */
   const getBorrowedBooks = useCallback(async () => {
     const { data } = await supabase
       .from<IBookProfileId>('borrowedBooks')
@@ -35,7 +42,11 @@ const BorrowedBooksView = () => {
   return (
     <motion.div exit={PageExitAnimation}>
       <div className="container mx-auto py-1 shadow-inner">
-        {info && info?.map((book) => (
+        {/*
+          TODO
+          info && jest ponizej zbedne
+         */}
+        {info?.map((book) => (
           <BorrowedBook
             key={book.book.id}
             book={book.book}
@@ -44,7 +55,7 @@ const BorrowedBooksView = () => {
             id={book.id}
             onBookReturn={getBorrowedBooks}
           />
-      ))}
+        ))}
         {info && info?.length < 1 && <NoResults />}
       </div>
     </motion.div>

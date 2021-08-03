@@ -13,6 +13,10 @@ interface IBookBorrowProps {
   onBookBorrow: () => void;
 }
 const BorrowBook: FC<IBookBorrowProps> = ({ bookId, profileId, date, returnDate, quantity, onBookBorrow }) => {
+  /**
+   * TODO
+   * funckje zawsze z małej litery
+   */
   const AddOrNotify = async () => {
     if (supabase.auth.user()) {
       const { data } = await supabase.from<IBookBorrow>('borrowedBooks')
@@ -27,14 +31,14 @@ const BorrowBook: FC<IBookBorrowProps> = ({ bookId, profileId, date, returnDate,
               date,
               returnDate,
             });
-            await supabase.from<IBook>('books')
-              .update({ quantity })
-              .match({ id: bookId });
-            successToast('Book borrowed successfully!', 'borrow-book-success');
-            onBookBorrow();
-          } else {
-            errorToast('This book is not in stock right now', 'borrow-book-error');
-          }
+          await supabase.from<IBook>('books')
+            .update({ quantity })
+            .match({ id: bookId });
+          successToast('Book borrowed successfully!', 'borrow-book-success');
+          onBookBorrow();
+        } else {
+          errorToast('This book is not in stock right now', 'borrow-book-error');
+        }
       } else {
         errorToast('You have already borrowed this book', 'borrow-book-warning');
       }

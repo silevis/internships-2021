@@ -8,6 +8,11 @@ import { errorToast } from '../utils/utils';
 import Pagination from '../components/booklists/Pagination';
 import { PageExitAnimation } from '../components/App';
 
+/**
+ * TODO
+ * warto logicznie oddzielać bloki kodu
+ */
+
 const BookListViewAdminStore = () => {
   const [dataAPI, setDataAPI] = useState<IGoogleBooksAPIVolumes>();
   const [filter, setFilter] = useState('book');
@@ -31,9 +36,11 @@ const BookListViewAdminStore = () => {
     };
     fetchData();
   }, [filter, index]);
+
   const onPageChange = (selectedPage: { selected: number }) => {
     setIndex(selectedPage.selected * 10);
   };
+
   return (
     <motion.div exit={PageExitAnimation}>
       <div className="container mx-auto shadow-inner">
@@ -60,10 +67,13 @@ const BookListViewAdminStore = () => {
               categories={book.volumeInfo.categories ?? ['N/D']}
               isbn={(book.volumeInfo.industryIdentifiers ? book.volumeInfo.industryIdentifiers[0].identifier : 'N/D')}
             />
-        ))}
+          ))}
         </div>
         <div className="flex flex-row w-full justify-center mb-2 text-xl">
           <Pagination
+            /**
+             * TODO co sie stanie jak zmienie 10 na cos innego?
+             */
             count={dataAPI?.totalItems ? dataAPI.totalItems : 10}
             pageSize={10}
             currentPage={index / 10}

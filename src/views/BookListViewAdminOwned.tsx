@@ -7,6 +7,10 @@ import { PageExitAnimation } from '../components/App';
 
 const BookListViewAdminOwned = () => {
   const [dataSupabase, setDataSupabase] = useState<IBook[] | null>([]);
+  /**
+   *  TODO
+   *  potencjalnie takie funckje w kazbym komponencie robia coś innego
+   */
   const getAllBooks = async () => {
     const { data: books } = await supabase
       .from<IBook>('books')

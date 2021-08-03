@@ -3,6 +3,10 @@ import { useHistory } from 'react-router-dom';
 import { IBook } from '../../interfaces/IBook.interface';
 import { getCategories } from './Filtering';
 
+/**
+ * TODO
+ * unikamy takich rzeczy, do wyjasnienia
+ */
 let filterType: keyof IBook = 'title';
 let chosenCat = '*';
 

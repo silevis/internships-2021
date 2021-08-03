@@ -11,6 +11,10 @@ interface IRegisterModalProps {
 }
 
 const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange }) => {
+  /**
+   * TODO
+   * nazwa i jej kontekst
+   */
   const formikRegister = useFormik({
     initialValues: {
       emailAdress: '',

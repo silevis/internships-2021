@@ -5,6 +5,9 @@ import useSupaBase from './useSupaBase';
 
 type ProfileQuery = IProfile;
 
+/**
+ * TODO nie uzywana funckja, a powinna byc uzywana
+ */
 const useProfile = (id: string) => {
   const supabaseQuery = useCallback(async () => {
     return supabase

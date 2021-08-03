@@ -1,6 +1,16 @@
 import { toast } from 'react-toastify';
 import { IBook } from '../interfaces/IBook.interface';
 
+/**
+ * TODO
+ * ten plik zawiera i stałe, jak i jakieś funkcje, to powinno być wyodrębnione
+ */
+
+/**
+ * TODO
+ *  process.env.PUBLIC_URL -  takie zmienne czasem mogą być null - lepiej się przed tym zabezpieczyć za wczasu
+ * niz otrzymać takie coś: `undefined/image-not-found.png`
+ */
 const DefaultImageUrl = `${process.env.PUBLIC_URL}/image-not-found.png`;
 
 export const DefaultUserAvatarUrl = `${process.env.PUBLIC_URL}/defaultAvatar.png`;
