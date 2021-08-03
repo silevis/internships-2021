@@ -37,6 +37,7 @@ const RegisterModal: FC<IRegisterModalProps> = ({ onSuccess, onVisibilityChange 
           id: user.id,
           firstName: values.firstName,
           lastName: values.lastName,
+          status: 'ACTIVE',
           email: values.emailAdress,
         }).then((resp) => {
           if (resp.status === 201) {

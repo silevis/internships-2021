@@ -30,7 +30,7 @@ const DeleteUserComponent = () => {
         transition duration-300 ease-in-out
         hover:bg-red-300 hover:text-white"
       >
-        Delete an account
+        Delete account
       </button>
       {modalShown && (
         <ModalDialog
