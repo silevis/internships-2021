@@ -21,7 +21,7 @@ const SliderDemo: FC<SliderDemoProps> = ({ type }) => {
         if (!error) {
           setData(books);
         } else {
-          // error
+          setData(null);
         }
       } else {
         const { data: books, error } = await supabase
@@ -30,7 +30,7 @@ const SliderDemo: FC<SliderDemoProps> = ({ type }) => {
           if (!error) {
             setData(books);
           } else {
-            // error
+            setData(null);
           }
       }
     };
