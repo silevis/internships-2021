@@ -11,6 +11,7 @@ import BookInfoView from '../views/BookInfoView';
 import BookListViewAdminOwned from '../views/BookListViewAdminOwned';
 import BookListViewAdminStore from '../views/BookListViewAdminStore';
 import BorrowedBooksView from '../views/BorrowedBooksView';
+import UserBooksView from '../views/UserBooksView';
 import {
   AdminRoute,
   UserRoute,
@@ -43,13 +44,16 @@ function AppRouter() {
                 <UserpageView />
               </UserRoute>
               <UserRoute path="/user/books" exact user={user}>
-                <BorrowedBooksView />
+                <UserBooksView />
               </UserRoute>
               <AdminRoute path="/admin/owned" exact user={user}>
                 <BookListViewAdminOwned />
               </AdminRoute>
               <AdminRoute path="/admin/store" exact user={user}>
                 <BookListViewAdminStore />
+              </AdminRoute>
+              <AdminRoute path="/admin/borrowed" exact user={user}>
+                <BorrowedBooksView />
               </AdminRoute>
               <Route path="/books-list" exact>
                 <Redirect to="/books-list/*/0" />

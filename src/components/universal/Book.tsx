@@ -72,7 +72,7 @@ const Book: FC<IBookProps> = ({ book }) => {
         </div>
       </div>
       <div>
-        {book.quantity !== 0 && !status && (
+        {!status && (
         <BorrowBook
           bookId={book.id}
           profileId={user?.id}
@@ -84,9 +84,6 @@ const Book: FC<IBookProps> = ({ book }) => {
         )}
         {status && book.quantity !== 0 && (
           <span>You have already borrowed this book</span>
-        )}
-        {book.quantity === 0 && (
-          <span>Not in stock right now</span>
         )}
       </div>
     </motion.div>
