@@ -34,6 +34,7 @@ const LoginButton = () => {
             email: userInfo?.email ?? '',
             firstName: userInfo?.firstName ?? '',
             id: userInfo?.id ?? '',
+            status: userInfo?.status ?? '',
             isAdmin: userInfo?.isAdmin ?? false,
             lastName: userInfo?.lastName ?? '',
           });
@@ -48,6 +49,7 @@ const LoginButton = () => {
     const { data } = await supabase
       .from<IProfile>('profiles')
       .select('email')
+      .eq('status', 'ACTIVE')
       .eq('email', formikLogin.values.emailAdress);
     if (!data?.length) {
       warningToast('There\'s no user associated with this email', 'login-no-email');

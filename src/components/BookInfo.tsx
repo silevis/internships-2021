@@ -103,7 +103,7 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
               />
             )}
             {status && book.quantity !== 0 && (
-              <span>You already borrowed this book</span>
+              <span>You have already borrowed this book</span>
             )}
             {book.quantity === 0 && (
               <span>Not in stock right now</span>

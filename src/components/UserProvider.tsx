@@ -58,6 +58,7 @@ export const UserProvider: FC = ({ children }) => {
         email: userInfo?.email ?? '',
         firstName: userInfo?.firstName ?? '',
         id: userInfo?.id ?? '',
+        status: userInfo?.status ?? '',
         isAdmin: userInfo?.isAdmin ?? false,
         lastName: userInfo?.lastName ?? '',
       });

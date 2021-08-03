@@ -82,8 +82,8 @@ const Book: FC<IBookProps> = ({ book }) => {
           onBookBorrow={isBorrowed}
         />
         )}
-        {status && (
-          <span>You already borrowed this book</span>
+        {status && book.quantity !== 0 && (
+          <span>You have already borrowed this book</span>
         )}
       </div>
     </motion.div>
