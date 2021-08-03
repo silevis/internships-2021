@@ -1,30 +1,32 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import supabase from '../utils/supabase';
+import { useUser } from '../components/UserProvider';
 import { IBook } from '../interfaces/IBook.interface';
+import UserBook from '../components/booklists/UserBook';
 import NoResults from '../components/booklists/NoResults';
 import { PageExitAnimation } from '../components/App';
-import { IProfile } from '../interfaces/IProfile.interface';
-import BorrowedBook from '../components/booklists/BorrowedBook';
 
-interface IBorrowedBookInfo {
-  id: string;
+interface IBookProfileId {
   book: IBook;
-  profile: IProfile;
+  id: string;
   date: Date;
   returnDate: Date;
+  profileId: string | undefined;
 }
-const BorrowedBooksView = () => {
-  const [info, setInfo] = useState<null | IBorrowedBookInfo[]>([]);
+const UserBooksView = () => {
+  const [info, setInfo] = useState<null | IBookProfileId[]>([]);
+  const user = useUser();
 
   const getBorrowedBooks = useCallback(async () => {
     const { data } = await supabase
-      .from<IBorrowedBookInfo>('borrowedBooks')
-      .select('id, date, returnDate, book:books(*), profile:profiles(*)');
+      .from<IBookProfileId>('borrowedBooks')
+      .select('id, date, returnDate, book:books(*)')
+      .eq('profileId', user?.id);
     if (data !== null) {
       setInfo(data);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     getBorrowedBooks();
@@ -34,12 +36,13 @@ const BorrowedBooksView = () => {
     <motion.div exit={PageExitAnimation}>
       <div className="container mx-auto py-1 shadow-inner">
         {info && info?.map((book) => (
-          <BorrowedBook
-            key={book.id}
+          <UserBook
+            key={book.book.id}
             book={book.book}
             returnDate={book.returnDate}
             date={book.date}
-            profile={book.profile}
+            id={book.id}
+            onBookReturn={getBorrowedBooks}
           />
       ))}
         {info && info?.length < 1 && <NoResults />}
@@ -48,4 +51,4 @@ const BorrowedBooksView = () => {
   );
 };
 
-export default BorrowedBooksView;
+export default UserBooksView;
