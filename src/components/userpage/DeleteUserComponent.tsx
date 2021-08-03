@@ -3,9 +3,11 @@ import ModalDialog from '../universal/ModalDialog';
 import { IProfile } from '../../interfaces/IProfile.interface';
 import supabase from '../../utils/supabase';
 import { errorToast, successToast } from '../../utils/utils';
+import { useUserUpdate } from '../UserProvider';
 
 const DeleteUserComponent = () => {
   const [modalShown, setModalShown] = useState(false);
+  const setUser = useUserUpdate();
 
   const deleteAccHandler = async () => {
     const { error } = await supabase
@@ -16,6 +18,17 @@ const DeleteUserComponent = () => {
       errorToast(error.message, 'delete-account-fail');
     } else {
       supabase.auth.signOut();
+      if (setUser) {
+        setUser({
+          createdAt: '',
+          email: '',
+          firstName: '',
+          id: '',
+          status: '',
+          isAdmin: false,
+          lastName: '',
+        });
+      }
       successToast('Account deleted successfully', 'logout-success');
       setModalShown(false);
     }
