@@ -53,7 +53,10 @@
   }
 
   .btn-sidebar {
-    @apply fixed inset-y-0 left-0 px-1 mt-2 max-h-full bg-white text-gray-500 border border-gray-500 transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white hover:border-gray-700 lg:hidden;
+    @apply fixed inset-y-0 left-0 px-1 mt-2 max-h-full bg-white text-gray-500 border border-gray-500
+    transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white hover:border-gray-700 lg:hidden
+    dark:border-gray-700 dark:bg-gray-800
+    dark:hover:bg-gray-500 dark:hover:text-black;
   }
 
   .btn-subtle {
