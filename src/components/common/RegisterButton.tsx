@@ -6,7 +6,7 @@ const RegisterButton = () => {
   const [modalVisibility, setModalVisibility] = useState(false);
 
   return (
-    <div>
+    <div className="dark:text-white">
       <div className="btn-nav-end text-left relative">
         <button
           type="button"
@@ -14,7 +14,7 @@ const RegisterButton = () => {
         >Sign Up
         </button>
       </div>
-      {modalVisibility && <RegisterModal onSuccess={() => {}} onVisibilityChange={() => setModalVisibility(!modalVisibility)} />}
+      {modalVisibility && <RegisterModal onSuccess={() => { }} onVisibilityChange={() => setModalVisibility(!modalVisibility)} />}
     </div>
   );
 };

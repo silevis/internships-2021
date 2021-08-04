@@ -12,12 +12,12 @@ interface ISpecsItem {
 const SpecificationTable: FC<ISpecsTableProps> = ({ items }) => {
   const tableRows = [];
   for (let i = 0; i < items.length; i++) {
-      tableRows.push(
-        <div key={i} className="flex flex-wrap flex-col md:flex-row justify-between border-b">
-          <div className="max-w-1/2 md:text-right p-2 mr-10 text-gray-500">{items[i].key}</div>
-          <div className="max-w-1/2 p-2">{items[i].value}</div>
-        </div>
-);
+    tableRows.push(
+      <div key={i} className="flex flex-wrap flex-col md:flex-row justify-between border-b">
+        <div className="max-w-1/2 md:text-right p-2 mr-10 text-gray-500 dark:text-gray-300">{items[i].key}</div>
+        <div className="max-w-1/2 p-2">{items[i].value}</div>
+      </div>
+    );
   }
   return (
     <div className="w-full">

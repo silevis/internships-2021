@@ -46,7 +46,7 @@ const BookListView = () => {
 
   return (
     <motion.div exit={PageExitAnimation}>
-      <div className="bg-gray-50">
+      <div>
         <div className="content-container">
           <Sidebar />
           <div className="w-full shadow-inner">
@@ -56,7 +56,7 @@ const BookListView = () => {
             {data && data?.length < 1 && <NoResults />}
           </div>
         </div>
-        <div className="flex flex-row w-full justify-center mb-2 text-xl">
+        <div className="flex flex-row w-full justify-center text-xl">
           <Pagination
             count={numberOfBooks || 10}
             pageSize={10}

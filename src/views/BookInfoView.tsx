@@ -30,15 +30,15 @@ const BookInfoView = () => {
   return (
     <motion.div exit={PageExitAnimation}>
       {book ? (
-        <div className="content-container bg-white">
+        <div className="content-container bg-white dark:bg-gray-800">
           <Sidebar />
           <div className="mt-16 w-full">
             <BookInfo book={book} />
           </div>
         </div>
-) : <span>Book doesn&apos;t exist</span>}
+      ) : <span>Book doesn&apos;t exist</span>}
     </motion.div>
-);
+  );
 };
 
 export default BookInfoView;

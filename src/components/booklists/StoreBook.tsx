@@ -59,7 +59,10 @@ const StoreBook: FC<IBookProps> = ({
   };
 
   return (
-    <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
+    <div className="flex flex-col place-content-center max-w-full bg-gray-100 shadow-md p-3 m-3 mx-6
+    sm:flex-row md:w-auto
+    dark:bg-gray-600 dark:text-white"
+    >
       <img
         src={image}
         alt="A book."
@@ -80,7 +83,7 @@ const StoreBook: FC<IBookProps> = ({
         />
         {data?.length !== 0 && (
           <div>
-            <div className="bg-gray-400 text-white">In a stock: {quantity} </div>
+            <div className="bg-gray-400 text-white dark:bg-gray-500">In a stock: {quantity} </div>
             <UpdateBook
               id={id}
               quantity={Number(quantityInput) + (quantity ?? 0)}

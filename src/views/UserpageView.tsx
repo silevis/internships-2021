@@ -22,7 +22,7 @@ const UserpageView = () => {
     <motion.div exit={PageExitAnimation}>
       <div className="container mx-auto">
         <div className="h-32 bg-gray-500 bg-no-repeat bg-center object-contain" style={styleBg} />
-        <div className="mx-16 bg-white relative -top-4 z-30">
+        <div className="mx-16 bg-white relative -top-4 z-30 dark:bg-gray-600 dark:text-white">
           <div className="shadow-md">
             <div className="flex flex-col md:flex-row">
               <div className="w-1/4 relative h-24">
