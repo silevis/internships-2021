@@ -37,7 +37,7 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
     title: 'Details',
     content:
       (
-        <div className="flex justify-center p-1 md:p-4">
+        <div className="flex justify-center p-1 md:p-4 dark:bg-gray-600 dark:text-gray-200">
           <SpecificationTable items={specsTabList} />
         </div>
       ),
@@ -52,16 +52,16 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
   const [status, setStatus] = useState(true);
   const isBorrowed = useCallback(async () => {
     if (supabase.auth.user()) {
-    const { data } = await supabase
-    .from('borrowedBooks')
-    .select('id')
-    .match({ bookId: book.id, profileId: user?.id });
-    if (data?.length) {
-      setStatus(true);
-      return;
+      const { data } = await supabase
+        .from('borrowedBooks')
+        .select('id')
+        .match({ bookId: book.id, profileId: user?.id });
+      if (data?.length) {
+        setStatus(true);
+        return;
+      }
+      setStatus(false);
     }
-    setStatus(false);
-  }
   }, [book, user]);
   useEffect(() => {
     isBorrowed();
@@ -81,12 +81,12 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
         </div>
         <div className="lg:w-2/3 flex-col lg:flex-row flex flex-wrap">
           <div className="lg:w-6/12 flex flex-auto flex-col">
-            <span className="text-xl">{book.title}</span> <br />
+            <span className="text-xl dark:text-gray-300">{book.title}</span> <br />
             <div className="flex">
-              <div className="w-1/2 text-gray-600">{book.categories?.join(', ')}</div>
-              <div className="w-1/2 text-right text-gray-600">{book.authors?.join(', ')}</div>
+              <div className="w-1/2 text-gray-600 dark:text-gray-300">{book.categories?.join(', ')}</div>
+              <div className="w-1/2 text-right text-gray-600 dark:text-gray-300">{book.authors?.join(', ')}</div>
             </div>
-            <div className="mt-12 text-sm text-gray-700 text-justify">
+            <div className="mt-12 text-sm text-gray-700 text-justify dark:text-gray-300">
               {book.description}
             </div>
           </div>
@@ -103,10 +103,10 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
               />
             )}
             {status && book.quantity !== 0 && (
-              <span>You already borrowed this book</span>
+              <span className="dark:text-gray-200">You already borrowed this book</span>
             )}
             {book.quantity === 0 && (
-              <span>Not in stock right now</span>
+              <span className="dark:text-gray-200">Not in stock right now</span>
             )}
           </div>
         </div>
@@ -116,7 +116,8 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
       </div>
       {enlarged && (
         <div
-          className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen"
+          className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen
+          dark:bg-black dark:bg-opacity-70"
           onClick={() => setEnlarged(false)}
         >
           <div className="relative m-auto flex-col flex rounded-md shadow-xl transform scale-150">

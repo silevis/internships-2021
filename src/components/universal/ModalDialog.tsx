@@ -21,12 +21,14 @@ const ModalDialog: FC<IModalDialogProps> = ({ title, okButtonLabel, onVisibility
   };
   return (
     <motion.div
-      className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen"
+      className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen
+      dark:bg-black dark:bg-opacity-70"
       initial="init"
       animate="ani"
     >
       <motion.div
-        className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-md shadow-xl"
+        className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-md shadow-xl
+        dark:bg-gray-700"
         variants={motionVariants}
       >
         <div className="flex justify-between">

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import { UserProvider } from './UserProvider';
 import AppRouter from './AppRouter';
+import ThemeProvider from '../utils/ThemeContext';
 
 export const PageExitAnimation = {
   opacity: 0,
@@ -12,9 +13,11 @@ export const PageExitAnimation = {
 const App = () => {
   return (
     <UserProvider>
-      <Router basename={process.env.PUBLIC_URL}>
-        <AppRouter />
-      </Router>
+      <ThemeProvider>
+        <Router basename={process.env.PUBLIC_URL}>
+          <AppRouter />
+        </Router>
+      </ThemeProvider>
     </UserProvider>
   );
 };

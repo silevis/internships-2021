@@ -22,7 +22,10 @@ const UserBook: FC<IBookProps> = ({
   onBookReturn,
 }) => {
   return (
-    <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-50 shadow p-3 m-3 mx-6">
+    <div className="flex flex-col place-content-center max-w-full bg-gray-50 shadow p-3 m-3 mx-6
+    md:w-auto sm:flex-row
+    dark:bg-gray-600 dark:text-white"
+    >
       <div className="m-3 flex justify-center flex-wrap flex-col">
         <div>
           <img

@@ -6,6 +6,7 @@ import RegisterButton from './RegisterButton';
 import { isLoggedIn, useUser, useUserUpdate, isAdmin } from '../UserProvider';
 import supabase from '../../utils/supabase';
 import { successToast } from '../../utils/utils';
+import DarkModeToggle from './DarkModeToggle';
 
 const Navigation = () => {
   const user = useUser();
@@ -40,16 +41,17 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="bg-gray-700 shadow dark:bg-gray-800">
+    <nav className="bg-gray-700 shadow">
       <div className="container px-6 py-3 mx-auto md:flex md:justify-between md:items-center">
         <div className="flex items-center justify-between">
           <Link to="/">
             <div>
-              <span className="text-xl font-bold text-white dark:text-white md:text-2xl">
+              <span className="text-xl font-bold text-white md:text-2xl">
                 Books
               </span>
             </div>
           </Link>
+          <DarkModeToggle />
           <button
             type="button"
             className="border-gray-400 text-gray-200 rounded-md border max-h-full px-1

@@ -27,23 +27,25 @@ const Book: FC<IBookProps> = ({ book }) => {
   const [status, setStatus] = useState(false);
   const isBorrowed = useCallback(async () => {
     if (supabase.auth.user()) {
-    const { data } = await supabase
-    .from('borrowedBooks')
-    .select('id')
-    .match({ bookId: book.id, profileId: user?.id });
-    if (data?.length) {
-      setStatus(true);
-      return;
+      const { data } = await supabase
+        .from('borrowedBooks')
+        .select('id')
+        .match({ bookId: book.id, profileId: user?.id });
+      if (data?.length) {
+        setStatus(true);
+        return;
+      }
+      setStatus(false);
     }
-    setStatus(false);
-  }
   }, [book, user]);
   useEffect(() => {
     isBorrowed();
   }, [isBorrowed]);
   return (
     <motion.div
-      className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-white shadow p-3 m-3 mx-6"
+      className="flex flex-col place-content-center max-w-full bg-white shadow p-3 m-3 mx-6
+      sm:flex-row md:w-auto
+      dark:bg-gray-600 dark:text-white"
       variants={motionVariants}
       initial="hidden"
       animate="shown"
@@ -59,7 +61,10 @@ const Book: FC<IBookProps> = ({ book }) => {
         </Link>
       </div>
       <div className="ml-2 mb-4 md:mb-0 w-full">
-        <span className="break-words cursor-pointer transition duration-400 ease-in-out hover:text-gray-500">
+        <span className="break-words cursor-pointer
+        transition duration-300 ease-in-out hover:text-gray-500
+        dark:hover:text-black"
+        >
           <Link to={`/book/${book.id}`}>{book.title ?? 'N/D'}</Link>
         </span>
         <div className="text-gray-400 flex flex-col">
@@ -73,17 +78,17 @@ const Book: FC<IBookProps> = ({ book }) => {
       </div>
       <div>
         {!status && (
-        <BorrowBook
-          bookId={book.id}
-          profileId={user?.id}
-          date={new Date()}
-          returnDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
-          quantity={book.quantity ? book.quantity - 1 : -1}
-          onBookBorrow={isBorrowed}
-        />
+          <BorrowBook
+            bookId={book.id}
+            profileId={user?.id}
+            date={new Date()}
+            returnDate={new Date(new Date().setMonth(new Date().getMonth() + 1))}
+            quantity={book.quantity ? book.quantity - 1 : -1}
+            onBookBorrow={isBorrowed}
+          />
         )}
         {status && (
-          <span>You already borrowed this book</span>
+          <span className="dark:text-gray-200">You already borrowed this book</span>
         )}
       </div>
     </motion.div>
