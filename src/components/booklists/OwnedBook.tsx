@@ -40,7 +40,10 @@ const OwnedBook: FC<IBookProps> = ({
     getBorrowedQuantity();
   }, [id]);
   return (
-    <div className="flex flex-col sm:flex-row place-content-center max-w-full md:w-auto bg-gray-100 shadow-md p-3 m-3 mx-6">
+    <div className="flex flex-col place-content-center max-w-full bg-gray-100 shadow-md p-3 m-3 mx-6
+    sm:flex-row md:w-auto
+    dark:bg-gray-600 dark:text-white"
+    >
       <img
         src={image}
         alt="A book."

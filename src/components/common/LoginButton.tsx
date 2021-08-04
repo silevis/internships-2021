@@ -57,7 +57,7 @@ const LoginButton = () => {
   };
 
   return (
-    <div>
+    <div className="dark:text-white">
       <div className="btn-nav text-left relative">
         <button
           type="button"

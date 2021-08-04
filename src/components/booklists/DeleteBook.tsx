@@ -28,10 +28,13 @@ const DeleteBook: FC<IBookProps> = ({ id, onBookDelete, title }) => {
       </button>
       {modal && (
         <div
-          className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen"
+          className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen
+          dark:bg-black dark:bg-opacity-70"
           onClick={() => setModal(false)}
         >
-          <div className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-md shadow-xl">
+          <div className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-md shadow-xl
+          dark:bg-gray-600 dark:text-white"
+          >
             <p>Are you sure you want to delete this book from the stock: &quot;{title}&quot;?</p>
             <button
               type="button"

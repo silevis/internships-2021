@@ -50,10 +50,12 @@ const Sidebar = () => {
         </button>
       </div>
       <div
-        className={`lg:block z-30 inset-0 flex-none min-h-screen h-full lg:h-auto bg-white ml-6 lg:mt-0 lg:ml-0 pb-10 lg:pt-0
-        w-72 shadow-sm dark:bg-gray-800 overflow-y-auto lg:overflow-y-visible ${toggle ? 'hidden' : 'fixed lg:static'}`}
+        className={`lg:block lg:h-auto lg:mt-0 lg:ml-0 lg:pt-0 lg:overflow-y-visible ${toggle ? 'hidden' : 'fixed lg:static'}
+        border-white bg-white
+        z-30 inset-0 flex-none min-h-screen h-full ml-6 pb-10 border-l-2 border-r-2 w-72 shadow-sm overflow-y-auto
+        dark:bg-gray-800 dark:border-gray-600`}
       >
-        <div className="items-center justify-between scrolling-touch fixed top-14 max-h-screen overflow-y-auto pb-8">
+        <div className="dark:text-gray-300 items-center justify-between scrolling-touch fixed top-14 max-h-screen overflow-y-auto pb-8">
           <div className="border-b border-gray-400 mx-4 my-5 pl-2 text-l font-bold">
             Filters
           </div>

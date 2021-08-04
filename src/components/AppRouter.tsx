@@ -35,7 +35,7 @@ function AppRouter() {
           <HomepageView />
         </Route>
         <Route>
-          <div className="bg-gray-50 h-full min-h-screen">
+          <div className="h-full min-h-screen pb-2">
             <header className="sticky top-0 w-full h-auto z-50">
               <Navigation />
             </header>

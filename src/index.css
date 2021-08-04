@@ -31,7 +31,9 @@
     transition: transform 0.5s, filter 0.25s;
   }
   .btn-nav {
-    @apply px-4 py-2 md:py-0 text-gray-200 transition duration-300 ease-in-out hover:text-indigo-500 border-t md:border-t-0 md:border-l border-gray-400 cursor-pointer;
+    @apply px-4 py-2 text-gray-200 border-t border-gray-400
+    md:py-0 md:border-l md:border-t-0
+    transition duration-300 ease-in-out hover:text-indigo-500;
   }
 
   .btn-nav-end {
@@ -39,7 +41,11 @@
   }
 
   .btn-page {
-    @apply border-gray-400 text-gray-400 rounded-sm border-2 max-h-full p-1 transition duration-300 ease-in-out hover:bg-gray-400 hover:text-white;
+    @apply text-gray-400 rounded-sm border-2 border-gray-400 max-h-full p-1
+    transition duration-300 ease-in-out
+    hover:bg-gray-400 hover:text-white
+    dark:border-gray-700 dark:bg-gray-800
+    dark:hover:bg-gray-500 dark:hover:text-black;
   }
 
   .btn-exit {
@@ -59,13 +65,16 @@
   }
 
   .input-pri {
-    @apply p-1 placeholder-gray-400 text-gray-600 border outline-none transition duration-300 ease-in-out focus:ring-2 ring-gray-200;
+    @apply placeholder-gray-400 text-gray-600 ring-gray-200 border outline-none p-1
+    transition duration-300 ease-in-out focus:ring-2
+    dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300;
     max-width: 11rem;
   }
 
   .input-alt {
-    @apply p-1 placeholder-gray-400 text-gray-600 border outline-none
-    transition duration-300 ease-in-out focus:ring-2 ring-gray-200;
+    @apply placeholder-gray-400 text-gray-600 ring-gray-200 border outline-none p-1
+    transition duration-300 ease-in-out focus:ring-2
+    dark:bg-gray-600 dark:border-gray-500 dark:ring-gray-400;
     max-width: 12rem;
   }
 
