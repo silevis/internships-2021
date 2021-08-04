@@ -49,7 +49,7 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
 
   const [enlarged, setEnlarged] = useState(false);
   const user = useUser();
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
   const isBorrowed = useCallback(async () => {
     if (supabase.auth.user()) {
       const { data } = await supabase
@@ -103,7 +103,7 @@ const BookInfo: FC<IBookInfoProps> = ({ book }) => {
               />
             )}
             {status && book.quantity !== 0 && (
-              <span className="dark:text-gray-200">You already borrowed this book</span>
+              <span className="dark:text-gray-200">You have already borrowed this book</span>
             )}
             {book.quantity === 0 && (
               <span className="dark:text-gray-200">Not in stock right now</span>

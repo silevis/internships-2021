@@ -88,7 +88,7 @@ const Book: FC<IBookProps> = ({ book }) => {
           />
         )}
         {status && (
-          <span className="dark:text-gray-200">You already borrowed this book</span>
+          <span className="dark:text-gray-200">You have already borrowed this book</span>
         )}
       </div>
     </motion.div>

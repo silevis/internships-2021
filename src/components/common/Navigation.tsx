@@ -31,6 +31,7 @@ const Navigation = () => {
         email: '',
         firstName: '',
         id: '',
+        status: '',
         isAdmin: false,
         lastName: '',
       });
