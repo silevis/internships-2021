@@ -44,13 +44,13 @@ const Navigation = () => {
     <nav className="bg-gray-700 shadow">
       <div className="container px-6 py-3 mx-auto md:flex md:justify-between md:items-center">
         <div className="flex items-center justify-between">
-          <Link to="/">
-            <div>
-              <span className="text-xl font-bold text-white md:text-2xl">
-                Books
+          <div className="flex">
+            <Link to="/">
+              <span className="text-xl font-bold text-white md:text-2xl mr-3">
+                SileBooks
               </span>
-            </div>
-          </Link>
+            </Link>
+          </div>
           <button
             type="button"
             className="border-gray-400 text-gray-200 rounded-md border max-h-full px-1
@@ -81,7 +81,7 @@ const Navigation = () => {
               <Link
                 to="/books-list"
               >
-                Book List
+                Books
               </Link>
             </button>
 
