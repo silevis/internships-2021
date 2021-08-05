@@ -16,6 +16,16 @@ const LoginButton = () => {
       password: '',
     },
     onSubmit: async (values) => {
+      const { data: userStatus } = await supabase
+      .from<IProfile>('profiles')
+      .select(`
+        status
+      `).eq('email', values.emailAdress);
+      if (userStatus?.[0]?.status === 'DELETED') {
+        errorToast('Failed to log-in. Error: This account has been deleted', 'login-error');
+        return;
+      }
+
       const { user, error } = await supabase.auth.signIn({
         email: values.emailAdress,
         password: values.password,
@@ -24,7 +34,6 @@ const LoginButton = () => {
         errorToast(`Failed to log-in. Error: ${error.message}`, 'login-error');
         return;
       }
-
       if (user && setUser) {
         // TODO: get the default avatar directly from the supabase avatar store
         getUserInfo(user?.id).then(async (response) => {
