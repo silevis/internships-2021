@@ -22,7 +22,7 @@ const ModalDialog: FC<IModalDialogProps> = ({ title, okButtonLabel, onVisibility
   return (
     <motion.div
       className="fixed left-0 top-0 pin z-50 overflow-auto bg-gray-400 bg-opacity-50 flex h-screen w-screen
-      dark:bg-black dark:bg-opacity-70"
+      dark:bg-black dark:bg-opacity-70 dark:text-white"
       initial="init"
       animate="ani"
     >
