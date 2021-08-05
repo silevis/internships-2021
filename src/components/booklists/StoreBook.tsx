@@ -79,6 +79,7 @@ const StoreBook: FC<IBookProps> = ({
           id="quantity"
           name="quantity"
           type="number"
+          className="dark:text-black"
           onChange={(event) => incorrectQuantityHandler(event.target.value)}
         />
         {data?.length !== 0 && (

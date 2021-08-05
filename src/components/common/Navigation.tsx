@@ -48,7 +48,7 @@ const Navigation = () => {
           <div className="flex">
             <Link to="/">
               <span className="text-xl font-bold text-white md:text-2xl mr-3">
-                Books
+                SileBooks
               </span>
             </Link>
             <DarkModeToggle />
@@ -83,7 +83,7 @@ const Navigation = () => {
               <Link
                 to="/books-list"
               >
-                Book List
+                Books
               </Link>
             </button>
 
