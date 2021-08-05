@@ -6,7 +6,6 @@ import RegisterButton from './RegisterButton';
 import { isLoggedIn, useUser, useUserUpdate, isAdmin } from '../UserProvider';
 import supabase from '../../utils/supabase';
 import { successToast } from '../../utils/utils';
-import DarkModeToggle from './DarkModeToggle';
 
 const Navigation = () => {
   const user = useUser();

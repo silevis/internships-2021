@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
+import { persist, retrieveFromStore } from './persistentStorageUtils';
 
 interface IThemeContext {
   isDarkMode: boolean;
@@ -6,7 +7,7 @@ interface IThemeContext {
 }
 
 export const ThemeContext = React.createContext<IThemeContext>({
-  isDarkMode: false,
+  isDarkMode: retrieveFromStore('theme') === 'dark',
   setIsDarkMode: () => null,
 });
 
@@ -22,7 +23,7 @@ const ThemeProvider: FC = ({ children }) => {
   const contextValue = useMemo(() => {
     const setIsDarkMode = (newValue: boolean) => {
       const root = window.document.documentElement;
-      localStorage.setItem('color-mode', newValue ? '1' : '0');
+      persist('theme', newValue ? 'dark' : 'light');
       root.classList.toggle('dark', newValue);
 
       rawSetIsDarkMode(newValue);

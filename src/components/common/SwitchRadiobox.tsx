@@ -31,7 +31,7 @@ const SwitchRadiobox: FC<ISwitchRadioboxProps> = ({ onSwitch, initialState }) =>
     <div>
       <motion.div
         onClick={onSwitchChange}
-        className={`p-2 flex items-center ${isToggled ? 'justify-start' : 'justify-end'}
+        className={`p-2 flex items-center ${isToggled ? 'justify-end' : 'justify-start'}
       rounded-full bg-white cursor-pointer transition`}
         style={isToggled ? {
           backgroundColor: '#ffffff',
