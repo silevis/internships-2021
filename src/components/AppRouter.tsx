@@ -20,6 +20,7 @@ import { useUser } from './UserProvider';
 import NoMatch404 from './NoMatch404';
 import UserpageView from '../views/UserpageView';
 import HomepageView from '../views/HomepageView';
+import Footer from './common/Footer';
 
 function AppRouter() {
   const user = useUser();
@@ -69,6 +70,7 @@ function AppRouter() {
               </Route>
             </Switch>
           </div>
+          <Footer />
         </Route>
       </Switch>
     </AnimatePresence>

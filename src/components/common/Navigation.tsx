@@ -52,7 +52,6 @@ const Navigation = () => {
               </span>
             </div>
           </Link>
-          <DarkModeToggle />
           <button
             type="button"
             className="border-gray-400 text-gray-200 rounded-md border max-h-full px-1

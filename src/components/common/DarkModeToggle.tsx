@@ -1,21 +1,13 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../utils/ThemeContext';
+import SwitchRadiobox from './SwitchRadiobox';
 
 const DarkModeToggle = () => {
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
 
-  // if (!isDarkMode) return null;
-
   return (
-    <div>
-      <input
-        type="checkbox"
-        name="darkModeSwitch"
-        id="darkModeSwitch"
-        checked={isDarkMode}
-        onChange={(e) => setIsDarkMode(e.target.checked)}
-      />
-      <label htmlFor="darkModeSwitch">Dark Mode</label>
+    <div className="w-16">
+      <SwitchRadiobox onSwitch={() => setIsDarkMode(!isDarkMode)} initialState={isDarkMode} />
     </div>
   );
 };
